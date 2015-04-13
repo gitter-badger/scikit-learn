@@ -744,7 +744,7 @@ typedef npy_uint32 __pyx_t_7sklearn_4tree_9_splitter_UINT32_t;
  * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
  * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer             # <<<<<<<<<<<<<<
  * 
- * cdef union SplitValue:
+ * ctypedef union SplitValue:
  */
 typedef npy_uint64 __pyx_t_7sklearn_4tree_9_splitter_UINT64_t;
 
@@ -855,13 +855,14 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 union __pyx_t_7sklearn_4tree_9_splitter_SplitValue;
+typedef union __pyx_t_7sklearn_4tree_9_splitter_SplitValue __pyx_t_7sklearn_4tree_9_splitter_SplitValue;
 struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord;
 struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init;
 
 /* "sklearn/tree/_splitter.pxd":24
  * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
  * 
- * cdef union SplitValue:             # <<<<<<<<<<<<<<
+ * ctypedef union SplitValue:             # <<<<<<<<<<<<<<
  *     # Union type to generalize the concept of a threshold to
  *     # categorical features. For non-categorical features, use the
  */
@@ -880,7 +881,7 @@ union __pyx_t_7sklearn_4tree_9_splitter_SplitValue {
 struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord {
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t feature;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t pos;
-  union __pyx_t_7sklearn_4tree_9_splitter_SplitValue split_value;
+  __pyx_t_7sklearn_4tree_9_splitter_SplitValue split_value;
   double improvement;
   double impurity_left;
   double impurity_right;
@@ -2525,7 +2526,7 @@ static CYTHON_INLINE double __pyx_f_7sklearn_4tree_6_utils_log(double __pyx_v_x)
  *     """Determine whether a sample goes to the left or right child node."""
  */
 
-static int __pyx_f_7sklearn_4tree_6_utils_goes_left(__pyx_t_7sklearn_4tree_6_utils_DTYPE_t __pyx_v_feature_value, union __pyx_t_7sklearn_4tree_9_splitter_SplitValue __pyx_v_split, __pyx_t_7sklearn_4tree_6_utils_INT32_t __pyx_v_n_categories) {
+static int __pyx_f_7sklearn_4tree_6_utils_goes_left(__pyx_t_7sklearn_4tree_6_utils_DTYPE_t __pyx_v_feature_value, __pyx_t_7sklearn_4tree_9_splitter_SplitValue __pyx_v_split, __pyx_t_7sklearn_4tree_6_utils_INT32_t __pyx_v_n_categories) {
   __pyx_t_7sklearn_4tree_6_utils_UINT32_t __pyx_v_rng_seed;
   CYTHON_UNUSED __pyx_t_7sklearn_4tree_9_splitter_UINT64_t __pyx_v_q;
   int __pyx_r;
@@ -6420,7 +6421,7 @@ PyMODINIT_FUNC PyInit__utils(void)
   if (__Pyx_ExportFunction("rand_int", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_rand_int, "__pyx_t_7sklearn_4tree_6_utils_SIZE_t (__pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("rand_uniform", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_rand_uniform, "double (double, double, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("log", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_log, "double (double)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__Pyx_ExportFunction("goes_left", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_goes_left, "int (__pyx_t_7sklearn_4tree_6_utils_DTYPE_t, union __pyx_t_7sklearn_4tree_9_splitter_SplitValue, __pyx_t_7sklearn_4tree_6_utils_INT32_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("goes_left", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_goes_left, "int (__pyx_t_7sklearn_4tree_6_utils_DTYPE_t, __pyx_t_7sklearn_4tree_9_splitter_SplitValue, __pyx_t_7sklearn_4tree_6_utils_INT32_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("__pyx_fuse_0safe_realloc", (void (*)(void))__pyx_fuse_0__pyx_f_7sklearn_4tree_6_utils_safe_realloc, "__pyx_t_7sklearn_4tree_6_utils_DTYPE_t *(__pyx_t_7sklearn_4tree_6_utils_DTYPE_t **, size_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("__pyx_fuse_1safe_realloc", (void (*)(void))__pyx_fuse_1__pyx_f_7sklearn_4tree_6_utils_safe_realloc, "__pyx_t_7sklearn_4tree_6_utils_SIZE_t *(__pyx_t_7sklearn_4tree_6_utils_SIZE_t **, size_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("__pyx_fuse_2safe_realloc", (void (*)(void))__pyx_fuse_2__pyx_f_7sklearn_4tree_6_utils_safe_realloc, "unsigned char *(unsigned char **, size_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}

@@ -824,7 +824,7 @@ typedef npy_uint32 __pyx_t_7sklearn_4tree_9_splitter_UINT32_t;
  * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
  * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer             # <<<<<<<<<<<<<<
  * 
- * cdef union SplitValue:
+ * ctypedef union SplitValue:
  */
 typedef npy_uint64 __pyx_t_7sklearn_4tree_9_splitter_UINT64_t;
 #if CYTHON_CCOMPLEX
@@ -946,6 +946,7 @@ struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord {
   double improvement;
 };
 union __pyx_t_7sklearn_4tree_9_splitter_SplitValue;
+typedef union __pyx_t_7sklearn_4tree_9_splitter_SplitValue __pyx_t_7sklearn_4tree_9_splitter_SplitValue;
 struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord;
 struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init;
 struct __pyx_opt_args_7sklearn_4tree_9_splitter_17BaseDenseSplitter_init;
@@ -954,7 +955,7 @@ struct __pyx_opt_args_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init;
 /* "sklearn/tree/_splitter.pxd":24
  * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
  * 
- * cdef union SplitValue:             # <<<<<<<<<<<<<<
+ * ctypedef union SplitValue:             # <<<<<<<<<<<<<<
  *     # Union type to generalize the concept of a threshold to
  *     # categorical features. For non-categorical features, use the
  */
@@ -973,7 +974,7 @@ union __pyx_t_7sklearn_4tree_9_splitter_SplitValue {
 struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord {
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t feature;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t pos;
-  union __pyx_t_7sklearn_4tree_9_splitter_SplitValue split_value;
+  __pyx_t_7sklearn_4tree_9_splitter_SplitValue split_value;
   double improvement;
   double impurity_left;
   double impurity_right;
