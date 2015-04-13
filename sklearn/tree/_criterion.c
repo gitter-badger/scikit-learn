@@ -455,6 +455,7 @@ static const char *__pyx_f[] = {
   "sklearn/tree/_criterion.pyx",
   "__init__.pxd",
   "type.pxd",
+  "sklearn/tree/_splitter.pxd",
   "sklearn/tree/_utils.pxd",
 };
 #define IS_UNSIGNED(type) (((type) -1) > 0)
@@ -682,8 +683,62 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "sklearn/tree/_utils.pxd":13
- * cimport numpy as np
+/* "sklearn/tree/_splitter.pxd":17
+ * from ._criterion cimport Criterion
+ * 
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ */
+typedef npy_float32 __pyx_t_7sklearn_4tree_9_splitter_DTYPE_t;
+
+/* "sklearn/tree/_splitter.pxd":18
+ * 
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ */
+typedef npy_float64 __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t;
+
+/* "sklearn/tree/_splitter.pxd":19
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ */
+typedef npy_intp __pyx_t_7sklearn_4tree_9_splitter_SIZE_t;
+
+/* "sklearn/tree/_splitter.pxd":20
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
+ */
+typedef npy_int32 __pyx_t_7sklearn_4tree_9_splitter_INT32_t;
+
+/* "sklearn/tree/_splitter.pxd":21
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
+ * 
+ */
+typedef npy_uint32 __pyx_t_7sklearn_4tree_9_splitter_UINT32_t;
+
+/* "sklearn/tree/_splitter.pxd":22
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer             # <<<<<<<<<<<<<<
+ * 
+ * cdef union SplitValue:
+ */
+typedef npy_uint64 __pyx_t_7sklearn_4tree_9_splitter_UINT64_t;
+
+/* "sklearn/tree/_utils.pxd":15
+ * from ._splitter cimport SplitValue
  * 
  * ctypedef np.npy_float32 DTYPE_t          # Type of X             # <<<<<<<<<<<<<<
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
@@ -691,7 +746,7 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  */
 typedef npy_float32 __pyx_t_7sklearn_4tree_6_utils_DTYPE_t;
 
-/* "sklearn/tree/_utils.pxd":14
+/* "sklearn/tree/_utils.pxd":16
  * 
  * ctypedef np.npy_float32 DTYPE_t          # Type of X
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight             # <<<<<<<<<<<<<<
@@ -700,7 +755,7 @@ typedef npy_float32 __pyx_t_7sklearn_4tree_6_utils_DTYPE_t;
  */
 typedef npy_float64 __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t;
 
-/* "sklearn/tree/_utils.pxd":15
+/* "sklearn/tree/_utils.pxd":17
  * ctypedef np.npy_float32 DTYPE_t          # Type of X
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
  * ctypedef np.npy_intp SIZE_t              # Type for indices and counters             # <<<<<<<<<<<<<<
@@ -709,7 +764,7 @@ typedef npy_float64 __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t;
  */
 typedef npy_intp __pyx_t_7sklearn_4tree_6_utils_SIZE_t;
 
-/* "sklearn/tree/_utils.pxd":16
+/* "sklearn/tree/_utils.pxd":18
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
  * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
  * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer             # <<<<<<<<<<<<<<
@@ -718,7 +773,7 @@ typedef npy_intp __pyx_t_7sklearn_4tree_6_utils_SIZE_t;
  */
 typedef npy_int32 __pyx_t_7sklearn_4tree_6_utils_INT32_t;
 
-/* "sklearn/tree/_utils.pxd":17
+/* "sklearn/tree/_utils.pxd":19
  * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
  * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
  * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer             # <<<<<<<<<<<<<<
@@ -793,6 +848,7 @@ typedef npy_uint32 __pyx_t_7sklearn_4tree_10_criterion_UINT32_t;
 
 
 /*--- Type declarations ---*/
+struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter;
 struct __pyx_obj_7sklearn_4tree_6_utils_Stack;
 struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap;
 struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion;
@@ -838,10 +894,53 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
+union __pyx_t_7sklearn_4tree_9_splitter_SplitValue;
+struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord;
+struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init;
+
+/* "sklearn/tree/_splitter.pxd":24
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
+ * 
+ * cdef union SplitValue:             # <<<<<<<<<<<<<<
+ *     # Union type to generalize the concept of a threshold to
+ *     # categorical features. For non-categorical features, use the
+ */
+union __pyx_t_7sklearn_4tree_9_splitter_SplitValue {
+  __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t threshold;
+  __pyx_t_7sklearn_4tree_9_splitter_UINT64_t cat_split;
+};
+
+/* "sklearn/tree/_splitter.pxd":45
+ *     UINT64_t cat_split
+ * 
+ * cdef struct SplitRecord:             # <<<<<<<<<<<<<<
+ *     # Data to track sample split
+ *     SIZE_t feature         # Which feature to split on.
+ */
+struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord {
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t feature;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t pos;
+  union __pyx_t_7sklearn_4tree_9_splitter_SplitValue split_value;
+  double improvement;
+  double impurity_left;
+  double impurity_right;
+};
+
+/* "sklearn/tree/_splitter.pxd":109
+ * 
+ *     # Methods
+ *     cdef void init(self, object X, np.ndarray y,             # <<<<<<<<<<<<<<
+ *                    DOUBLE_t* sample_weight,
+ *                    np.ndarray X_idx_sorted=*) except *
+ */
+struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init {
+  int __pyx_n;
+  PyArrayObject *X_idx_sorted;
+};
 struct __pyx_t_7sklearn_4tree_6_utils_StackRecord;
 struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord;
 
-/* "sklearn/tree/_utils.pxd":19
+/* "sklearn/tree/_utils.pxd":21
  * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
  * 
  * cdef enum:             # <<<<<<<<<<<<<<
@@ -852,7 +951,7 @@ enum  {
   __pyx_e_7sklearn_4tree_6_utils_RAND_R_MAX = 0x7FFFFFFF
 };
 
-/* "sklearn/tree/_utils.pxd":59
+/* "sklearn/tree/_utils.pxd":65
  * 
  * # A record on the stack for depth-first tree growing
  * cdef struct StackRecord:             # <<<<<<<<<<<<<<
@@ -869,7 +968,7 @@ struct __pyx_t_7sklearn_4tree_6_utils_StackRecord {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t n_constant_features;
 };
 
-/* "sklearn/tree/_utils.pxd":85
+/* "sklearn/tree/_utils.pxd":91
  * 
  * # A record on the frontier for best-first tree growing
  * cdef struct PriorityHeapRecord:             # <<<<<<<<<<<<<<
@@ -889,7 +988,40 @@ struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord {
   double improvement;
 };
 
-/* "sklearn/tree/_utils.pxd":68
+/* "sklearn/tree/_splitter.pxd":57
+ *     double impurity_right  # Impurity of the right split.
+ * 
+ * cdef class Splitter:             # <<<<<<<<<<<<<<
+ *     # The splitter searches in the input space for a feature and a threshold
+ *     # to split the samples samples[start:end].
+ */
+struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter *__pyx_vtab;
+  struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *criterion;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t max_features;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t min_samples_leaf;
+  double min_weight_leaf;
+  PyObject *random_state;
+  __pyx_t_7sklearn_4tree_9_splitter_UINT32_t rand_r_state;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *samples;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t n_samples;
+  double weighted_n_samples;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *features;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *constant_features;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t n_features;
+  __pyx_t_7sklearn_4tree_9_splitter_DTYPE_t *feature_values;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t start;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t end;
+  int presort;
+  __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t *y;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t y_stride;
+  __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t *sample_weight;
+  __pyx_t_7sklearn_4tree_9_splitter_INT32_t *n_categories;
+};
+
+
+/* "sklearn/tree/_utils.pxd":74
  *     SIZE_t n_constant_features
  * 
  * cdef class Stack:             # <<<<<<<<<<<<<<
@@ -905,7 +1037,7 @@ struct __pyx_obj_7sklearn_4tree_6_utils_Stack {
 };
 
 
-/* "sklearn/tree/_utils.pxd":97
+/* "sklearn/tree/_utils.pxd":103
  *     double improvement
  * 
  * cdef class PriorityHeap:             # <<<<<<<<<<<<<<
@@ -1026,7 +1158,25 @@ struct __pyx_obj_7sklearn_4tree_10_criterion_FriedmanMSE {
 
 
 
-/* "sklearn/tree/_utils.pxd":68
+/* "sklearn/tree/_splitter.pxd":57
+ *     double impurity_right  # Impurity of the right split.
+ * 
+ * cdef class Splitter:             # <<<<<<<<<<<<<<
+ *     # The splitter searches in the input space for a feature and a threshold
+ *     # to split the samples samples[start:end].
+ */
+
+struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter {
+  void (*init)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, PyObject *, PyArrayObject *, __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t *, struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init *__pyx_optional_args);
+  void (*node_reset)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, double *);
+  void (*node_split)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, double, struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *);
+  void (*node_value)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, double *);
+  double (*node_impurity)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *);
+};
+static struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter *__pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter;
+
+
+/* "sklearn/tree/_utils.pxd":74
  *     SIZE_t n_constant_features
  * 
  * cdef class Stack:             # <<<<<<<<<<<<<<
@@ -1042,7 +1192,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack {
 static struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *__pyx_vtabptr_7sklearn_4tree_6_utils_Stack;
 
 
-/* "sklearn/tree/_utils.pxd":97
+/* "sklearn/tree/_utils.pxd":103
  *     double improvement
  * 
  * cdef class PriorityHeap:             # <<<<<<<<<<<<<<
@@ -1546,6 +1696,9 @@ static PyTypeObject *__pyx_ptype_5numpy_broadcast = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ndarray = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, char *, char *, int *); /*proto*/
+
+/* Module declarations from 'sklearn.tree._splitter' */
+static PyTypeObject *__pyx_ptype_7sklearn_4tree_9_splitter_Splitter = 0;
 
 /* Module declarations from 'sklearn.tree._utils' */
 static PyTypeObject *__pyx_ptype_7sklearn_4tree_6_utils_Stack = 0;
@@ -9329,10 +9482,12 @@ PyMODINIT_FUNC PyInit__criterion(void)
   __pyx_ptype_5numpy_broadcast = __Pyx_ImportType("numpy", "broadcast", sizeof(PyArrayMultiIterObject), 0); if (unlikely(!__pyx_ptype_5numpy_broadcast)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_5numpy_ndarray = __Pyx_ImportType("numpy", "ndarray", sizeof(PyArrayObject), 0); if (unlikely(!__pyx_ptype_5numpy_ndarray)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_5numpy_ufunc = __Pyx_ImportType("numpy", "ufunc", sizeof(PyUFuncObject), 0); if (unlikely(!__pyx_ptype_5numpy_ufunc)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 864; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_7sklearn_4tree_6_utils_Stack = __Pyx_ImportType("sklearn.tree._utils", "Stack", sizeof(struct __pyx_obj_7sklearn_4tree_6_utils_Stack), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_6_utils_Stack)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_vtabptr_7sklearn_4tree_6_utils_Stack = (struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_6_utils_Stack->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_6_utils_Stack)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap = __Pyx_ImportType("sklearn.tree._utils", "PriorityHeap", sizeof(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap = (struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_9_splitter_Splitter = __Pyx_ImportType("sklearn.tree._splitter", "Splitter", sizeof(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_9_splitter_Splitter)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter = (struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_9_splitter_Splitter->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_6_utils_Stack = __Pyx_ImportType("sklearn.tree._utils", "Stack", sizeof(struct __pyx_obj_7sklearn_4tree_6_utils_Stack), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_6_utils_Stack)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_6_utils_Stack = (struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_6_utils_Stack->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_6_utils_Stack)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap = __Pyx_ImportType("sklearn.tree._utils", "PriorityHeap", sizeof(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap = (struct __pyx_vtabstruct_7sklearn_4tree_6_utils_PriorityHeap*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   __pyx_t_1 = __Pyx_ImportModule("sklearn.tree._utils"); if (!__pyx_t_1) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}

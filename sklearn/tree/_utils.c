@@ -456,6 +456,8 @@ static const char *__pyx_f[] = {
   "sklearn/tree/_utils.pyx",
   "__init__.pxd",
   "type.pxd",
+  "sklearn/tree/_criterion.pxd",
+  "sklearn/tree/_splitter.pxd",
 };
 
 /* "../../../../../../usr/lib64/python2.7/site-packages/Cython/Includes/numpy/__init__.pxd":726
@@ -647,8 +649,107 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "sklearn/tree/_utils.pxd":13
+/* "sklearn/tree/_criterion.pxd":15
  * cimport numpy as np
+ * 
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ */
+typedef npy_float32 __pyx_t_7sklearn_4tree_10_criterion_DTYPE_t;
+
+/* "sklearn/tree/_criterion.pxd":16
+ * 
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ */
+typedef npy_float64 __pyx_t_7sklearn_4tree_10_criterion_DOUBLE_t;
+
+/* "sklearn/tree/_criterion.pxd":17
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ */
+typedef npy_intp __pyx_t_7sklearn_4tree_10_criterion_SIZE_t;
+
+/* "sklearn/tree/_criterion.pxd":18
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ * 
+ */
+typedef npy_int32 __pyx_t_7sklearn_4tree_10_criterion_INT32_t;
+
+/* "sklearn/tree/_criterion.pxd":19
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer             # <<<<<<<<<<<<<<
+ * 
+ * cdef class Criterion:
+ */
+typedef npy_uint32 __pyx_t_7sklearn_4tree_10_criterion_UINT32_t;
+
+/* "sklearn/tree/_splitter.pxd":17
+ * from ._criterion cimport Criterion
+ * 
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ */
+typedef npy_float32 __pyx_t_7sklearn_4tree_9_splitter_DTYPE_t;
+
+/* "sklearn/tree/_splitter.pxd":18
+ * 
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ */
+typedef npy_float64 __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t;
+
+/* "sklearn/tree/_splitter.pxd":19
+ * ctypedef np.npy_float32 DTYPE_t          # Type of X
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ */
+typedef npy_intp __pyx_t_7sklearn_4tree_9_splitter_SIZE_t;
+
+/* "sklearn/tree/_splitter.pxd":20
+ * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
+ */
+typedef npy_int32 __pyx_t_7sklearn_4tree_9_splitter_INT32_t;
+
+/* "sklearn/tree/_splitter.pxd":21
+ * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer             # <<<<<<<<<<<<<<
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
+ * 
+ */
+typedef npy_uint32 __pyx_t_7sklearn_4tree_9_splitter_UINT32_t;
+
+/* "sklearn/tree/_splitter.pxd":22
+ * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer             # <<<<<<<<<<<<<<
+ * 
+ * cdef union SplitValue:
+ */
+typedef npy_uint64 __pyx_t_7sklearn_4tree_9_splitter_UINT64_t;
+
+/* "sklearn/tree/_utils.pxd":15
+ * from ._splitter cimport SplitValue
  * 
  * ctypedef np.npy_float32 DTYPE_t          # Type of X             # <<<<<<<<<<<<<<
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
@@ -656,7 +757,7 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  */
 typedef npy_float32 __pyx_t_7sklearn_4tree_6_utils_DTYPE_t;
 
-/* "sklearn/tree/_utils.pxd":14
+/* "sklearn/tree/_utils.pxd":16
  * 
  * ctypedef np.npy_float32 DTYPE_t          # Type of X
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight             # <<<<<<<<<<<<<<
@@ -665,7 +766,7 @@ typedef npy_float32 __pyx_t_7sklearn_4tree_6_utils_DTYPE_t;
  */
 typedef npy_float64 __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t;
 
-/* "sklearn/tree/_utils.pxd":15
+/* "sklearn/tree/_utils.pxd":17
  * ctypedef np.npy_float32 DTYPE_t          # Type of X
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
  * ctypedef np.npy_intp SIZE_t              # Type for indices and counters             # <<<<<<<<<<<<<<
@@ -674,7 +775,7 @@ typedef npy_float64 __pyx_t_7sklearn_4tree_6_utils_DOUBLE_t;
  */
 typedef npy_intp __pyx_t_7sklearn_4tree_6_utils_SIZE_t;
 
-/* "sklearn/tree/_utils.pxd":16
+/* "sklearn/tree/_utils.pxd":18
  * ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
  * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
  * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer             # <<<<<<<<<<<<<<
@@ -683,7 +784,7 @@ typedef npy_intp __pyx_t_7sklearn_4tree_6_utils_SIZE_t;
  */
 typedef npy_int32 __pyx_t_7sklearn_4tree_6_utils_INT32_t;
 
-/* "sklearn/tree/_utils.pxd":17
+/* "sklearn/tree/_utils.pxd":19
  * ctypedef np.npy_intp SIZE_t              # Type for indices and counters
  * ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
  * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer             # <<<<<<<<<<<<<<
@@ -713,6 +814,8 @@ typedef npy_uint32 __pyx_t_7sklearn_4tree_6_utils_UINT32_t;
 
 
 /*--- Type declarations ---*/
+struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion;
+struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter;
 struct __pyx_obj_7sklearn_4tree_6_utils_Stack;
 struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap;
 
@@ -751,10 +854,53 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
+union __pyx_t_7sklearn_4tree_9_splitter_SplitValue;
+struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord;
+struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init;
+
+/* "sklearn/tree/_splitter.pxd":24
+ * ctypedef np.npy_uint64 UINT64_t          # Unsigned 64 bit integer
+ * 
+ * cdef union SplitValue:             # <<<<<<<<<<<<<<
+ *     # Union type to generalize the concept of a threshold to
+ *     # categorical features. For non-categorical features, use the
+ */
+union __pyx_t_7sklearn_4tree_9_splitter_SplitValue {
+  __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t threshold;
+  __pyx_t_7sklearn_4tree_9_splitter_UINT64_t cat_split;
+};
+
+/* "sklearn/tree/_splitter.pxd":45
+ *     UINT64_t cat_split
+ * 
+ * cdef struct SplitRecord:             # <<<<<<<<<<<<<<
+ *     # Data to track sample split
+ *     SIZE_t feature         # Which feature to split on.
+ */
+struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord {
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t feature;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t pos;
+  union __pyx_t_7sklearn_4tree_9_splitter_SplitValue split_value;
+  double improvement;
+  double impurity_left;
+  double impurity_right;
+};
+
+/* "sklearn/tree/_splitter.pxd":109
+ * 
+ *     # Methods
+ *     cdef void init(self, object X, np.ndarray y,             # <<<<<<<<<<<<<<
+ *                    DOUBLE_t* sample_weight,
+ *                    np.ndarray X_idx_sorted=*) except *
+ */
+struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init {
+  int __pyx_n;
+  PyArrayObject *X_idx_sorted;
+};
 struct __pyx_t_7sklearn_4tree_6_utils_StackRecord;
 struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord;
 
-/* "sklearn/tree/_utils.pxd":19
+/* "sklearn/tree/_utils.pxd":21
  * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
  * 
  * cdef enum:             # <<<<<<<<<<<<<<
@@ -765,7 +911,7 @@ enum  {
   __pyx_e_7sklearn_4tree_6_utils_RAND_R_MAX = 0x7FFFFFFF
 };
 
-/* "sklearn/tree/_utils.pxd":59
+/* "sklearn/tree/_utils.pxd":65
  * 
  * # A record on the stack for depth-first tree growing
  * cdef struct StackRecord:             # <<<<<<<<<<<<<<
@@ -782,7 +928,7 @@ struct __pyx_t_7sklearn_4tree_6_utils_StackRecord {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t n_constant_features;
 };
 
-/* "sklearn/tree/_utils.pxd":85
+/* "sklearn/tree/_utils.pxd":91
  * 
  * # A record on the frontier for best-first tree growing
  * cdef struct PriorityHeapRecord:             # <<<<<<<<<<<<<<
@@ -802,7 +948,69 @@ struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord {
   double improvement;
 };
 
-/* "sklearn/tree/_utils.pxd":68
+/* "sklearn/tree/_criterion.pxd":21
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ * 
+ * cdef class Criterion:             # <<<<<<<<<<<<<<
+ *     # The criterion computes the impurity of a node and the reduction of
+ *     # impurity of a split on that node. It also computes the output statistics
+ */
+struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *__pyx_vtab;
+  __pyx_t_7sklearn_4tree_10_criterion_DOUBLE_t *y;
+  __pyx_t_7sklearn_4tree_10_criterion_SIZE_t y_stride;
+  __pyx_t_7sklearn_4tree_10_criterion_DOUBLE_t *sample_weight;
+  __pyx_t_7sklearn_4tree_10_criterion_SIZE_t *samples;
+  __pyx_t_7sklearn_4tree_10_criterion_SIZE_t start;
+  __pyx_t_7sklearn_4tree_10_criterion_SIZE_t pos;
+  __pyx_t_7sklearn_4tree_10_criterion_SIZE_t end;
+  __pyx_t_7sklearn_4tree_10_criterion_SIZE_t n_outputs;
+  __pyx_t_7sklearn_4tree_10_criterion_SIZE_t n_node_samples;
+  double weighted_n_samples;
+  double weighted_n_node_samples;
+  double weighted_n_left;
+  double weighted_n_right;
+  double *sum_total;
+  double *sum_left;
+  double *sum_right;
+};
+
+
+/* "sklearn/tree/_splitter.pxd":57
+ *     double impurity_right  # Impurity of the right split.
+ * 
+ * cdef class Splitter:             # <<<<<<<<<<<<<<
+ *     # The splitter searches in the input space for a feature and a threshold
+ *     # to split the samples samples[start:end].
+ */
+struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter *__pyx_vtab;
+  struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *criterion;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t max_features;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t min_samples_leaf;
+  double min_weight_leaf;
+  PyObject *random_state;
+  __pyx_t_7sklearn_4tree_9_splitter_UINT32_t rand_r_state;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *samples;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t n_samples;
+  double weighted_n_samples;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *features;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *constant_features;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t n_features;
+  __pyx_t_7sklearn_4tree_9_splitter_DTYPE_t *feature_values;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t start;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t end;
+  int presort;
+  __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t *y;
+  __pyx_t_7sklearn_4tree_9_splitter_SIZE_t y_stride;
+  __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t *sample_weight;
+  __pyx_t_7sklearn_4tree_9_splitter_INT32_t *n_categories;
+};
+
+
+/* "sklearn/tree/_utils.pxd":74
  *     SIZE_t n_constant_features
  * 
  * cdef class Stack:             # <<<<<<<<<<<<<<
@@ -818,7 +1026,7 @@ struct __pyx_obj_7sklearn_4tree_6_utils_Stack {
 };
 
 
-/* "sklearn/tree/_utils.pxd":97
+/* "sklearn/tree/_utils.pxd":103
  *     double improvement
  * 
  * cdef class PriorityHeap:             # <<<<<<<<<<<<<<
@@ -835,7 +1043,47 @@ struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap {
 
 
 
-/* "sklearn/tree/_utils.pyx":90
+/* "sklearn/tree/_criterion.pxd":21
+ * ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ * 
+ * cdef class Criterion:             # <<<<<<<<<<<<<<
+ *     # The criterion computes the impurity of a node and the reduction of
+ *     # impurity of a split on that node. It also computes the output statistics
+ */
+
+struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion {
+  void (*init)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *, __pyx_t_7sklearn_4tree_10_criterion_DOUBLE_t *, __pyx_t_7sklearn_4tree_10_criterion_SIZE_t, __pyx_t_7sklearn_4tree_10_criterion_DOUBLE_t *, double, __pyx_t_7sklearn_4tree_10_criterion_SIZE_t *, __pyx_t_7sklearn_4tree_10_criterion_SIZE_t, __pyx_t_7sklearn_4tree_10_criterion_SIZE_t);
+  void (*reset)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *);
+  void (*reverse_reset)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *);
+  void (*update)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *, __pyx_t_7sklearn_4tree_10_criterion_SIZE_t);
+  double (*node_impurity)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *);
+  void (*children_impurity)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *, double *, double *);
+  void (*node_value)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *, double *);
+  double (*impurity_improvement)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *, double);
+  double (*proxy_impurity_improvement)(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *);
+};
+static struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *__pyx_vtabptr_7sklearn_4tree_10_criterion_Criterion;
+
+
+/* "sklearn/tree/_splitter.pxd":57
+ *     double impurity_right  # Impurity of the right split.
+ * 
+ * cdef class Splitter:             # <<<<<<<<<<<<<<
+ *     # The splitter searches in the input space for a feature and a threshold
+ *     # to split the samples samples[start:end].
+ */
+
+struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter {
+  void (*init)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, PyObject *, PyArrayObject *, __pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t *, struct __pyx_opt_args_7sklearn_4tree_9_splitter_8Splitter_init *__pyx_optional_args);
+  void (*node_reset)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, double *);
+  void (*node_split)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, double, struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *);
+  void (*node_value)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, double *);
+  double (*node_impurity)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *);
+};
+static struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter *__pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter;
+
+
+/* "sklearn/tree/_utils.pyx":110
  * # =============================================================================
  * 
  * cdef class Stack:             # <<<<<<<<<<<<<<
@@ -851,7 +1099,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack {
 static struct __pyx_vtabstruct_7sklearn_4tree_6_utils_Stack *__pyx_vtabptr_7sklearn_4tree_6_utils_Stack;
 
 
-/* "sklearn/tree/_utils.pyx":208
+/* "sklearn/tree/_utils.pyx":228
  * 
  * 
  * cdef class PriorityHeap:             # <<<<<<<<<<<<<<
@@ -996,6 +1244,8 @@ static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void);
 
 static int __Pyx_SetVtable(PyObject *dict, void *vtable);
 
+static void* __Pyx_GetVtable(PyObject *dict);
+
 typedef struct {
     int code_line;
     PyCodeObject* code_object;
@@ -1016,6 +1266,10 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
 
 static CYTHON_INLINE Py_intptr_t __Pyx_PyInt_As_Py_intptr_t(PyObject *);
+
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_npy_uint64(npy_uint64 value);
+
+static CYTHON_INLINE npy_uint64 __Pyx_PyInt_As_npy_uint64(PyObject *);
 
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
@@ -1175,11 +1429,18 @@ static PyTypeObject *__pyx_ptype_5numpy_ndarray = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, char *, char *, int *); /*proto*/
 
+/* Module declarations from 'sklearn.tree._criterion' */
+static PyTypeObject *__pyx_ptype_7sklearn_4tree_10_criterion_Criterion = 0;
+
+/* Module declarations from 'sklearn.tree._splitter' */
+static PyTypeObject *__pyx_ptype_7sklearn_4tree_9_splitter_Splitter = 0;
+
 /* Module declarations from 'libc.math' */
 
 /* Module declarations from 'sklearn.tree._utils' */
 static PyTypeObject *__pyx_ptype_7sklearn_4tree_6_utils_Stack = 0;
 static PyTypeObject *__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap = 0;
+static CYTHON_INLINE __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_f_7sklearn_4tree_6_utils_rand_int(__pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *); /*proto*/
 static CYTHON_INLINE __pyx_t_7sklearn_4tree_6_utils_UINT32_t __pyx_f_7sklearn_4tree_6_utils_our_rand_r(__pyx_t_7sklearn_4tree_6_utils_UINT32_t *); /*proto*/
 static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
 static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
@@ -1192,8 +1453,8 @@ int __pyx_module_is_main_sklearn__tree___utils = 0;
 
 /* Implementation of 'sklearn.tree._utils' */
 static PyObject *__pyx_builtin_MemoryError;
-static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_range;
+static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_RuntimeError;
 static PyObject *__pyx_pf_7sklearn_4tree_6_utils__realloc_test(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
 static int __pyx_pf_7sklearn_4tree_6_utils_5Stack___cinit__(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self, __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_v_capacity); /* proto */
@@ -2238,7 +2499,7 @@ static CYTHON_INLINE double __pyx_f_7sklearn_4tree_6_utils_log(double __pyx_v_x)
  * cdef inline double log(double x) nogil:
  *     return ln(x) / ln(2.0)             # <<<<<<<<<<<<<<
  * 
- * 
+ * cdef bint goes_left(DTYPE_t feature_value, SplitValue split,
  */
   __pyx_r = (log(__pyx_v_x) / log(2.0));
   goto __pyx_L0;
@@ -2256,7 +2517,132 @@ static CYTHON_INLINE double __pyx_f_7sklearn_4tree_6_utils_log(double __pyx_v_x)
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":106
+/* "sklearn/tree/_utils.pyx":85
+ *     return ln(x) / ln(2.0)
+ * 
+ * cdef bint goes_left(DTYPE_t feature_value, SplitValue split,             # <<<<<<<<<<<<<<
+ *                     INT32_t n_categories) nogil:
+ *     """Determine whether a sample goes to the left or right child node."""
+ */
+
+static int __pyx_f_7sklearn_4tree_6_utils_goes_left(__pyx_t_7sklearn_4tree_6_utils_DTYPE_t __pyx_v_feature_value, union __pyx_t_7sklearn_4tree_9_splitter_SplitValue __pyx_v_split, __pyx_t_7sklearn_4tree_6_utils_INT32_t __pyx_v_n_categories) {
+  __pyx_t_7sklearn_4tree_6_utils_UINT32_t __pyx_v_rng_seed;
+  CYTHON_UNUSED __pyx_t_7sklearn_4tree_9_splitter_UINT64_t __pyx_v_q;
+  int __pyx_r;
+  int __pyx_t_1;
+  __pyx_t_7sklearn_4tree_9_splitter_UINT64_t __pyx_t_2;
+  __pyx_t_7sklearn_4tree_9_splitter_UINT64_t __pyx_t_3;
+
+  /* "sklearn/tree/_utils.pyx":90
+ *     cdef UINT32_t rng_seed
+ * 
+ *     if n_categories < 1:             # <<<<<<<<<<<<<<
+ *         # Non-categorical feature
+ *         return feature_value <= split.threshold
+ */
+  __pyx_t_1 = ((__pyx_v_n_categories < 1) != 0);
+  if (__pyx_t_1) {
+
+    /* "sklearn/tree/_utils.pyx":92
+ *     if n_categories < 1:
+ *         # Non-categorical feature
+ *         return feature_value <= split.threshold             # <<<<<<<<<<<<<<
+ *     elif (split.cat_split & 1 == 0):
+ *         # Bitfield model
+ */
+    __pyx_r = (__pyx_v_feature_value <= __pyx_v_split.threshold);
+    goto __pyx_L0;
+  }
+
+  /* "sklearn/tree/_utils.pyx":93
+ *         # Non-categorical feature
+ *         return feature_value <= split.threshold
+ *     elif (split.cat_split & 1 == 0):             # <<<<<<<<<<<<<<
+ *         # Bitfield model
+ *         return (split.cat_split >> <SIZE_t>feature_value) & 1
+ */
+  __pyx_t_1 = (((__pyx_v_split.cat_split & 1) == 0) != 0);
+  if (__pyx_t_1) {
+
+    /* "sklearn/tree/_utils.pyx":95
+ *     elif (split.cat_split & 1 == 0):
+ *         # Bitfield model
+ *         return (split.cat_split >> <SIZE_t>feature_value) & 1             # <<<<<<<<<<<<<<
+ *     else:
+ *         # Random model
+ */
+    __pyx_r = ((__pyx_v_split.cat_split >> ((__pyx_t_7sklearn_4tree_6_utils_SIZE_t)__pyx_v_feature_value)) & 1);
+    goto __pyx_L0;
+  }
+  /*else*/ {
+
+    /* "sklearn/tree/_utils.pyx":98
+ *     else:
+ *         # Random model
+ *         rng_seed = split.cat_split >> 32             # <<<<<<<<<<<<<<
+ *         for q in range((split.cat_split & <SIZE_t>0xFFFFFFFF) >> 1):
+ *             if (<SIZE_t>feature_value ==
+ */
+    __pyx_v_rng_seed = (__pyx_v_split.cat_split >> 32);
+
+    /* "sklearn/tree/_utils.pyx":99
+ *         # Random model
+ *         rng_seed = split.cat_split >> 32
+ *         for q in range((split.cat_split & <SIZE_t>0xFFFFFFFF) >> 1):             # <<<<<<<<<<<<<<
+ *             if (<SIZE_t>feature_value ==
+ *                     rand_int(0, n_categories, &rng_seed)):
+ */
+    __pyx_t_2 = ((__pyx_v_split.cat_split & ((__pyx_t_7sklearn_4tree_6_utils_SIZE_t)0xFFFFFFFF)) >> 1);
+    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+      __pyx_v_q = __pyx_t_3;
+
+      /* "sklearn/tree/_utils.pyx":100
+ *         rng_seed = split.cat_split >> 32
+ *         for q in range((split.cat_split & <SIZE_t>0xFFFFFFFF) >> 1):
+ *             if (<SIZE_t>feature_value ==             # <<<<<<<<<<<<<<
+ *                     rand_int(0, n_categories, &rng_seed)):
+ *                 return 1
+ */
+      __pyx_t_1 = ((((__pyx_t_7sklearn_4tree_6_utils_SIZE_t)__pyx_v_feature_value) == __pyx_f_7sklearn_4tree_6_utils_rand_int(0, __pyx_v_n_categories, (&__pyx_v_rng_seed))) != 0);
+      if (__pyx_t_1) {
+
+        /* "sklearn/tree/_utils.pyx":102
+ *             if (<SIZE_t>feature_value ==
+ *                     rand_int(0, n_categories, &rng_seed)):
+ *                 return 1             # <<<<<<<<<<<<<<
+ *         return 0
+ * 
+ */
+        __pyx_r = 1;
+        goto __pyx_L0;
+      }
+    }
+
+    /* "sklearn/tree/_utils.pyx":103
+ *                     rand_int(0, n_categories, &rng_seed)):
+ *                 return 1
+ *         return 0             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+    __pyx_r = 0;
+    goto __pyx_L0;
+  }
+
+  /* "sklearn/tree/_utils.pyx":85
+ *     return ln(x) / ln(2.0)
+ * 
+ * cdef bint goes_left(DTYPE_t feature_value, SplitValue split,             # <<<<<<<<<<<<<<
+ *                     INT32_t n_categories) nogil:
+ *     """Determine whether a sample goes to the left or right child node."""
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  return __pyx_r;
+}
+
+/* "sklearn/tree/_utils.pyx":126
  *     """
  * 
  *     def __cinit__(self, SIZE_t capacity):             # <<<<<<<<<<<<<<
@@ -2292,18 +2678,18 @@ static int __pyx_pw_7sklearn_4tree_6_utils_5Stack_1__cinit__(PyObject *__pyx_v_s
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
     }
-    __pyx_v_capacity = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_capacity == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_capacity = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_capacity == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._utils.Stack.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2325,7 +2711,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_5Stack___cinit__(struct __pyx_obj_7sk
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sklearn/tree/_utils.pyx":107
+  /* "sklearn/tree/_utils.pyx":127
  * 
  *     def __cinit__(self, SIZE_t capacity):
  *         self.capacity = capacity             # <<<<<<<<<<<<<<
@@ -2334,7 +2720,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_5Stack___cinit__(struct __pyx_obj_7sk
  */
   __pyx_v_self->capacity = __pyx_v_capacity;
 
-  /* "sklearn/tree/_utils.pyx":108
+  /* "sklearn/tree/_utils.pyx":128
  *     def __cinit__(self, SIZE_t capacity):
  *         self.capacity = capacity
  *         self.top = 0             # <<<<<<<<<<<<<<
@@ -2343,7 +2729,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_5Stack___cinit__(struct __pyx_obj_7sk
  */
   __pyx_v_self->top = 0;
 
-  /* "sklearn/tree/_utils.pyx":109
+  /* "sklearn/tree/_utils.pyx":129
  *         self.capacity = capacity
  *         self.top = 0
  *         self.stack_ = <StackRecord*> malloc(capacity * sizeof(StackRecord))             # <<<<<<<<<<<<<<
@@ -2352,7 +2738,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_5Stack___cinit__(struct __pyx_obj_7sk
  */
   __pyx_v_self->stack_ = ((struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *)malloc((__pyx_v_capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_StackRecord)))));
 
-  /* "sklearn/tree/_utils.pyx":110
+  /* "sklearn/tree/_utils.pyx":130
  *         self.top = 0
  *         self.stack_ = <StackRecord*> malloc(capacity * sizeof(StackRecord))
  *         if self.stack_ == NULL:             # <<<<<<<<<<<<<<
@@ -2362,17 +2748,17 @@ static int __pyx_pf_7sklearn_4tree_6_utils_5Stack___cinit__(struct __pyx_obj_7sk
   __pyx_t_1 = ((__pyx_v_self->stack_ == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_utils.pyx":111
+    /* "sklearn/tree/_utils.pyx":131
  *         self.stack_ = <StackRecord*> malloc(capacity * sizeof(StackRecord))
  *         if self.stack_ == NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 111; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_utils.pyx":106
+  /* "sklearn/tree/_utils.pyx":126
  *     """
  * 
  *     def __cinit__(self, SIZE_t capacity):             # <<<<<<<<<<<<<<
@@ -2391,7 +2777,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_5Stack___cinit__(struct __pyx_obj_7sk
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":113
+/* "sklearn/tree/_utils.pyx":133
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -2414,7 +2800,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_5Stack_2__dealloc__(struct __pyx_obj
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sklearn/tree/_utils.pyx":114
+  /* "sklearn/tree/_utils.pyx":134
  * 
  *     def __dealloc__(self):
  *         free(self.stack_)             # <<<<<<<<<<<<<<
@@ -2423,7 +2809,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_5Stack_2__dealloc__(struct __pyx_obj
  */
   free(__pyx_v_self->stack_);
 
-  /* "sklearn/tree/_utils.pyx":113
+  /* "sklearn/tree/_utils.pyx":133
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -2435,7 +2821,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_5Stack_2__dealloc__(struct __pyx_obj
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_utils.pyx":116
+/* "sklearn/tree/_utils.pyx":136
  *         free(self.stack_)
  * 
  *     cdef bint is_empty(self) nogil:             # <<<<<<<<<<<<<<
@@ -2446,7 +2832,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_5Stack_2__dealloc__(struct __pyx_obj
 static int __pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *__pyx_v_self) {
   int __pyx_r;
 
-  /* "sklearn/tree/_utils.pyx":117
+  /* "sklearn/tree/_utils.pyx":137
  * 
  *     cdef bint is_empty(self) nogil:
  *         return self.top <= 0             # <<<<<<<<<<<<<<
@@ -2456,7 +2842,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty(struct __pyx_obj_7skle
   __pyx_r = (__pyx_v_self->top <= 0);
   goto __pyx_L0;
 
-  /* "sklearn/tree/_utils.pyx":116
+  /* "sklearn/tree/_utils.pyx":136
  *         free(self.stack_)
  * 
  *     cdef bint is_empty(self) nogil:             # <<<<<<<<<<<<<<
@@ -2469,7 +2855,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty(struct __pyx_obj_7skle
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":119
+/* "sklearn/tree/_utils.pyx":139
  *         return self.top <= 0
  * 
  *     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,             # <<<<<<<<<<<<<<
@@ -2485,7 +2871,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
   int __pyx_t_2;
   struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *__pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":126
+  /* "sklearn/tree/_utils.pyx":146
  *         Returns 0 if successful; -1 on out of memory error.
  *         """
  *         cdef SIZE_t top = self.top             # <<<<<<<<<<<<<<
@@ -2495,7 +2881,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
   __pyx_t_1 = __pyx_v_self->top;
   __pyx_v_top = __pyx_t_1;
 
-  /* "sklearn/tree/_utils.pyx":127
+  /* "sklearn/tree/_utils.pyx":147
  *         """
  *         cdef SIZE_t top = self.top
  *         cdef StackRecord* stack = NULL             # <<<<<<<<<<<<<<
@@ -2504,7 +2890,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   __pyx_v_stack = NULL;
 
-  /* "sklearn/tree/_utils.pyx":130
+  /* "sklearn/tree/_utils.pyx":150
  * 
  *         # Resize if capacity not sufficient
  *         if top >= self.capacity:             # <<<<<<<<<<<<<<
@@ -2514,7 +2900,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
   __pyx_t_2 = ((__pyx_v_top >= __pyx_v_self->capacity) != 0);
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_utils.pyx":131
+    /* "sklearn/tree/_utils.pyx":151
  *         # Resize if capacity not sufficient
  *         if top >= self.capacity:
  *             self.capacity *= 2             # <<<<<<<<<<<<<<
@@ -2523,7 +2909,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
     __pyx_v_self->capacity = (__pyx_v_self->capacity * 2);
 
-    /* "sklearn/tree/_utils.pyx":132
+    /* "sklearn/tree/_utils.pyx":152
  *         if top >= self.capacity:
  *             self.capacity *= 2
  *             stack = <StackRecord*> realloc(self.stack_,             # <<<<<<<<<<<<<<
@@ -2532,7 +2918,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
     __pyx_v_stack = ((struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *)realloc(__pyx_v_self->stack_, (__pyx_v_self->capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_StackRecord)))));
 
-    /* "sklearn/tree/_utils.pyx":134
+    /* "sklearn/tree/_utils.pyx":154
  *             stack = <StackRecord*> realloc(self.stack_,
  *                                            self.capacity * sizeof(StackRecord))
  *             if stack == NULL:             # <<<<<<<<<<<<<<
@@ -2542,7 +2928,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
     __pyx_t_2 = ((__pyx_v_stack == NULL) != 0);
     if (__pyx_t_2) {
 
-      /* "sklearn/tree/_utils.pyx":136
+      /* "sklearn/tree/_utils.pyx":156
  *             if stack == NULL:
  *                 # no free; __dealloc__ handles that
  *                 return -1             # <<<<<<<<<<<<<<
@@ -2553,7 +2939,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
       goto __pyx_L0;
     }
 
-    /* "sklearn/tree/_utils.pyx":137
+    /* "sklearn/tree/_utils.pyx":157
  *                 # no free; __dealloc__ handles that
  *                 return -1
  *             self.stack_ = stack             # <<<<<<<<<<<<<<
@@ -2565,7 +2951,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_utils.pyx":139
+  /* "sklearn/tree/_utils.pyx":159
  *             self.stack_ = stack
  * 
  *         stack = self.stack_             # <<<<<<<<<<<<<<
@@ -2575,7 +2961,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
   __pyx_t_3 = __pyx_v_self->stack_;
   __pyx_v_stack = __pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":140
+  /* "sklearn/tree/_utils.pyx":160
  * 
  *         stack = self.stack_
  *         stack[top].start = start             # <<<<<<<<<<<<<<
@@ -2584,7 +2970,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   (__pyx_v_stack[__pyx_v_top]).start = __pyx_v_start;
 
-  /* "sklearn/tree/_utils.pyx":141
+  /* "sklearn/tree/_utils.pyx":161
  *         stack = self.stack_
  *         stack[top].start = start
  *         stack[top].end = end             # <<<<<<<<<<<<<<
@@ -2593,7 +2979,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   (__pyx_v_stack[__pyx_v_top]).end = __pyx_v_end;
 
-  /* "sklearn/tree/_utils.pyx":142
+  /* "sklearn/tree/_utils.pyx":162
  *         stack[top].start = start
  *         stack[top].end = end
  *         stack[top].depth = depth             # <<<<<<<<<<<<<<
@@ -2602,7 +2988,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   (__pyx_v_stack[__pyx_v_top]).depth = __pyx_v_depth;
 
-  /* "sklearn/tree/_utils.pyx":143
+  /* "sklearn/tree/_utils.pyx":163
  *         stack[top].end = end
  *         stack[top].depth = depth
  *         stack[top].parent = parent             # <<<<<<<<<<<<<<
@@ -2611,7 +2997,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   (__pyx_v_stack[__pyx_v_top]).parent = __pyx_v_parent;
 
-  /* "sklearn/tree/_utils.pyx":144
+  /* "sklearn/tree/_utils.pyx":164
  *         stack[top].depth = depth
  *         stack[top].parent = parent
  *         stack[top].is_left = is_left             # <<<<<<<<<<<<<<
@@ -2620,7 +3006,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   (__pyx_v_stack[__pyx_v_top]).is_left = __pyx_v_is_left;
 
-  /* "sklearn/tree/_utils.pyx":145
+  /* "sklearn/tree/_utils.pyx":165
  *         stack[top].parent = parent
  *         stack[top].is_left = is_left
  *         stack[top].impurity = impurity             # <<<<<<<<<<<<<<
@@ -2629,7 +3015,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   (__pyx_v_stack[__pyx_v_top]).impurity = __pyx_v_impurity;
 
-  /* "sklearn/tree/_utils.pyx":146
+  /* "sklearn/tree/_utils.pyx":166
  *         stack[top].is_left = is_left
  *         stack[top].impurity = impurity
  *         stack[top].n_constant_features = n_constant_features             # <<<<<<<<<<<<<<
@@ -2638,7 +3024,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   (__pyx_v_stack[__pyx_v_top]).n_constant_features = __pyx_v_n_constant_features;
 
-  /* "sklearn/tree/_utils.pyx":149
+  /* "sklearn/tree/_utils.pyx":169
  * 
  *         # Increment stack pointer
  *         self.top = top + 1             # <<<<<<<<<<<<<<
@@ -2647,7 +3033,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
  */
   __pyx_v_self->top = (__pyx_v_top + 1);
 
-  /* "sklearn/tree/_utils.pyx":150
+  /* "sklearn/tree/_utils.pyx":170
  *         # Increment stack pointer
  *         self.top = top + 1
  *         return 0             # <<<<<<<<<<<<<<
@@ -2657,7 +3043,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_utils.pyx":119
+  /* "sklearn/tree/_utils.pyx":139
  *         return self.top <= 0
  * 
  *     cdef int push(self, SIZE_t start, SIZE_t end, SIZE_t depth, SIZE_t parent,             # <<<<<<<<<<<<<<
@@ -2670,7 +3056,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_push(struct __pyx_obj_7sklearn_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":152
+/* "sklearn/tree/_utils.pyx":172
  *         return 0
  * 
  *     cdef int pop(self, StackRecord* res) nogil:             # <<<<<<<<<<<<<<
@@ -2686,7 +3072,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
   struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *__pyx_t_2;
   int __pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":158
+  /* "sklearn/tree/_utils.pyx":178
  *         otherwise.
  *         """
  *         cdef SIZE_t top = self.top             # <<<<<<<<<<<<<<
@@ -2696,7 +3082,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
   __pyx_t_1 = __pyx_v_self->top;
   __pyx_v_top = __pyx_t_1;
 
-  /* "sklearn/tree/_utils.pyx":159
+  /* "sklearn/tree/_utils.pyx":179
  *         """
  *         cdef SIZE_t top = self.top
  *         cdef StackRecord* stack = self.stack_             # <<<<<<<<<<<<<<
@@ -2706,7 +3092,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
   __pyx_t_2 = __pyx_v_self->stack_;
   __pyx_v_stack = __pyx_t_2;
 
-  /* "sklearn/tree/_utils.pyx":161
+  /* "sklearn/tree/_utils.pyx":181
  *         cdef StackRecord* stack = self.stack_
  * 
  *         if top <= 0:             # <<<<<<<<<<<<<<
@@ -2716,7 +3102,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
   __pyx_t_3 = ((__pyx_v_top <= 0) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_utils.pyx":162
+    /* "sklearn/tree/_utils.pyx":182
  * 
  *         if top <= 0:
  *             return -1             # <<<<<<<<<<<<<<
@@ -2727,7 +3113,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_utils.pyx":164
+  /* "sklearn/tree/_utils.pyx":184
  *             return -1
  * 
  *         res[0] = stack[top - 1]             # <<<<<<<<<<<<<<
@@ -2736,7 +3122,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
  */
   (__pyx_v_res[0]) = (__pyx_v_stack[(__pyx_v_top - 1)]);
 
-  /* "sklearn/tree/_utils.pyx":165
+  /* "sklearn/tree/_utils.pyx":185
  * 
  *         res[0] = stack[top - 1]
  *         self.top = top - 1             # <<<<<<<<<<<<<<
@@ -2745,7 +3131,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
  */
   __pyx_v_self->top = (__pyx_v_top - 1);
 
-  /* "sklearn/tree/_utils.pyx":167
+  /* "sklearn/tree/_utils.pyx":187
  *         self.top = top - 1
  * 
  *         return 0             # <<<<<<<<<<<<<<
@@ -2755,7 +3141,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_utils.pyx":152
+  /* "sklearn/tree/_utils.pyx":172
  *         return 0
  * 
  *     cdef int pop(self, StackRecord* res) nogil:             # <<<<<<<<<<<<<<
@@ -2768,7 +3154,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_5Stack_pop(struct __pyx_obj_7sklearn_4
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":174
+/* "sklearn/tree/_utils.pyx":194
  * # =============================================================================
  * 
  * cdef void heapify_up(PriorityHeapRecord* heap, SIZE_t pos) nogil:             # <<<<<<<<<<<<<<
@@ -2782,7 +3168,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
   struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_2;
   struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":177
+  /* "sklearn/tree/_utils.pyx":197
  *     """Restore heap invariant parent.improvement > child.improvement from
  *        ``pos`` upwards. """
  *     if pos == 0:             # <<<<<<<<<<<<<<
@@ -2792,7 +3178,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
   __pyx_t_1 = ((__pyx_v_pos == 0) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_utils.pyx":178
+    /* "sklearn/tree/_utils.pyx":198
  *        ``pos`` upwards. """
  *     if pos == 0:
  *         return             # <<<<<<<<<<<<<<
@@ -2802,7 +3188,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_utils.pyx":180
+  /* "sklearn/tree/_utils.pyx":200
  *         return
  * 
  *     cdef SIZE_t parent_pos = (pos - 1) / 2             # <<<<<<<<<<<<<<
@@ -2811,7 +3197,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
  */
   __pyx_v_parent_pos = ((__pyx_v_pos - 1) / 2);
 
-  /* "sklearn/tree/_utils.pyx":182
+  /* "sklearn/tree/_utils.pyx":202
  *     cdef SIZE_t parent_pos = (pos - 1) / 2
  * 
  *     if heap[parent_pos].improvement < heap[pos].improvement:             # <<<<<<<<<<<<<<
@@ -2821,7 +3207,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
   __pyx_t_1 = (((__pyx_v_heap[__pyx_v_parent_pos]).improvement < (__pyx_v_heap[__pyx_v_pos]).improvement) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_utils.pyx":183
+    /* "sklearn/tree/_utils.pyx":203
  * 
  *     if heap[parent_pos].improvement < heap[pos].improvement:
  *         heap[parent_pos], heap[pos] = heap[pos], heap[parent_pos]             # <<<<<<<<<<<<<<
@@ -2833,7 +3219,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
     (__pyx_v_heap[__pyx_v_parent_pos]) = __pyx_t_2;
     (__pyx_v_heap[__pyx_v_pos]) = __pyx_t_3;
 
-    /* "sklearn/tree/_utils.pyx":184
+    /* "sklearn/tree/_utils.pyx":204
  *     if heap[parent_pos].improvement < heap[pos].improvement:
  *         heap[parent_pos], heap[pos] = heap[pos], heap[parent_pos]
  *         heapify_up(heap, parent_pos)             # <<<<<<<<<<<<<<
@@ -2845,7 +3231,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
   }
   __pyx_L4:;
 
-  /* "sklearn/tree/_utils.pyx":174
+  /* "sklearn/tree/_utils.pyx":194
  * # =============================================================================
  * 
  * cdef void heapify_up(PriorityHeapRecord* heap, SIZE_t pos) nogil:             # <<<<<<<<<<<<<<
@@ -2857,7 +3243,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4t
   __pyx_L0:;
 }
 
-/* "sklearn/tree/_utils.pyx":187
+/* "sklearn/tree/_utils.pyx":207
  * 
  * 
  * cdef void heapify_down(PriorityHeapRecord* heap, SIZE_t pos,             # <<<<<<<<<<<<<<
@@ -2874,7 +3260,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_3;
   struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_4;
 
-  /* "sklearn/tree/_utils.pyx":191
+  /* "sklearn/tree/_utils.pyx":211
  *     """Restore heap invariant parent.improvement > children.improvement from
  *        ``pos`` downwards. """
  *     cdef SIZE_t left_pos = 2 * (pos + 1) - 1             # <<<<<<<<<<<<<<
@@ -2883,7 +3269,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
  */
   __pyx_v_left_pos = ((2 * (__pyx_v_pos + 1)) - 1);
 
-  /* "sklearn/tree/_utils.pyx":192
+  /* "sklearn/tree/_utils.pyx":212
  *        ``pos`` downwards. """
  *     cdef SIZE_t left_pos = 2 * (pos + 1) - 1
  *     cdef SIZE_t right_pos = 2 * (pos + 1)             # <<<<<<<<<<<<<<
@@ -2892,7 +3278,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
  */
   __pyx_v_right_pos = (2 * (__pyx_v_pos + 1));
 
-  /* "sklearn/tree/_utils.pyx":193
+  /* "sklearn/tree/_utils.pyx":213
  *     cdef SIZE_t left_pos = 2 * (pos + 1) - 1
  *     cdef SIZE_t right_pos = 2 * (pos + 1)
  *     cdef SIZE_t largest = pos             # <<<<<<<<<<<<<<
@@ -2901,7 +3287,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
  */
   __pyx_v_largest = __pyx_v_pos;
 
-  /* "sklearn/tree/_utils.pyx":195
+  /* "sklearn/tree/_utils.pyx":215
  *     cdef SIZE_t largest = pos
  * 
  *     if (left_pos < heap_length and             # <<<<<<<<<<<<<<
@@ -2915,7 +3301,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "sklearn/tree/_utils.pyx":196
+  /* "sklearn/tree/_utils.pyx":216
  * 
  *     if (left_pos < heap_length and
  *             heap[left_pos].improvement > heap[largest].improvement):             # <<<<<<<<<<<<<<
@@ -2927,7 +3313,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_utils.pyx":197
+    /* "sklearn/tree/_utils.pyx":217
  *     if (left_pos < heap_length and
  *             heap[left_pos].improvement > heap[largest].improvement):
  *         largest = left_pos             # <<<<<<<<<<<<<<
@@ -2939,7 +3325,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_utils.pyx":199
+  /* "sklearn/tree/_utils.pyx":219
  *         largest = left_pos
  * 
  *     if (right_pos < heap_length and             # <<<<<<<<<<<<<<
@@ -2953,7 +3339,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
     goto __pyx_L7_bool_binop_done;
   }
 
-  /* "sklearn/tree/_utils.pyx":200
+  /* "sklearn/tree/_utils.pyx":220
  * 
  *     if (right_pos < heap_length and
  *             heap[right_pos].improvement > heap[largest].improvement):             # <<<<<<<<<<<<<<
@@ -2965,7 +3351,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_utils.pyx":201
+    /* "sklearn/tree/_utils.pyx":221
  *     if (right_pos < heap_length and
  *             heap[right_pos].improvement > heap[largest].improvement):
  *         largest = right_pos             # <<<<<<<<<<<<<<
@@ -2977,7 +3363,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   }
   __pyx_L6:;
 
-  /* "sklearn/tree/_utils.pyx":203
+  /* "sklearn/tree/_utils.pyx":223
  *         largest = right_pos
  * 
  *     if largest != pos:             # <<<<<<<<<<<<<<
@@ -2987,7 +3373,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   __pyx_t_1 = ((__pyx_v_largest != __pyx_v_pos) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_utils.pyx":204
+    /* "sklearn/tree/_utils.pyx":224
  * 
  *     if largest != pos:
  *         heap[pos], heap[largest] = heap[largest], heap[pos]             # <<<<<<<<<<<<<<
@@ -2999,7 +3385,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
     (__pyx_v_heap[__pyx_v_pos]) = __pyx_t_3;
     (__pyx_v_heap[__pyx_v_largest]) = __pyx_t_4;
 
-    /* "sklearn/tree/_utils.pyx":205
+    /* "sklearn/tree/_utils.pyx":225
  *     if largest != pos:
  *         heap[pos], heap[largest] = heap[largest], heap[pos]
  *         heapify_down(heap, largest, heap_length)             # <<<<<<<<<<<<<<
@@ -3011,7 +3397,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   }
   __pyx_L9:;
 
-  /* "sklearn/tree/_utils.pyx":187
+  /* "sklearn/tree/_utils.pyx":207
  * 
  * 
  * cdef void heapify_down(PriorityHeapRecord* heap, SIZE_t pos,             # <<<<<<<<<<<<<<
@@ -3022,7 +3408,7 @@ static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_
   /* function exit code */
 }
 
-/* "sklearn/tree/_utils.pyx":228
+/* "sklearn/tree/_utils.pyx":248
  *     """
  * 
  *     def __cinit__(self, SIZE_t capacity):             # <<<<<<<<<<<<<<
@@ -3058,18 +3444,18 @@ static int __pyx_pw_7sklearn_4tree_6_utils_12PriorityHeap_1__cinit__(PyObject *_
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
     }
-    __pyx_v_capacity = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_capacity == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_capacity = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_capacity == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._utils.PriorityHeap.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3091,7 +3477,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sklearn/tree/_utils.pyx":229
+  /* "sklearn/tree/_utils.pyx":249
  * 
  *     def __cinit__(self, SIZE_t capacity):
  *         self.capacity = capacity             # <<<<<<<<<<<<<<
@@ -3100,7 +3486,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
  */
   __pyx_v_self->capacity = __pyx_v_capacity;
 
-  /* "sklearn/tree/_utils.pyx":230
+  /* "sklearn/tree/_utils.pyx":250
  *     def __cinit__(self, SIZE_t capacity):
  *         self.capacity = capacity
  *         self.heap_ptr = 0             # <<<<<<<<<<<<<<
@@ -3109,7 +3495,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
  */
   __pyx_v_self->heap_ptr = 0;
 
-  /* "sklearn/tree/_utils.pyx":231
+  /* "sklearn/tree/_utils.pyx":251
  *         self.capacity = capacity
  *         self.heap_ptr = 0
  *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))             # <<<<<<<<<<<<<<
@@ -3118,7 +3504,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
  */
   __pyx_v_self->heap_ = ((struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *)malloc((__pyx_v_capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord)))));
 
-  /* "sklearn/tree/_utils.pyx":232
+  /* "sklearn/tree/_utils.pyx":252
  *         self.heap_ptr = 0
  *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))
  *         if self.heap_ == NULL:             # <<<<<<<<<<<<<<
@@ -3128,17 +3514,17 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
   __pyx_t_1 = ((__pyx_v_self->heap_ == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_utils.pyx":233
+    /* "sklearn/tree/_utils.pyx":253
  *         self.heap_ = <PriorityHeapRecord*> malloc(capacity * sizeof(PriorityHeapRecord))
  *         if self.heap_ == NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_utils.pyx":228
+  /* "sklearn/tree/_utils.pyx":248
  *     """
  * 
  *     def __cinit__(self, SIZE_t capacity):             # <<<<<<<<<<<<<<
@@ -3157,7 +3543,7 @@ static int __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap___cinit__(struct __pyx
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":235
+/* "sklearn/tree/_utils.pyx":255
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -3180,7 +3566,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap_2__dealloc__(struct _
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sklearn/tree/_utils.pyx":236
+  /* "sklearn/tree/_utils.pyx":256
  * 
  *     def __dealloc__(self):
  *         free(self.heap_)             # <<<<<<<<<<<<<<
@@ -3189,7 +3575,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap_2__dealloc__(struct _
  */
   free(__pyx_v_self->heap_);
 
-  /* "sklearn/tree/_utils.pyx":235
+  /* "sklearn/tree/_utils.pyx":255
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -3201,7 +3587,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap_2__dealloc__(struct _
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_utils.pyx":238
+/* "sklearn/tree/_utils.pyx":258
  *         free(self.heap_)
  * 
  *     cdef bint is_empty(self) nogil:             # <<<<<<<<<<<<<<
@@ -3212,7 +3598,7 @@ static void __pyx_pf_7sklearn_4tree_6_utils_12PriorityHeap_2__dealloc__(struct _
 static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *__pyx_v_self) {
   int __pyx_r;
 
-  /* "sklearn/tree/_utils.pyx":239
+  /* "sklearn/tree/_utils.pyx":259
  * 
  *     cdef bint is_empty(self) nogil:
  *         return self.heap_ptr <= 0             # <<<<<<<<<<<<<<
@@ -3222,7 +3608,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty(struct __pyx_o
   __pyx_r = (__pyx_v_self->heap_ptr <= 0);
   goto __pyx_L0;
 
-  /* "sklearn/tree/_utils.pyx":238
+  /* "sklearn/tree/_utils.pyx":258
  *         free(self.heap_)
  * 
  *     cdef bint is_empty(self) nogil:             # <<<<<<<<<<<<<<
@@ -3235,7 +3621,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty(struct __pyx_o
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":241
+/* "sklearn/tree/_utils.pyx":261
  *         return self.heap_ptr <= 0
  * 
  *     cdef int push(self, SIZE_t node_id, SIZE_t start, SIZE_t end, SIZE_t pos,             # <<<<<<<<<<<<<<
@@ -3251,7 +3637,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   int __pyx_t_2;
   struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *__pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":249
+  /* "sklearn/tree/_utils.pyx":269
  *         Returns 0 if successful; -1 on out of memory error.
  *         """
  *         cdef SIZE_t heap_ptr = self.heap_ptr             # <<<<<<<<<<<<<<
@@ -3261,7 +3647,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   __pyx_t_1 = __pyx_v_self->heap_ptr;
   __pyx_v_heap_ptr = __pyx_t_1;
 
-  /* "sklearn/tree/_utils.pyx":250
+  /* "sklearn/tree/_utils.pyx":270
  *         """
  *         cdef SIZE_t heap_ptr = self.heap_ptr
  *         cdef PriorityHeapRecord* heap = NULL             # <<<<<<<<<<<<<<
@@ -3270,7 +3656,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   __pyx_v_heap = NULL;
 
-  /* "sklearn/tree/_utils.pyx":253
+  /* "sklearn/tree/_utils.pyx":273
  * 
  *         # Resize if capacity not sufficient
  *         if heap_ptr >= self.capacity:             # <<<<<<<<<<<<<<
@@ -3280,7 +3666,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   __pyx_t_2 = ((__pyx_v_heap_ptr >= __pyx_v_self->capacity) != 0);
   if (__pyx_t_2) {
 
-    /* "sklearn/tree/_utils.pyx":254
+    /* "sklearn/tree/_utils.pyx":274
  *         # Resize if capacity not sufficient
  *         if heap_ptr >= self.capacity:
  *             self.capacity *= 2             # <<<<<<<<<<<<<<
@@ -3289,7 +3675,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
     __pyx_v_self->capacity = (__pyx_v_self->capacity * 2);
 
-    /* "sklearn/tree/_utils.pyx":255
+    /* "sklearn/tree/_utils.pyx":275
  *         if heap_ptr >= self.capacity:
  *             self.capacity *= 2
  *             heap = <PriorityHeapRecord*> realloc(self.heap_,             # <<<<<<<<<<<<<<
@@ -3298,7 +3684,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
     __pyx_v_heap = ((struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *)realloc(__pyx_v_self->heap_, (__pyx_v_self->capacity * (sizeof(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord)))));
 
-    /* "sklearn/tree/_utils.pyx":258
+    /* "sklearn/tree/_utils.pyx":278
  *                                                  self.capacity *
  *                                                  sizeof(PriorityHeapRecord))
  *             if heap == NULL:             # <<<<<<<<<<<<<<
@@ -3308,7 +3694,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
     __pyx_t_2 = ((__pyx_v_heap == NULL) != 0);
     if (__pyx_t_2) {
 
-      /* "sklearn/tree/_utils.pyx":260
+      /* "sklearn/tree/_utils.pyx":280
  *             if heap == NULL:
  *                 # no free; __dealloc__ handles that
  *                 return -1             # <<<<<<<<<<<<<<
@@ -3319,7 +3705,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
       goto __pyx_L0;
     }
 
-    /* "sklearn/tree/_utils.pyx":261
+    /* "sklearn/tree/_utils.pyx":281
  *                 # no free; __dealloc__ handles that
  *                 return -1
  *             self.heap_ = heap             # <<<<<<<<<<<<<<
@@ -3331,7 +3717,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_utils.pyx":264
+  /* "sklearn/tree/_utils.pyx":284
  * 
  *         # Put element as last element of heap
  *         heap = self.heap_             # <<<<<<<<<<<<<<
@@ -3341,7 +3727,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   __pyx_t_3 = __pyx_v_self->heap_;
   __pyx_v_heap = __pyx_t_3;
 
-  /* "sklearn/tree/_utils.pyx":265
+  /* "sklearn/tree/_utils.pyx":285
  *         # Put element as last element of heap
  *         heap = self.heap_
  *         heap[heap_ptr].node_id = node_id             # <<<<<<<<<<<<<<
@@ -3350,7 +3736,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).node_id = __pyx_v_node_id;
 
-  /* "sklearn/tree/_utils.pyx":266
+  /* "sklearn/tree/_utils.pyx":286
  *         heap = self.heap_
  *         heap[heap_ptr].node_id = node_id
  *         heap[heap_ptr].start = start             # <<<<<<<<<<<<<<
@@ -3359,7 +3745,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).start = __pyx_v_start;
 
-  /* "sklearn/tree/_utils.pyx":267
+  /* "sklearn/tree/_utils.pyx":287
  *         heap[heap_ptr].node_id = node_id
  *         heap[heap_ptr].start = start
  *         heap[heap_ptr].end = end             # <<<<<<<<<<<<<<
@@ -3368,7 +3754,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).end = __pyx_v_end;
 
-  /* "sklearn/tree/_utils.pyx":268
+  /* "sklearn/tree/_utils.pyx":288
  *         heap[heap_ptr].start = start
  *         heap[heap_ptr].end = end
  *         heap[heap_ptr].pos = pos             # <<<<<<<<<<<<<<
@@ -3377,7 +3763,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).pos = __pyx_v_pos;
 
-  /* "sklearn/tree/_utils.pyx":269
+  /* "sklearn/tree/_utils.pyx":289
  *         heap[heap_ptr].end = end
  *         heap[heap_ptr].pos = pos
  *         heap[heap_ptr].depth = depth             # <<<<<<<<<<<<<<
@@ -3386,7 +3772,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).depth = __pyx_v_depth;
 
-  /* "sklearn/tree/_utils.pyx":270
+  /* "sklearn/tree/_utils.pyx":290
  *         heap[heap_ptr].pos = pos
  *         heap[heap_ptr].depth = depth
  *         heap[heap_ptr].is_leaf = is_leaf             # <<<<<<<<<<<<<<
@@ -3395,7 +3781,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).is_leaf = __pyx_v_is_leaf;
 
-  /* "sklearn/tree/_utils.pyx":271
+  /* "sklearn/tree/_utils.pyx":291
  *         heap[heap_ptr].depth = depth
  *         heap[heap_ptr].is_leaf = is_leaf
  *         heap[heap_ptr].impurity = impurity             # <<<<<<<<<<<<<<
@@ -3404,7 +3790,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).impurity = __pyx_v_impurity;
 
-  /* "sklearn/tree/_utils.pyx":272
+  /* "sklearn/tree/_utils.pyx":292
  *         heap[heap_ptr].is_leaf = is_leaf
  *         heap[heap_ptr].impurity = impurity
  *         heap[heap_ptr].impurity_left = impurity_left             # <<<<<<<<<<<<<<
@@ -3413,7 +3799,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).impurity_left = __pyx_v_impurity_left;
 
-  /* "sklearn/tree/_utils.pyx":273
+  /* "sklearn/tree/_utils.pyx":293
  *         heap[heap_ptr].impurity = impurity
  *         heap[heap_ptr].impurity_left = impurity_left
  *         heap[heap_ptr].impurity_right = impurity_right             # <<<<<<<<<<<<<<
@@ -3422,7 +3808,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).impurity_right = __pyx_v_impurity_right;
 
-  /* "sklearn/tree/_utils.pyx":274
+  /* "sklearn/tree/_utils.pyx":294
  *         heap[heap_ptr].impurity_left = impurity_left
  *         heap[heap_ptr].impurity_right = impurity_right
  *         heap[heap_ptr].improvement = improvement             # <<<<<<<<<<<<<<
@@ -3431,7 +3817,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   (__pyx_v_heap[__pyx_v_heap_ptr]).improvement = __pyx_v_improvement;
 
-  /* "sklearn/tree/_utils.pyx":277
+  /* "sklearn/tree/_utils.pyx":297
  * 
  *         # Heapify up
  *         heapify_up(heap, heap_ptr)             # <<<<<<<<<<<<<<
@@ -3440,7 +3826,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   __pyx_f_7sklearn_4tree_6_utils_heapify_up(__pyx_v_heap, __pyx_v_heap_ptr);
 
-  /* "sklearn/tree/_utils.pyx":280
+  /* "sklearn/tree/_utils.pyx":300
  * 
  *         # Increase element count
  *         self.heap_ptr = heap_ptr + 1             # <<<<<<<<<<<<<<
@@ -3449,7 +3835,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
  */
   __pyx_v_self->heap_ptr = (__pyx_v_heap_ptr + 1);
 
-  /* "sklearn/tree/_utils.pyx":281
+  /* "sklearn/tree/_utils.pyx":301
  *         # Increase element count
  *         self.heap_ptr = heap_ptr + 1
  *         return 0             # <<<<<<<<<<<<<<
@@ -3459,7 +3845,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_utils.pyx":241
+  /* "sklearn/tree/_utils.pyx":261
  *         return self.heap_ptr <= 0
  * 
  *     cdef int push(self, SIZE_t node_id, SIZE_t start, SIZE_t end, SIZE_t pos,             # <<<<<<<<<<<<<<
@@ -3472,7 +3858,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push(struct __pyx_obj_7
   return __pyx_r;
 }
 
-/* "sklearn/tree/_utils.pyx":283
+/* "sklearn/tree/_utils.pyx":303
  *         return 0
  * 
  *     cdef int pop(self, PriorityHeapRecord* res) nogil:             # <<<<<<<<<<<<<<
@@ -3490,7 +3876,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_4;
   struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord __pyx_t_5;
 
-  /* "sklearn/tree/_utils.pyx":285
+  /* "sklearn/tree/_utils.pyx":305
  *     cdef int pop(self, PriorityHeapRecord* res) nogil:
  *         """Remove max element from the heap. """
  *         cdef SIZE_t heap_ptr = self.heap_ptr             # <<<<<<<<<<<<<<
@@ -3500,7 +3886,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_t_1 = __pyx_v_self->heap_ptr;
   __pyx_v_heap_ptr = __pyx_t_1;
 
-  /* "sklearn/tree/_utils.pyx":286
+  /* "sklearn/tree/_utils.pyx":306
  *         """Remove max element from the heap. """
  *         cdef SIZE_t heap_ptr = self.heap_ptr
  *         cdef PriorityHeapRecord* heap = self.heap_             # <<<<<<<<<<<<<<
@@ -3510,7 +3896,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_t_2 = __pyx_v_self->heap_;
   __pyx_v_heap = __pyx_t_2;
 
-  /* "sklearn/tree/_utils.pyx":288
+  /* "sklearn/tree/_utils.pyx":308
  *         cdef PriorityHeapRecord* heap = self.heap_
  * 
  *         if heap_ptr <= 0:             # <<<<<<<<<<<<<<
@@ -3520,7 +3906,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_t_3 = ((__pyx_v_heap_ptr <= 0) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_utils.pyx":289
+    /* "sklearn/tree/_utils.pyx":309
  * 
  *         if heap_ptr <= 0:
  *             return -1             # <<<<<<<<<<<<<<
@@ -3531,7 +3917,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
     goto __pyx_L0;
   }
 
-  /* "sklearn/tree/_utils.pyx":292
+  /* "sklearn/tree/_utils.pyx":312
  * 
  *         # Take first element
  *         res[0] = heap[0]             # <<<<<<<<<<<<<<
@@ -3540,7 +3926,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
  */
   (__pyx_v_res[0]) = (__pyx_v_heap[0]);
 
-  /* "sklearn/tree/_utils.pyx":295
+  /* "sklearn/tree/_utils.pyx":315
  * 
  *         # Put last element to the front
  *         heap[0], heap[heap_ptr - 1] = heap[heap_ptr - 1], heap[0]             # <<<<<<<<<<<<<<
@@ -3552,7 +3938,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   (__pyx_v_heap[0]) = __pyx_t_4;
   (__pyx_v_heap[(__pyx_v_heap_ptr - 1)]) = __pyx_t_5;
 
-  /* "sklearn/tree/_utils.pyx":298
+  /* "sklearn/tree/_utils.pyx":318
  * 
  *         # Restore heap invariant
  *         if heap_ptr > 1:             # <<<<<<<<<<<<<<
@@ -3562,7 +3948,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_t_3 = ((__pyx_v_heap_ptr > 1) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_utils.pyx":299
+    /* "sklearn/tree/_utils.pyx":319
  *         # Restore heap invariant
  *         if heap_ptr > 1:
  *             heapify_down(heap, 0, heap_ptr - 1)             # <<<<<<<<<<<<<<
@@ -3574,7 +3960,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   }
   __pyx_L4:;
 
-  /* "sklearn/tree/_utils.pyx":301
+  /* "sklearn/tree/_utils.pyx":321
  *             heapify_down(heap, 0, heap_ptr - 1)
  * 
  *         self.heap_ptr = heap_ptr - 1             # <<<<<<<<<<<<<<
@@ -3583,7 +3969,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
  */
   __pyx_v_self->heap_ptr = (__pyx_v_heap_ptr - 1);
 
-  /* "sklearn/tree/_utils.pyx":303
+  /* "sklearn/tree/_utils.pyx":323
  *         self.heap_ptr = heap_ptr - 1
  * 
  *         return 0             # <<<<<<<<<<<<<<
@@ -3591,7 +3977,7 @@ static int __pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop(struct __pyx_obj_7s
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_utils.pyx":283
+  /* "sklearn/tree/_utils.pyx":303
  *         return 0
  * 
  *     cdef int pop(self, PriorityHeapRecord* res) nogil:             # <<<<<<<<<<<<<<
@@ -5848,8 +6234,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 802; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
@@ -6034,6 +6420,7 @@ PyMODINIT_FUNC PyInit__utils(void)
   if (__Pyx_ExportFunction("rand_int", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_rand_int, "__pyx_t_7sklearn_4tree_6_utils_SIZE_t (__pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("rand_uniform", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_rand_uniform, "double (double, double, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("log", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_log, "double (double)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("goes_left", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_goes_left, "int (__pyx_t_7sklearn_4tree_6_utils_DTYPE_t, union __pyx_t_7sklearn_4tree_9_splitter_SplitValue, __pyx_t_7sklearn_4tree_6_utils_INT32_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("__pyx_fuse_0safe_realloc", (void (*)(void))__pyx_fuse_0__pyx_f_7sklearn_4tree_6_utils_safe_realloc, "__pyx_t_7sklearn_4tree_6_utils_DTYPE_t *(__pyx_t_7sklearn_4tree_6_utils_DTYPE_t **, size_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("__pyx_fuse_1safe_realloc", (void (*)(void))__pyx_fuse_1__pyx_f_7sklearn_4tree_6_utils_safe_realloc, "__pyx_t_7sklearn_4tree_6_utils_SIZE_t *(__pyx_t_7sklearn_4tree_6_utils_SIZE_t **, size_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("__pyx_fuse_2safe_realloc", (void (*)(void))__pyx_fuse_2__pyx_f_7sklearn_4tree_6_utils_safe_realloc, "unsigned char *(unsigned char **, size_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -6043,19 +6430,19 @@ PyMODINIT_FUNC PyInit__utils(void)
   __pyx_vtable_7sklearn_4tree_6_utils_Stack.is_empty = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *))__pyx_f_7sklearn_4tree_6_utils_5Stack_is_empty;
   __pyx_vtable_7sklearn_4tree_6_utils_Stack.push = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, double, __pyx_t_7sklearn_4tree_6_utils_SIZE_t))__pyx_f_7sklearn_4tree_6_utils_5Stack_push;
   __pyx_vtable_7sklearn_4tree_6_utils_Stack.pop = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_Stack *, struct __pyx_t_7sklearn_4tree_6_utils_StackRecord *))__pyx_f_7sklearn_4tree_6_utils_5Stack_pop;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_6_utils_Stack) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_6_utils_Stack) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_6_utils_Stack.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_6_utils_Stack.tp_dict, __pyx_vtabptr_7sklearn_4tree_6_utils_Stack) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "Stack", (PyObject *)&__pyx_type_7sklearn_4tree_6_utils_Stack) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_6_utils_Stack.tp_dict, __pyx_vtabptr_7sklearn_4tree_6_utils_Stack) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Stack", (PyObject *)&__pyx_type_7sklearn_4tree_6_utils_Stack) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_6_utils_Stack = &__pyx_type_7sklearn_4tree_6_utils_Stack;
   __pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap = &__pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap;
   __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.is_empty = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_is_empty;
   __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.push = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, int, double, double, double, double))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_push;
   __pyx_vtable_7sklearn_4tree_6_utils_PriorityHeap.pop = (int (*)(struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap *, struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *))__pyx_f_7sklearn_4tree_6_utils_12PriorityHeap_pop;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_6_utils_PriorityHeap.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_6_utils_PriorityHeap.tp_dict, __pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "PriorityHeap", (PyObject *)&__pyx_type_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_6_utils_PriorityHeap.tp_dict, __pyx_vtabptr_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "PriorityHeap", (PyObject *)&__pyx_type_7sklearn_4tree_6_utils_PriorityHeap) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap = &__pyx_type_7sklearn_4tree_6_utils_PriorityHeap;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
@@ -6070,6 +6457,10 @@ PyMODINIT_FUNC PyInit__utils(void)
   __pyx_ptype_5numpy_broadcast = __Pyx_ImportType("numpy", "broadcast", sizeof(PyArrayMultiIterObject), 0); if (unlikely(!__pyx_ptype_5numpy_broadcast)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_5numpy_ndarray = __Pyx_ImportType("numpy", "ndarray", sizeof(PyArrayObject), 0); if (unlikely(!__pyx_ptype_5numpy_ndarray)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_5numpy_ufunc = __Pyx_ImportType("numpy", "ufunc", sizeof(PyUFuncObject), 0); if (unlikely(!__pyx_ptype_5numpy_ufunc)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 864; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_10_criterion_Criterion = __Pyx_ImportType("sklearn.tree._criterion", "Criterion", sizeof(struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_10_criterion_Criterion)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_10_criterion_Criterion = (struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_10_criterion_Criterion->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_10_criterion_Criterion)) {__pyx_filename = __pyx_f[3]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7sklearn_4tree_9_splitter_Splitter = __Pyx_ImportType("sklearn.tree._splitter", "Splitter", sizeof(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter), 1); if (unlikely(!__pyx_ptype_7sklearn_4tree_9_splitter_Splitter)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter = (struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_Splitter*)__Pyx_GetVtable(__pyx_ptype_7sklearn_4tree_9_splitter_Splitter->tp_dict); if (unlikely(!__pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter)) {__pyx_filename = __pyx_f[4]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   /*--- Execution code ---*/
@@ -6567,6 +6958,25 @@ bad:
     return -1;
 }
 
+static void* __Pyx_GetVtable(PyObject *dict) {
+    void* ptr;
+    PyObject *ob = PyObject_GetItem(dict, __pyx_n_s_pyx_vtable);
+    if (!ob)
+        goto bad;
+#if PY_VERSION_HEX >= 0x02070000
+    ptr = PyCapsule_GetPointer(ob, 0);
+#else
+    ptr = PyCObject_AsVoidPtr(ob);
+#endif
+    if (!ptr && !PyErr_Occurred())
+        PyErr_SetString(PyExc_RuntimeError, "invalid vtable found for imported type");
+    Py_DECREF(ob);
+    return ptr;
+bad:
+    Py_XDECREF(ob);
+    return NULL;
+}
+
 static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {
     int start = 0, mid = 0, end = count - 1;
     if (end >= 0 && code_line > entries[end].code_line) {
@@ -6913,6 +7323,127 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to Py_intptr_t");
     return (Py_intptr_t) -1;
+}
+
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_npy_uint64(npy_uint64 value) {
+    const npy_uint64 neg_one = (npy_uint64) -1, const_zero = 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(npy_uint64) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(npy_uint64) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+        } else if (sizeof(npy_uint64) <= sizeof(unsigned long long)) {
+            return PyLong_FromUnsignedLongLong((unsigned long long) value);
+        }
+    } else {
+        if (sizeof(npy_uint64) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(npy_uint64) <= sizeof(long long)) {
+            return PyLong_FromLongLong((long long) value);
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(npy_uint64),
+                                     little, !is_unsigned);
+    }
+}
+
+static CYTHON_INLINE npy_uint64 __Pyx_PyInt_As_npy_uint64(PyObject *x) {
+    const npy_uint64 neg_one = (npy_uint64) -1, const_zero = 0;
+    const int is_unsigned = neg_one > const_zero;
+#if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_Check(x))) {
+        if (sizeof(npy_uint64) < sizeof(long)) {
+            __PYX_VERIFY_RETURN_INT(npy_uint64, long, PyInt_AS_LONG(x))
+        } else {
+            long val = PyInt_AS_LONG(x);
+            if (is_unsigned && unlikely(val < 0)) {
+                goto raise_neg_overflow;
+            }
+            return (npy_uint64) val;
+        }
+    } else
+#endif
+    if (likely(PyLong_Check(x))) {
+        if (is_unsigned) {
+#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
+ #if CYTHON_USE_PYLONG_INTERNALS
+            switch (Py_SIZE(x)) {
+                case  0: return 0;
+                case  1: __PYX_VERIFY_RETURN_INT(npy_uint64, digit, ((PyLongObject*)x)->ob_digit[0]);
+            }
+ #endif
+#endif
+            if (unlikely(Py_SIZE(x) < 0)) {
+                goto raise_neg_overflow;
+            }
+            if (sizeof(npy_uint64) <= sizeof(unsigned long)) {
+                __PYX_VERIFY_RETURN_INT(npy_uint64, unsigned long, PyLong_AsUnsignedLong(x))
+            } else if (sizeof(npy_uint64) <= sizeof(unsigned long long)) {
+                __PYX_VERIFY_RETURN_INT(npy_uint64, unsigned long long, PyLong_AsUnsignedLongLong(x))
+            }
+        } else {
+#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
+ #if CYTHON_USE_PYLONG_INTERNALS
+            switch (Py_SIZE(x)) {
+                case  0: return 0;
+                case  1: __PYX_VERIFY_RETURN_INT(npy_uint64,  digit, +(((PyLongObject*)x)->ob_digit[0]));
+                case -1: __PYX_VERIFY_RETURN_INT(npy_uint64, sdigit, -(sdigit) ((PyLongObject*)x)->ob_digit[0]);
+            }
+ #endif
+#endif
+            if (sizeof(npy_uint64) <= sizeof(long)) {
+                __PYX_VERIFY_RETURN_INT(npy_uint64, long, PyLong_AsLong(x))
+            } else if (sizeof(npy_uint64) <= sizeof(long long)) {
+                __PYX_VERIFY_RETURN_INT(npy_uint64, long long, PyLong_AsLongLong(x))
+            }
+        }
+        {
+#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
+            PyErr_SetString(PyExc_RuntimeError,
+                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
+#else
+            npy_uint64 val;
+            PyObject *v = __Pyx_PyNumber_Int(x);
+ #if PY_MAJOR_VERSION < 3
+            if (likely(v) && !PyLong_Check(v)) {
+                PyObject *tmp = v;
+                v = PyNumber_Long(tmp);
+                Py_DECREF(tmp);
+            }
+ #endif
+            if (likely(v)) {
+                int one = 1; int is_little = (int)*(unsigned char *)&one;
+                unsigned char *bytes = (unsigned char *)&val;
+                int ret = _PyLong_AsByteArray((PyLongObject *)v,
+                                              bytes, sizeof(val),
+                                              is_little, !is_unsigned);
+                Py_DECREF(v);
+                if (likely(!ret))
+                    return val;
+            }
+#endif
+            return (npy_uint64) -1;
+        }
+    } else {
+        npy_uint64 val;
+        PyObject *tmp = __Pyx_PyNumber_Int(x);
+        if (!tmp) return (npy_uint64) -1;
+        val = __Pyx_PyInt_As_npy_uint64(tmp);
+        Py_DECREF(tmp);
+        return val;
+    }
+raise_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "value too large to convert to npy_uint64");
+    return (npy_uint64) -1;
+raise_neg_overflow:
+    PyErr_SetString(PyExc_OverflowError,
+        "can't convert negative value to npy_uint64");
+    return (npy_uint64) -1;
 }
 
 #if CYTHON_CCOMPLEX
