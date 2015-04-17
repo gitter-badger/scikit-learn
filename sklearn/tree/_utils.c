@@ -912,7 +912,7 @@ enum  {
   __pyx_e_7sklearn_4tree_6_utils_RAND_R_MAX = 0x7FFFFFFF
 };
 
-/* "sklearn/tree/_utils.pxd":65
+/* "sklearn/tree/_utils.pxd":68
  * 
  * # A record on the stack for depth-first tree growing
  * cdef struct StackRecord:             # <<<<<<<<<<<<<<
@@ -929,7 +929,7 @@ struct __pyx_t_7sklearn_4tree_6_utils_StackRecord {
   __pyx_t_7sklearn_4tree_6_utils_SIZE_t n_constant_features;
 };
 
-/* "sklearn/tree/_utils.pxd":91
+/* "sklearn/tree/_utils.pxd":94
  * 
  * # A record on the frontier for best-first tree growing
  * cdef struct PriorityHeapRecord:             # <<<<<<<<<<<<<<
@@ -1011,7 +1011,7 @@ struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter {
 };
 
 
-/* "sklearn/tree/_utils.pxd":74
+/* "sklearn/tree/_utils.pxd":77
  *     SIZE_t n_constant_features
  * 
  * cdef class Stack:             # <<<<<<<<<<<<<<
@@ -1027,7 +1027,7 @@ struct __pyx_obj_7sklearn_4tree_6_utils_Stack {
 };
 
 
-/* "sklearn/tree/_utils.pxd":103
+/* "sklearn/tree/_utils.pxd":106
  *     double improvement
  * 
  * cdef class PriorityHeap:             # <<<<<<<<<<<<<<
@@ -1441,8 +1441,8 @@ static PyTypeObject *__pyx_ptype_7sklearn_4tree_9_splitter_Splitter = 0;
 /* Module declarations from 'sklearn.tree._utils' */
 static PyTypeObject *__pyx_ptype_7sklearn_4tree_6_utils_Stack = 0;
 static PyTypeObject *__pyx_ptype_7sklearn_4tree_6_utils_PriorityHeap = 0;
-static CYTHON_INLINE __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_f_7sklearn_4tree_6_utils_rand_int(__pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *); /*proto*/
 static CYTHON_INLINE __pyx_t_7sklearn_4tree_6_utils_UINT32_t __pyx_f_7sklearn_4tree_6_utils_our_rand_r(__pyx_t_7sklearn_4tree_6_utils_UINT32_t *); /*proto*/
+static CYTHON_INLINE __pyx_t_7sklearn_4tree_6_utils_SIZE_t __pyx_f_7sklearn_4tree_6_utils_rand_int(__pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *); /*proto*/
 static void __pyx_f_7sklearn_4tree_6_utils_heapify_up(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
 static void __pyx_f_7sklearn_4tree_6_utils_heapify_down(struct __pyx_t_7sklearn_4tree_6_utils_PriorityHeapRecord *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t); /*proto*/
 static __pyx_t_7sklearn_4tree_6_utils_DTYPE_t *__pyx_fuse_0__pyx_f_7sklearn_4tree_6_utils_safe_realloc(__pyx_t_7sklearn_4tree_6_utils_DTYPE_t **, size_t); /*proto*/
@@ -6418,6 +6418,7 @@ PyMODINIT_FUNC PyInit__utils(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   if (__Pyx_ExportFunction("sizet_ptr_to_ndarray", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_sizet_ptr_to_ndarray, "PyArrayObject *(__pyx_t_7sklearn_4tree_6_utils_SIZE_t *, __pyx_t_7sklearn_4tree_6_utils_SIZE_t)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("our_rand_r", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_our_rand_r, "__pyx_t_7sklearn_4tree_6_utils_UINT32_t (__pyx_t_7sklearn_4tree_6_utils_UINT32_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("rand_int", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_rand_int, "__pyx_t_7sklearn_4tree_6_utils_SIZE_t (__pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_SIZE_t, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("rand_uniform", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_rand_uniform, "double (double, double, __pyx_t_7sklearn_4tree_6_utils_UINT32_t *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__Pyx_ExportFunction("log", (void (*)(void))__pyx_f_7sklearn_4tree_6_utils_log, "double (double)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
