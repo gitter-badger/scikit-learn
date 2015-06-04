@@ -32,6 +32,14 @@ from .externals.six.moves import zip
 from .metrics.scorer import check_scoring
 from .utils.fixes import bincount
 
+
+warnings.warn("This module has been deprecated in favor of the "
+              "model_selection module into which all the refactored classes "
+              "and functions are moved. Also note that the interface of the "
+              "new CV iterators are different from that of this module. "
+              "Refer to model_selection for more info.", DeprecationWarning)
+
+
 __all__ = ['KFold',
            'LeaveOneLabelOut',
            'LeaveOneOut',
