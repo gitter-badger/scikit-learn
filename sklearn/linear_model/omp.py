@@ -15,7 +15,7 @@ from scipy.linalg.lapack import get_lapack_funcs
 from .base import LinearModel, _pre_fit
 from ..base import RegressorMixin
 from ..utils import as_float_array, check_array, check_X_y
-from ..cross_validation import check_cv
+from ..model_selection import check_cv, iter_cv
 from ..externals.joblib import Parallel, delayed
 
 import scipy
@@ -756,8 +756,8 @@ class OrthogonalMatchingPursuitCV(LinearModel, RegressorMixin):
         to include. 10% of ``n_features`` but at least 5 if available.
 
     cv : cross-validation generator, optional
-        see :mod:`sklearn.cross_validation`. If ``None`` is passed, default to
-        a 5-fold strategy
+        see :mod:`sklearn.model_selection.split`. If ``None`` is passed,
+        default to a 5-fold strategy
 
     n_jobs : integer, optional
         Number of CPUs to use during the cross validation. If ``-1``, use
@@ -825,7 +825,7 @@ class OrthogonalMatchingPursuitCV(LinearModel, RegressorMixin):
         """
         X, y = check_X_y(X, y, y_numeric=True)
         X = as_float_array(X, copy=False, force_all_finite=False)
-        cv = check_cv(self.cv, X, y, classifier=False)
+        cv = check_cv(self.cv, classifier=False)
         max_iter = (min(max(int(0.1 * X.shape[1]), 5), X.shape[1])
                     if not self.max_iter
                     else self.max_iter)
@@ -833,7 +833,7 @@ class OrthogonalMatchingPursuitCV(LinearModel, RegressorMixin):
             delayed(_omp_path_residues)(
                 X[train], y[train], X[test], y[test], self.copy,
                 self.fit_intercept, self.normalize, max_iter)
-            for train, test in cv)
+            for train, test in iter_cv(cv, X))
 
         min_early_stop = min(fold.shape[0] for fold in cv_paths)
         mse_folds = np.array([(fold[:min_early_stop] ** 2).mean(axis=1)

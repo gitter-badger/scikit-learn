@@ -1,3 +1,4 @@
+
 import numpy as np
 import scipy.sparse as sp
 from scipy import linalg, optimize, sparse
@@ -21,7 +22,7 @@ from sklearn.linear_model.logistic import (
     _logistic_loss_and_grad, _logistic_grad_hess,
     _multinomial_grad_hess, _logistic_loss,
     )
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold
 from sklearn.datasets import load_iris, make_classification
 
 
@@ -443,7 +444,7 @@ def test_ovr_multinomial_iris():
     n_samples, n_features = train.shape
 
     # Use pre-defined fold as folds generated for different y
-    cv = StratifiedKFold(target, 3)
+    cv = StratifiedKFold(3)
     clf = LogisticRegressionCV(cv=cv)
     clf.fit(train, target)
 
