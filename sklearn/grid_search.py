@@ -36,6 +36,12 @@ __all__ = ['GridSearchCV', 'ParameterGrid', 'fit_grid_point',
            'ParameterSampler', 'RandomizedSearchCV']
 
 
+warnings.warn("This module has been deprecated and all the classes and"
+              " functions are improved and reorganized into the"
+              " model_selection module. This module will be removed in 0.18",
+              DeprecationWarning)
+
+
 class ParameterGrid(object):
     """Grid of parameters with a discrete number of values for each.
 
