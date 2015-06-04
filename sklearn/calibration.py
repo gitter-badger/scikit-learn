@@ -22,7 +22,7 @@ from .utils import check_X_y, check_array, indexable, column_or_1d
 from .utils.validation import check_is_fitted
 from .isotonic import IsotonicRegression
 from .svm import LinearSVC
-from .cross_validation import check_cv
+from .model_selection import check_cv, iter_cv
 from .metrics.classification import _check_binary_probabilistic_predictions
 
 
@@ -56,7 +56,8 @@ class CalibratedClassifierCV(BaseEstimator, ClassifierMixin):
     cv : integer or cross-validation generator or "prefit", optional
         If an integer is passed, it is the number of folds (default 3).
         Specific cross-validation objects can be passed, see
-        sklearn.cross_validation module for the list of possible objects.
+        sklearn.model_selection.split module for the list of possible
+        objects.
         If "prefit" is passed, it is assumed that base_estimator has been
         fitted already and all data is used for calibration.
 
@@ -141,7 +142,7 @@ class CalibratedClassifierCV(BaseEstimator, ClassifierMixin):
                 calibrated_classifier.fit(X, y)
             self.calibrated_classifiers_.append(calibrated_classifier)
         else:
-            cv = check_cv(self.cv, X, y, classifier=True)
+            cv = check_cv(self.cv, y, classifier=True)
             arg_names = inspect.getargspec(base_estimator.fit)[0]
             estimator_name = type(base_estimator).__name__
             if (sample_weight is not None
@@ -152,7 +153,7 @@ class CalibratedClassifierCV(BaseEstimator, ClassifierMixin):
                 base_estimator_sample_weight = None
             else:
                 base_estimator_sample_weight = sample_weight
-            for train, test in cv:
+            for train, test in iter_cv(cv, X, y):
                 this_estimator = clone(base_estimator)
                 if base_estimator_sample_weight is not None:
                     this_estimator.fit(

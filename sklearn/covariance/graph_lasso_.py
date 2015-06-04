@@ -21,7 +21,7 @@ from ..utils.extmath import pinvh
 from ..utils.validation import check_random_state, check_array
 from ..linear_model import lars_path
 from ..linear_model import cd_fast
-from ..cross_validation import check_cv, cross_val_score
+from ..model_selection import check_cv, iter_cv, cross_val_score
 from ..externals.joblib import Parallel, delayed
 import collections
 
@@ -461,8 +461,8 @@ class GraphLassoCV(GraphLasso):
         values of alphas are passed.
 
     cv : cross-validation generator, optional
-        see sklearn.cross_validation module. If None is passed, defaults to
-        a 3-fold strategy
+        see sklearn.model_selection.split module.
+        If None is passed, defaults to a 3-fold strategy
 
     tol: positive float, optional
         The tolerance to declare convergence: if the dual gap goes below
@@ -565,7 +565,7 @@ class GraphLassoCV(GraphLasso):
         emp_cov = empirical_covariance(
             X, assume_centered=self.assume_centered)
 
-        cv = check_cv(self.cv, X, y, classifier=False)
+        cv = check_cv(self.cv, y, classifier=False)
 
         # List of (alpha, scores, covs)
         path = list()
@@ -604,7 +604,7 @@ class GraphLassoCV(GraphLasso):
                         tol=self.tol, enet_tol=self.enet_tol,
                         max_iter=int(.1 * self.max_iter),
                         verbose=inner_verbose)
-                    for train, test in cv)
+                    for train, test in iter_cv(cv, X, y))
 
             # Little danse to transform the list in what we need
             covs, _, scores = zip(*this_path)

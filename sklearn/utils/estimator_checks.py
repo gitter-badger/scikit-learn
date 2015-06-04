@@ -39,7 +39,7 @@ from sklearn.feature_selection import SelectKBest
 from sklearn.svm.base import BaseLibSVM
 from sklearn.pipeline import make_pipeline
 from sklearn.utils.validation import DataConversionWarning
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 from sklearn.utils import shuffle
 from sklearn.preprocessing import StandardScaler

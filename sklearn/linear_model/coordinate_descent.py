@@ -17,7 +17,7 @@ from ..base import RegressorMixin
 from .base import center_data, sparse_center_data
 from ..utils import check_array, check_X_y, deprecated
 from ..utils.validation import check_random_state
-from ..cross_validation import check_cv
+from ..model_selection import check_cv, iter_cv
 from ..externals.joblib import Parallel, delayed
 from ..externals import six
 from ..externals.six.moves import xrange
@@ -428,7 +428,8 @@ def enet_path(X, y, l1_ratio=0.5, eps=1e-3, n_alphas=100, alphas=None,
             model = cd_fast.enet_coordinate_descent_multi_task(
                 coef_, l1_reg, l2_reg, X, y, max_iter, tol, rng, random)
         elif isinstance(precompute, np.ndarray):
-            precompute = check_array(precompute, 'csc', dtype=np.float64, order='F')
+            precompute = check_array(precompute, 'csc',
+                                     dtype=np.float64, order='F')
             model = cd_fast.enet_coordinate_descent_gram(
                 coef_, l1_reg, l2_reg, precompute, Xy, y, max_iter,
                 tol, rng, random, positive)
@@ -1106,10 +1107,10 @@ class LinearModelCV(six.with_metaclass(ABCMeta, LinearModel)):
             path_params['copy_X'] = False
 
         # init cross-validation generator
-        cv = check_cv(self.cv, X)
+        cv = check_cv(self.cv)
 
         # Compute path for all folds and compute MSE to get the best alpha
-        folds = list(cv)
+        folds = list(iter_cv(cv, X))
         best_mse = np.inf
 
         # We do a double for loop folded in one, in order to be able to
@@ -1204,8 +1205,8 @@ class LassoCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.cross_validation` module for the list of possible
-        objects.
+        :mod:`sklearn.model_selection.split` module for the list of
+        possible objects.
 
     verbose : bool or integer
         Amount of verbosity.
@@ -1343,8 +1344,8 @@ class ElasticNetCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.cross_validation` module for the list of possible
-        objects.
+        :mod:`sklearn.model_selection.split` module for the list of
+        possible objects.
 
     verbose : bool or integer
         Amount of verbosity.
@@ -1818,8 +1819,8 @@ class MultiTaskElasticNetCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.cross_validation` module for the list of possible
-        objects.
+        :mod:`sklearn.model_selection.split` module for the list of
+        possible objects.
 
     verbose : bool or integer
         Amount of verbosity.
@@ -1968,8 +1969,8 @@ class MultiTaskLassoCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.cross_validation` module for the list of possible
-        objects.
+        :mod:`sklearn.model_selection.split` module for the list of
+        possible objects.
 
     verbose : bool or integer
         Amount of verbosity.
