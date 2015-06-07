@@ -21,7 +21,7 @@ from sklearn.linear_model.logistic import (
     _logistic_loss_and_grad, _logistic_grad_hess,
     _multinomial_grad_hess, _logistic_loss,
     )
-from sklearn.cross_validation import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold
 from sklearn.datasets import load_iris, make_classification
 
 

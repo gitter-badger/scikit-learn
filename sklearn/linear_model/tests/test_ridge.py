@@ -27,7 +27,7 @@ from sklearn.linear_model.ridge import RidgeClassifierCV
 from sklearn.linear_model.ridge import _solve_cholesky
 from sklearn.linear_model.ridge import _solve_cholesky_kernel
 
-from sklearn.cross_validation import KFold
+from sklearn.model_selection import KFold
 
 
 diabetes = datasets.load_diabetes()

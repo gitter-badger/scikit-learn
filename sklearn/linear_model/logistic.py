@@ -28,7 +28,7 @@ from ..utils.validation import (as_float_array, DataConversionWarning,
                                 check_X_y)
 from ..utils.fixes import expit
 from ..externals.joblib import Parallel, delayed
-from ..cross_validation import _check_cv
+from ..model_selection import check_cv
 from ..externals import six
 from ..metrics import SCORERS
 
@@ -1166,7 +1166,7 @@ class LogisticRegressionCV(LogisticRegression, BaseEstimator,
     cv : integer or cross-validation generator
         The default cross-validation generator used is Stratified K-Folds.
         If an integer is provided, then it is the number of folds used.
-        See the module :mod:`sklearn.cross_validation` module for the
+        See the module :mod:`sklearn.model_selection.split` module for the
         list of possible cross-validation objects.
 
     penalty : str, 'l1' or 'l2'
@@ -1345,7 +1345,7 @@ class LogisticRegressionCV(LogisticRegression, BaseEstimator,
         check_consistent_length(X, y)
 
         # init cross-validation generator
-        cv = _check_cv(self.cv, X, y, classifier=True)
+        cv = check_cv(self.cv, X, y, classifier=True)
         folds = list(cv)
 
         self._enc = LabelEncoder()

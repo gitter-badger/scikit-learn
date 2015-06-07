@@ -22,7 +22,7 @@ from scipy.linalg.lapack import get_lapack_funcs
 from .base import LinearModel
 from ..base import RegressorMixin
 from ..utils import arrayfuncs, as_float_array, check_X_y
-from ..cross_validation import _check_cv as check_cv
+from ..model_selection import check_cv
 from ..utils import ConvergenceWarning
 from ..externals.joblib import Parallel, delayed
 from ..externals.six.moves import xrange
@@ -924,7 +924,7 @@ class LarsCV(Lars):
         Maximum number of iterations to perform.
 
     cv : cross-validation generator, optional
-        see :mod:`sklearn.cross_validation`. If ``None`` is passed, default to
+        see :mod:`sklearn.model_selection.split`. If ``None`` is passed, default to
         a 5-fold strategy
 
     max_n_alphas : integer, optional
@@ -1099,7 +1099,7 @@ class LassoLarsCV(LarsCV):
         Maximum number of iterations to perform.
 
     cv : cross-validation generator, optional
-        see sklearn.cross_validation module. If None is passed, default to
+        see sklearn.model_selection.split module. If None is passed, default to
         a 5-fold strategy
 
     max_n_alphas : integer, optional

@@ -24,7 +24,7 @@ from ..utils import check_X_y
 from ..utils import compute_sample_weight
 from ..utils import column_or_1d
 from ..preprocessing import LabelBinarizer
-from ..grid_search import GridSearchCV
+from ..model_selection import GridSearchCV
 from ..externals import six
 from ..metrics.scorer import check_scoring
 
@@ -922,7 +922,8 @@ class RidgeCV(_BaseRidgeCV, RegressorMixin):
         will be used.
         If an integer is passed, it is the number of folds for KFold cross
         validation.  Specific cross-validation objects can be passed, see
-        sklearn.cross_validation module for the list of possible objects
+        sklearn.model_selection.split module for the list of possible
+        objects
 
     gcv_mode : {None, 'auto', 'svd', eigen'}, optional
         Flag indicating which strategy to use when performing

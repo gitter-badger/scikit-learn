@@ -27,8 +27,9 @@ from sklearn.datasets import make_blobs
 from sklearn.datasets import make_classification
 from sklearn.datasets import make_multilabel_classification
 from sklearn.datasets import load_diabetes
-from sklearn.cross_validation import train_test_split, cross_val_score
-from sklearn.grid_search import GridSearchCV
+from sklearn.model_selection.partition import train_test_split
+from sklearn.model_selection.validation import cross_val_score
+from sklearn.model_selection.search import GridSearchCV
 from sklearn.multiclass import OneVsRestClassifier
 
 

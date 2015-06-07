@@ -14,8 +14,8 @@ from ..base import BaseEstimator
 from ..base import MetaEstimatorMixin
 from ..base import clone
 from ..base import is_classifier
-from ..cross_validation import _check_cv as check_cv
-from ..cross_validation import _safe_split, _score
+from ..model_selection import check_cv
+from ..model_selection.validate import _safe_split, _score
 from ..metrics.scorer import check_scoring
 from .base import SelectorMixin
 
@@ -294,7 +294,7 @@ class RFECV(RFE, MetaEstimatorMixin):
         If int, it is the number of folds.
         If None, 3-fold cross-validation is performed by default.
         Specific cross-validation objects can also be passed, see
-        `sklearn.cross_validation module` for details.
+        `sklearn.model_selection.split module` for details.
 
     scoring : string, callable or None, optional, default: None
         A string (see model evaluation documentation) or

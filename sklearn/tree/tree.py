@@ -555,7 +555,7 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
     Examples
     --------
     >>> from sklearn.datasets import load_iris
-    >>> from sklearn.cross_validation import cross_val_score
+    >>> from sklearn.model_selection import cross_val_score
     >>> from sklearn.tree import DecisionTreeClassifier
     >>> clf = DecisionTreeClassifier(random_state=0)
     >>> iris = load_iris()
@@ -765,7 +765,7 @@ class DecisionTreeRegressor(BaseDecisionTree, RegressorMixin):
     Examples
     --------
     >>> from sklearn.datasets import load_boston
-    >>> from sklearn.cross_validation import cross_val_score
+    >>> from sklearn.model_selection import cross_val_score
     >>> from sklearn.tree import DecisionTreeRegressor
     >>> boston = load_boston()
     >>> regressor = DecisionTreeRegressor(random_state=0)
