@@ -25,7 +25,7 @@ from ..utils.fixes import astype
 from ..utils.validation import _is_arraylike, _num_samples
 from ..externals.joblib import Parallel, delayed, logger
 from ..metrics.scorer import check_scoring
-from .split import _check_cv, _safe_split
+from .split import check_cv, _safe_split
 
 
 __all__ = ['cross_val_score', 'cross_val_predict', 'permutation_test_score',
@@ -100,7 +100,7 @@ def cross_val_score(estimator, X, y=None, scoring=None, cv=None, n_jobs=1,
     """
     X, y = indexable(X, y)
 
-    cv = _check_cv(cv, X, y, classifier=is_classifier(estimator))
+    cv = check_cv(cv, X, y, classifier=is_classifier(estimator))
     scorer = check_scoring(estimator, scoring=scoring)
     # We clone the estimator to make sure that all the folds are
     # independent, and that it is pickle-able.
@@ -313,7 +313,7 @@ def cross_val_predict(estimator, X, y=None, cv=None, n_jobs=1,
     """
     X, y = indexable(X, y)
 
-    cv = _check_cv(cv, X, y, classifier=is_classifier(estimator))
+    cv = check_cv(cv, X, y, classifier=is_classifier(estimator))
     # We clone the estimator to make sure that all the folds are
     # independent, and that it is pickle-able.
     parallel = Parallel(n_jobs=n_jobs, verbose=verbose,
@@ -491,7 +491,7 @@ def permutation_test_score(estimator, X, y, cv=None,
 
     """
     X, y = indexable(X, y)
-    cv = _check_cv(cv, X, y, classifier=is_classifier(estimator))
+    cv = check_cv(cv, X, y, classifier=is_classifier(estimator))
     scorer = check_scoring(estimator, scoring=scoring)
     random_state = check_random_state(random_state)
 
@@ -621,7 +621,7 @@ def learning_curve(estimator, X, y, train_sizes=np.linspace(0.1, 1.0, 5),
 
     X, y = indexable(X, y)
     # Make a list since we will be iterating multiple times over the folds
-    cv = list(_check_cv(cv, X, y, classifier=is_classifier(estimator)))
+    cv = list(check_cv(cv, X, y, classifier=is_classifier(estimator)))
     scorer = check_scoring(estimator, scoring=scoring)
 
     # HACK as long as boolean indices are allowed in cv generators
@@ -811,7 +811,7 @@ def validation_curve(estimator, X, y, param_name, param_range, cv=None,
     <example_model_selection_plot_validation_curve.py>`
     """
     X, y = indexable(X, y)
-    cv = _check_cv(cv, X, y, classifier=is_classifier(estimator))
+    cv = check_cv(cv, X, y, classifier=is_classifier(estimator))
     scorer = check_scoring(estimator, scoring=scoring)
 
     parallel = Parallel(n_jobs=n_jobs, pre_dispatch=pre_dispatch,

@@ -984,11 +984,6 @@ def check_cv(cv, X=None, y=None, classifier=False):
         The return value is guaranteed to be a cv generator instance, whatever
         the input type.
     """
-    return _check_cv(cv, X=X, y=y, classifier=classifier)
-
-
-def _check_cv(cv, X=None, y=None, classifier=False):
-    # This exists for internal use while indices is being deprecated.
     is_sparse = sp.issparse(X)
     if cv is None:
         cv = 3

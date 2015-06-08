@@ -21,7 +21,7 @@ import numpy as np
 
 from ..base import BaseEstimator, is_classifier, clone
 from ..base import MetaEstimatorMixin
-from .split import _check_cv as check_cv
+from .split import check_cv
 from .validate import _fit_and_score
 from ..externals.joblib import Parallel, delayed
 from ..externals import six
