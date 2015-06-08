@@ -294,7 +294,7 @@ class KFold(_BaseKFold):
 
     See also
     --------
-    StratifiedKFold: take label information into account to avoid building
+    StratifiedKFold take label information into account to avoid building
     folds with imbalanced class distributions (for binary or multiclass
     classification tasks).
     """
