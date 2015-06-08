@@ -20,7 +20,7 @@ import warnings
 import numpy as np
 
 from ..base import BaseEstimator, is_classifier, clone
-from ..base import MetaEstimatorMixin
+from ..base import MetaEstimatorMixin, ChangedBehaviorWarning
 from .split import check_cv
 from .validate import _fit_and_score
 from ..externals.joblib import Parallel, delayed
@@ -34,10 +34,6 @@ from ..metrics.scorer import check_scoring
 
 __all__ = ['GridSearchCV', 'ParameterGrid', 'fit_grid_point',
            'ParameterSampler', 'RandomizedSearchCV']
-
-
-class ChangedBehaviorWarning(UserWarning):
-    pass
 
 
 class ParameterGrid(object):
@@ -649,9 +645,10 @@ class GridSearchCV(BaseSearchCV):
     ...                             # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     GridSearchCV(cv=None, error_score=...,
            estimator=SVC(C=1.0, cache_size=..., class_weight=..., coef0=...,
-                         degree=..., gamma=..., kernel='rbf', max_iter=-1,
-                         probability=False, random_state=None, shrinking=True,
-                         tol=..., verbose=False),
+                         decision_function_shape=None, degree=..., gamma=...,
+                         kernel='rbf', max_iter=-1, probability=False,
+                         random_state=None, shrinking=True, tol=...,
+                         verbose=False),
            fit_params={}, iid=..., n_jobs=1,
            param_grid=..., pre_dispatch=..., refit=...,
            scoring=..., verbose=...)
