@@ -521,12 +521,13 @@ is renamed, we still support the old one for two releases and issue
 a deprecation warning when it is called/passed/accessed.
 E.g., if the function ``zero_one`` is renamed to ``zero_one_loss``,
 we add the decorator ``deprecated`` (from ``sklearn.utils``)
-to ``zero_one`` and call ``zero_one_loss`` from that function::
+to ``zero_one`` and call ``zero_one_loss`` from that function. ::
 
     from ..utils import deprecated
 
     def zero_one_loss(y_true, y_pred, normalize=True):
-        # actual implementation
+        # Actual implementation
+        pass
 
     @deprecated("Function 'zero_one' has been renamed to "
                 "'zero_one_loss' and will be removed in release 0.15."
