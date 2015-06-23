@@ -1717,6 +1717,10 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg
 
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
+
+static CYTHON_INLINE void __Pyx_ExceptionSwap(PyObject **type, PyObject **value, PyObject **tb);
+
 #define __Pyx_BUF_MAX_NDIMS %(BUF_MAX_NDIMS)d
 #define __Pyx_MEMVIEW_DIRECT   1
 #define __Pyx_MEMVIEW_PTR      2
@@ -1741,6 +1745,9 @@ static CYTHON_INLINE int __pyx_sub_acquisition_count_locked(
 #define __PYX_XDEC_MEMVIEW(slice, have_gil) __Pyx_XDEC_MEMVIEW(slice, have_gil, __LINE__)
 static CYTHON_INLINE void __Pyx_INC_MEMVIEW(__Pyx_memviewslice *, int, int);
 static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *, int, int);
+
+static CYTHON_INLINE void __Pyx_ExceptionSave(PyObject **type, PyObject **value, PyObject **tb);
+static void __Pyx_ExceptionReset(PyObject *type, PyObject *value, PyObject *tb);
 
 static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname);
 
@@ -1803,13 +1810,6 @@ static CYTHON_INLINE PyObject* __Pyx_decode_c_string(
          const char* cstring, Py_ssize_t start, Py_ssize_t stop,
          const char* encoding, const char* errors,
          PyObject* (*decode_func)(const char *s, Py_ssize_t size, const char *errors));
-
-static CYTHON_INLINE void __Pyx_ExceptionSave(PyObject **type, PyObject **value, PyObject **tb);
-static void __Pyx_ExceptionReset(PyObject *type, PyObject *value, PyObject *tb);
-
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
-
-static CYTHON_INLINE void __Pyx_ExceptionSwap(PyObject **type, PyObject **value, PyObject **tb);
 
 #define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
     (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
@@ -3327,6 +3327,15 @@ static PyObject *__pyx_f_7sklearn_8ensemble_18_gradient_boosting__partial_depend
   int __pyx_t_20;
   __pyx_t_7sklearn_8ensemble_18_gradient_boosting_SIZE_t __pyx_t_21;
   __pyx_t_7sklearn_8ensemble_18_gradient_boosting_SIZE_t __pyx_t_22;
+  int __pyx_t_23;
+  int __pyx_t_24;
+  char const *__pyx_t_25;
+  PyObject *__pyx_t_26 = NULL;
+  PyObject *__pyx_t_27 = NULL;
+  PyObject *__pyx_t_28 = NULL;
+  PyObject *__pyx_t_29 = NULL;
+  PyObject *__pyx_t_30 = NULL;
+  PyObject *__pyx_t_31 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3498,429 +3507,480 @@ static PyObject *__pyx_f_7sklearn_8ensemble_18_gradient_boosting__partial_depend
  * 
  *     tree.populate_bit_caches()             # <<<<<<<<<<<<<<
  * 
- *     for i in range(X.shape[0]):
+ *     try:
  */
   ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->populate_bit_caches(__pyx_v_tree);
 
   /* "sklearn/ensemble/_gradient_boosting.pyx":221
  *     tree.populate_bit_caches()
  * 
- *     for i in range(X.shape[0]):             # <<<<<<<<<<<<<<
- *         # init stacks for new example
- *         stack_size = 1
+ *     try:             # <<<<<<<<<<<<<<
+ *         for i in range(X.shape[0]):
+ *             # init stacks for new example
  */
-  __pyx_t_10 = (__pyx_v_X.shape[0]);
-  for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
-    __pyx_v_i = __pyx_t_11;
+  /*try:*/ {
 
-    /* "sklearn/ensemble/_gradient_boosting.pyx":223
- *     for i in range(X.shape[0]):
- *         # init stacks for new example
- *         stack_size = 1             # <<<<<<<<<<<<<<
- *         node_stack[0] = root_node
- *         weight_stack[0] = 1.0
+    /* "sklearn/ensemble/_gradient_boosting.pyx":222
+ * 
+ *     try:
+ *         for i in range(X.shape[0]):             # <<<<<<<<<<<<<<
+ *             # init stacks for new example
+ *             stack_size = 1
  */
-    __pyx_v_stack_size = 1;
+    __pyx_t_10 = (__pyx_v_X.shape[0]);
+    for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
+      __pyx_v_i = __pyx_t_11;
 
-    /* "sklearn/ensemble/_gradient_boosting.pyx":224
- *         # init stacks for new example
- *         stack_size = 1
- *         node_stack[0] = root_node             # <<<<<<<<<<<<<<
- *         weight_stack[0] = 1.0
- *         total_weight = 0.0
+      /* "sklearn/ensemble/_gradient_boosting.pyx":224
+ *         for i in range(X.shape[0]):
+ *             # init stacks for new example
+ *             stack_size = 1             # <<<<<<<<<<<<<<
+ *             node_stack[0] = root_node
+ *             weight_stack[0] = 1.0
  */
-    (__pyx_v_node_stack[0]) = __pyx_v_root_node;
+      __pyx_v_stack_size = 1;
 
-    /* "sklearn/ensemble/_gradient_boosting.pyx":225
- *         stack_size = 1
- *         node_stack[0] = root_node
- *         weight_stack[0] = 1.0             # <<<<<<<<<<<<<<
- *         total_weight = 0.0
+      /* "sklearn/ensemble/_gradient_boosting.pyx":225
+ *             # init stacks for new example
+ *             stack_size = 1
+ *             node_stack[0] = root_node             # <<<<<<<<<<<<<<
+ *             weight_stack[0] = 1.0
+ *             total_weight = 0.0
+ */
+      (__pyx_v_node_stack[0]) = __pyx_v_root_node;
+
+      /* "sklearn/ensemble/_gradient_boosting.pyx":226
+ *             stack_size = 1
+ *             node_stack[0] = root_node
+ *             weight_stack[0] = 1.0             # <<<<<<<<<<<<<<
+ *             total_weight = 0.0
  * 
  */
-    __pyx_t_12 = 0;
-    *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_12)) )) = 1.0;
+      __pyx_t_12 = 0;
+      *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_12)) )) = 1.0;
 
-    /* "sklearn/ensemble/_gradient_boosting.pyx":226
- *         node_stack[0] = root_node
- *         weight_stack[0] = 1.0
- *         total_weight = 0.0             # <<<<<<<<<<<<<<
+      /* "sklearn/ensemble/_gradient_boosting.pyx":227
+ *             node_stack[0] = root_node
+ *             weight_stack[0] = 1.0
+ *             total_weight = 0.0             # <<<<<<<<<<<<<<
  * 
- *         while stack_size > 0:
+ *             while stack_size > 0:
  */
-    __pyx_v_total_weight = 0.0;
+      __pyx_v_total_weight = 0.0;
 
-    /* "sklearn/ensemble/_gradient_boosting.pyx":228
- *         total_weight = 0.0
+      /* "sklearn/ensemble/_gradient_boosting.pyx":229
+ *             total_weight = 0.0
  * 
- *         while stack_size > 0:             # <<<<<<<<<<<<<<
- *             # get top node on stack
- *             stack_size -= 1
+ *             while stack_size > 0:             # <<<<<<<<<<<<<<
+ *                 # get top node on stack
+ *                 stack_size -= 1
  */
-    while (1) {
-      __pyx_t_13 = ((__pyx_v_stack_size > 0) != 0);
-      if (!__pyx_t_13) break;
+      while (1) {
+        __pyx_t_13 = ((__pyx_v_stack_size > 0) != 0);
+        if (!__pyx_t_13) break;
 
-      /* "sklearn/ensemble/_gradient_boosting.pyx":230
- *         while stack_size > 0:
- *             # get top node on stack
- *             stack_size -= 1             # <<<<<<<<<<<<<<
- *             current_node = node_stack[stack_size]
+        /* "sklearn/ensemble/_gradient_boosting.pyx":231
+ *             while stack_size > 0:
+ *                 # get top node on stack
+ *                 stack_size -= 1             # <<<<<<<<<<<<<<
+ *                 current_node = node_stack[stack_size]
  * 
  */
-      __pyx_v_stack_size = (__pyx_v_stack_size - 1);
+        __pyx_v_stack_size = (__pyx_v_stack_size - 1);
 
-      /* "sklearn/ensemble/_gradient_boosting.pyx":231
- *             # get top node on stack
- *             stack_size -= 1
- *             current_node = node_stack[stack_size]             # <<<<<<<<<<<<<<
+        /* "sklearn/ensemble/_gradient_boosting.pyx":232
+ *                 # get top node on stack
+ *                 stack_size -= 1
+ *                 current_node = node_stack[stack_size]             # <<<<<<<<<<<<<<
  * 
- *             if current_node.left_child == LEAF:
+ *                 if current_node.left_child == LEAF:
  */
-      __pyx_v_current_node = (__pyx_v_node_stack[__pyx_v_stack_size]);
-
-      /* "sklearn/ensemble/_gradient_boosting.pyx":233
- *             current_node = node_stack[stack_size]
- * 
- *             if current_node.left_child == LEAF:             # <<<<<<<<<<<<<<
- *                 out[i] += weight_stack[stack_size] * value[current_node - root_node] * \
- *                           learn_rate
- */
-      __pyx_t_13 = ((__pyx_v_current_node->left_child == __pyx_v_7sklearn_8ensemble_18_gradient_boosting_LEAF) != 0);
-      if (__pyx_t_13) {
+        __pyx_v_current_node = (__pyx_v_node_stack[__pyx_v_stack_size]);
 
         /* "sklearn/ensemble/_gradient_boosting.pyx":234
+ *                 current_node = node_stack[stack_size]
  * 
- *             if current_node.left_child == LEAF:
- *                 out[i] += weight_stack[stack_size] * value[current_node - root_node] * \             # <<<<<<<<<<<<<<
- *                           learn_rate
- *                 total_weight += weight_stack[stack_size]
+ *                 if current_node.left_child == LEAF:             # <<<<<<<<<<<<<<
+ *                     out[i] += weight_stack[stack_size] * value[current_node - root_node] * \
+ *                               learn_rate
  */
-        __pyx_t_14 = __pyx_v_stack_size;
-
-        /* "sklearn/ensemble/_gradient_boosting.pyx":235
- *             if current_node.left_child == LEAF:
- *                 out[i] += weight_stack[stack_size] * value[current_node - root_node] * \
- *                           learn_rate             # <<<<<<<<<<<<<<
- *                 total_weight += weight_stack[stack_size]
- *             else:
- */
-        __pyx_t_15 = __pyx_v_i;
-        *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_out.data) + __pyx_t_15)) )) += (((*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_14)) ))) * (__pyx_v_value[(__pyx_v_current_node - __pyx_v_root_node)])) * __pyx_v_learn_rate);
-
-        /* "sklearn/ensemble/_gradient_boosting.pyx":236
- *                 out[i] += weight_stack[stack_size] * value[current_node - root_node] * \
- *                           learn_rate
- *                 total_weight += weight_stack[stack_size]             # <<<<<<<<<<<<<<
- *             else:
- *                 # non-terminal node
- */
-        __pyx_t_16 = __pyx_v_stack_size;
-        __pyx_v_total_weight = (__pyx_v_total_weight + (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_16)) ))));
-        goto __pyx_L7;
-      }
-      /*else*/ {
-
-        /* "sklearn/ensemble/_gradient_boosting.pyx":239
- *             else:
- *                 # non-terminal node
- *                 feature_index = array_index(current_node.feature, target_feature)             # <<<<<<<<<<<<<<
- *                 if feature_index != -1:
- *                     # split feature in target set
- */
-        __pyx_v_feature_index = __pyx_f_7sklearn_8ensemble_18_gradient_boosting_array_index(__pyx_v_current_node->feature, __pyx_v_target_feature);
-
-        /* "sklearn/ensemble/_gradient_boosting.pyx":240
- *                 # non-terminal node
- *                 feature_index = array_index(current_node.feature, target_feature)
- *                 if feature_index != -1:             # <<<<<<<<<<<<<<
- *                     # split feature in target set
- *                     # push left or right child on stack
- */
-        __pyx_t_13 = ((__pyx_v_feature_index != -1) != 0);
+        __pyx_t_13 = ((__pyx_v_current_node->left_child == __pyx_v_7sklearn_8ensemble_18_gradient_boosting_LEAF) != 0);
         if (__pyx_t_13) {
 
-          /* "sklearn/ensemble/_gradient_boosting.pyx":243
- *                     # split feature in target set
- *                     # push left or right child on stack
- *                     if goes_left(X[i, feature_index], current_node.split_value,             # <<<<<<<<<<<<<<
- *                                  tree.n_categories[current_node.feature],
- *                                  current_node._bit_cache):
+          /* "sklearn/ensemble/_gradient_boosting.pyx":235
+ * 
+ *                 if current_node.left_child == LEAF:
+ *                     out[i] += weight_stack[stack_size] * value[current_node - root_node] * \             # <<<<<<<<<<<<<<
+ *                               learn_rate
+ *                     total_weight += weight_stack[stack_size]
  */
-          __pyx_t_17 = __pyx_v_i;
-          __pyx_t_18 = __pyx_v_feature_index;
+          __pyx_t_14 = __pyx_v_stack_size;
 
-          /* "sklearn/ensemble/_gradient_boosting.pyx":245
- *                     if goes_left(X[i, feature_index], current_node.split_value,
- *                                  tree.n_categories[current_node.feature],
- *                                  current_node._bit_cache):             # <<<<<<<<<<<<<<
- *                         # left
- *                         node_stack[stack_size] = (root_node +
- */
-          __pyx_t_13 = (__pyx_f_7sklearn_4tree_6_utils_goes_left((*((__pyx_t_7sklearn_8ensemble_18_gradient_boosting_DTYPE_t *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_8ensemble_18_gradient_boosting_DTYPE_t *) ( /* dim=0 */ (__pyx_v_X.data + __pyx_t_17 * __pyx_v_X.strides[0]) )) + __pyx_t_18)) ))), __pyx_v_current_node->split_value, (__pyx_v_tree->n_categories[__pyx_v_current_node->feature]), __pyx_v_current_node->_bit_cache) != 0);
-          if (__pyx_t_13) {
-
-            /* "sklearn/ensemble/_gradient_boosting.pyx":247
- *                                  current_node._bit_cache):
- *                         # left
- *                         node_stack[stack_size] = (root_node +             # <<<<<<<<<<<<<<
- *                                                   current_node.left_child)
- *                     else:
- */
-            (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->left_child);
-            goto __pyx_L9;
-          }
-          /*else*/ {
-
-            /* "sklearn/ensemble/_gradient_boosting.pyx":251
- *                     else:
- *                         # right
- *                         node_stack[stack_size] = (root_node +             # <<<<<<<<<<<<<<
- *                                                   current_node.right_child)
- *                     stack_size += 1
- */
-            (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->right_child);
-          }
-          __pyx_L9:;
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":253
- *                         node_stack[stack_size] = (root_node +
- *                                                   current_node.right_child)
- *                     stack_size += 1             # <<<<<<<<<<<<<<
+          /* "sklearn/ensemble/_gradient_boosting.pyx":236
+ *                 if current_node.left_child == LEAF:
+ *                     out[i] += weight_stack[stack_size] * value[current_node - root_node] * \
+ *                               learn_rate             # <<<<<<<<<<<<<<
+ *                     total_weight += weight_stack[stack_size]
  *                 else:
- *                     # split feature in complement set
  */
-          __pyx_v_stack_size = (__pyx_v_stack_size + 1);
-          goto __pyx_L8;
+          __pyx_t_15 = __pyx_v_i;
+          *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_out.data) + __pyx_t_15)) )) += (((*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_14)) ))) * (__pyx_v_value[(__pyx_v_current_node - __pyx_v_root_node)])) * __pyx_v_learn_rate);
+
+          /* "sklearn/ensemble/_gradient_boosting.pyx":237
+ *                     out[i] += weight_stack[stack_size] * value[current_node - root_node] * \
+ *                               learn_rate
+ *                     total_weight += weight_stack[stack_size]             # <<<<<<<<<<<<<<
+ *                 else:
+ *                     # non-terminal node
+ */
+          __pyx_t_16 = __pyx_v_stack_size;
+          __pyx_v_total_weight = (__pyx_v_total_weight + (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_16)) ))));
+          goto __pyx_L10;
         }
         /*else*/ {
 
-          /* "sklearn/ensemble/_gradient_boosting.pyx":259
- * 
- *                     # push left child
- *                     node_stack[stack_size] = root_node + current_node.left_child             # <<<<<<<<<<<<<<
- *                     current_weight = weight_stack[stack_size]
- *                     left_sample_frac = root_node[current_node.left_child].n_node_samples / \
+          /* "sklearn/ensemble/_gradient_boosting.pyx":240
+ *                 else:
+ *                     # non-terminal node
+ *                     feature_index = array_index(current_node.feature, target_feature)             # <<<<<<<<<<<<<<
+ *                     if feature_index != -1:
+ *                         # split feature in target set
  */
-          (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->left_child);
+          __pyx_v_feature_index = __pyx_f_7sklearn_8ensemble_18_gradient_boosting_array_index(__pyx_v_current_node->feature, __pyx_v_target_feature);
 
-          /* "sklearn/ensemble/_gradient_boosting.pyx":260
- *                     # push left child
- *                     node_stack[stack_size] = root_node + current_node.left_child
- *                     current_weight = weight_stack[stack_size]             # <<<<<<<<<<<<<<
- *                     left_sample_frac = root_node[current_node.left_child].n_node_samples / \
- *                                        <double>current_node.n_node_samples
+          /* "sklearn/ensemble/_gradient_boosting.pyx":241
+ *                     # non-terminal node
+ *                     feature_index = array_index(current_node.feature, target_feature)
+ *                     if feature_index != -1:             # <<<<<<<<<<<<<<
+ *                         # split feature in target set
+ *                         # push left or right child on stack
  */
-          __pyx_t_19 = __pyx_v_stack_size;
-          __pyx_v_current_weight = (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_19)) )));
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":261
- *                     node_stack[stack_size] = root_node + current_node.left_child
- *                     current_weight = weight_stack[stack_size]
- *                     left_sample_frac = root_node[current_node.left_child].n_node_samples / \             # <<<<<<<<<<<<<<
- *                                        <double>current_node.n_node_samples
- *                     if left_sample_frac <= 0.0 or left_sample_frac >= 1.0:
- */
-          __pyx_v_left_sample_frac = ((__pyx_v_root_node[__pyx_v_current_node->left_child]).n_node_samples / ((double)__pyx_v_current_node->n_node_samples));
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":263
- *                     left_sample_frac = root_node[current_node.left_child].n_node_samples / \
- *                                        <double>current_node.n_node_samples
- *                     if left_sample_frac <= 0.0 or left_sample_frac >= 1.0:             # <<<<<<<<<<<<<<
- *                         raise ValueError("left_sample_frac:%f, "
- *                                          "n_samples current: %d, "
- */
-          __pyx_t_20 = ((__pyx_v_left_sample_frac <= 0.0) != 0);
-          if (!__pyx_t_20) {
-          } else {
-            __pyx_t_13 = __pyx_t_20;
-            goto __pyx_L11_bool_binop_done;
-          }
-          __pyx_t_20 = ((__pyx_v_left_sample_frac >= 1.0) != 0);
-          __pyx_t_13 = __pyx_t_20;
-          __pyx_L11_bool_binop_done:;
+          __pyx_t_13 = ((__pyx_v_feature_index != -1) != 0);
           if (__pyx_t_13) {
 
-            /* "sklearn/ensemble/_gradient_boosting.pyx":267
- *                                          "n_samples current: %d, "
- *                                          "n_samples left: %d"
- *                                          % (left_sample_frac,             # <<<<<<<<<<<<<<
- *                                             current_node.n_node_samples,
- *                                             root_node[current_node.left_child].n_node_samples))
+            /* "sklearn/ensemble/_gradient_boosting.pyx":244
+ *                         # split feature in target set
+ *                         # push left or right child on stack
+ *                         if goes_left(X[i, feature_index], current_node.split_value,             # <<<<<<<<<<<<<<
+ *                                      tree.n_categories[current_node.feature],
+ *                                      current_node._bit_cache):
  */
-            __pyx_t_9 = PyFloat_FromDouble(__pyx_v_left_sample_frac); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-            __Pyx_GOTREF(__pyx_t_9);
+            __pyx_t_17 = __pyx_v_i;
+            __pyx_t_18 = __pyx_v_feature_index;
 
-            /* "sklearn/ensemble/_gradient_boosting.pyx":268
- *                                          "n_samples left: %d"
- *                                          % (left_sample_frac,
- *                                             current_node.n_node_samples,             # <<<<<<<<<<<<<<
- *                                             root_node[current_node.left_child].n_node_samples))
- *                     weight_stack[stack_size] = current_weight * left_sample_frac
+            /* "sklearn/ensemble/_gradient_boosting.pyx":246
+ *                         if goes_left(X[i, feature_index], current_node.split_value,
+ *                                      tree.n_categories[current_node.feature],
+ *                                      current_node._bit_cache):             # <<<<<<<<<<<<<<
+ *                             # left
+ *                             node_stack[stack_size] = (root_node +
  */
-            __pyx_t_5 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_current_node->n_node_samples); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-            __Pyx_GOTREF(__pyx_t_5);
+            __pyx_t_13 = (__pyx_f_7sklearn_4tree_6_utils_goes_left((*((__pyx_t_7sklearn_8ensemble_18_gradient_boosting_DTYPE_t *) ( /* dim=1 */ ((char *) (((__pyx_t_7sklearn_8ensemble_18_gradient_boosting_DTYPE_t *) ( /* dim=0 */ (__pyx_v_X.data + __pyx_t_17 * __pyx_v_X.strides[0]) )) + __pyx_t_18)) ))), __pyx_v_current_node->split_value, (__pyx_v_tree->n_categories[__pyx_v_current_node->feature]), __pyx_v_current_node->_bit_cache) != 0);
+            if (__pyx_t_13) {
 
-            /* "sklearn/ensemble/_gradient_boosting.pyx":269
- *                                          % (left_sample_frac,
- *                                             current_node.n_node_samples,
- *                                             root_node[current_node.left_child].n_node_samples))             # <<<<<<<<<<<<<<
- *                     weight_stack[stack_size] = current_weight * left_sample_frac
- *                     stack_size +=1
+              /* "sklearn/ensemble/_gradient_boosting.pyx":248
+ *                                      current_node._bit_cache):
+ *                             # left
+ *                             node_stack[stack_size] = (root_node +             # <<<<<<<<<<<<<<
+ *                                                       current_node.left_child)
+ *                         else:
  */
-            __pyx_t_6 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_root_node[__pyx_v_current_node->left_child]).n_node_samples); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-            __Pyx_GOTREF(__pyx_t_6);
+              (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->left_child);
+              goto __pyx_L12;
+            }
+            /*else*/ {
 
-            /* "sklearn/ensemble/_gradient_boosting.pyx":267
- *                                          "n_samples current: %d, "
- *                                          "n_samples left: %d"
- *                                          % (left_sample_frac,             # <<<<<<<<<<<<<<
- *                                             current_node.n_node_samples,
- *                                             root_node[current_node.left_child].n_node_samples))
+              /* "sklearn/ensemble/_gradient_boosting.pyx":252
+ *                         else:
+ *                             # right
+ *                             node_stack[stack_size] = (root_node +             # <<<<<<<<<<<<<<
+ *                                                       current_node.right_child)
+ *                         stack_size += 1
  */
-            __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-            __Pyx_GOTREF(__pyx_t_7);
-            PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_9);
-            __Pyx_GIVEREF(__pyx_t_9);
-            PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_5);
-            __Pyx_GIVEREF(__pyx_t_5);
-            PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_t_6);
-            __Pyx_GIVEREF(__pyx_t_6);
-            __pyx_t_9 = 0;
-            __pyx_t_5 = 0;
-            __pyx_t_6 = 0;
-            __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_left_sample_frac_f_n_samples_cur, __pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-            __Pyx_GOTREF(__pyx_t_6);
-            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+              (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->right_child);
+            }
+            __pyx_L12:;
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":254
+ *                             node_stack[stack_size] = (root_node +
+ *                                                       current_node.right_child)
+ *                         stack_size += 1             # <<<<<<<<<<<<<<
+ *                     else:
+ *                         # split feature in complement set
+ */
+            __pyx_v_stack_size = (__pyx_v_stack_size + 1);
+            goto __pyx_L11;
+          }
+          /*else*/ {
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":260
+ * 
+ *                         # push left child
+ *                         node_stack[stack_size] = root_node + current_node.left_child             # <<<<<<<<<<<<<<
+ *                         current_weight = weight_stack[stack_size]
+ *                         left_sample_frac = root_node[current_node.left_child].n_node_samples / \
+ */
+            (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->left_child);
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":261
+ *                         # push left child
+ *                         node_stack[stack_size] = root_node + current_node.left_child
+ *                         current_weight = weight_stack[stack_size]             # <<<<<<<<<<<<<<
+ *                         left_sample_frac = root_node[current_node.left_child].n_node_samples / \
+ *                                            <double>current_node.n_node_samples
+ */
+            __pyx_t_19 = __pyx_v_stack_size;
+            __pyx_v_current_weight = (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_19)) )));
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":262
+ *                         node_stack[stack_size] = root_node + current_node.left_child
+ *                         current_weight = weight_stack[stack_size]
+ *                         left_sample_frac = root_node[current_node.left_child].n_node_samples / \             # <<<<<<<<<<<<<<
+ *                                            <double>current_node.n_node_samples
+ *                         if left_sample_frac <= 0.0 or left_sample_frac >= 1.0:
+ */
+            __pyx_v_left_sample_frac = ((__pyx_v_root_node[__pyx_v_current_node->left_child]).n_node_samples / ((double)__pyx_v_current_node->n_node_samples));
 
             /* "sklearn/ensemble/_gradient_boosting.pyx":264
- *                                        <double>current_node.n_node_samples
- *                     if left_sample_frac <= 0.0 or left_sample_frac >= 1.0:
- *                         raise ValueError("left_sample_frac:%f, "             # <<<<<<<<<<<<<<
- *                                          "n_samples current: %d, "
- *                                          "n_samples left: %d"
+ *                         left_sample_frac = root_node[current_node.left_child].n_node_samples / \
+ *                                            <double>current_node.n_node_samples
+ *                         if left_sample_frac <= 0.0 or left_sample_frac >= 1.0:             # <<<<<<<<<<<<<<
+ *                             raise ValueError("left_sample_frac:%f, "
+ *                                              "n_samples current: %d, "
  */
-            __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-            __Pyx_GOTREF(__pyx_t_7);
-            PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6);
-            __Pyx_GIVEREF(__pyx_t_6);
-            __pyx_t_6 = 0;
-            __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-            __Pyx_GOTREF(__pyx_t_6);
-            __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-            __Pyx_Raise(__pyx_t_6, 0, 0, 0);
-            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_20 = ((__pyx_v_left_sample_frac <= 0.0) != 0);
+            if (!__pyx_t_20) {
+            } else {
+              __pyx_t_13 = __pyx_t_20;
+              goto __pyx_L14_bool_binop_done;
+            }
+            __pyx_t_20 = ((__pyx_v_left_sample_frac >= 1.0) != 0);
+            __pyx_t_13 = __pyx_t_20;
+            __pyx_L14_bool_binop_done:;
+            if (__pyx_t_13) {
+
+              /* "sklearn/ensemble/_gradient_boosting.pyx":268
+ *                                              "n_samples current: %d, "
+ *                                              "n_samples left: %d"
+ *                                              % (left_sample_frac,             # <<<<<<<<<<<<<<
+ *                                                 current_node.n_node_samples,
+ *                                                 root_node[current_node.left_child].n_node_samples))
+ */
+              __pyx_t_9 = PyFloat_FromDouble(__pyx_v_left_sample_frac); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+              __Pyx_GOTREF(__pyx_t_9);
+
+              /* "sklearn/ensemble/_gradient_boosting.pyx":269
+ *                                              "n_samples left: %d"
+ *                                              % (left_sample_frac,
+ *                                                 current_node.n_node_samples,             # <<<<<<<<<<<<<<
+ *                                                 root_node[current_node.left_child].n_node_samples))
+ *                         weight_stack[stack_size] = current_weight * left_sample_frac
+ */
+              __pyx_t_5 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_current_node->n_node_samples); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+              __Pyx_GOTREF(__pyx_t_5);
+
+              /* "sklearn/ensemble/_gradient_boosting.pyx":270
+ *                                              % (left_sample_frac,
+ *                                                 current_node.n_node_samples,
+ *                                                 root_node[current_node.left_child].n_node_samples))             # <<<<<<<<<<<<<<
+ *                         weight_stack[stack_size] = current_weight * left_sample_frac
+ *                         stack_size +=1
+ */
+              __pyx_t_6 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_root_node[__pyx_v_current_node->left_child]).n_node_samples); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+              __Pyx_GOTREF(__pyx_t_6);
+
+              /* "sklearn/ensemble/_gradient_boosting.pyx":268
+ *                                              "n_samples current: %d, "
+ *                                              "n_samples left: %d"
+ *                                              % (left_sample_frac,             # <<<<<<<<<<<<<<
+ *                                                 current_node.n_node_samples,
+ *                                                 root_node[current_node.left_child].n_node_samples))
+ */
+              __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+              __Pyx_GOTREF(__pyx_t_7);
+              PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_9);
+              __Pyx_GIVEREF(__pyx_t_9);
+              PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_5);
+              __Pyx_GIVEREF(__pyx_t_5);
+              PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_t_6);
+              __Pyx_GIVEREF(__pyx_t_6);
+              __pyx_t_9 = 0;
+              __pyx_t_5 = 0;
+              __pyx_t_6 = 0;
+              __pyx_t_6 = __Pyx_PyString_Format(__pyx_kp_s_left_sample_frac_f_n_samples_cur, __pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+              __Pyx_GOTREF(__pyx_t_6);
+              __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+              /* "sklearn/ensemble/_gradient_boosting.pyx":265
+ *                                            <double>current_node.n_node_samples
+ *                         if left_sample_frac <= 0.0 or left_sample_frac >= 1.0:
+ *                             raise ValueError("left_sample_frac:%f, "             # <<<<<<<<<<<<<<
+ *                                              "n_samples current: %d, "
+ *                                              "n_samples left: %d"
+ */
+              __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+              __Pyx_GOTREF(__pyx_t_7);
+              PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6);
+              __Pyx_GIVEREF(__pyx_t_6);
+              __pyx_t_6 = 0;
+              __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+              __Pyx_GOTREF(__pyx_t_6);
+              __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+              __Pyx_Raise(__pyx_t_6, 0, 0, 0);
+              __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+            }
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":271
+ *                                                 current_node.n_node_samples,
+ *                                                 root_node[current_node.left_child].n_node_samples))
+ *                         weight_stack[stack_size] = current_weight * left_sample_frac             # <<<<<<<<<<<<<<
+ *                         stack_size +=1
+ * 
+ */
+            __pyx_t_21 = __pyx_v_stack_size;
+            *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_21)) )) = (__pyx_v_current_weight * __pyx_v_left_sample_frac);
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":272
+ *                                                 root_node[current_node.left_child].n_node_samples))
+ *                         weight_stack[stack_size] = current_weight * left_sample_frac
+ *                         stack_size +=1             # <<<<<<<<<<<<<<
+ * 
+ *                         # push right child
+ */
+            __pyx_v_stack_size = (__pyx_v_stack_size + 1);
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":275
+ * 
+ *                         # push right child
+ *                         node_stack[stack_size] = root_node + current_node.right_child             # <<<<<<<<<<<<<<
+ *                         weight_stack[stack_size] = current_weight * \
+ *                                                    (1.0 - left_sample_frac)
+ */
+            (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->right_child);
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":276
+ *                         # push right child
+ *                         node_stack[stack_size] = root_node + current_node.right_child
+ *                         weight_stack[stack_size] = current_weight * \             # <<<<<<<<<<<<<<
+ *                                                    (1.0 - left_sample_frac)
+ *                         stack_size +=1
+ */
+            __pyx_t_22 = __pyx_v_stack_size;
+            *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_22)) )) = (__pyx_v_current_weight * (1.0 - __pyx_v_left_sample_frac));
+
+            /* "sklearn/ensemble/_gradient_boosting.pyx":278
+ *                         weight_stack[stack_size] = current_weight * \
+ *                                                    (1.0 - left_sample_frac)
+ *                         stack_size +=1             # <<<<<<<<<<<<<<
+ * 
+ *             if not (0.999 < total_weight < 1.001):
+ */
+            __pyx_v_stack_size = (__pyx_v_stack_size + 1);
           }
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":270
- *                                             current_node.n_node_samples,
- *                                             root_node[current_node.left_child].n_node_samples))
- *                     weight_stack[stack_size] = current_weight * left_sample_frac             # <<<<<<<<<<<<<<
- *                     stack_size +=1
- * 
- */
-          __pyx_t_21 = __pyx_v_stack_size;
-          *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_21)) )) = (__pyx_v_current_weight * __pyx_v_left_sample_frac);
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":271
- *                                             root_node[current_node.left_child].n_node_samples))
- *                     weight_stack[stack_size] = current_weight * left_sample_frac
- *                     stack_size +=1             # <<<<<<<<<<<<<<
- * 
- *                     # push right child
- */
-          __pyx_v_stack_size = (__pyx_v_stack_size + 1);
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":274
- * 
- *                     # push right child
- *                     node_stack[stack_size] = root_node + current_node.right_child             # <<<<<<<<<<<<<<
- *                     weight_stack[stack_size] = current_weight * \
- *                                                (1.0 - left_sample_frac)
- */
-          (__pyx_v_node_stack[__pyx_v_stack_size]) = (__pyx_v_root_node + __pyx_v_current_node->right_child);
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":275
- *                     # push right child
- *                     node_stack[stack_size] = root_node + current_node.right_child
- *                     weight_stack[stack_size] = current_weight * \             # <<<<<<<<<<<<<<
- *                                                (1.0 - left_sample_frac)
- *                     stack_size +=1
- */
-          __pyx_t_22 = __pyx_v_stack_size;
-          *((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_weight_stack.data) + __pyx_t_22)) )) = (__pyx_v_current_weight * (1.0 - __pyx_v_left_sample_frac));
-
-          /* "sklearn/ensemble/_gradient_boosting.pyx":277
- *                     weight_stack[stack_size] = current_weight * \
- *                                                (1.0 - left_sample_frac)
- *                     stack_size +=1             # <<<<<<<<<<<<<<
- * 
- *         if not (0.999 < total_weight < 1.001):
- */
-          __pyx_v_stack_size = (__pyx_v_stack_size + 1);
+          __pyx_L11:;
         }
-        __pyx_L8:;
+        __pyx_L10:;
       }
-      __pyx_L7:;
-    }
-
-    /* "sklearn/ensemble/_gradient_boosting.pyx":279
- *                     stack_size +=1
- * 
- *         if not (0.999 < total_weight < 1.001):             # <<<<<<<<<<<<<<
- *             raise ValueError("Total weight should be 1.0 but was %.9f" %
- *                              total_weight)
- */
-    __pyx_t_13 = (0.999 < __pyx_v_total_weight);
-    if (__pyx_t_13) {
-      __pyx_t_13 = (__pyx_v_total_weight < 1.001);
-    }
-    __pyx_t_20 = ((!(__pyx_t_13 != 0)) != 0);
-    if (__pyx_t_20) {
-
-      /* "sklearn/ensemble/_gradient_boosting.pyx":281
- *         if not (0.999 < total_weight < 1.001):
- *             raise ValueError("Total weight should be 1.0 but was %.9f" %
- *                              total_weight)             # <<<<<<<<<<<<<<
- * 
- *     tree.delete_bit_caches()
- */
-      __pyx_t_6 = PyFloat_FromDouble(__pyx_v_total_weight); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_6);
 
       /* "sklearn/ensemble/_gradient_boosting.pyx":280
+ *                         stack_size +=1
  * 
- *         if not (0.999 < total_weight < 1.001):
- *             raise ValueError("Total weight should be 1.0 but was %.9f" %             # <<<<<<<<<<<<<<
- *                              total_weight)
+ *             if not (0.999 < total_weight < 1.001):             # <<<<<<<<<<<<<<
+ *                 raise ValueError("Total weight should be 1.0 but was %.9f" %
+ *                                  total_weight)
+ */
+      __pyx_t_13 = (0.999 < __pyx_v_total_weight);
+      if (__pyx_t_13) {
+        __pyx_t_13 = (__pyx_v_total_weight < 1.001);
+      }
+      __pyx_t_20 = ((!(__pyx_t_13 != 0)) != 0);
+      if (__pyx_t_20) {
+
+        /* "sklearn/ensemble/_gradient_boosting.pyx":282
+ *             if not (0.999 < total_weight < 1.001):
+ *                 raise ValueError("Total weight should be 1.0 but was %.9f" %
+ *                                  total_weight)             # <<<<<<<<<<<<<<
+ * 
+ *     finally:
+ */
+        __pyx_t_6 = PyFloat_FromDouble(__pyx_v_total_weight); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        __Pyx_GOTREF(__pyx_t_6);
+
+        /* "sklearn/ensemble/_gradient_boosting.pyx":281
+ * 
+ *             if not (0.999 < total_weight < 1.001):
+ *                 raise ValueError("Total weight should be 1.0 but was %.9f" %             # <<<<<<<<<<<<<<
+ *                                  total_weight)
  * 
  */
-      __pyx_t_7 = __Pyx_PyString_Format(__pyx_kp_s_Total_weight_should_be_1_0_but_w, __pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_7);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_6);
-      PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_7);
-      __Pyx_GIVEREF(__pyx_t_7);
-      __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_7);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_Raise(__pyx_t_7, 0, 0, 0);
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = __Pyx_PyString_Format(__pyx_kp_s_Total_weight_should_be_1_0_but_w, __pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+        __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        __Pyx_GOTREF(__pyx_t_6);
+        PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_7);
+        __Pyx_GIVEREF(__pyx_t_7);
+        __pyx_t_7 = 0;
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+        __Pyx_Raise(__pyx_t_7, 0, 0, 0);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L4_error;}
+      }
     }
   }
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":283
- *                              total_weight)
+  /* "sklearn/ensemble/_gradient_boosting.pyx":285
  * 
- *     tree.delete_bit_caches()             # <<<<<<<<<<<<<<
+ *     finally:
+ *         tree.delete_bit_caches()             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->delete_bit_caches(__pyx_v_tree);
+  /*finally:*/ {
+    /*normal exit:*/{
+      ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->delete_bit_caches(__pyx_v_tree);
+      goto __pyx_L5;
+    }
+    /*exception exit:*/{
+      __pyx_L4_error:;
+      __pyx_t_26 = 0; __pyx_t_27 = 0; __pyx_t_28 = 0; __pyx_t_29 = 0; __pyx_t_30 = 0; __pyx_t_31 = 0;
+      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
+      if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_29, &__pyx_t_30, &__pyx_t_31);
+      if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_26, &__pyx_t_27, &__pyx_t_28) < 0)) __Pyx_ErrFetch(&__pyx_t_26, &__pyx_t_27, &__pyx_t_28);
+      __Pyx_XGOTREF(__pyx_t_26);
+      __Pyx_XGOTREF(__pyx_t_27);
+      __Pyx_XGOTREF(__pyx_t_28);
+      __Pyx_XGOTREF(__pyx_t_29);
+      __Pyx_XGOTREF(__pyx_t_30);
+      __Pyx_XGOTREF(__pyx_t_31);
+      __pyx_t_23 = __pyx_lineno; __pyx_t_24 = __pyx_clineno; __pyx_t_25 = __pyx_filename;
+      {
+        ((struct __pyx_vtabstruct_7sklearn_4tree_5_tree_Tree *)__pyx_v_tree->__pyx_vtab)->delete_bit_caches(__pyx_v_tree);
+      }
+      if (PY_MAJOR_VERSION >= 3) {
+        __Pyx_XGIVEREF(__pyx_t_29);
+        __Pyx_XGIVEREF(__pyx_t_30);
+        __Pyx_XGIVEREF(__pyx_t_31);
+        __Pyx_ExceptionReset(__pyx_t_29, __pyx_t_30, __pyx_t_31);
+      }
+      __Pyx_XGIVEREF(__pyx_t_26);
+      __Pyx_XGIVEREF(__pyx_t_27);
+      __Pyx_XGIVEREF(__pyx_t_28);
+      __Pyx_ErrRestore(__pyx_t_26, __pyx_t_27, __pyx_t_28);
+      __pyx_t_26 = 0; __pyx_t_27 = 0; __pyx_t_28 = 0; __pyx_t_29 = 0; __pyx_t_30 = 0; __pyx_t_31 = 0;
+      __pyx_lineno = __pyx_t_23; __pyx_clineno = __pyx_t_24; __pyx_filename = __pyx_t_25;
+      goto __pyx_L1_error;
+    }
+    __pyx_L5:;
+  }
 
   /* "sklearn/ensemble/_gradient_boosting.pyx":167
  * 
@@ -4076,7 +4136,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_4_partial_depe
   return __pyx_r;
 }
 
-/* "sklearn/ensemble/_gradient_boosting.pyx":286
+/* "sklearn/ensemble/_gradient_boosting.pyx":288
  * 
  * 
  * def _random_sample_mask(np.npy_intp n_total_samples,             # <<<<<<<<<<<<<<
@@ -4119,16 +4179,16 @@ static PyObject *__pyx_pw_7sklearn_8ensemble_18_gradient_boosting_7_random_sampl
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_n_total_in_bag)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_random_sample_mask", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("_random_sample_mask", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_random_state)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_random_sample_mask", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("_random_sample_mask", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_random_sample_mask") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_random_sample_mask") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4137,13 +4197,13 @@ static PyObject *__pyx_pw_7sklearn_8ensemble_18_gradient_boosting_7_random_sampl
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_n_total_samples = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_n_total_samples == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_n_total_in_bag = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_n_total_in_bag == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_total_samples = __Pyx_PyInt_As_Py_intptr_t(values[0]); if (unlikely((__pyx_v_n_total_samples == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_n_total_in_bag = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_n_total_in_bag == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_random_state = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_random_sample_mask", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("_random_sample_mask", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.ensemble._gradient_boosting._random_sample_mask", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4192,16 +4252,16 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
   __pyx_pybuffernd_sample_mask.data = NULL;
   __pyx_pybuffernd_sample_mask.rcbuffer = &__pyx_pybuffer_sample_mask;
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":308
+  /* "sklearn/ensemble/_gradient_boosting.pyx":310
  *      """
  *      cdef np.ndarray[float64, ndim=1, mode="c"] rand = \
  *           random_state.rand(n_total_samples)             # <<<<<<<<<<<<<<
  *      cdef np.ndarray[uint8, ndim=1, mode="c", cast=True] sample_mask = \
  *           np_zeros((n_total_samples,), dtype=np_bool)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_random_state, __pyx_n_s_rand); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_random_state, __pyx_n_s_rand); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_total_samples); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_total_samples); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4214,28 +4274,28 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_rand.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_8ensemble_18_gradient_boosting_float64, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_rand = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_rand.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_rand.diminfo[0].strides = __pyx_pybuffernd_rand.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rand.diminfo[0].shape = __pyx_pybuffernd_rand.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -4243,45 +4303,45 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
   __pyx_v_rand = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":310
+  /* "sklearn/ensemble/_gradient_boosting.pyx":312
  *           random_state.rand(n_total_samples)
  *      cdef np.ndarray[uint8, ndim=1, mode="c", cast=True] sample_mask = \
  *           np_zeros((n_total_samples,), dtype=np_bool)             # <<<<<<<<<<<<<<
  * 
  *      cdef np.npy_intp n_bagged = 0
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_total_samples); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_n_total_samples); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np_bool); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np_bool); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_3);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_sample_mask.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_8ensemble_18_gradient_boosting_uint8, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS| PyBUF_WRITABLE, 1, 1, __pyx_stack) == -1)) {
       __pyx_v_sample_mask = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_sample_mask.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_sample_mask.diminfo[0].strides = __pyx_pybuffernd_sample_mask.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_sample_mask.diminfo[0].shape = __pyx_pybuffernd_sample_mask.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -4289,7 +4349,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
   __pyx_v_sample_mask = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":312
+  /* "sklearn/ensemble/_gradient_boosting.pyx":314
  *           np_zeros((n_total_samples,), dtype=np_bool)
  * 
  *      cdef np.npy_intp n_bagged = 0             # <<<<<<<<<<<<<<
@@ -4298,7 +4358,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
  */
   __pyx_v_n_bagged = 0;
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":313
+  /* "sklearn/ensemble/_gradient_boosting.pyx":315
  * 
  *      cdef np.npy_intp n_bagged = 0
  *      cdef np.npy_intp i = 0             # <<<<<<<<<<<<<<
@@ -4307,7 +4367,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
  */
   __pyx_v_i = 0;
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":315
+  /* "sklearn/ensemble/_gradient_boosting.pyx":317
  *      cdef np.npy_intp i = 0
  * 
  *      for i in range(n_total_samples):             # <<<<<<<<<<<<<<
@@ -4318,7 +4378,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
   for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
     __pyx_v_i = __pyx_t_9;
 
-    /* "sklearn/ensemble/_gradient_boosting.pyx":316
+    /* "sklearn/ensemble/_gradient_boosting.pyx":318
  * 
  *      for i in range(n_total_samples):
  *          if rand[i] * (n_total_samples - i) < (n_total_in_bag - n_bagged):             # <<<<<<<<<<<<<<
@@ -4329,7 +4389,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
     __pyx_t_11 = ((((*__Pyx_BufPtrCContig1d(__pyx_t_7sklearn_8ensemble_18_gradient_boosting_float64 *, __pyx_pybuffernd_rand.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_rand.diminfo[0].strides)) * (__pyx_v_n_total_samples - __pyx_v_i)) < (__pyx_v_n_total_in_bag - __pyx_v_n_bagged)) != 0);
     if (__pyx_t_11) {
 
-      /* "sklearn/ensemble/_gradient_boosting.pyx":317
+      /* "sklearn/ensemble/_gradient_boosting.pyx":319
  *      for i in range(n_total_samples):
  *          if rand[i] * (n_total_samples - i) < (n_total_in_bag - n_bagged):
  *              sample_mask[i] = 1             # <<<<<<<<<<<<<<
@@ -4339,7 +4399,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
       __pyx_t_12 = __pyx_v_i;
       *__Pyx_BufPtrCContig1d(__pyx_t_7sklearn_8ensemble_18_gradient_boosting_uint8 *, __pyx_pybuffernd_sample_mask.rcbuffer->pybuffer.buf, __pyx_t_12, __pyx_pybuffernd_sample_mask.diminfo[0].strides) = 1;
 
-      /* "sklearn/ensemble/_gradient_boosting.pyx":318
+      /* "sklearn/ensemble/_gradient_boosting.pyx":320
  *          if rand[i] * (n_total_samples - i) < (n_total_in_bag - n_bagged):
  *              sample_mask[i] = 1
  *              n_bagged += 1             # <<<<<<<<<<<<<<
@@ -4352,7 +4412,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
     __pyx_L5:;
   }
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":320
+  /* "sklearn/ensemble/_gradient_boosting.pyx":322
  *              n_bagged += 1
  * 
  *      return sample_mask             # <<<<<<<<<<<<<<
@@ -4362,7 +4422,7 @@ static PyObject *__pyx_pf_7sklearn_8ensemble_18_gradient_boosting_6_random_sampl
   __pyx_r = ((PyObject *)__pyx_v_sample_mask);
   goto __pyx_L0;
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":286
+  /* "sklearn/ensemble/_gradient_boosting.pyx":288
  * 
  * 
  * def _random_sample_mask(np.npy_intp n_total_samples,             # <<<<<<<<<<<<<<
@@ -17820,7 +17880,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 802; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -18062,17 +18122,17 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__21);
   __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jblackburne_sw_scikit_lear, __pyx_n_s_predict_stage, 143, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":286
+  /* "sklearn/ensemble/_gradient_boosting.pyx":288
  * 
  * 
  * def _random_sample_mask(np.npy_intp n_total_samples,             # <<<<<<<<<<<<<<
  *                         np.npy_intp n_total_in_bag, random_state):
  *      """Create a random sample mask where ``n_total_in_bag`` elements are set.
  */
-  __pyx_tuple__23 = PyTuple_Pack(7, __pyx_n_s_n_total_samples, __pyx_n_s_n_total_in_bag, __pyx_n_s_random_state, __pyx_n_s_rand, __pyx_n_s_sample_mask, __pyx_n_s_n_bagged, __pyx_n_s_i); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__23 = PyTuple_Pack(7, __pyx_n_s_n_total_samples, __pyx_n_s_n_total_in_bag, __pyx_n_s_random_state, __pyx_n_s_rand, __pyx_n_s_sample_mask, __pyx_n_s_n_bagged, __pyx_n_s_i); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jblackburne_sw_scikit_lear, __pyx_n_s_random_sample_mask, 286, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_jblackburne_sw_scikit_lear, __pyx_n_s_random_sample_mask, 288, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "View.MemoryView":276
  *         return self.name
@@ -18465,16 +18525,16 @@ PyMODINIT_FUNC PyInit__gradient_boosting(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_predict_stage, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sklearn/ensemble/_gradient_boosting.pyx":286
+  /* "sklearn/ensemble/_gradient_boosting.pyx":288
  * 
  * 
  * def _random_sample_mask(np.npy_intp n_total_samples,             # <<<<<<<<<<<<<<
  *                         np.npy_intp n_total_in_bag, random_state):
  *      """Create a random sample mask where ``n_total_in_bag`` elements are set.
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_8ensemble_18_gradient_boosting_7_random_sample_mask, NULL, __pyx_n_s_sklearn_ensemble__gradient_boost); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7sklearn_8ensemble_18_gradient_boosting_7_random_sample_mask, NULL, __pyx_n_s_sklearn_ensemble__gradient_boost); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_random_sample_mask, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_random_sample_mask, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sklearn/ensemble/_gradient_boosting.pyx":1
@@ -19705,6 +19765,82 @@ bad:
 }
 #endif
 
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb) {
+    PyObject *local_type, *local_value, *local_tb;
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    PyThreadState *tstate = PyThreadState_GET();
+    local_type = tstate->curexc_type;
+    local_value = tstate->curexc_value;
+    local_tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#else
+    PyErr_Fetch(&local_type, &local_value, &local_tb);
+#endif
+    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
+#if CYTHON_COMPILING_IN_CPYTHON
+    if (unlikely(tstate->curexc_type))
+#else
+    if (unlikely(PyErr_Occurred()))
+#endif
+        goto bad;
+    #if PY_MAJOR_VERSION >= 3
+    if (local_tb) {
+        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
+            goto bad;
+    }
+    #endif
+    Py_XINCREF(local_tb);
+    Py_XINCREF(local_type);
+    Py_XINCREF(local_value);
+    *type = local_type;
+    *value = local_value;
+    *tb = local_tb;
+#if CYTHON_COMPILING_IN_CPYTHON
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = local_type;
+    tstate->exc_value = local_value;
+    tstate->exc_traceback = local_tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_SetExcInfo(local_type, local_value, local_tb);
+#endif
+    return 0;
+bad:
+    *type = 0;
+    *value = 0;
+    *tb = 0;
+    Py_XDECREF(local_type);
+    Py_XDECREF(local_value);
+    Py_XDECREF(local_tb);
+    return -1;
+}
+
+static CYTHON_INLINE void __Pyx_ExceptionSwap(PyObject **type, PyObject **value, PyObject **tb) {
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyThreadState *tstate = PyThreadState_GET();
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = *type;
+    tstate->exc_value = *value;
+    tstate->exc_traceback = *tb;
+#else
+    PyErr_GetExcInfo(&tmp_type, &tmp_value, &tmp_tb);
+    PyErr_SetExcInfo(*type, *value, *tb);
+#endif
+    *type = tmp_type;
+    *value = tmp_value;
+    *tb = tmp_tb;
+}
+
 static int
 __Pyx_init_memviewslice(struct __pyx_memoryview_obj *memview,
                         int ndim,
@@ -19838,6 +19974,37 @@ static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *memslice,
     } else {
         memslice->memview = NULL;
     }
+}
+
+static CYTHON_INLINE void __Pyx_ExceptionSave(PyObject **type, PyObject **value, PyObject **tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyThreadState *tstate = PyThreadState_GET();
+    *type = tstate->exc_type;
+    *value = tstate->exc_value;
+    *tb = tstate->exc_traceback;
+    Py_XINCREF(*type);
+    Py_XINCREF(*value);
+    Py_XINCREF(*tb);
+#else
+    PyErr_GetExcInfo(type, value, tb);
+#endif
+}
+static void __Pyx_ExceptionReset(PyObject *type, PyObject *value, PyObject *tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    PyThreadState *tstate = PyThreadState_GET();
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = type;
+    tstate->exc_value = value;
+    tstate->exc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_SetExcInfo(type, value, tb);
+#endif
 }
 
 static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname) {
@@ -20064,113 +20231,6 @@ static CYTHON_INLINE PyObject* __Pyx_decode_c_string(
     } else {
         return PyUnicode_Decode(cstring, length, encoding, errors);
     }
-}
-
-static CYTHON_INLINE void __Pyx_ExceptionSave(PyObject **type, PyObject **value, PyObject **tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyThreadState *tstate = PyThreadState_GET();
-    *type = tstate->exc_type;
-    *value = tstate->exc_value;
-    *tb = tstate->exc_traceback;
-    Py_XINCREF(*type);
-    Py_XINCREF(*value);
-    Py_XINCREF(*tb);
-#else
-    PyErr_GetExcInfo(type, value, tb);
-#endif
-}
-static void __Pyx_ExceptionReset(PyObject *type, PyObject *value, PyObject *tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    PyThreadState *tstate = PyThreadState_GET();
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = type;
-    tstate->exc_value = value;
-    tstate->exc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_SetExcInfo(type, value, tb);
-#endif
-}
-
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb) {
-    PyObject *local_type, *local_value, *local_tb;
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    PyThreadState *tstate = PyThreadState_GET();
-    local_type = tstate->curexc_type;
-    local_value = tstate->curexc_value;
-    local_tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(&local_type, &local_value, &local_tb);
-#endif
-    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
-#if CYTHON_COMPILING_IN_CPYTHON
-    if (unlikely(tstate->curexc_type))
-#else
-    if (unlikely(PyErr_Occurred()))
-#endif
-        goto bad;
-    #if PY_MAJOR_VERSION >= 3
-    if (local_tb) {
-        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
-            goto bad;
-    }
-    #endif
-    Py_XINCREF(local_tb);
-    Py_XINCREF(local_type);
-    Py_XINCREF(local_value);
-    *type = local_type;
-    *value = local_value;
-    *tb = local_tb;
-#if CYTHON_COMPILING_IN_CPYTHON
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = local_type;
-    tstate->exc_value = local_value;
-    tstate->exc_traceback = local_tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_SetExcInfo(local_type, local_value, local_tb);
-#endif
-    return 0;
-bad:
-    *type = 0;
-    *value = 0;
-    *tb = 0;
-    Py_XDECREF(local_type);
-    Py_XDECREF(local_value);
-    Py_XDECREF(local_tb);
-    return -1;
-}
-
-static CYTHON_INLINE void __Pyx_ExceptionSwap(PyObject **type, PyObject **value, PyObject **tb) {
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyThreadState *tstate = PyThreadState_GET();
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = *type;
-    tstate->exc_value = *value;
-    tstate->exc_traceback = *tb;
-#else
-    PyErr_GetExcInfo(&tmp_type, &tmp_value, &tmp_tb);
-    PyErr_SetExcInfo(*type, *value, *tb);
-#endif
-    *type = tmp_type;
-    *value = tmp_value;
-    *tb = tmp_tb;
 }
 
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
