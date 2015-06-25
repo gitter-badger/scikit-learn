@@ -29,7 +29,7 @@ from ..utils.validation import (as_float_array, DataConversionWarning,
                                 check_X_y)
 from ..utils.fixes import expit
 from ..externals.joblib import Parallel, delayed
-from ..model_selection import check_cv, iter_cv
+from ..model_selection import check_cv
 from ..externals import six
 from ..metrics import SCORERS
 
@@ -1347,7 +1347,7 @@ class LogisticRegressionCV(LogisticRegression, BaseEstimator,
 
         # init cross-validation generator
         cv = check_cv(self.cv, y, classifier=True)
-        folds = list(iter_cv(cv, X, y))
+        folds = list(cv.split(X, y))
 
         self._enc = LabelEncoder()
         self._enc.fit(y)

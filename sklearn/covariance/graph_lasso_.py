@@ -21,7 +21,7 @@ from ..utils.extmath import pinvh
 from ..utils.validation import check_random_state, check_array
 from ..linear_model import lars_path
 from ..linear_model import cd_fast
-from ..model_selection import check_cv, iter_cv, cross_val_score
+from ..model_selection import check_cv, cross_val_score
 from ..externals.joblib import Parallel, delayed
 import collections
 
@@ -597,14 +597,13 @@ class GraphLassoCV(GraphLasso):
                 this_path = Parallel(
                     n_jobs=self.n_jobs,
                     verbose=self.verbose
-                )(
-                    delayed(graph_lasso_path)(
-                        X[train], alphas=alphas,
-                        X_test=X[test], mode=self.mode,
-                        tol=self.tol, enet_tol=self.enet_tol,
-                        max_iter=int(.1 * self.max_iter),
-                        verbose=inner_verbose)
-                    for train, test in iter_cv(cv, X, y))
+                )(delayed(graph_lasso_path)(X[train], alphas=alphas,
+                                            X_test=X[test], mode=self.mode,
+                                            tol=self.tol,
+                                            enet_tol=self.enet_tol,
+                                            max_iter=int(.1 * self.max_iter),
+                                            verbose=inner_verbose)
+                  for train, test in cv.split(X, y))
 
             # Little danse to transform the list in what we need
             covs, _, scores = zip(*this_path)

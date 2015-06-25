@@ -15,12 +15,12 @@ from __future__ import division
 import warnings
 import inspect
 from itertools import chain, combinations
+from collections import Iterable
 from math import ceil, floor, factorial
 import numbers
 from abc import ABCMeta, abstractmethod
 
 import numpy as np
-import scipy.sparse as sp
 
 from ..utils import indexable, check_random_state, safe_indexing
 from ..utils.validation import _num_samples, column_or_1d
@@ -29,7 +29,6 @@ from ..externals.six import with_metaclass
 from ..externals.six.moves import zip
 from ..utils.fixes import bincount
 from ..base import _pprint
-
 
 __all__ = ['KFold',
            'LeaveOneLabelOut',
@@ -41,9 +40,7 @@ __all__ = ['KFold',
            'StratifiedShuffleSplit',
            'PredefinedSplit',
            'train_test_split',
-           'check_cv',
-           'iter_cv',
-           'len_cv']
+           'check_cv']
 
 
 class _PartitionIterator(with_metaclass(ABCMeta)):
@@ -293,8 +290,7 @@ class KFold(_BaseKFold):
     >>> kf.n_splits(X)
     2
     >>> print(kf)  # doctest: +NORMALIZE_WHITESPACE
-    KFold(n_folds=2, shuffle=False,
-                                        random_state=None)
+    KFold(n_folds=2, random_state=None, shuffle=False)
     >>> for train_index, test_index in kf.split(X):
     ...    print("TRAIN:", train_index, "TEST:", test_index)
     ...    X_train, X_test = X[train_index], X[test_index]
@@ -318,13 +314,15 @@ class KFold(_BaseKFold):
     def __init__(self, n_folds=3, shuffle=False,
                  random_state=None):
         super(KFold, self).__init__(n_folds, shuffle, random_state)
+        if shuffle:
+            self._rng = check_random_state(self.random_state)
+        self._shuffle = shuffle
 
     def _iter_test_indices(self, X, y=None, labels=None):
         n = _num_samples(X)
         idxs = np.arange(n)
-        if self.shuffle:
-            rng = check_random_state(self.random_state)
-            rng.shuffle(idxs)
+        if self._shuffle:
+            self._rng.shuffle(idxs)
 
         n_folds = self.n_folds
         fold_sizes = (n // n_folds) * np.ones(n_folds, dtype=np.int)
@@ -369,7 +367,7 @@ class StratifiedKFold(_BaseKFold):
     >>> skf.n_splits(X, y)
     2
     >>> print(skf)  # doctest: +NORMALIZE_WHITESPACE
-    StratifiedKFold(n_folds=2, shuffle=False, random_state=None)
+    StratifiedKFold(n_folds=2, random_state=None, shuffle=False)
     >>> for train_index, test_index in skf.split(X, y):
     ...    print("TRAIN:", train_index, "TEST:", test_index)
     ...    X_train, X_test = X[train_index], X[test_index]
@@ -386,12 +384,15 @@ class StratifiedKFold(_BaseKFold):
 
     def __init__(self, n_folds=3, shuffle=False, random_state=None):
         super(StratifiedKFold, self).__init__(n_folds, shuffle, random_state)
+        if shuffle:
+            self._rng = check_random_state(self.random_state)
+        else:
+            self._rng = self.random_state
+        self.shuffle = shuffle
 
     def _make_test_folds(self, X, y=None, labels=None):
         y = np.asarray(y)
-        if not sp.issparse(X):
-            X = np.asarray(X)
-        n_samples = _num_samples(X)
+        n_samples = y.shape[0]
         unique_labels, y_inversed = np.unique(y, return_inverse=True)
         label_counts = bincount(y_inversed)
         min_labels = np.min(label_counts)
@@ -402,32 +403,23 @@ class StratifiedKFold(_BaseKFold):
                            " be less than n_folds=%d."
                            % (min_labels, self.n_folds)), Warning)
 
-        # don't want to use the same seed in each label's shuffle
-        if self.shuffle:
-            rng = check_random_state(self.random_state)
-        else:
-            rng = self.random_state
-
         # pre-assign each sample to a test fold index using individual KFold
-        # splitting strategies for each label so as to respect the
-        # balance of labels
-        per_label_cvs = []
-
-        for i, c in enumerate(label_counts):
-            data = X[y_inversed == i]
-            if _num_samples(data) < self.n_folds:
-                data = X[:self.n_folds]
-                # This is done so as to make it possible to not crash even
-                # when data is not 100% stratifiable for all the labels
-            kf = KFold(self.n_folds, shuffle=self.shuffle, random_state=rng)
-            per_label_cvs.append(kf.split(data))
+        # splitting strategies for each label so as to respect the balance of
+        # labels
+        # NOTE: Passing the data corresponding to ith label say X[y==label_i]
+        # will break when the data is not 100% stratifiable for all labels.
+        # So we pass np.zeroes(max(c, n_folds)) as data to the KFold
+        per_label_cvs = [
+            KFold(self.n_folds, shuffle=self.shuffle,
+                  random_state=self._rng).split(np.zeros(max(c, self.n_folds)))
+            for c in label_counts]
 
         test_folds = np.zeros(n_samples, dtype=np.int)
-        for test_fold_idx, per_label_cv in enumerate(zip(*per_label_cvs)):
-            for label, (_, test_split) in zip(unique_labels, per_label_cv):
+        for test_fold_idx, per_label_splits in enumerate(zip(*per_label_cvs)):
+            for label, (_, test_split) in zip(unique_labels, per_label_splits):
                 label_test_folds = test_folds[y == label]
                 # the test split can be too big because we used
-                # KFold(...).split(X[:n_folds]) when  data is not 100%
+                # KFold(...).split(X[:max(c, n_folds)]) when data is not 100%
                 # stratifiable for all the labels
                 # (we use a warning instead of raising an exception)
                 # If this is the case, let's trim it:
@@ -646,23 +638,22 @@ class ShuffleSplit(BaseShuffleSplit):
     >>> rs = ShuffleSplit(n_iter=3, test_size=.25, random_state=0)
     >>> rs.n_splits(X)
     3
-    >>> print(rs)  # doctest: +ELLIPSIS
-    ShuffleSplit(n_iter=3, test_size=0.25, ...)
+    >>> print(rs)
+    ShuffleSplit(n_iter=3, random_state=0, test_size=0.25, train_size=None)
     >>> for train_index, test_index in rs.split(X):
     ...    print("TRAIN:", train_index, "TEST:", test_index)
-    ... # doctest: +ELLIPSIS
+    ...  # doctest: +ELLIPSIS
+    TRAIN: [3 1 0] TEST: [2]
     TRAIN: [2 1 3] TEST: [0]
     TRAIN: [0 2 1] TEST: [3]
-
     >>> rs = ShuffleSplit(n_iter=3, train_size=0.5, test_size=.25,
-                          random_state=0)
+    ...                   random_state=0)
     >>> for train_index, test_index in rs.split(X):
     ...    print("TRAIN:", train_index, "TEST:", test_index)
-    ...
+    ...  # doctest: +ELLIPSIS
     TRAIN: [3 1] TEST: [2]
     TRAIN: [2 1] TEST: [0]
     TRAIN: [0 2] TEST: [3]
-
     """
 
     def _iter_indices(self, X, y=None, labels=None):
@@ -793,7 +784,7 @@ class StratifiedShuffleSplit(BaseShuffleSplit):
     >>> sss.n_splits(X, y)
     3
     >>> print(sss)       # doctest: +ELLIPSIS
-    StratifiedShuffleSplit(n_iter=3, test_size=0.5, ...)
+    StratifiedShuffleSplit(n_iter=3, random_state=0, ...)
     >>> for train_index, test_index in sss.split(X, y):
     ...    print("TRAIN:", train_index, "TEST:", test_index)
     ...    X_train, X_test = X[train_index], X[test_index]
@@ -882,13 +873,13 @@ class PredefinedSplit(_PartitionIterator):
     >>> from sklearn.model_selection import PredefinedSplit
     >>> X = np.array([[1, 2], [3, 4], [1, 2], [3, 4]])
     >>> y = np.array([0, 0, 1, 1])
+    >>> test_folds = [0, 1, -1, 1]
     >>> ps = PredefinedSplit()
     >>> ps.n_splits(X, y, labels=test_folds)
     2
     >>> print(ps)       # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     PredefinedSplit()
-    >>> test_folds = [0, 1, -1, 1]
-    >>> for train_index, test_index in ps.split(X, y, labels=test_folds)
+    >>> for train_index, test_index in ps.split(X, y, labels=test_folds):
     ...    print("TRAIN:", train_index, "TEST:", test_index)
     ...    X_train, X_test = X[train_index], X[test_index]
     ...    y_train, y_test = y[train_index], y[test_index]
@@ -910,79 +901,51 @@ class PredefinedSplit(_PartitionIterator):
         return len(self._get_test_folds(X, y, labels)[1])
 
 
-def check_cv(cv, y=None, classifier=False):
-    """Input checker utility for building a CV in a user friendly way.
+class CVIterator(_PartitionIterator):
+    """Wrapper class for old style cv objects and iterables."""
+    def __init__(self, cv):
+        self.cv = cv
 
-    Parameters
-    ----------
-    cv : int, a cv generator instance, or None
-        The input specifying which cv generator to use. It can be an
-        integer, in which case it is the number of folds in a KFold,
-        None, in which case 3 fold is used, or another object, that
-        will then be used as a cv generator.
+    def n_splits(self, X=None, y=None, labels=None):
+        """Returns the number of splitting iterations in the CV iterator"""
+        return len(self.cv)  # Both iterables and old-cv objects support len
 
-    y : array-like, shape (n_samples,)
-        The target variable for a supervised learning problem.
+    def split(self, X=None, y=None, labels=None):
+        """Generate train/test indices to split data in train test sets.
 
-    classifier : boolean optional
-        Whether the task is a classification task, in which case
-        stratified KFold will be used.
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Training vectors, where n_samples is the number of samples
+            and n_features is the number of features.
 
-    Returns
-    -------
-    checked_cv: a cross-validation object.
-        The return value will be a cv iterator class object.
-    """
+        y : array-like, shape (n_samples,)
+            The target variable for a supervised learning problem.
+
+        labels : array-like of int with shape (n_samples,), optional
+            Arbitrary domain-specific stratification of the data to be used
+            to draw the splits.
+        """
+        for train, test in self.cv:
+            yield train, test
+
+
+def check_cv(cv=3, y=None, classifier=False):
     if cv is None:
         cv = 3
     if isinstance(cv, numbers.Integral):
         if classifier and type_of_target(y) in ['binary', 'multiclass']:
-            cv = StratifiedKFold(cv)
+            return StratifiedKFold(cv)
         else:
-            cv = KFold(cv)
+            return KFold(cv)
+    if not hasattr(cv, 'split'):
+        if isinstance(cv, Iterable):
+            # Old style CV class / iterable
+            return CVIterator(cv)
+        else:
+            raise ValueError("The cv object, %s, is not an iterable to wrap."
+                             % cv)
     return cv
-
-
-def iter_cv(cv, X=None, y=None, labels=None):
-    """Get an iterable object, given the CV class.
-
-    Parameters
-    ----------
-    cv : a new style or old style cv class object or iterable.
-        The input may be a new style cv object with the split method, an old
-        style cv object or an iterable.
-
-    X : array-like, shape (n_samples, n_features)
-        Training vectors, where n_samples is the number of samples and
-        n_features is the number of features.
-
-    y : array-like, shape (n_samples,)
-        The target variable for a supervised learning problem.
-
-    labels : array-like of int with shape (n_samples,), optional
-        Arbitrary domain-specific stratification of the data to be used
-        to draw the splits.
-
-    Returns
-    -------
-    cv_iterable : A cross validation iterator object.
-        The return value will be an iterable generator object.
-    """
-    # To allow old-styled cv classes and iterables.
-    if hasattr(cv, '__iter__'):
-        return cv
-
-    if hasattr(cv, 'split'):
-        return cv.split(X, y, labels)
-
-
-def len_cv(cv, X=None, y=None, labels=None):
-    if hasattr(cv, 'n_splits'):
-        return cv.n_splits(X, y, labels)
-    if hasattr(cv, '__len__'):
-        return len(cv)
-    raise ValueError("The passed CV iterator %r does not have either"
-                     " the n_splits method or the __len__ method." % cv)
 
 
 def train_test_split(*arrays, **options):
@@ -1133,7 +1096,7 @@ def _build_repr(self, cls):
         args.remove('self')
     class_name = self.__class__.__name__
     params = dict()
-    for key in sorted(args):
+    for key in args:
         # We need deprecation warnings to always be on in order to
         # catch deprecated param values.
         # This is set in utils/__init__.py but it gets overwritten

@@ -21,7 +21,7 @@ import numpy as np
 
 from ..base import BaseEstimator, is_classifier, clone
 from ..base import MetaEstimatorMixin, ChangedBehaviorWarning
-from .split import check_cv, iter_cv, len_cv
+from .split import check_cv
 from .validate import _fit_and_score
 from ..externals.joblib import Parallel, delayed
 from ..externals import six
@@ -527,13 +527,14 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
                                  'of samples (%i) than data (X: %i samples)'
                                  % (len(y), n_samples))
         cv = check_cv(cv, y, classifier=is_classifier(estimator))
+        len_cv = cv.n_splits(X, y, labels)
 
         if self.verbose > 0:
             if isinstance(parameter_iterable, Sized):
                 n_candidates = len(parameter_iterable)
                 print("Fitting {0} folds for each of {1} candidates, totalling"
-                      " {2} fits".format(len_cv(cv), n_candidates,
-                                         n_candidates * len_cv(cv)))
+                      " {2} fits".format(len_cv, n_candidates,
+                                         n_candidates * len_cv))
 
         base_estimator = clone(self.estimator)
 
@@ -542,17 +543,16 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         out = Parallel(
             n_jobs=self.n_jobs, verbose=self.verbose,
             pre_dispatch=pre_dispatch
-        )(
-            delayed(_fit_and_score)(clone(base_estimator), X, y, self.scorer_,
-                                    train, test, self.verbose, parameters,
-                                    self.fit_params, return_parameters=True,
-                                    error_score=self.error_score)
-            for parameters in parameter_iterable
-            for train, test in iter_cv(cv, X, y, labels))
+        )(delayed(_fit_and_score)(clone(base_estimator), X, y, self.scorer_,
+                                  train, test, self.verbose, parameters,
+                                  self.fit_params, return_parameters=True,
+                                  error_score=self.error_score)
+          for parameters in parameter_iterable
+          for train, test in cv.split(X, y, labels))
 
         # Out is a list of triplet: score, estimator, n_test_samples
         n_fits = len(out)
-        n_folds = len_cv(cv)
+        n_folds = cv.n_splits(X, y, labels)
 
         scores = list()
         grid_scores = list()
@@ -781,6 +781,9 @@ class GridSearchCV(BaseSearchCV):
             Target relative to X for classification or regression;
             None for unsupervised learning.
 
+        labels : array-like of int with shape (n_samples,), optional
+            Arbitrary domain-specific stratification of the data to be used
+            to draw the splits by the cross validation iterator.
         """
         return self._fit(X, y, labels, ParameterGrid(self.param_grid))
 
@@ -947,6 +950,9 @@ class RandomizedSearchCV(BaseSearchCV):
             Target relative to X for classification or regression;
             None for unsupervised learning.
 
+        labels : array-like of int with shape (n_samples,), optional
+            Arbitrary domain-specific stratification of the data to be used
+            to draw the splits by the cross validation iterator.
         """
         sampled_params = ParameterSampler(self.param_distributions,
                                           self.n_iter,

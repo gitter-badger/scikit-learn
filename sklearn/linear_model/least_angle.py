@@ -22,7 +22,7 @@ from scipy.linalg.lapack import get_lapack_funcs
 from .base import LinearModel
 from ..base import RegressorMixin
 from ..utils import arrayfuncs, as_float_array, check_X_y
-from ..model_selection import check_cv, iter_cv
+from ..model_selection import check_cv
 from ..utils import ConvergenceWarning
 from ..externals.joblib import Parallel, delayed
 from ..externals.six.moves import xrange
@@ -1020,7 +1020,7 @@ class LarsCV(Lars):
                 method=self.method, verbose=max(0, self.verbose - 1),
                 normalize=self.normalize, fit_intercept=self.fit_intercept,
                 max_iter=self.max_iter, eps=self.eps)
-            for train, test in iter_cv(cv, X))
+            for train, test in cv.split(X))
         all_alphas = np.concatenate(list(zip(*cv_paths))[0])
         # Unique also sorts
         all_alphas = np.unique(all_alphas)
