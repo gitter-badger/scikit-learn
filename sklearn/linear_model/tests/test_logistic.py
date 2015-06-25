@@ -445,10 +445,11 @@ def test_ovr_multinomial_iris():
 
     # Use pre-defined fold as folds generated for different y
     cv = StratifiedKFold(3)
-    clf = LogisticRegressionCV(cv=cv)
+    predefined_folds = list(cv.split(train, target))
+    clf = LogisticRegressionCV(cv=predefined_folds)
     clf.fit(train, target)
 
-    clf1 = LogisticRegressionCV(cv=cv)
+    clf1 = LogisticRegressionCV(cv=predefined_folds)
     target_copy = target.copy()
     target_copy[target_copy == 0] = 1
     clf1.fit(train, target_copy)
