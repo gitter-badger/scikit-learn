@@ -25,7 +25,7 @@ from ..utils.fixes import astype
 from ..utils.validation import _is_arraylike, _num_samples
 from ..externals.joblib import Parallel, delayed, logger
 from ..metrics.scorer import check_scoring
-from .split import check_cv, iter_cv, len_cv, _safe_split
+from .split import check_cv, _safe_split
 
 
 __all__ = ['cross_val_score', 'cross_val_predict', 'permutation_test_score',
@@ -116,7 +116,7 @@ def cross_val_score(estimator, X, y=None, labels=None, scoring=None, cv=None,
     scores = parallel(delayed(_fit_and_score)(clone(estimator), X, y, scorer,
                                               train, test, verbose, None,
                                               fit_params)
-                      for train, test in iter_cv(cv, X, y, labels))
+                      for train, test in cv.split(X, y, labels))
     return np.array(scores)[:, 0]
 
 
@@ -260,7 +260,7 @@ def _score(estimator, X_test, y_test, scorer):
     return score
 
 
-def cross_val_predict(estimator, X, y=None, cv=None, labels=None, n_jobs=1,
+def cross_val_predict(estimator, X, y=None, labels=None, cv=None, n_jobs=1,
                       verbose=0, fit_params=None, pre_dispatch='2*n_jobs'):
     """Generate cross-validated estimates for each input data point
 
@@ -278,6 +278,10 @@ def cross_val_predict(estimator, X, y=None, cv=None, labels=None, n_jobs=1,
         The target variable to try to predict in the case of
         supervised learning.
 
+    labels : array-like of int with shape (n_samples,), optional
+        Arbitrary domain-specific stratification of the data to be used
+        to draw the splits by the cross validation iterator.
+
     cv : cross-validation generator or int, optional, default: None
         A cross-validation generator to use. If int, determines
         the number of folds in StratifiedKFold if y is binary
@@ -285,10 +289,6 @@ def cross_val_predict(estimator, X, y=None, cv=None, labels=None, n_jobs=1,
         of folds in KFold otherwise. If None, it is equivalent to cv=3.
         This generator must include all elements in the test set exactly once.
         Otherwise, a ValueError is raised.
-
-    labels : array-like of int with shape (n_samples,), optional
-        Arbitrary domain-specific stratification of the data to be used
-        to draw the splits by the cross validation iterator.
 
     n_jobs : integer, optional
         The number of CPUs to use to do the computation. -1 means
@@ -322,9 +322,7 @@ def cross_val_predict(estimator, X, y=None, cv=None, labels=None, n_jobs=1,
     preds : ndarray
         This is the result of calling 'predict'
     """
-    if labels is not None:
-        X, y, labels = indexable(X, y, labels)
-    X, y = indexable(X, y)
+    X, y, labels = indexable(X, y, labels)
 
     cv = check_cv(cv, y, classifier=is_classifier(estimator))
     # We clone the estimator to make sure that all the folds are
@@ -334,7 +332,7 @@ def cross_val_predict(estimator, X, y=None, cv=None, labels=None, n_jobs=1,
     preds_blocks = parallel(delayed(_fit_and_predict)(clone(estimator), X, y,
                                                       train, test, verbose,
                                                       fit_params)
-                            for train, test in iter_cv(cv, X, y, labels))
+                            for train, test in cv.split(X, y, labels))
     p = np.concatenate([p for p, _ in preds_blocks])
     locs = np.concatenate([loc for _, loc in preds_blocks])
     if not _check_is_permutation(locs, _num_samples(X)):
@@ -503,9 +501,7 @@ def permutation_test_score(estimator, X, y, labels=None, cv=None,
         vol. 11
 
     """
-    if labels is not None:
-        X, y, labels = indexable(X, y, labels)
-    X, y = indexable(X, y)
+    X, y, labels = indexable(X, y, labels)
 
     cv = check_cv(cv, y, classifier=is_classifier(estimator))
     scorer = check_scoring(estimator, scoring=scoring)
@@ -513,8 +509,7 @@ def permutation_test_score(estimator, X, y, labels=None, cv=None,
 
     # We clone the estimator to make sure that all the folds are
     # independent, and that it is pickle-able.
-    score = _permutation_test_score(clone(estimator), X, y, labels, cv,
-                                    scorer)
+    score = _permutation_test_score(clone(estimator), X, y, labels, cv, scorer)
     permutation_scores = Parallel(n_jobs=n_jobs, verbose=verbose)(
         delayed(_permutation_test_score)(
             clone(estimator), X, _shuffle(y, labels, random_state),
@@ -531,7 +526,7 @@ permutation_test_score.__test__ = False  # to avoid a pb with nosetests
 def _permutation_test_score(estimator, X, y, labels, cv, scorer):
     """Auxiliary function for permutation_test_score"""
     avg_score = []
-    for train, test in iter_cv(cv, X, y, labels):
+    for train, test in cv.split(X, y, labels):
         estimator.fit(X[train], y[train])
         avg_score.append(scorer(estimator, X[test], y[test]))
     return np.mean(avg_score)
@@ -549,10 +544,10 @@ def _shuffle(y, labels, random_state):
     return y[ind]
 
 
-def learning_curve(estimator, X, y, train_sizes=np.linspace(0.1, 1.0, 5),
-                   cv=None, labels=None, scoring=None,
-                   exploit_incremental_learning=False,
-                   n_jobs=1, pre_dispatch="all", verbose=0):
+def learning_curve(estimator, X, y, labels=None,
+                   train_sizes=np.linspace(0.1, 1.0, 5), cv=None, scoring=None,
+                   exploit_incremental_learning=False, n_jobs=1,
+                   pre_dispatch="all", verbose=0):
     """Learning curve.
 
     Determines cross-validated training and test scores for different training
@@ -578,6 +573,10 @@ def learning_curve(estimator, X, y, train_sizes=np.linspace(0.1, 1.0, 5),
     y : array-like, shape (n_samples) or (n_samples, n_features), optional
         Target relative to X for classification or regression;
         None for unsupervised learning.
+
+    labels : array-like of int with shape (n_samples,), optional
+        Arbitrary domain-specific stratification of the data to be used
+        to draw the splits by the cross validation iterator.
 
     train_sizes : array-like, shape (n_ticks,), dtype float or int
         Relative or absolute numbers of training examples that will be used to
@@ -636,23 +635,21 @@ def learning_curve(estimator, X, y, train_sizes=np.linspace(0.1, 1.0, 5),
     if exploit_incremental_learning and not hasattr(estimator, "partial_fit"):
         raise ValueError("An estimator must support the partial_fit interface "
                          "to exploit incremental learning")
-    if labels is not None:
-        X, y, labels = indexable(X, y, labels)
-    X, y = indexable(X, y)
+    X, y, labels = indexable(X, y, labels)
 
     cv = check_cv(cv, y, classifier=is_classifier(estimator))
-    cv_iter = iter_cv(cv, X, y, labels)
+    cv_iter = cv.split(X, y, labels)
     # Make a list since we will be iterating multiple times over the folds
     cv_iter = list(cv_iter)
     scorer = check_scoring(estimator, scoring=scoring)
 
     # HACK as long as boolean indices are allowed in cv generators
     if cv_iter[0][0].dtype == bool:
-        new_cv = []
-        for i in range(len_cv(cv)):
-            new_cv.append((np.nonzero(cv_iter[i][0])[0],
-                           np.nonzero(cv_iter[i][1])[0]))
-        cv_iter = new_cv
+        new_cv_iter = []
+        for i in range(len(cv_iter)):
+            new_cv_iter.append((np.nonzero(cv_iter[i][0])[0],
+                                np.nonzero(cv_iter[i][1])[0]))
+        cv_iter = new_cv_iter
 
     n_max_training_samples = len(cv_iter[0][0])
     # Because the lengths of folds can be significantly different, it is
@@ -670,12 +667,12 @@ def learning_curve(estimator, X, y, train_sizes=np.linspace(0.1, 1.0, 5),
         classes = np.unique(y) if is_classifier(estimator) else None
         out = parallel(delayed(_incremental_fit_estimator)(
             clone(estimator), X, y, classes, train, test, train_sizes_abs,
-            scorer, verbose) for train, test in iter_cv(cv, X, y, labels))
+            scorer, verbose) for train, test in cv.split(X, y, labels))
     else:
         out = parallel(delayed(_fit_and_score)(
             clone(estimator), X, y, scorer, train[:n_train_samples], test,
             verbose, parameters=None, fit_params=None, return_train_score=True)
-            for train, test in iter_cv(cv, X, y, labels)
+            for train, test in cv_iter
             for n_train_samples in train_sizes_abs)
         out = np.array(out)[:, :2]
         n_cv_folds = out.shape[0] // n_unique_ticks
@@ -766,8 +763,8 @@ def _incremental_fit_estimator(estimator, X, y, classes, train, test,
     return np.array((train_scores, test_scores)).T
 
 
-def validation_curve(estimator, X, y, param_name, param_range, cv=None,
-                     labels=None, scoring=None, n_jobs=1, pre_dispatch="all",
+def validation_curve(estimator, X, y, param_name, param_range, labels=None,
+                     cv=None, scoring=None, n_jobs=1, pre_dispatch="all",
                      verbose=0):
     """Validation curve.
 
@@ -799,15 +796,15 @@ def validation_curve(estimator, X, y, param_name, param_range, cv=None,
     param_range : array-like, shape (n_values,)
         The values of the parameter that will be evaluated.
 
+    labels : array-like of int with shape (n_samples,), optional
+        Arbitrary domain-specific stratification of the data to be used
+        to draw the splits by the cross validation iterator.
+
     cv : integer, cross-validation generator, optional
         If an integer is passed, it is the number of folds (defaults to 3).
         Specific cross-validation objects can be passed, see
         sklearn.model_selection.split module for the list of possible
         objects
-
-    labels : array-like of int with shape (n_samples,), optional
-        Arbitrary domain-specific stratification of the data to be used
-        to draw the splits by the cross validation iterator.
 
     scoring : string, callable or None, optional, default: None
         A string (see model evaluation documentation) or
@@ -839,9 +836,7 @@ def validation_curve(estimator, X, y, param_name, param_range, cv=None,
     :ref:`examples/model_selection/plot_validation_curve.py
     <example_model_selection_plot_validation_curve.py>`
     """
-    if labels is not None:
-        X, y, labels = indexable(X, y, labels)
-    X, y = indexable(X, y)
+    X, y, labels = indexable(X, y, labels)
 
     cv = check_cv(cv, y, classifier=is_classifier(estimator))
 
@@ -852,7 +847,7 @@ def validation_curve(estimator, X, y, param_name, param_range, cv=None,
     out = parallel(delayed(_fit_and_score)(
         estimator, X, y, scorer, train, test, verbose,
         parameters={param_name: v}, fit_params=None, return_train_score=True)
-        for train, test in iter_cv(cv, X, y, labels) for v in param_range)
+        for train, test in cv.split(X, y, labels) for v in param_range)
 
     out = np.asarray(out)[:, :2]
     n_params = len(param_range)

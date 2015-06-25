@@ -1,3 +1,4 @@
+
 """Test the partition  module"""
 from __future__ import division
 import warnings
@@ -21,7 +22,7 @@ from sklearn.utils.mocking import MockDataFrame
 from sklearn.model_selection import (
     cross_val_score, KFold, StratifiedKFold, LeaveOneOut, LeaveOneLabelOut,
     LeavePOut, LeavePLabelOut, ShuffleSplit, StratifiedShuffleSplit,
-    PredefinedSplit, check_cv, len_cv, train_test_split)
+    PredefinedSplit, check_cv, train_test_split)
 from sklearn.model_selection.split import _safe_split, _validate_shuffle_split
 
 from sklearn.datasets import load_digits
@@ -143,9 +144,9 @@ def check_valid_split(train, test, n_samples=None):
 def check_cv_coverage(cv, X, y, labels, expected_n_iter=None, n_samples=None):
     # Check that a all the samples appear at least once in a test fold
     if expected_n_iter is not None:
-        assert_equal(len_cv(cv, X, y, labels), expected_n_iter)
+        assert_equal(cv.n_splits(X, y, labels), expected_n_iter)
     else:
-        expected_n_iter = len_cv(cv)
+        expected_n_iter = cv.n_splits(X, y, labels)
 
     collected_test_samples = set()
     iterations = 0
@@ -708,9 +709,9 @@ def test_check_cv_return_types():
     cv = check_cv(3, y_multioutput, classifier=True)
     np.testing.assert_equal(list(KFold(3).split(X)), list(cv.split(X)))
 
-    # Check if the old style classes are passed as such
+    # Check if the old style classes are wrapped to have a split method
     X = np.ones((9, 2))
     y_multiclass = np.array([0, 1, 0, 1, 2, 1, 2, 0, 2])
     cv1 = check_cv(3, y_multiclass, classifier=True)
     cv2 = check_cv(cval.StratifiedKFold(y_multiclass, n_folds=3))
-    np.testing.assert_equal(list(cv1.split(X, y_multiclass)), list(cv2))
+    np.testing.assert_equal(list(cv1.split(X, y_multiclass)), list(cv2.split()))
