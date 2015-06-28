@@ -16,12 +16,13 @@ import warnings
 import inspect
 from itertools import chain, combinations
 from collections import Iterable
-from math import ceil, floor, factorial
+from math import ceil, floor
 import numbers
 from abc import ABCMeta, abstractmethod
 
 import numpy as np
 
+from scipy.misc import comb
 from ..utils import indexable, check_random_state, safe_indexing
 from ..utils.validation import _num_samples, column_or_1d
 from ..utils.multiclass import type_of_target
@@ -200,14 +201,12 @@ class LeavePOut(_PartitionIterator):
         self.p = p
 
     def _iter_test_indices(self, X, y=None, labels=None):
-        for comb in combinations(range(_num_samples(X)), self.p):
-            yield np.array(comb)
+        for combination in combinations(range(_num_samples(X)), self.p):
+            yield np.array(combination)
 
     def n_splits(self, X, y=None, labels=None):
         """Returns the number of splitting iterations in the CV iterator."""
-        n = _num_samples(X)
-        return int(factorial(n) / factorial(n - self.p)
-                   / factorial(self.p))
+        return int(comb(_num_samples(X), self.p, exact=True))
 
 
 class _BaseKFold(with_metaclass(ABCMeta, _PartitionIterator)):
@@ -541,8 +540,8 @@ class LeavePLabelOut(_PartitionIterator):
     def _iter_test_masks(self, X, y, labels):
         labels = np.array(labels, copy=True)
         unique_labels = np.unique(labels)
-        comb = combinations(range(len(unique_labels)), self.p)
-        for idx in comb:
+        combi = combinations(range(len(unique_labels)), self.p)
+        for idx in combi:
             test_index = np.zeros(_num_samples(X), dtype=np.bool)
             idx = np.array(idx)
             for l in unique_labels[idx]:
@@ -550,10 +549,7 @@ class LeavePLabelOut(_PartitionIterator):
             yield test_index
 
     def n_splits(self, X, y, labels):
-        n_unique_labels = len(np.unique(labels))
-        return int(factorial(n_unique_labels) /
-                   factorial(n_unique_labels - self.p) /
-                   factorial(self.p))
+        return int(comb(len(np.unique(labels)), self.p, exact=True))
 
 
 class BaseShuffleSplit(with_metaclass(ABCMeta)):
