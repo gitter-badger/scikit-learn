@@ -44,14 +44,14 @@ __all__ = ['KFold',
            'check_cv']
 
 
-class _PartitionIterator(with_metaclass(ABCMeta)):
-    """Base class for CV iterators where train_mask = ~test_mask
+class _BaseCrossValidator(with_metaclass(ABCMeta)):
+    """Base class for all cross-validators where train_mask = ~test_mask
 
     Implementations must define `_iter_test_masks` or `_iter_test_indices`.
     """
 
     def split(self, X, y=None, labels=None):
-        """Generate train/test indices to split data in train test sets.
+        """Generate train/test indices to split data in train/test sets.
 
         Parameters
         ----------
@@ -91,7 +91,7 @@ class _PartitionIterator(with_metaclass(ABCMeta)):
 
     @abstractmethod
     def n_splits(self, X, y=None, labels=None):
-        """Returns the number of splitting iterations in the CV iterator."""
+        """Returns the number of splitting iterations in the cross-validator"""
         pass
 
     @classmethod
@@ -102,10 +102,10 @@ class _PartitionIterator(with_metaclass(ABCMeta)):
         return _build_repr(self, self._get_class())
 
 
-class LeaveOneOut(_PartitionIterator):
-    """Leave-One-Out cross validation iterator.
+class LeaveOneOut(_BaseCrossValidator):
+    """Leave-One-Out cross-validator
 
-    Provides train/test indices to split data in train test sets. Each
+    Provides train/test indices to split data in train/test sets. Each
     sample is used once as a test set (singleton) while the remaining
     samples form the training set.
 
@@ -113,11 +113,11 @@ class LeaveOneOut(_PartitionIterator):
     ``LeavePOut(p=1)`` where ``n`` is the number of samples.
 
     Due to the high number of test sets (which is the same as the
-    number of samples) this cross validation method can be very costly.
+    number of samples) this cross-validation method can be very costly.
     For large datasets one should favor KFold, StratifiedKFold or
     ShuffleSplit.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Examples
     --------
@@ -149,14 +149,14 @@ class LeaveOneOut(_PartitionIterator):
         return range(_num_samples(X))
 
     def n_splits(self, X, y=None, labels=None):
-        """Returns the number of splitting iterations in the CV iterator."""
+        """Returns the number of splitting iterations in the cross-validator"""
         return _num_samples(X)
 
 
-class LeavePOut(_PartitionIterator):
-    """Leave-P-Out cross validation iterator
+class LeavePOut(_BaseCrossValidator):
+    """Leave-P-Out cross-validator
 
-    Provides train/test indices to split data in train test sets. This results
+    Provides train/test indices to split data in train/test sets. This results
     in testing on all distinct samples of size p, while the remaining n - p
     samples form the training set in each iteration.
 
@@ -165,10 +165,11 @@ class LeavePOut(_PartitionIterator):
     test sets.
 
     Due to the high number of iterations which grows combinatorically with the
-    number of samples this cross validation method can be very costly. For
-    large datasets one should favor KFold, StratifiedKFold or ShuffleSplit.
+    number of samples this cross-validation method can be very costly. For
+    large datasets one should favor :class:`KFold`, :class:`StratifiedKFold`
+    or :class:`ShuffleSplit`.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Parameters
     ----------
@@ -205,30 +206,37 @@ class LeavePOut(_PartitionIterator):
             yield np.array(combination)
 
     def n_splits(self, X, y=None, labels=None):
-        """Returns the number of splitting iterations in the CV iterator."""
+        """Returns the number of splitting iterations in the cross-validator"""
         return int(comb(_num_samples(X), self.p, exact=True))
 
 
-class _BaseKFold(with_metaclass(ABCMeta, _PartitionIterator)):
-    """Base class to validate KFold approaches"""
+class _BaseKFold(with_metaclass(ABCMeta, _BaseCrossValidator)):
+    """Base class for KFold and StratifiedKFold"""
 
     @abstractmethod
     def __init__(self, n_folds, shuffle, random_state):
-        self.n_folds = n_folds = int(n_folds)
+        if not isinstance(n_folds, numbers.Integral):
+            raise ValueError('The number of folds must be of Integral type. '
+                             '%s of type %s was passed.'
+                             % (n_folds, type(n_folds)))
+        n_folds = int(n_folds)
 
         if n_folds <= 1:
             raise ValueError(
-                "k-fold cross validation requires at least one"
-                " train / test split by setting n_folds=2 or more,"
+                "k-fold cross-validation requires at least one"
+                " train/test split by setting n_folds=2 or more,"
                 " got n_folds={0}.".format(n_folds))
+
         if not isinstance(shuffle, bool):
             raise TypeError("shuffle must be True or False;"
                             " got {0}".format(shuffle))
+
+        self.n_folds = n_folds
         self.shuffle = shuffle
         self.random_state = random_state
 
     def split(self, X, y=None, labels=None):
-        """Generate train/test indices to split data in train test sets.
+        """Generate train/test indices to split data in train/test sets.
 
         Parameters
         ----------
@@ -258,15 +266,15 @@ class _BaseKFold(with_metaclass(ABCMeta, _PartitionIterator)):
 
 
 class KFold(_BaseKFold):
-    """K-Folds cross validation iterator.
+    """K-Folds cross-validator
 
-    Provides train/test indices to split data in train test sets. Split
+    Provides train/test indices to split data in train/test sets. Split
     dataset into k consecutive folds (without shuffling).
 
     Each fold is then used a validation set once while the k - 1 remaining
     fold form the training set.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Parameters
     ----------
@@ -334,15 +342,15 @@ class KFold(_BaseKFold):
 
 
 class StratifiedKFold(_BaseKFold):
-    """Stratified K-Folds cross validation iterator
+    """Stratified K-Folds cross-validator
 
-    Provides train/test indices to split data in train test sets.
+    Provides train/test indices to split data in train/test sets.
 
     This cross-validation object is a variation of KFold that returns
     stratified folds. The folds are made by preserving the percentage of
     samples for each class.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Parameters
     ----------
@@ -434,8 +442,8 @@ class StratifiedKFold(_BaseKFold):
             yield test_folds == i
 
 
-class LeaveOneLabelOut(_PartitionIterator):
-    """Leave-One-Label_Out cross-validation iterator
+class LeaveOneLabelOut(_BaseCrossValidator):
+    """Leave One Label Out cross-validator
 
     Provides train/test indices to split data according to a third-party
     provided label. This label information can be used to encode arbitrary
@@ -444,8 +452,7 @@ class LeaveOneLabelOut(_PartitionIterator):
     For instance the labels could be the year of collection of the samples
     and thus allow for cross-validation against time-based splits.
 
-    Read more in the :ref:`User Guide <split>`.
-
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Examples
     --------
@@ -485,8 +492,8 @@ class LeaveOneLabelOut(_PartitionIterator):
         return len(np.unique(labels))
 
 
-class LeavePLabelOut(_PartitionIterator):
-    """Leave-P-Label_Out cross-validation iterator
+class LeavePLabelOut(_BaseCrossValidator):
+    """Leave-P-Label_Out cross-validator
 
     Provides train/test indices to split data according to a third-party
     provided label. This label information can be used to encode arbitrary
@@ -500,12 +507,12 @@ class LeavePLabelOut(_PartitionIterator):
     ``p`` different values of the labels while the latter uses samples
     all assigned the same labels.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Parameters
     ----------
     p : int
-        Number of samples to leave out in the test split.
+        Number of labels to leave out in the test split.
 
     Examples
     --------
@@ -564,7 +571,7 @@ class BaseShuffleSplit(with_metaclass(ABCMeta)):
         self.random_state = random_state
 
     def split(self, X, y=None, labels=None):
-        """Generate train/test indices to split data in train test sets.
+        """Generate train/test indices to split data in train/test sets.
 
         Parameters
         ----------
@@ -596,7 +603,7 @@ class BaseShuffleSplit(with_metaclass(ABCMeta)):
 
 
 class ShuffleSplit(BaseShuffleSplit):
-    """Random permutation cross-validation iterator.
+    """Random permutation cross-validator
 
     Yields indices to split data into training and test sets.
 
@@ -604,7 +611,7 @@ class ShuffleSplit(BaseShuffleSplit):
     do not guarantee that all folds will be different, although this is
     still very likely for sizeable datasets.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Parameters
     ----------
@@ -737,9 +744,9 @@ def _validate_shuffle_split(n, test_size, train_size):
 
 
 class StratifiedShuffleSplit(BaseShuffleSplit):
-    """Stratified ShuffleSplit cross validation iterator
+    """Stratified ShuffleSplit cross-validator
 
-    Provides train/test indices to split data in train test sets.
+    Provides train/test indices to split data in train/test sets.
 
     This cross-validation object is a merge of StratifiedKFold and
     ShuffleSplit, which returns stratified randomized folds. The folds
@@ -749,7 +756,7 @@ class StratifiedShuffleSplit(BaseShuffleSplit):
     do not guarantee that all folds will be different, although this is
     still very likely for sizeable datasets.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Parameters
     ----------
@@ -855,14 +862,14 @@ class StratifiedShuffleSplit(BaseShuffleSplit):
         return self.n_iter
 
 
-class PredefinedSplit(_PartitionIterator):
-    """Predefined split cross validation iterator
+class PredefinedSplit(_BaseCrossValidator):
+    """Predefined split cross-validator
 
     Splits the data into training/test set folds according to a predefined
     scheme. Each sample can be assigned to at most one test set fold, as
     specified by the user through the ``test_fold`` parameter.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Examples
     --------
@@ -897,17 +904,17 @@ class PredefinedSplit(_PartitionIterator):
         return len(self._get_test_folds(X, y, labels)[1])
 
 
-class CVIterator(_PartitionIterator):
+class CVIterableWrapper(_BaseCrossValidator):
     """Wrapper class for old style cv objects and iterables."""
     def __init__(self, cv):
         self.cv = cv
 
     def n_splits(self, X=None, y=None, labels=None):
-        """Returns the number of splitting iterations in the CV iterator"""
+        """Returns the number of splitting iterations in the cross-validator"""
         return len(self.cv)  # Both iterables and old-cv objects support len
 
     def split(self, X=None, y=None, labels=None):
-        """Generate train/test indices to split data in train test sets.
+        """Generate train/test indices to split data in train/test sets.
 
         Parameters
         ----------
@@ -927,21 +934,56 @@ class CVIterator(_PartitionIterator):
 
 
 def check_cv(cv=3, y=None, classifier=False):
+    """Input checker utility for building a cross-validator
+
+    Parameters
+    ----------
+    cv : int, cross-validation generator or an iterable, optional
+        Determines the cross-validation splitting strategy.
+        Possible inputs for cv are:
+          - None, to use the default 3-fold cross-validation,
+          - integer, to specify the number of folds.
+          - An object to be used as a cross-validation generator.
+          - An iterable yielding train/test splits.
+
+        For integer/None inputs, if ``y`` is binary or multiclass,
+        :class:`StratifiedKFold` used. If classifier is False or if ``y`` is
+        neither binary nor multiclass, :class:`KFold` is used.
+
+        Refer :ref:`User Guide <cross_validation>` for the various
+        cross-validators that can be used here.
+
+    y : array-like
+        The target variable for a supervised learning problem.
+
+    classifier : boolean optional
+        Whether the task is a classification task, in which case
+        stratified KFold will be used.
+
+    Returns
+    -------
+    checked_cv: a cross-validator instance.
+        The return value is a cross-validator which generates the train/test
+        splits via the ``split`` method.
+    """
     if cv is None:
         cv = 3
+
     if isinstance(cv, numbers.Integral):
-        if classifier and type_of_target(y) in ['binary', 'multiclass']:
+        if (classifier and (y is not None) and
+                (type_of_target(y) in ('binary', 'multiclass'))):
             return StratifiedKFold(cv)
         else:
             return KFold(cv)
+
     if not hasattr(cv, 'split'):
-        if isinstance(cv, Iterable):
-            # Old style CV class / iterable
-            return CVIterator(cv)
-        else:
-            raise ValueError("The cv object, %s, is not an iterable to wrap."
-                             % cv)
-    return cv
+        if (not isinstance(cv, Iterable)) or isinstance(cv, str):
+            raise ValueError("Expected cv as an integer, cross-validation "
+                             "object (from sklearn.model_selection.split) "
+                             "or and iterable. Got %s." % cv)
+        return CVIterableWrapper(cv)
+
+    return cv  # New style cv objects are passed without any modification
 
 
 def train_test_split(*arrays, **options):
@@ -952,7 +994,7 @@ def train_test_split(*arrays, **options):
     into a single call for splitting (and optionally subsampling) data in a
     oneliner.
 
-    Read more in the :ref:`User Guide <split>`.
+    Read more in the :ref:`User Guide <cross_validation>`.
 
     Parameters
     ----------
@@ -1032,13 +1074,13 @@ def train_test_split(*arrays, **options):
     arrays = indexable(*arrays)
 
     if stratify is not None:
-        SplitterClass = StratifiedShuffleSplit
+        CVClass = StratifiedShuffleSplit
     else:
-        SplitterClass = ShuffleSplit
+        CVClass = ShuffleSplit
 
-    cv = SplitterClass(test_size=test_size,
-                       train_size=train_size,
-                       random_state=random_state)
+    cv = CVClass(test_size=test_size,
+                 train_size=train_size,
+                 random_state=random_state)
 
     train, test = next(cv.split(X=arrays[0], y=stratify))
     return list(chain.from_iterable((safe_indexing(a, train),
