@@ -65,11 +65,21 @@ def cross_val_score(estimator, X, y=None, labels=None, scoring=None, cv=None,
         a scorer callable object / function with signature
         ``scorer(estimator, X, y)``.
 
-    cv : cross-validation generator or int, optional, default: None
-        A cross-validation generator to use. If int, determines
-        the number of folds in StratifiedKFold if y is binary
-        or multiclass and estimator is a classifier, or the number
-        of folds in KFold otherwise. If None, it is equivalent to cv=3.
+    cv : int, cross-validation generator or an iterable, optional
+        Determines the cross-validation splitting strategy.
+        Possible inputs for cv are:
+          - None, to use the default 3-fold cross validation,
+          - integer, to specify the number of folds in a `(Stratified)KFold`,
+          - An object to be used as a cross-validation generator.
+          - An iterable yielding train, test splits.
+
+        For integer/None inputs, ``StratifiedKFold`` is used for classification
+        tasks, when ``y`` is binary or multiclass.
+
+        See the :mod:`sklearn.model_selection.split` module for the list of
+        cross-validation generators that can be used here.
+
+        Also refer :ref:`cross-validation documentation <_cross_validation>`
 
     n_jobs : integer, optional
         The number of CPUs to use to do the computation. -1 means
@@ -282,13 +292,21 @@ def cross_val_predict(estimator, X, y=None, labels=None, cv=None, n_jobs=1,
         Arbitrary domain-specific stratification of the data to be used
         to draw the splits by the cross validation iterator.
 
-    cv : cross-validation generator or int, optional, default: None
-        A cross-validation generator to use. If int, determines
-        the number of folds in StratifiedKFold if y is binary
-        or multiclass and estimator is a classifier, or the number
-        of folds in KFold otherwise. If None, it is equivalent to cv=3.
-        This generator must include all elements in the test set exactly once.
-        Otherwise, a ValueError is raised.
+    cv : int, cross-validation generator or an iterable, optional
+        Determines the cross-validation splitting strategy.
+        Possible inputs for cv are:
+          - None, to use the default 3-fold cross validation,
+          - integer, to specify the number of folds in a `(Stratified)KFold`,
+          - An object to be used as a cross-validation generator.
+          - An iterable yielding train, test splits.
+
+        For integer/None inputs, ``StratifiedKFold`` is used for classification
+        tasks, when ``y`` is binary or multiclass.
+
+        See the :mod:`sklearn.model_selection.split` module for the list of
+        cross-validation generators that can be used here.
+
+        Also refer :ref:`cross-validation documentation <_cross_validation>`
 
     n_jobs : integer, optional
         The number of CPUs to use to do the computation. -1 means
@@ -457,11 +475,21 @@ def permutation_test_score(estimator, X, y, labels=None, cv=None,
         a scorer callable object / function with signature
         ``scorer(estimator, X, y)``.
 
-    cv : integer or cross-validation generator, optional
-        If an integer is passed, it is the number of fold (default 3).
-        Specific cross-validation objects can be passed, see
-        sklearn.model_selection.split module for the list of possible
-        objects.
+    cv : int, cross-validation generator or an iterable, optional
+        Determines the cross-validation splitting strategy.
+        Possible inputs for cv are:
+          - None, to use the default 3-fold cross validation,
+          - integer, to specify the number of folds in a `(Stratified)KFold`,
+          - An object to be used as a cross-validation generator.
+          - An iterable yielding train, test splits.
+
+        For integer/None inputs, ``StratifiedKFold`` is used for classification
+        tasks, when ``y`` is binary or multiclass.
+
+        See the :mod:`sklearn.model_selection.split` module for the list of
+        cross-validation generators that can be used here.
+
+        Also refer :ref:`cross-validation documentation <_cross_validation>`
 
     n_permutations : integer, optional
         Number of times to permute ``y``.
@@ -588,11 +616,21 @@ def learning_curve(estimator, X, y, labels=None,
         be big enough to contain at least one sample from each class.
         (default: np.linspace(0.1, 1.0, 5))
 
-    cv : integer, cross-validation generator, optional
-        If an integer is passed, it is the number of folds (defaults to 3).
-        Specific cross-validation objects can be passed, see
-        sklearn.model_selection.split module for the list of possible
-        objects
+    cv : int, cross-validation generator or an iterable, optional
+        Determines the cross-validation splitting strategy.
+        Possible inputs for cv are:
+          - None, to use the default 3-fold cross validation,
+          - integer, to specify the number of folds in a `(Stratified)KFold`,
+          - An object to be used as a cross-validation generator.
+          - An iterable yielding train, test splits.
+
+        For integer/None inputs, ``StratifiedKFold`` is used for classification
+        tasks, when ``y`` is binary or multiclass.
+
+        See the :mod:`sklearn.model_selection.split` module for the list of
+        cross-validation generators that can be used here.
+
+        Also refer :ref:`cross-validation documentation <_cross_validation>`
 
     scoring : string, callable or None, optional, default: None
         A string (see model evaluation documentation) or
@@ -800,11 +838,21 @@ def validation_curve(estimator, X, y, param_name, param_range, labels=None,
         Arbitrary domain-specific stratification of the data to be used
         to draw the splits by the cross validation iterator.
 
-    cv : integer, cross-validation generator, optional
-        If an integer is passed, it is the number of folds (defaults to 3).
-        Specific cross-validation objects can be passed, see
-        sklearn.model_selection.split module for the list of possible
-        objects
+    cv : int, cross-validation generator or an iterable, optional
+        Determines the cross-validation splitting strategy.
+        Possible inputs for cv are:
+          - None, to use the default 3-fold cross validation,
+          - integer, to specify the number of folds in a `(Stratified)KFold`,
+          - An object to be used as a cross-validation generator.
+          - An iterable yielding train, test splits.
+
+        For integer/None inputs, ``StratifiedKFold`` is used for classification
+        tasks, when ``y`` is binary or multiclass.
+
+        See the :mod:`sklearn.model_selection.split` module for the list of
+        cross-validation generators that can be used here.
+
+        Also refer :ref:`cross-validation documentation <_cross_validation>`
 
     scoring : string, callable or None, optional, default: None
         A string (see model evaluation documentation) or
