@@ -44,9 +44,6 @@ from sklearn.externals.six.moves import zip
 from sklearn.svm import SVC
 from sklearn.preprocessing import MultiLabelBinarizer
 
-with warnings.catch_warnings(record=True):
-    from sklearn import cross_validation as cval
-
 
 class MockClassifier(object):
     """Dummy classifier to test the cross-validation"""
@@ -724,5 +721,10 @@ def test_check_cv_return_types():
     X = np.ones(9)
     y_multiclass = np.array([0, 1, 0, 1, 2, 1, 2, 0, 2])
     cv1 = check_cv(3, y_multiclass, classifier=True)
-    cv2 = check_cv(cval.StratifiedKFold(y_multiclass, n_folds=3))
-    np.testing.assert_equal(list(cv1.split(X, y_multiclass)), list(cv2.split()))
+
+    with warnings.catch_warnings(record=True):
+        from sklearn.cross_validation import StratifiedKFold as OldSKF
+
+    cv2 = check_cv(OldSKF(y_multiclass, n_folds=3))
+    np.testing.assert_equal(list(cv1.split(X, y_multiclass)),
+                            list(cv2.split()))
