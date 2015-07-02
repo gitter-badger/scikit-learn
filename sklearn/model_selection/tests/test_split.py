@@ -1,4 +1,4 @@
-"""Test the partition module"""
+"""Test the split module"""
 from __future__ import division
 import warnings
 
@@ -111,7 +111,7 @@ class MockClassifier(object):
         return {'a': self.a, 'allow_nd': self.allow_nd}
 
 
-X = np.ones((10, 2))
+X = np.ones(10)
 X_sparse = coo_matrix(X)
 W_sparse = coo_matrix((np.array([1]), (np.array([1]), np.array([0]))),
                       shape=(10, 1))
@@ -120,8 +120,9 @@ y = np.arange(10) // 2
 
 
 @ignore_warnings
-def test_cross_val_generator_with_default_indices():
+def test_cross_validator_with_default_indices():
     X = np.array([[1, 2], [3, 4], [5, 6], [7, 8]])
+    X_1d = np.array([1, 2, 3, 4])
     y = np.array([1, 1, 2, 2])
     labels = np.array([1, 2, 3, 4])
     loo = LeaveOneOut()
@@ -130,12 +131,18 @@ def test_cross_val_generator_with_default_indices():
     skf = StratifiedKFold(2)
     lolo = LeaveOneLabelOut()
     lopo = LeavePLabelOut(2)
-    ss = ShuffleSplit()
+    ss = ShuffleSplit(random_state=0)
     ps = PredefinedSplit()
     for i, cv in enumerate([loo, lpo, kf, skf, lolo, lopo, ss, ps]):
+        print(cv)
+        # Test if the cross-validator works as expected even if
+        # the data is 1d
+        np.testing.assert_equal(list(cv.split(X, y, labels)),
+                                list(cv.split(X_1d, y, labels)))
+        # Test that train, test indices returned are integers
         for train, test in cv.split(X, y, labels):
-            assert_not_equal(np.asarray(train).dtype.kind, 'b')
-            assert_not_equal(np.asarray(train).dtype.kind, 'b')
+            assert_equal(np.asarray(train).dtype.kind, 'i')
+            assert_equal(np.asarray(train).dtype.kind, 'i')
 
 
 def check_valid_split(train, test, n_samples=None):
@@ -199,20 +206,20 @@ def test_kfold_valueerrors():
 
     # When n_folds is not integer:
     assert_raises(ValueError, KFold, 1.5)
-    assert_raises(ValueError, StratifiedKFold, 1.5)
     assert_raises(ValueError, KFold, 2.0)
+    assert_raises(ValueError, StratifiedKFold, 1.5)
     assert_raises(ValueError, StratifiedKFold, 2.0)
 
 
 def test_kfold_indices():
     # Check all indices are returned in the test folds
-    X1 = np.ones((18, 2))
+    X1 = np.ones(18)
     kf = KFold(3)
     check_cv_coverage(kf, X1, y=None, labels=None, expected_n_iter=3)
 
     # Check all indices are returned in the test folds even when equal-sized
     # folds are not possible
-    X2 = np.ones((17, 2))
+    X2 = np.ones(17)
     kf = KFold(3)
     check_cv_coverage(kf, X2, y=None, labels=None, expected_n_iter=3)
 
@@ -244,7 +251,7 @@ def test_stratified_kfold_no_shuffle():
     # Manually check that StratifiedKFold preserves the data ordering as much
     # as possible on toy datasets in order to avoid hiding sample dependencies
     # when possible
-    X, y = np.ones((4, 2)), [1, 1, 0, 0]
+    X, y = np.ones(4), [1, 1, 0, 0]
     splits = StratifiedKFold(2).split(X, y)
     train, test = next(splits)
     assert_array_equal(test, [0, 2])
@@ -254,7 +261,7 @@ def test_stratified_kfold_no_shuffle():
     assert_array_equal(test, [1, 3])
     assert_array_equal(train, [0, 2])
 
-    X, y = np.ones(7, 2), [1, 1, 1, 0, 0, 0, 0]
+    X, y = np.ones(7), [1, 1, 1, 0, 0, 0, 0]
     splits = StratifiedKFold(2).split(X, y)
     train, test = next(splits)
     assert_array_equal(test, [0, 1, 3, 4])
@@ -266,25 +273,22 @@ def test_stratified_kfold_no_shuffle():
 
 
 def test_stratified_kfold_ratios():
-    # Check that stratified kfold preserves label ratios in individual splits
+    # Check that stratified kfold preserves class ratios in individual splits
     # Repeat with shuffling turned off and on
     n_samples = 1000
     X = np.ones(n_samples)
-    labels = np.array([4] * int(0.10 * n_samples) +
-                      [0] * int(0.89 * n_samples) +
-                      [1] * int(0.01 * n_samples))
+    y = np.array([4] * int(0.10 * n_samples) +
+                 [0] * int(0.89 * n_samples) +
+                 [1] * int(0.01 * n_samples))
 
-    for cv in [StratifiedKFold(5, shuffle=s) for s in (True, False)]:
-        for train, test in cv.split(X, y=labels):
-            assert_almost_equal(np.sum(labels[train] == 4) / len(train), 0.10,
-                                2)
-            assert_almost_equal(np.sum(labels[train] == 0) / len(train), 0.89,
-                                2)
-            assert_almost_equal(np.sum(labels[train] == 1) / len(train), 0.01,
-                                2)
-            assert_almost_equal(np.sum(labels[test] == 4) / len(test), 0.10, 2)
-            assert_almost_equal(np.sum(labels[test] == 0) / len(test), 0.89, 2)
-            assert_almost_equal(np.sum(labels[test] == 1) / len(test), 0.01, 2)
+    for shuffle in (False, True):
+        for train, test in StratifiedKFold(5, shuffle=shuffle).split(X, y):
+            assert_almost_equal(np.sum(y[train] == 4) / len(train), 0.10, 2)
+            assert_almost_equal(np.sum(y[train] == 0) / len(train), 0.89, 2)
+            assert_almost_equal(np.sum(y[train] == 1) / len(train), 0.01, 2)
+            assert_almost_equal(np.sum(y[test] == 4) / len(test), 0.10, 2)
+            assert_almost_equal(np.sum(y[test] == 0) / len(test), 0.89, 2)
+            assert_almost_equal(np.sum(y[test] == 1) / len(test), 0.01, 2)
 
 
 def test_kfold_balance():
@@ -303,12 +307,13 @@ def test_stratifiedkfold_balance():
     # Check that KFold returns folds with balanced sizes (only when
     # stratification is possible)
     # Repeat with shuffling turned off and on
-    labels = [0] * 3 + [1] * 14
     X = np.ones(17)
+    y = [0] * 3 + [1] * 14
 
-    for cv in [StratifiedKFold(3, shuffle=s) for s in (True, False)]:
+    for shuffle in (True, False):
+        cv = StratifiedKFold(3, shuffle=shuffle)
         for i in range(11, 17):
-            skf = cv.split(X[:i], y=labels[:i])
+            skf = cv.split(X[:i], y[:i])
             sizes = []
             for _, test in skf:
                 sizes.append(len(test))
@@ -344,13 +349,13 @@ def test_shuffle_stratifiedkfold():
     # Check that shuffling is happening when requested, and for proper
     # sample coverage
     X_40 = np.ones(40)
-    labels = [0] * 20 + [1] * 20
+    y = [0] * 20 + [1] * 20
     kf0 = StratifiedKFold(5, shuffle=True, random_state=0)
     kf1 = StratifiedKFold(5, shuffle=True, random_state=1)
-    for (_, test0), (_, test1) in zip(kf0.split(X_40, y=labels),
-                                      kf1.split(X_40, y=labels)):
-        assert_true(set(test0) != set(test1))
-    check_cv_coverage(kf0, X_40, y=labels, labels=None, expected_n_iter=5)
+    for (_, test0), (_, test1) in zip(kf0.split(X_40, y),
+                                      kf1.split(X_40, y)):
+        assert_not_equal(set(test0), set(test1))
+    check_cv_coverage(kf0, X_40, y, labels=None, expected_n_iter=5)
 
 
 def test_kfold_can_detect_dependent_samples_on_digits():  # see #2372
@@ -397,12 +402,11 @@ def test_kfold_can_detect_dependent_samples_on_digits():  # see #2372
 
 
 def test_shuffle_split():
-    X_10 = np.ones(10)
-    ss1 = ShuffleSplit(test_size=0.2, random_state=0).split(X_10)
-    ss2 = ShuffleSplit(test_size=2, random_state=0).split(X_10)
-    ss3 = ShuffleSplit(test_size=np.int32(2), random_state=0).split(X_10)
+    ss1 = ShuffleSplit(test_size=0.2, random_state=0).split(X)
+    ss2 = ShuffleSplit(test_size=2, random_state=0).split(X)
+    ss3 = ShuffleSplit(test_size=np.int32(2), random_state=0).split(X)
     for typ in six.integer_types:
-        ss4 = ShuffleSplit(test_size=typ(2), random_state=0).split(X_10)
+        ss4 = ShuffleSplit(test_size=typ(2), random_state=0).split(X)
     for t1, t2, t3, t4 in zip(ss1, ss2, ss3, ss4):
         assert_array_equal(t1[0], t2[0])
         assert_array_equal(t2[0], t3[0])
@@ -417,7 +421,7 @@ def test_stratified_shuffle_split_init():
     y = np.asarray([0, 1, 1, 1, 2, 2, 2])
     # Check that error is raised if there is a class with only one sample
     assert_raises(ValueError, next,
-                  StratifiedShuffleSplit(3, 0.2).split(X=np.ones(7), y=y))
+                  StratifiedShuffleSplit(3, 0.2).split(X, y))
 
     # Check that error is raised if the test set size is smaller than n_classes
     assert_raises(ValueError, next, StratifiedShuffleSplit(3, 2).split(X, y))
@@ -518,20 +522,18 @@ def test_stratified_shuffle_split_even():
 
 
 def test_predefinedsplit_with_kfold_split():
-    X_10 = np.ones(10)
     # Check that PredefinedSplit can reproduce a split generated by Kfold.
     folds = -1 * np.ones(10)
     kf_train = []
     kf_test = []
-    for i, (train_ind, test_ind) in \
-            enumerate(KFold(5, shuffle=True).split(X=np.ones(10))):
+    for i, (train_ind, test_ind) in enumerate(KFold(5, shuffle=True).split(X)):
         kf_train.append(train_ind)
         kf_test.append(test_ind)
         folds[test_ind] = i
     ps_train = []
     ps_test = []
     ps = PredefinedSplit()
-    for train_ind, test_ind in ps.split(X=X_10, labels=folds):
+    for train_ind, test_ind in ps.split(X, labels=folds):
         ps_train.append(train_ind)
         ps_test.append(test_ind)
     assert_array_equal(ps_train, kf_train)
@@ -540,7 +542,7 @@ def test_predefinedsplit_with_kfold_split():
 
 def test_leave_label_out_changing_labels():
     # Check that LeaveOneLabelOut and LeavePLabelOut work normally if
-    # the labels variable is changed before calling __iter__
+    # the labels variable is changed before calling split
     labels = np.array([0, 1, 2, 1, 1, 2, 0, 0])
     X = np.ones(len(labels))
     labels_changing = np.array(labels, copy=True)
@@ -686,7 +688,7 @@ def test_train_test_split_allow_nans():
 
 
 def test_check_cv_return_types():
-    X = np.ones((9, 2))
+    X = np.ones(9)
     cv = check_cv(3, classifier=False)
     # Use numpy.testing.assert_equal which recursively compares
     # lists of lists
@@ -702,7 +704,7 @@ def test_check_cv_return_types():
     np.testing.assert_equal(list(StratifiedKFold(3).split(X, y_multiclass)),
                             list(cv.split(X, y_multiclass)))
 
-    X = np.ones((5, 2))
+    X = np.ones(5)
     y_seq_of_seqs = [[], [1, 2], [3], [0, 1, 3], [2]]
 
     with warnings.catch_warnings(record=True):
@@ -719,7 +721,7 @@ def test_check_cv_return_types():
     np.testing.assert_equal(list(KFold(3).split(X)), list(cv.split(X)))
 
     # Check if the old style classes are wrapped to have a split method
-    X = np.ones((9, 2))
+    X = np.ones(9)
     y_multiclass = np.array([0, 1, 0, 1, 2, 1, 2, 0, 2])
     cv1 = check_cv(3, y_multiclass, classifier=True)
     cv2 = check_cv(cval.StratifiedKFold(y_multiclass, n_folds=3))
