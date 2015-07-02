@@ -33,9 +33,13 @@ from sklearn.datasets import make_classification
 from sklearn.datasets import make_blobs
 from sklearn.datasets import make_multilabel_classification
 
-from sklearn.model_selection import (
-    KFold, StratifiedKFold, GridSearchCV, RandomizedSearchCV, ParameterGrid,
-    ParameterSampler)
+from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.model_selection import ParameterGrid
+from sklearn.model_selection import ParameterSampler
+
 # TODO Import from sklearn.exceptions once merged.
 from sklearn.base import ChangedBehaviorWarning
 from sklearn.model_selection.validate import FitFailedWarning
