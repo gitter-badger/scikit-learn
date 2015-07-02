@@ -1,5 +1,4 @@
-
-"""Test the partition  module"""
+"""Test the partition module"""
 from __future__ import division
 import warnings
 
@@ -17,13 +16,24 @@ from sklearn.utils.testing import assert_array_almost_equal
 from sklearn.utils.testing import assert_array_equal
 from sklearn.utils.testing import assert_warns_message
 from sklearn.utils.testing import ignore_warnings
+from sklearn.utils.validation import _num_samples
 from sklearn.utils.mocking import MockDataFrame
 
-from sklearn.model_selection import (
-    cross_val_score, KFold, StratifiedKFold, LeaveOneOut, LeaveOneLabelOut,
-    LeavePOut, LeavePLabelOut, ShuffleSplit, StratifiedShuffleSplit,
-    PredefinedSplit, check_cv, train_test_split)
-from sklearn.model_selection.split import _safe_split, _validate_shuffle_split
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import LeaveOneOut
+from sklearn.model_selection import LeaveOneLabelOut
+from sklearn.model_selection import LeavePOut
+from sklearn.model_selection import LeavePLabelOut
+from sklearn.model_selection import ShuffleSplit
+from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.model_selection import PredefinedSplit
+from sklearn.model_selection import check_cv
+from sklearn.model_selection import train_test_split
+
+from sklearn.model_selection.split import _safe_split
+from sklearn.model_selection.split import _validate_shuffle_split
 
 from sklearn.datasets import load_digits
 from sklearn.datasets import load_iris
@@ -123,7 +133,6 @@ def test_cross_val_generator_with_default_indices():
     ss = ShuffleSplit()
     ps = PredefinedSplit()
     for i, cv in enumerate([loo, lpo, kf, skf, lolo, lopo, ss, ps]):
-        print(cv)
         for train, test in cv.split(X, y, labels):
             assert_not_equal(np.asarray(train).dtype.kind, 'b')
             assert_not_equal(np.asarray(train).dtype.kind, 'b')
@@ -141,7 +150,8 @@ def check_valid_split(train, test, n_samples=None):
         assert_equal(train.union(test), set(range(n_samples)))
 
 
-def check_cv_coverage(cv, X, y, labels, expected_n_iter=None, n_samples=None):
+def check_cv_coverage(cv, X, y, labels, expected_n_iter=None):
+    n_samples = _num_samples(X)
     # Check that a all the samples appear at least once in a test fold
     if expected_n_iter is not None:
         assert_equal(cv.n_splits(X, y, labels), expected_n_iter)
@@ -179,8 +189,7 @@ def test_kfold_valueerrors():
     # though all the classes are not necessarily represented at on each
     # side of the split at each split
     with warnings.catch_warnings():
-        check_cv_coverage(skf_3, X2, y, labels=None, expected_n_iter=3,
-                          n_samples=len(y))
+        check_cv_coverage(skf_3, X2, y, labels=None, expected_n_iter=3)
 
     # Error when number of folds is <= 1
     assert_raises(ValueError, KFold, 0)
@@ -191,21 +200,21 @@ def test_kfold_valueerrors():
     # When n_folds is not integer:
     assert_raises(ValueError, KFold, 1.5)
     assert_raises(ValueError, StratifiedKFold, 1.5)
+    assert_raises(ValueError, KFold, 2.0)
+    assert_raises(ValueError, StratifiedKFold, 2.0)
 
 
 def test_kfold_indices():
     # Check all indices are returned in the test folds
-    X1 = np.ones((300, 2))
+    X1 = np.ones((18, 2))
     kf = KFold(3)
-    check_cv_coverage(kf, X1, y=None, labels=None, expected_n_iter=3,
-                      n_samples=300)
+    check_cv_coverage(kf, X1, y=None, labels=None, expected_n_iter=3)
 
     # Check all indices are returned in the test folds even when equal-sized
     # folds are not possible
     X2 = np.ones((17, 2))
     kf = KFold(3)
-    check_cv_coverage(kf, X2, y=None, labels=None, expected_n_iter=3,
-                      n_samples=17)
+    check_cv_coverage(kf, X2, y=None, labels=None, expected_n_iter=3)
 
 
 def test_kfold_no_shuffle():
@@ -245,7 +254,8 @@ def test_stratified_kfold_no_shuffle():
     assert_array_equal(test, [1, 3])
     assert_array_equal(train, [0, 2])
 
-    splits = StratifiedKFold(2).split(np.ones((7, 2)), [1, 1, 1, 0, 0, 0, 0])
+    X, y = np.ones(7, 2), [1, 1, 1, 0, 0, 0, 0]
+    splits = StratifiedKFold(2).split(X, y)
     train, test = next(splits)
     assert_array_equal(test, [0, 1, 3, 4])
     assert_array_equal(train, [2, 5, 6])
@@ -340,8 +350,7 @@ def test_shuffle_stratifiedkfold():
     for (_, test0), (_, test1) in zip(kf0.split(X_40, y=labels),
                                       kf1.split(X_40, y=labels)):
         assert_true(set(test0) != set(test1))
-    check_cv_coverage(kf0, X_40, y=labels, labels=None,
-                      expected_n_iter=5, n_samples=40)
+    check_cv_coverage(kf0, X_40, y=labels, labels=None, expected_n_iter=5)
 
 
 def test_kfold_can_detect_dependent_samples_on_digits():  # see #2372
