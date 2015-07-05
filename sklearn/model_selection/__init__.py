@@ -1,3 +1,4 @@
+from .split import BaseCrossValidator
 from .split import KFold
 from .split import StratifiedKFold
 from .split import LeaveOneLabelOut
@@ -25,6 +26,7 @@ from .search import fit_grid_point
 __all__ = ('split',
            'validate',
            'search',
+           'BaseCrossValidator',
            'KFold',
            'StratifiedKFold',
            'LeaveOneLabelOut',
