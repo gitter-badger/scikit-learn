@@ -45,7 +45,7 @@ from sklearn.externals.six.moves import cStringIO as StringIO
 from sklearn.base import BaseEstimator
 from sklearn.datasets import make_classification
 
-from test_split import MockClassifier, X, y, X_sparse, W_sparse, P_sparse
+from test_split import MockClassifier
 
 
 class MockImprovingEstimator(BaseEstimator):
@@ -110,8 +110,16 @@ class MockEstimatorWithParameter(BaseEstimator):
         return X is self.X_subset
 
 
+# XXX: use 2D array, since 1D X is being detected as a single sample in
+# check_consistent_length
+X = np.ones((10, 2))
+X_sparse = coo_matrix(X)
+y = np.arange(10) // 2
+
+
 def test_cross_val_score():
     clf = MockClassifier()
+
     for a in range(-10, 10):
         clf.a = a
         # Smoke test
@@ -210,6 +218,10 @@ def test_cross_val_score_fit_params():
     clf = MockClassifier()
     n_samples = X.shape[0]
     n_classes = len(np.unique(y))
+
+    W_sparse = coo_matrix((np.array([1]), (np.array([1]), np.array([0]))),
+                          shape=(10, 1))
+    P_sparse = coo_matrix(np.eye(5))
 
     DUMMY_INT = 42
     DUMMY_STR = '42'
