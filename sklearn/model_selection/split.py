@@ -31,7 +31,8 @@ from ..externals.six.moves import zip
 from ..utils.fixes import bincount
 from ..base import _pprint
 
-__all__ = ['KFold',
+__all__ = ['BaseCrossValidator',
+           'KFold',
            'LeaveOneLabelOut',
            'LeaveOneOut',
            'LeavePLabelOut',
@@ -44,7 +45,7 @@ __all__ = ['KFold',
            'check_cv']
 
 
-class _BaseCrossValidator(with_metaclass(ABCMeta)):
+class BaseCrossValidator(with_metaclass(ABCMeta)):
     """Base class for all cross-validators where train_mask = ~test_mask
 
     Implementations must define `_iter_test_masks` or `_iter_test_indices`.
@@ -102,7 +103,7 @@ class _BaseCrossValidator(with_metaclass(ABCMeta)):
         return _build_repr(self, self._get_class())
 
 
-class LeaveOneOut(_BaseCrossValidator):
+class LeaveOneOut(BaseCrossValidator):
     """Leave-One-Out cross-validator
 
     Provides train/test indices to split data in train/test sets. Each
@@ -153,7 +154,7 @@ class LeaveOneOut(_BaseCrossValidator):
         return _num_samples(X)
 
 
-class LeavePOut(_BaseCrossValidator):
+class LeavePOut(BaseCrossValidator):
     """Leave-P-Out cross-validator
 
     Provides train/test indices to split data in train/test sets. This results
@@ -210,7 +211,7 @@ class LeavePOut(_BaseCrossValidator):
         return int(comb(_num_samples(X), self.p, exact=True))
 
 
-class _BaseKFold(with_metaclass(ABCMeta, _BaseCrossValidator)):
+class _BaseKFold(with_metaclass(ABCMeta, BaseCrossValidator)):
     """Base class for KFold and StratifiedKFold"""
 
     @abstractmethod
@@ -442,7 +443,7 @@ class StratifiedKFold(_BaseKFold):
             yield test_folds == i
 
 
-class LeaveOneLabelOut(_BaseCrossValidator):
+class LeaveOneLabelOut(BaseCrossValidator):
     """Leave One Label Out cross-validator
 
     Provides train/test indices to split data according to a third-party
@@ -492,7 +493,7 @@ class LeaveOneLabelOut(_BaseCrossValidator):
         return len(np.unique(labels))
 
 
-class LeavePLabelOut(_BaseCrossValidator):
+class LeavePLabelOut(BaseCrossValidator):
     """Leave-P-Label_Out cross-validator
 
     Provides train/test indices to split data according to a third-party
@@ -862,7 +863,7 @@ class StratifiedShuffleSplit(BaseShuffleSplit):
         return self.n_iter
 
 
-class PredefinedSplit(_BaseCrossValidator):
+class PredefinedSplit(BaseCrossValidator):
     """Predefined split cross-validator
 
     Splits the data into training/test set folds according to a predefined
@@ -904,7 +905,7 @@ class PredefinedSplit(_BaseCrossValidator):
         return len(self._get_test_folds(X, y, labels)[1])
 
 
-class CVIterableWrapper(_BaseCrossValidator):
+class CVIterableWrapper(BaseCrossValidator):
     """Wrapper class for old style cv objects and iterables."""
     def __init__(self, cv):
         self.cv = cv
