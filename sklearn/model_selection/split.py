@@ -744,44 +744,42 @@ def _validate_shuffle_split_init(test_size, train_size):
     if test_size is None and train_size is None:
         raise ValueError('test_size and train_size can not both be None')
 
-    if (test_size is not None) and (np.asarray(test_size).dtype.kind == 'f'):
-        if test_size >= 1.:
-            raise ValueError(
-                'test_size=%f should be smaller '
-                'than 1.0 or be an integer' % test_size)
-
-    if (train_size is not None) and (np.asarray(train_size).dtype.kind == 'f'):
-        if train_size >= 1.:
-            raise ValueError("train_size=%f should be smaller "
-                             "than 1.0 or be an integer" % train_size)
-        elif np.asarray(test_size).dtype.kind == 'f' and \
-                train_size + test_size > 1.:
-            raise ValueError('The sum of test_size and train_size = %f, '
-                             'should be smaller than 1.0. Reduce '
-                             'test_size and/or train_size.' %
-                             (train_size + test_size))
-
-
-def _validate_shuffle_split(n, test_size, train_size):
     if test_size is not None:
-        if np.asarray(test_size).dtype.kind == 'i':
-            if test_size >= n:
+        if np.asarray(test_size).dtype.kind == 'f':
+            if test_size >= 1.:
                 raise ValueError(
-                    'test_size=%d should be smaller '
-                    'than the number of samples %d' % (test_size, n))
-        elif np.asarray(test_size).dtype.kind != 'f':
-            # Float values are checked during __init__
+                    'test_size=%f should be smaller '
+                    'than 1.0 or be an integer' % test_size)
+        elif np.asarray(test_size).dtype.kind != 'i':
+            # int values are checked during split based on the input
             raise ValueError("Invalid value for test_size: %r" % test_size)
 
     if train_size is not None:
-        if np.asarray(train_size).dtype.kind == 'i':
-            if train_size >= n:
-                raise ValueError("train_size=%d should be smaller "
-                                 "than the number of samples %d" %
-                                 (train_size, n))
-        elif np.asarray(train_size).dtype.kind != 'f':
-            # Float values are checked during __init__
+        if np.asarray(train_size).dtype.kind == 'f':
+            if train_size >= 1.:
+                raise ValueError("train_size=%f should be smaller "
+                                 "than 1.0 or be an integer" % train_size)
+            elif ((np.asarray(test_size).dtype.kind == 'f') and
+                    ((train_size + test_size) > 1.)):
+                raise ValueError('The sum of test_size and train_size = %f, '
+                                 'should be smaller than 1.0. Reduce '
+                                 'test_size and/or train_size.' %
+                                 (train_size + test_size))
+        elif np.asarray(train_size).dtype.kind != 'i':
+            # int values are checked during split based on the input
             raise ValueError("Invalid value for train_size: %r" % train_size)
+
+
+def _validate_shuffle_split(n, test_size, train_size):
+    if ((test_size is not None) and (np.asarray(test_size).dtype.kind == 'i')
+            and (test_size >= n)):
+        raise ValueError('test_size=%d should be smaller '
+                         'than the number of samples %d' % (test_size, n))
+
+    if ((train_size is not None) and (np.asarray(train_size).dtype.kind == 'i')
+            and (train_size >= n)):
+        raise ValueError("train_size=%d should be smaller "
+                         "than the number of samples %d" % (train_size, n))
 
     if np.asarray(test_size).dtype.kind == 'f':
         n_test = ceil(test_size * n)
