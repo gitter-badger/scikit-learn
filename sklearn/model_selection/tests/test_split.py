@@ -636,15 +636,19 @@ def train_test_split_mock_pandas():
 
 
 def test_shufflesplit_errors():
+    # When the {test|train}_size is a float/invalid, error is raised at init
+    assert_raises(ValueError, ShuffleSplit, test_size=None, train_size=None)
     assert_raises(ValueError, ShuffleSplit, test_size=2.0)
     assert_raises(ValueError, ShuffleSplit, test_size=1.0)
     assert_raises(ValueError, ShuffleSplit, test_size=0.1, train_size=0.95)
+    assert_raises(ValueError, ShuffleSplit, train_size=1j)
+
+    # When the {test|train}_size is an int, validation is based on the input X
+    # and happens at split(...)
     assert_raises(ValueError, next, ShuffleSplit(test_size=11).split(X))
     assert_raises(ValueError, next, ShuffleSplit(test_size=10).split(X))
     assert_raises(ValueError, next, ShuffleSplit(test_size=8,
                                                  train_size=3).split(X))
-    assert_raises(ValueError, ShuffleSplit, test_size=None, train_size=None)
-    assert_raises(ValueError, next, ShuffleSplit(train_size=1j).split(X))
 
 
 def test_shufflesplit_reproducible():
