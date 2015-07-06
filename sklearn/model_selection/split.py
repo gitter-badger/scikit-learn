@@ -76,7 +76,7 @@ class BaseCrossValidator(with_metaclass(ABCMeta)):
 
     # Since subclasses must implement either _iter_test_masks or
     # _iter_test_indices, neither can be abstract.
-    def _iter_test_masks(self, X, y=None, labels=None):
+    def _iter_test_masks(self, X=None, y=None, labels=None):
         """Generates boolean masks corresponding to test sets.
 
         By default, delegates to _iter_test_indices(X, y, labels)
@@ -86,12 +86,12 @@ class BaseCrossValidator(with_metaclass(ABCMeta)):
             test_mask[test_index] = True
             yield test_mask
 
-    def _iter_test_indices(self, X, y=None, labels=None):
+    def _iter_test_indices(self, X=None, y=None, labels=None):
         """Generates integer indices corresponding to test sets."""
         raise NotImplementedError
 
     @abstractmethod
-    def n_splits(self, X, y=None, labels=None):
+    def n_splits(self, X=None, y=None, labels=None):
         """Returns the number of splitting iterations in the cross-validator"""
         pass
 
@@ -150,7 +150,18 @@ class LeaveOneOut(BaseCrossValidator):
         return range(_num_samples(X))
 
     def n_splits(self, X, y=None, labels=None):
-        """Returns the number of splitting iterations in the cross-validator"""
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Training vectors, where n_samples is the number of samples
+            and n_features is the number of features.
+
+        y : (Ignored, exists for compatibility.)
+
+        labels : (Ignored, exists for compatibility.)
+        """
         return _num_samples(X)
 
 
@@ -207,7 +218,18 @@ class LeavePOut(BaseCrossValidator):
             yield np.array(combination)
 
     def n_splits(self, X, y=None, labels=None):
-        """Returns the number of splitting iterations in the cross-validator"""
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            Training vectors, where n_samples is the number of samples
+            and n_features is the number of features.
+
+        y : (Ignored, exists for compatibility.)
+
+        labels : (Ignored, exists for compatibility.)
+        """
         return int(comb(_num_samples(X), self.p, exact=True))
 
 
@@ -262,7 +284,15 @@ class _BaseKFold(with_metaclass(ABCMeta, BaseCrossValidator)):
         for train, test in super(_BaseKFold, self).split(X, y, labels):
             yield train, test
 
-    def n_splits(self, X, y=None, labels=None):
+    def n_splits(self, X=None, y=None, labels=None):
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+        y : (Ignored, exists for compatibility.)
+        labels : (Ignored, exists for compatibility.)
+        """
         return self.n_folds
 
 
@@ -490,6 +520,18 @@ class LeaveOneLabelOut(BaseCrossValidator):
             yield labels == i
 
     def n_splits(self, X, y, labels):
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+
+        y : (Ignored, exists for compatibility.)
+
+        labels : array-like of int with shape (n_samples,)
+            Arbitrary domain-specific stratification of the data to be used
+            to draw the splits.
+        """
         return len(np.unique(labels))
 
 
@@ -557,6 +599,18 @@ class LeavePLabelOut(BaseCrossValidator):
             yield test_index
 
     def n_splits(self, X, y, labels):
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+
+        y : (Ignored, exists for compatibility.)
+
+        labels : array-like of int with shape (n_samples,)
+            Arbitrary domain-specific stratification of the data to be used
+            to draw the splits.
+        """
         return int(comb(len(np.unique(labels)), self.p, exact=True))
 
 
@@ -673,6 +727,14 @@ class ShuffleSplit(BaseShuffleSplit):
             yield ind_train, ind_test
 
     def n_splits(self, X=None, y=None, labels=None):
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+        y : (Ignored, exists for compatibility.)
+        labels : (Ignored, exists for compatibility.)
+        """
         return self.n_iter
 
 
@@ -860,6 +922,14 @@ class StratifiedShuffleSplit(BaseShuffleSplit):
             yield train, test
 
     def n_splits(self, X=None, y=None, labels=None):
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+        y : (Ignored, exists for compatibility.)
+        labels : (Ignored, exists for compatibility.)
+        """
         return self.n_iter
 
 
@@ -878,12 +948,12 @@ class PredefinedSplit(BaseCrossValidator):
     >>> X = np.array([[1, 2], [3, 4], [1, 2], [3, 4]])
     >>> y = np.array([0, 0, 1, 1])
     >>> test_folds = [0, 1, -1, 1]
-    >>> ps = PredefinedSplit()
-    >>> ps.n_splits(X, y, labels=test_folds)
+    >>> ps = PredefinedSplit(test_fold)
+    >>> ps.n_splits()
     2
     >>> print(ps)       # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
-    PredefinedSplit()
-    >>> for train_index, test_index in ps.split(X, y, labels=test_folds):
+    PredefinedSplit(test_fold=[0  1 -1  1])
+    >>> for train_index, test_index in ps.split():
     ...    print("TRAIN:", train_index, "TEST:", test_index)
     ...    X_train, X_test = X[train_index], X[test_index]
     ...    y_train, y_test = y[train_index], y[test_index]
@@ -891,18 +961,45 @@ class PredefinedSplit(BaseCrossValidator):
     TRAIN: [0 2] TEST: [1 3]
     """
 
-    def _iter_test_indices(self, X, y=None, labels=None):
-        test_fold, unique_folds = self._get_test_folds(X, y, labels)
-        for f in unique_folds:
-            yield np.where(test_fold == f)[0]
+    def __init__(self, test_fold):
+        self.test_fold = np.array(test_fold, dtype=np.int)
+        self.test_fold = column_or_1d(self.test_fold)
+        self.unique_folds = np.unique(self.test_fold)
+        self.unique_folds = self.unique_folds[self.unique_folds != -1]
 
-    def _get_test_folds(self, X, y, labels):
-        test_fold = column_or_1d(np.array(labels, dtype=np.int))
-        unique_folds = np.unique(test_fold)
-        return test_fold, unique_folds[unique_folds != -1]
+    def split(self, X=None, y=None, labels=None):
+        """Generate train/test indices to split data in train/test sets.
 
-    def n_splits(self, X, y=None, labels=None):
-        return len(self._get_test_folds(X, y, labels)[1])
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+        y : (Ignored, exists for compatibility.)
+        labels : (Ignored, exists for compatibility.)
+        """
+        ind = np.arange(len(self.test_fold))
+        for test_index in self._iter_test_masks():
+            train_index = ind[np.logical_not(test_index)]
+            test_index = ind[test_index]
+            yield train_index, test_index
+
+    def _iter_test_masks(self):
+        """Generates boolean masks corresponding to test sets."""
+        for f in self.unique_folds:
+            test_index = np.where(self.test_fold == f)[0]
+            test_mask = np.zeros(len(self.test_fold), dtype=np.bool)
+            test_mask[test_index] = True
+            yield test_mask
+
+    def n_splits(self, X=None, y=None, labels=None):
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+        y : (Ignored, exists for compatibility.)
+        labels : (Ignored, exists for compatibility.)
+        """
+        return len(self.unique_folds)
 
 
 class CVIterableWrapper(BaseCrossValidator):
@@ -911,7 +1008,14 @@ class CVIterableWrapper(BaseCrossValidator):
         self.cv = cv
 
     def n_splits(self, X=None, y=None, labels=None):
-        """Returns the number of splitting iterations in the cross-validator"""
+        """Returns the number of splitting iterations in the cross-validator
+
+        Parameters
+        ----------
+        X : (Ignored, exists for compatibility.)
+        y : (Ignored, exists for compatibility.)
+        labels : (Ignored, exists for compatibility.)
+        """
         return len(self.cv)  # Both iterables and old-cv objects support len
 
     def split(self, X=None, y=None, labels=None):
@@ -919,16 +1023,9 @@ class CVIterableWrapper(BaseCrossValidator):
 
         Parameters
         ----------
-        X : array-like, shape (n_samples, n_features)
-            Training vectors, where n_samples is the number of samples
-            and n_features is the number of features.
-
-        y : array-like, shape (n_samples,)
-            The target variable for a supervised learning problem.
-
-        labels : array-like of int with shape (n_samples,), optional
-            Arbitrary domain-specific stratification of the data to be used
-            to draw the splits.
+        X : (Ignored, exists for compatibility.)
+        y : (Ignored, exists for compatibility.)
+        labels : (Ignored, exists for compatibility.)
         """
         for train, test in self.cv:
             yield train, test
