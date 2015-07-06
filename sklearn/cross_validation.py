@@ -144,8 +144,9 @@ class LeaveOneOut(_PartitionIterator):
 
     See also
     --------
-    LeaveOneLabelOut for splitting the data according to explicit,
-    domain-specific stratification of the dataset.
+    LeaveOneLabelOut
+        for splitting the data according to explicit, domain-specific
+        stratification of the dataset.
     """
 
     def _iter_test_indices(self):
@@ -308,9 +309,10 @@ class KFold(_BaseKFold):
 
     See also
     --------
-    StratifiedKFold take label information into account to avoid building
-    folds with imbalanced class distributions (for binary or multiclass
-    classification tasks).
+    StratifiedKFold
+        Take label information into account to avoid building folds with
+        imbalanced class distributions (for binary or multiclass
+        classification tasks).
     """
 
     def __init__(self, n, n_folds=3, shuffle=False,
