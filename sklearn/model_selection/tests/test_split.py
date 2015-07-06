@@ -129,9 +129,8 @@ def test_cross_validator_with_default_indices():
     lolo = LeaveOneLabelOut()
     lopo = LeavePLabelOut(2)
     ss = ShuffleSplit(random_state=0)
-    ps = PredefinedSplit()
+    ps = PredefinedSplit([1, 1, 2, 2])
     for i, cv in enumerate([loo, lpo, kf, skf, lolo, lopo, ss, ps]):
-        print(cv)
         # Test if the cross-validator works as expected even if
         # the data is 1d
         np.testing.assert_equal(list(cv.split(X, y, labels)),
@@ -529,8 +528,8 @@ def test_predefinedsplit_with_kfold_split():
         folds[test_ind] = i
     ps_train = []
     ps_test = []
-    ps = PredefinedSplit()
-    for train_ind, test_ind in ps.split(X, labels=folds):
+    ps = PredefinedSplit(folds)
+    for train_ind, test_ind in ps.split():
         ps_train.append(train_ind)
         ps_test.append(test_ind)
     assert_array_equal(ps_train, kf_train)
