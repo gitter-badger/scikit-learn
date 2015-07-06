@@ -115,8 +115,8 @@ class LeaveOneOut(BaseCrossValidator):
 
     Due to the high number of test sets (which is the same as the
     number of samples) this cross-validation method can be very costly.
-    For large datasets one should favor KFold, StratifiedKFold or
-    ShuffleSplit.
+    For large datasets one should favor :class:`KFold`, :class:`ShuffleSplit`
+    or :class:`StratifiedKFold`.
 
     Read more in the :ref:`User Guide <cross_validation>`.
 
@@ -142,8 +142,9 @@ class LeaveOneOut(BaseCrossValidator):
 
     See also
     --------
-    LeaveOneLabelOut for splitting the data according to explicit,
-    domain-specific stratification of the dataset.
+    LeaveOneLabelOut
+        For splitting the data according to explicit, domain-specific
+        stratification of the dataset.
     """
 
     def _iter_test_indices(self, X, y=None, labels=None):
@@ -344,9 +345,10 @@ class KFold(_BaseKFold):
 
     See also
     --------
-    ``StratifiedKFold`` take label information into account to avoid building
-    folds with imbalanced class distributions (for binary or multiclass
-    classification tasks).
+    StratifiedKFold
+        For taking label information into account to avoid building folds with
+        imbalanced class distributions (for binary or multiclass
+        classification tasks).
     """
 
     def __init__(self, n_folds=3, shuffle=False,
