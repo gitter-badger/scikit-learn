@@ -947,12 +947,12 @@ class PredefinedSplit(BaseCrossValidator):
     >>> from sklearn.model_selection import PredefinedSplit
     >>> X = np.array([[1, 2], [3, 4], [1, 2], [3, 4]])
     >>> y = np.array([0, 0, 1, 1])
-    >>> test_folds = [0, 1, -1, 1]
+    >>> test_fold = [0, 1, -1, 1]
     >>> ps = PredefinedSplit(test_fold)
     >>> ps.n_splits()
     2
     >>> print(ps)       # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
-    PredefinedSplit(test_fold=[0  1 -1  1])
+    PredefinedSplit(test_fold=array([ 0,  1, -1,  1]))
     >>> for train_index, test_index in ps.split():
     ...    print("TRAIN:", train_index, "TEST:", test_index)
     ...    X_train, X_test = X[train_index], X[test_index]
