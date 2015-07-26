@@ -294,7 +294,7 @@ class RFECV(RFE, MetaEstimatorMixin):
         If int, it is the number of folds.
         If None, 3-fold cross-validation is performed by default.
         Specific cross-validation objects can also be passed, see
-        `sklearn.model_selection.split module` for details.
+        `sklearn.model_selection module` for details.
 
     scoring : string, callable or None, optional, default: None
         A string (see model evaluation documentation) or

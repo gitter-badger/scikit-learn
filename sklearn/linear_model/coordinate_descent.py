@@ -1205,7 +1205,7 @@ class LassoCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.model_selection.split` module for the list of
+        :mod:`sklearn.model_selection` module for the list of
         possible objects.
 
     verbose : bool or integer
@@ -1344,7 +1344,7 @@ class ElasticNetCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.model_selection.split` module for the list of
+        :mod:`sklearn.model_selection` module for the list of
         possible objects.
 
     verbose : bool or integer
@@ -1819,7 +1819,7 @@ class MultiTaskElasticNetCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.model_selection.split` module for the list of
+        :mod:`sklearn.model_selection` module for the list of
         possible objects.
 
     verbose : bool or integer
@@ -1969,7 +1969,7 @@ class MultiTaskLassoCV(LinearModelCV, RegressorMixin):
     cv : integer or cross-validation generator, optional
         If an integer is passed, it is the number of fold (default 3).
         Specific cross-validation objects can be passed, see the
-        :mod:`sklearn.model_selection.split` module for the list of
+        :mod:`sklearn.model_selection` module for the list of
         possible objects.
 
     verbose : bool or integer

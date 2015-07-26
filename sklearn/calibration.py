@@ -56,8 +56,7 @@ class CalibratedClassifierCV(BaseEstimator, ClassifierMixin):
     cv : integer or cross-validation generator or "prefit", optional
         If an integer is passed, it is the number of folds (default 3).
         Specific cross-validation objects can be passed, see
-        sklearn.model_selection.split module for the list of possible
-        objects.
+        sklearn.model_selection module for the list of possible objects.
         If "prefit" is passed, it is assumed that base_estimator has been
         fitted already and all data is used for calibration.
 

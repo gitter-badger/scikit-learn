@@ -667,7 +667,7 @@ class GridSearchCV(BaseSearchCV):
         For integer/None inputs, ``StratifiedKFold`` is used for classification
         tasks, when ``y`` is binary or multiclass.
 
-        See the :mod:`sklearn.model_selection.split` module for the list of
+        See the :mod:`sklearn.model_selection` module for the list of
         cross-validation generators that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
@@ -877,7 +877,7 @@ class RandomizedSearchCV(BaseSearchCV):
         For integer/None inputs, ``StratifiedKFold`` is used for classification
         tasks, when ``y`` is binary or multiclass.
 
-        See the :mod:`sklearn.model_selection.split` module for the list of
+        See the :mod:`sklearn.model_selection` module for the list of
         cross-validation generators that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`

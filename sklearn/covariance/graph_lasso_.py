@@ -461,7 +461,7 @@ class GraphLassoCV(GraphLasso):
         values of alphas are passed.
 
     cv : cross-validation generator, optional
-        see sklearn.model_selection.split module.
+        see sklearn.model_selection module.
         If None is passed, defaults to a 3-fold strategy
 
     tol: positive float, optional
