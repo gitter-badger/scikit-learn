@@ -544,8 +544,8 @@ def test_leave_label_out_changing_labels():
     labels_changing = np.array(labels, copy=True)
     lolo = LeaveOneLabelOut().split(X, labels=labels)
     lolo_changing = LeaveOneLabelOut().split(X, labels=labels)
-    lplo = LeavePLabelOut(p=2).split(X, labels=labels)
-    lplo_changing = LeavePLabelOut(p=2).split(X, labels=labels)
+    lplo = LeavePLabelOut(n_labels=2).split(X, labels=labels)
+    lplo_changing = LeavePLabelOut(n_labels=2).split(X, labels=labels)
     labels_changing[:] = 0
     for llo, llo_changing in [(lolo, lolo_changing), (lplo, lplo_changing)]:
         for (train, test), (train_chan, test_chan) in zip(llo, llo_changing):
