@@ -923,7 +923,7 @@ class RidgeCV(_BaseRidgeCV, RegressorMixin):
         will be used.
         If an integer is passed, it is the number of folds for KFold cross
         validation.  Specific cross-validation objects can be passed, see
-        sklearn.model_selection.split module for the list of possible
+        :mod:`sklearn.model_selection` module for the list of possible
         objects
 
     gcv_mode : {None, 'auto', 'svd', eigen'}, optional

@@ -756,7 +756,7 @@ class OrthogonalMatchingPursuitCV(LinearModel, RegressorMixin):
         to include. 10% of ``n_features`` but at least 5 if available.
 
     cv : cross-validation generator, optional
-        see :mod:`sklearn.model_selection.split`. If ``None`` is passed,
+        see :mod:`sklearn.model_selection`. If ``None`` is passed,
         default to a 5-fold strategy
 
     n_jobs : integer, optional

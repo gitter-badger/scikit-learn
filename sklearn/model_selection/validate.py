@@ -76,7 +76,7 @@ def cross_val_score(estimator, X, y=None, labels=None, scoring=None, cv=None,
         For integer/None inputs, ``StratifiedKFold`` is used for classification
         tasks, when ``y`` is binary or multiclass.
 
-        See the :mod:`sklearn.model_selection.split` module for the list of
+        See the :mod:`sklearn.model_selection` module for the list of
         cross-validation generators that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
@@ -303,7 +303,7 @@ def cross_val_predict(estimator, X, y=None, labels=None, cv=None, n_jobs=1,
         For integer/None inputs, ``StratifiedKFold`` is used for classification
         tasks, when ``y`` is binary or multiclass.
 
-        See the :mod:`sklearn.model_selection.split` module for the list of
+        See the :mod:`sklearn.model_selection` module for the list of
         cross-validation generators that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
@@ -486,7 +486,7 @@ def permutation_test_score(estimator, X, y, labels=None, cv=None,
         For integer/None inputs, ``StratifiedKFold`` is used for classification
         tasks, when ``y`` is binary or multiclass.
 
-        See the :mod:`sklearn.model_selection.split` module for the list of
+        See the :mod:`sklearn.model_selection` module for the list of
         cross-validation generators that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
@@ -627,7 +627,7 @@ def learning_curve(estimator, X, y, labels=None,
         For integer/None inputs, ``StratifiedKFold`` is used for classification
         tasks, when ``y`` is binary or multiclass.
 
-        See the :mod:`sklearn.model_selection.split` module for the list of
+        See the :mod:`sklearn.model_selection` module for the list of
         cross-validation generators that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
@@ -849,7 +849,7 @@ def validation_curve(estimator, X, y, param_name, param_range, labels=None,
         For integer/None inputs, ``StratifiedKFold`` is used for classification
         tasks, when ``y`` is binary or multiclass.
 
-        See the :mod:`sklearn.model_selection.split` module for the list of
+        See the :mod:`sklearn.model_selection` module for the list of
         cross-validation generators that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`

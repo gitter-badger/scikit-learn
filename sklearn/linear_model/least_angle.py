@@ -924,7 +924,7 @@ class LarsCV(Lars):
         Maximum number of iterations to perform.
 
     cv : cross-validation generator, optional
-        see :mod:`sklearn.model_selection.split`. If ``None`` is passed, default to
+        see :mod:`sklearn.model_selection`. If ``None`` is passed, default to
         a 5-fold strategy
 
     max_n_alphas : integer, optional
@@ -1099,7 +1099,7 @@ class LassoLarsCV(LarsCV):
         Maximum number of iterations to perform.
 
     cv : cross-validation generator, optional
-        see sklearn.model_selection.split module. If None is passed, default to
+        see sklearn.model_selection module. If None is passed, default to
         a 5-fold strategy
 
     max_n_alphas : integer, optional
