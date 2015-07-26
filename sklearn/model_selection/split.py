@@ -538,7 +538,7 @@ class LeaveOneLabelOut(BaseCrossValidator):
 
 
 class LeavePLabelOut(BaseCrossValidator):
-    """Leave-P-Label_Out cross-validator
+    """Leave P Labels Out cross-validator
 
     Provides train/test indices to split data according to a third-party
     provided label. This label information can be used to encode arbitrary
@@ -556,8 +556,8 @@ class LeavePLabelOut(BaseCrossValidator):
 
     Parameters
     ----------
-    p : int
-        Number of labels to leave out in the test split.
+    n_labels : int
+        Number of labels (``p``) to leave out in the test split.
 
     Examples
     --------
@@ -565,11 +565,11 @@ class LeavePLabelOut(BaseCrossValidator):
     >>> X = np.array([[1, 2], [3, 4], [5, 6]])
     >>> y = np.array([1, 2, 1])
     >>> labels = np.array([1, 2, 3])
-    >>> lpl = LeavePLabelOut(p=2)
+    >>> lpl = LeavePLabelOut(n_labels=2)
     >>> lpl.n_splits(X, y, labels)
     3
     >>> print(lpl)
-    LeavePLabelOut(p=2)
+    LeavePLabelOut(n_labels=2)
     >>> for train_index, test_index in lpl.split(X, y, labels):
     ...    print("TRAIN:", train_index, "TEST:", test_index)
     ...    X_train, X_test = X[train_index], X[test_index]
@@ -586,13 +586,13 @@ class LeavePLabelOut(BaseCrossValidator):
      [5 6]] [1] [2 1]
     """
 
-    def __init__(self, p):
-        self.p = p
+    def __init__(self, n_labels):
+        self.n_labels = n_labels
 
     def _iter_test_masks(self, X, y, labels):
         labels = np.array(labels, copy=True)
         unique_labels = np.unique(labels)
-        combi = combinations(range(len(unique_labels)), self.p)
+        combi = combinations(range(len(unique_labels)), self.n_labels)
         for idx in combi:
             test_index = np.zeros(_num_samples(X), dtype=np.bool)
             idx = np.array(idx)
@@ -613,7 +613,7 @@ class LeavePLabelOut(BaseCrossValidator):
             Arbitrary domain-specific stratification of the data to be used
             to draw the splits.
         """
-        return int(comb(len(np.unique(labels)), self.p, exact=True))
+        return int(comb(len(np.unique(labels)), self.n_labels, exact=True))
 
 
 class BaseShuffleSplit(with_metaclass(ABCMeta)):
