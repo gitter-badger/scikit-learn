@@ -16,12 +16,17 @@ from sklearn.utils.testing import assert_greater
 from sklearn.utils.testing import assert_less
 from sklearn.utils.testing import assert_array_almost_equal
 from sklearn.utils.testing import assert_array_equal
-from sklearn.utils.mocking import CheckingClassifier, MockDataFrame
 from sklearn.utils.testing import assert_warns
+from sklearn.utils.mocking import CheckingClassifier, MockDataFrame
 
-from sklearn.model_selection import (
-    cross_val_score, cross_val_predict, permutation_test_score, KFold,
-    StratifiedKFold, LeaveOneOut, learning_curve, validation_curve)
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_predict
+from sklearn.model_selection import permutation_test_score
+from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import LeaveOneOut
+from sklearn.model_selection import learning_curve
+from sklearn.model_selection import validation_curve
 from sklearn.model_selection.validate import _check_is_permutation
 
 from sklearn.datasets import make_regression
@@ -30,7 +35,6 @@ from sklearn.datasets import load_iris
 from sklearn.metrics import explained_variance_score
 from sklearn.metrics import make_scorer
 from sklearn.metrics import precision_score
-
 
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import PassiveAggressiveClassifier
