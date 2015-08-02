@@ -668,7 +668,7 @@ class GridSearchCV(BaseSearchCV):
         tasks, when ``y`` is binary or multiclass.
 
         See the :mod:`sklearn.model_selection` module for the list of
-        cross-validation generators that can be used here.
+        cross-validation strategies that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
 
@@ -878,7 +878,7 @@ class RandomizedSearchCV(BaseSearchCV):
         tasks, when ``y`` is binary or multiclass.
 
         See the :mod:`sklearn.model_selection` module for the list of
-        cross-validation generators that can be used here.
+        cross-validation strategies that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
 

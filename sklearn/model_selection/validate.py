@@ -5,7 +5,7 @@ functions to validate the model.
 
 # Author: Alexandre Gramfort <alexandre.gramfort@inria.fr>,
 #         Gael Varoquaux <gael.varoquaux@normalesup.org>,
-#         Olivier Girsel <olivier.grisel@ensta.org>
+#         Olivier Grisel <olivier.grisel@ensta.org>
 # License: BSD 3 clause
 
 
@@ -77,7 +77,7 @@ def cross_val_score(estimator, X, y=None, labels=None, scoring=None, cv=None,
         tasks, when ``y`` is binary or multiclass.
 
         See the :mod:`sklearn.model_selection` module for the list of
-        cross-validation generators that can be used here.
+        cross-validation strategies that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
 
@@ -304,7 +304,7 @@ def cross_val_predict(estimator, X, y=None, labels=None, cv=None, n_jobs=1,
         tasks, when ``y`` is binary or multiclass.
 
         See the :mod:`sklearn.model_selection` module for the list of
-        cross-validation generators that can be used here.
+        cross-validation strategies that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
 
@@ -487,7 +487,7 @@ def permutation_test_score(estimator, X, y, labels=None, cv=None,
         tasks, when ``y`` is binary or multiclass.
 
         See the :mod:`sklearn.model_selection` module for the list of
-        cross-validation generators that can be used here.
+        cross-validation strategies that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
 
@@ -628,7 +628,7 @@ def learning_curve(estimator, X, y, labels=None,
         tasks, when ``y`` is binary or multiclass.
 
         See the :mod:`sklearn.model_selection` module for the list of
-        cross-validation generators that can be used here.
+        cross-validation strategies that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
 
@@ -850,7 +850,7 @@ def validation_curve(estimator, X, y, param_name, param_range, labels=None,
         tasks, when ``y`` is binary or multiclass.
 
         See the :mod:`sklearn.model_selection` module for the list of
-        cross-validation generators that can be used here.
+        cross-validation strategies that can be used here.
 
         Also refer :ref:`cross-validation documentation <_cross_validation>`
 
