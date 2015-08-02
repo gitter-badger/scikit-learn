@@ -348,15 +348,13 @@ class KFold(_BaseKFold):
     def __init__(self, n_folds=3, shuffle=False,
                  random_state=None):
         super(KFold, self).__init__(n_folds, shuffle, random_state)
-        if shuffle:
-            self._rng = check_random_state(self.random_state)
         self._shuffle = shuffle
 
     def _iter_test_indices(self, X, y=None, labels=None):
         n = _num_samples(X)
         idxs = np.arange(n)
         if self._shuffle:
-            self._rng.shuffle(idxs)
+            check_random_state(self.random_state).shuffle(idxs)
 
         n_folds = self.n_folds
         fold_sizes = (n // n_folds) * np.ones(n_folds, dtype=np.int)
@@ -418,13 +416,13 @@ class StratifiedKFold(_BaseKFold):
 
     def __init__(self, n_folds=3, shuffle=False, random_state=None):
         super(StratifiedKFold, self).__init__(n_folds, shuffle, random_state)
-        if shuffle:
-            self._rng = check_random_state(self.random_state)
-        else:
-            self._rng = self.random_state
         self.shuffle = shuffle
 
     def _make_test_folds(self, X, y=None, labels=None):
+        if self.shuffle:
+            rng = check_random_state(self.random_state)
+        else:
+            rng = self.random_state
         y = np.asarray(y)
         n_samples = y.shape[0]
         unique_labels, y_inversed = np.unique(y, return_inverse=True)
@@ -445,7 +443,7 @@ class StratifiedKFold(_BaseKFold):
         # So we pass np.zeroes(max(c, n_folds)) as data to the KFold
         per_label_cvs = [
             KFold(self.n_folds, shuffle=self.shuffle,
-                  random_state=self._rng).split(np.zeros(max(c, self.n_folds)))
+                  random_state=rng).split(np.zeros(max(c, self.n_folds)))
             for c in label_counts]
 
         test_folds = np.zeros(n_samples, dtype=np.int)
