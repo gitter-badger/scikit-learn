@@ -183,11 +183,11 @@ def test_cross_val_score_mask():
     svm = SVC(kernel="linear")
     iris = load_iris()
     X, y = iris.data, iris.target
-    cv_indices = KFold(5)
-    scores_indices = cross_val_score(svm, X, y, cv=cv_indices)
-    cv_indices = KFold(5)
+    kfold = KFold(5)
+    scores_indices = cross_val_score(svm, X, y, cv=kfold)
+    kfold = KFold(5)
     cv_masks = []
-    for train, test in cv_indices.split(X, y):
+    for train, test in kfold.split(X, y):
         mask_train = np.zeros(len(y), dtype=np.bool)
         mask_test = np.zeros(len(y), dtype=np.bool)
         mask_train[train] = 1

@@ -46,22 +46,22 @@ __all__ = ['BaseCrossValidator',
 
 
 class BaseCrossValidator(with_metaclass(ABCMeta)):
-    """Base class for all cross-validators where train_mask = ~test_mask
+    """Base class for all cross-validators
 
     Implementations must define `_iter_test_masks` or `_iter_test_indices`.
     """
 
     def split(self, X, y=None, labels=None):
-        """Generate train/test indices to split data in train/test sets.
+        """Generate indices to split data into training and test set.
 
         Parameters
         ----------
         X : array-like, shape (n_samples, n_features)
-            Training vectors, where n_samples is the number of samples
+            Training data, where n_samples is the number of samples
             and n_features is the number of features.
 
         y : array-like, shape (n_samples,)
-            The target variable for a supervised learning problem.
+            The target variable for supervised learning problems.
 
         labels : array-like of int with shape (n_samples,), optional
             Arbitrary domain-specific stratification of the data to be used
@@ -156,11 +156,10 @@ class LeaveOneOut(BaseCrossValidator):
         Parameters
         ----------
         X : array-like, shape (n_samples, n_features)
-            Training vectors, where n_samples is the number of samples
+            Training data, where n_samples is the number of samples
             and n_features is the number of features.
 
         y : (Ignored, exists for compatibility.)
-
         labels : (Ignored, exists for compatibility.)
         """
         return _num_samples(X)
@@ -224,11 +223,10 @@ class LeavePOut(BaseCrossValidator):
         Parameters
         ----------
         X : array-like, shape (n_samples, n_features)
-            Training vectors, where n_samples is the number of samples
+            Training data, where n_samples is the number of samples
             and n_features is the number of features.
 
         y : (Ignored, exists for compatibility.)
-
         labels : (Ignored, exists for compatibility.)
         """
         return int(comb(_num_samples(X), self.p, exact=True))
@@ -260,16 +258,16 @@ class _BaseKFold(with_metaclass(ABCMeta, BaseCrossValidator)):
         self.random_state = random_state
 
     def split(self, X, y=None, labels=None):
-        """Generate train/test indices to split data in train/test sets.
+        """Generate indices to split data into training and test set.
 
         Parameters
         ----------
         X : array-like, shape (n_samples, n_features)
-            Training vectors, where n_samples is the number of samples
+            Training data, where n_samples is the number of samples
             and n_features is the number of features.
 
         y : array-like, shape (n_samples,)
-            The target variable for a supervised learning problem.
+            The target variable for supervised learning problems.
 
         labels : array-like of int with shape (n_samples,), optional
             Arbitrary domain-specific stratification of the data to be used
@@ -339,9 +337,9 @@ class KFold(_BaseKFold):
 
     Notes
     -----
-    The first ``n % n_folds`` folds have size ``n // n_folds + 1``,
-    other folds have size ``n // n_folds``, where ``n`` is the number of
-    samples.
+    The first ``n_samples % n_folds`` folds have size
+    ``n_samples // n_folds + 1``, other folds have size
+    ``n_samples // n_folds``, where ``n_samples`` is the number of samples.
 
     See also
     --------
@@ -527,7 +525,6 @@ class LeaveOneLabelOut(BaseCrossValidator):
         Parameters
         ----------
         X : (Ignored, exists for compatibility.)
-
         y : (Ignored, exists for compatibility.)
 
         labels : array-like of int with shape (n_samples,)
@@ -606,7 +603,6 @@ class LeavePLabelOut(BaseCrossValidator):
         Parameters
         ----------
         X : (Ignored, exists for compatibility.)
-
         y : (Ignored, exists for compatibility.)
 
         labels : array-like of int with shape (n_samples,)
@@ -628,16 +624,16 @@ class BaseShuffleSplit(with_metaclass(ABCMeta)):
         self.random_state = random_state
 
     def split(self, X, y=None, labels=None):
-        """Generate train/test indices to split data in train/test sets.
+        """Generate indices to split data into training and test set.
 
         Parameters
         ----------
         X : array-like, shape (n_samples, n_features)
-            Training vectors, where n_samples is the number of samples
+            Training data, where n_samples is the number of samples
             and n_features is the number of features.
 
         y : array-like, shape (n_samples,)
-            The target variable for a supervised learning problem.
+            The target variable for supervised learning problems.
 
         labels : array-like of int with shape (n_samples,), optional
             Arbitrary domain-specific stratification of the data to be used
@@ -968,7 +964,7 @@ class PredefinedSplit(BaseCrossValidator):
         self.unique_folds = self.unique_folds[self.unique_folds != -1]
 
     def split(self, X=None, y=None, labels=None):
-        """Generate train/test indices to split data in train/test sets.
+        """Generate indices to split data into training and test set.
 
         Parameters
         ----------
@@ -1019,7 +1015,7 @@ class CVIterableWrapper(BaseCrossValidator):
         return len(self.cv)  # Both iterables and old-cv objects support len
 
     def split(self, X=None, y=None, labels=None):
-        """Generate train/test indices to split data in train/test sets.
+        """Generate indices to split data into training and test set.
 
         Parameters
         ----------
@@ -1049,18 +1045,18 @@ def check_cv(cv=3, y=None, classifier=False):
         neither binary nor multiclass, :class:`KFold` is used.
 
         Refer :ref:`User Guide <cross_validation>` for the various
-        cross-validators that can be used here.
+        cross-validation strategies that can be used here.
 
-    y : array-like
-        The target variable for a supervised learning problem.
+    y : array-like, optional
+        The target variable for supervised learning problems.
 
-    classifier : boolean optional
+    classifier : boolean, optional, default False
         Whether the task is a classification task, in which case
         stratified KFold will be used.
 
     Returns
     -------
-    checked_cv: a cross-validator instance.
+    checked_cv : a cross-validator instance.
         The return value is a cross-validator which generates the train/test
         splits via the ``split`` method.
     """
