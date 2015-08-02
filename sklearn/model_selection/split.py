@@ -95,12 +95,8 @@ class BaseCrossValidator(with_metaclass(ABCMeta)):
         """Returns the number of splitting iterations in the cross-validator"""
         pass
 
-    @classmethod
-    def _get_class(cls):
-        return cls
-
     def __repr__(self):
-        return _build_repr(self, self._get_class())
+        return _build_repr(self)
 
 
 class LeaveOneOut(BaseCrossValidator):
@@ -647,12 +643,8 @@ class BaseShuffleSplit(with_metaclass(ABCMeta)):
     def _iter_indices(self, X, y=None, labels=None):
         """Generate (train, test) indices"""
 
-    @classmethod
-    def _get_class(cls):
-        return cls
-
     def __repr__(self):
-        return _build_repr(self, self._get_class())
+        return _build_repr(self)
 
 
 class ShuffleSplit(BaseShuffleSplit):
@@ -1216,7 +1208,8 @@ def _safe_split(estimator, X, y, indices, train_indices=None):
     return X_subset, y_subset
 
 
-def _build_repr(self, cls):
+def _build_repr(self):
+    cls = self.__class__
     init = getattr(cls.__init__, 'deprecated_original', cls.__init__)
     # Ignore varargs, kw and default values and pop self
     if init is object.__init__:
