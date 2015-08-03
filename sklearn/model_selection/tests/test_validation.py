@@ -27,7 +27,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import LeaveOneOut
 from sklearn.model_selection import learning_curve
 from sklearn.model_selection import validation_curve
-from sklearn.model_selection.validate import _check_is_permutation
+from sklearn.model_selection.validation import _check_is_permutation
 
 from sklearn.datasets import make_regression
 from sklearn.datasets import load_boston
