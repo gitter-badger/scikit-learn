@@ -348,12 +348,12 @@ class KFold(_BaseKFold):
     def __init__(self, n_folds=3, shuffle=False,
                  random_state=None):
         super(KFold, self).__init__(n_folds, shuffle, random_state)
-        self._shuffle = shuffle
+        self.shuffle = shuffle
 
     def _iter_test_indices(self, X, y=None, labels=None):
         n = _num_samples(X)
         idxs = np.arange(n)
-        if self._shuffle:
+        if self.shuffle:
             check_random_state(self.random_state).shuffle(idxs)
 
         n_folds = self.n_folds
