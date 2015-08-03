@@ -552,16 +552,15 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
 
         # Out is a list of triplet: score, estimator, n_test_samples
         n_fits = len(out)
-        n_folds = cv.n_splits(X, y, labels)
 
         scores = list()
         grid_scores = list()
-        for grid_start in range(0, n_fits, n_folds):
+        for grid_start in range(0, n_fits, len_cv):
             n_test_samples = 0
             score = 0
             all_scores = []
             for this_score, this_n_test_samples, _, parameters in \
-                    out[grid_start:grid_start + n_folds]:
+                    out[grid_start:grid_start + len_cv]:
                 all_scores.append(this_score)
                 if self.iid:
                     this_score *= this_n_test_samples
@@ -570,7 +569,7 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
             if self.iid:
                 score /= float(n_test_samples)
             else:
-                score /= float(n_folds)
+                score /= float(len_cv)
             scores.append((score, parameters))
             # TODO: shall we also store the test_fold_sizes?
             grid_scores.append(_CVScoreTuple(
