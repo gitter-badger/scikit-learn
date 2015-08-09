@@ -93,7 +93,6 @@ class BaseCrossValidator(with_metaclass(ABCMeta)):
     @abstractmethod
     def n_splits(self, X=None, y=None, labels=None):
         """Returns the number of splitting iterations in the cross-validator"""
-        pass
 
     def __repr__(self):
         return _build_repr(self)
