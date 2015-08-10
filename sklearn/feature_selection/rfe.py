@@ -438,7 +438,7 @@ class RFECV(RFE, MetaEstimatorMixin):
             self.estimator_.set_params(**self.estimator_params)
         self.estimator_.fit(self.transform(X), y)
 
-        # Fixing a normalization error, n is equal to len_cv - 1
-        # here, the scores are normalized by len_cv
+        # Fixing a normalization error, n is equal to n_splits(X, y) - 1
+        # here, the scores are normalized by n_splits(X, y)
         self.grid_scores_ = scores / cv.n_splits(X, y)
         return self
