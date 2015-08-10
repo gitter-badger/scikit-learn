@@ -1,30 +1,29 @@
-from .split import BaseCrossValidator
-from .split import KFold
-from .split import StratifiedKFold
-from .split import LeaveOneLabelOut
-from .split import LeaveOneOut
-from .split import LeavePLabelOut
-from .split import LeavePOut
-from .split import ShuffleSplit
-from .split import StratifiedShuffleSplit
-from .split import PredefinedSplit
-from .split import train_test_split
-from .split import check_cv
+from ._split import BaseCrossValidator
+from ._split import KFold
+from ._split import StratifiedKFold
+from ._split import LeaveOneLabelOut
+from ._split import LeaveOneOut
+from ._split import LeavePLabelOut
+from ._split import LeavePOut
+from ._split import ShuffleSplit
+from ._split import StratifiedShuffleSplit
+from ._split import PredefinedSplit
+from ._split import train_test_split
+from ._split import check_cv
 
-from .validation import cross_val_score
-from .validation import cross_val_predict
-from .validation import learning_curve
-from .validation import permutation_test_score
-from .validation import validation_curve
+from ._validation import cross_val_score
+from ._validation import cross_val_predict
+from ._validation import learning_curve
+from ._validation import permutation_test_score
+from ._validation import validation_curve
 
-from .search import GridSearchCV
-from .search import RandomizedSearchCV
-from .search import ParameterGrid
-from .search import ParameterSampler
-from .search import fit_grid_point
+from ._search import GridSearchCV
+from ._search import RandomizedSearchCV
+from ._search import ParameterGrid
+from ._search import ParameterSampler
+from ._search import fit_grid_point
 
-__all__ = ('split', 'search', 'validation',
-           'BaseCrossValidator', 'GridSearchCV', 'KFold', 'LeaveOneLabelOut',
+__all__ = ('BaseCrossValidator', 'GridSearchCV', 'KFold', 'LeaveOneLabelOut',
            'LeaveOneOut', 'LeavePLabelOut', 'LeavePOut', 'ParameterGrid',
            'ParameterSampler', 'PredefinedSplit', 'RandomizedSearchCV',
            'ShuffleSplit', 'StratifiedKFold', 'StratifiedShuffleSplit',

@@ -21,8 +21,8 @@ import numpy as np
 
 from ..base import BaseEstimator, is_classifier, clone
 from ..base import MetaEstimatorMixin, ChangedBehaviorWarning
-from .split import check_cv
-from .validation import _fit_and_score
+from ._split import check_cv
+from ._validation import _fit_and_score
 from ..externals.joblib import Parallel, delayed
 from ..externals import six
 from ..utils import check_random_state

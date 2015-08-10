@@ -25,7 +25,7 @@ from ..utils.fixes import astype
 from ..utils.validation import _is_arraylike, _num_samples
 from ..externals.joblib import Parallel, delayed, logger
 from ..metrics.scorer import check_scoring
-from .split import check_cv, _safe_split
+from ._split import check_cv, _safe_split
 
 
 __all__ = ['cross_val_score', 'cross_val_predict', 'permutation_test_score',
