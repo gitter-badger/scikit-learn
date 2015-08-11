@@ -32,8 +32,8 @@ from sklearn.model_selection import PredefinedSplit
 from sklearn.model_selection import check_cv
 from sklearn.model_selection import train_test_split
 
-from sklearn.model_selection.split import _safe_split
-from sklearn.model_selection.split import _validate_shuffle_split
+from sklearn.model_selection._split import _safe_split
+from sklearn.model_selection._split import _validate_shuffle_split
 
 from sklearn.datasets import load_digits
 from sklearn.datasets import load_iris
