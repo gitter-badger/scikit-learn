@@ -45,6 +45,11 @@ from sklearn.svm import SVC
 from sklearn.preprocessing import MultiLabelBinarizer
 
 
+X = np.ones(10)
+y = np.arange(10) // 2
+P_sparse = coo_matrix(np.eye(5))
+
+
 class MockClassifier(object):
     """Dummy classifier to test the cross-validation"""
 
@@ -106,14 +111,6 @@ class MockClassifier(object):
 
     def get_params(self, deep=False):
         return {'a': self.a, 'allow_nd': self.allow_nd}
-
-
-X = np.ones(10)
-X_sparse = coo_matrix(X)
-W_sparse = coo_matrix((np.array([1]), (np.array([1]), np.array([0]))),
-                      shape=(10, 1))
-P_sparse = coo_matrix(np.eye(5))
-y = np.arange(10) // 2
 
 
 @ignore_warnings
