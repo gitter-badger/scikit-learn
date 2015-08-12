@@ -5,6 +5,7 @@ import warnings
 import numpy as np
 from scipy.sparse import coo_matrix
 from scipy import stats
+from itertools import combinations
 
 from sklearn.utils.testing import assert_true
 from sklearn.utils.testing import assert_equal
@@ -316,26 +317,25 @@ def test_stratifiedkfold_balance():
 
 
 def test_shuffle_kfold():
-    # Check the indices are shuffled properly, and that all indices are
-    # returned in the different test folds
-    kf = KFold(3, shuffle=True, random_state=0)
-    ind = np.arange(300)
+    # Check the indices are shuffled properly
+    kf = KFold(3)
+    kf2 = KFold(3, shuffle=True, random_state=0)
+    kf3 = KFold(3, shuffle=True, random_state=1)
 
-    all_folds = None
-    for train, test in kf.split(X=np.ones(300)):
-        sorted_array = np.arange(100)
-        assert_true(np.any(sorted_array != ind[train]))
-        sorted_array = np.arange(101, 200)
-        assert_true(np.any(sorted_array != ind[train]))
-        sorted_array = np.arange(201, 300)
-        assert_true(np.any(sorted_array != ind[train]))
-        if all_folds is None:
-            all_folds = ind[test].copy()
-        else:
-            all_folds = np.concatenate((all_folds, ind[test]))
+    X = np.ones(300)
 
-    all_folds.sort()
-    assert_array_equal(all_folds, ind)
+    all_folds = np.zeros(300)
+    for (tr1, te1), (tr2, te2), (tr3, te3) in zip(
+            kf.split(X), kf2.split(X), kf3.split(X)):
+        for tr_a, tr_b in combinations((tr1, tr2, tr3), 2):
+            # Assert that there is no complete overlap
+            assert_not_equal(len(np.intersect1d(tr_a, tr_b)), len(tr1))
+
+        # Set all test indices in successive iterations of kf2 to 1
+        all_folds[te2] = 1
+
+    # Check that all indices are returned in the different test folds
+    assert_equal(sum(all_folds), 300)
 
 
 def test_shuffle_kfold_stratifiedkfold_reproducibility():
