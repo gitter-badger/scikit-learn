@@ -351,7 +351,6 @@ def test_shuffle_kfold_stratifiedkfold_reproducibility():
     skf = StratifiedKFold(3, shuffle=True, random_state=0)
 
     for cv in (kf, skf):
-        print(cv)
         np.testing.assert_equal(list(cv.split(X, y)), list(cv.split(X, y)))
         np.testing.assert_equal(list(cv.split(X2, y2)), list(cv.split(X2, y2)))
 
