@@ -1,0 +1,21 @@
+
+Examples using ``sklearn.datasets.fetch_california_housing``
+------------------------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Partial dependence plots show the dependence between the target function [1]_ and a set of 'tar...">
+
+.. figure:: ../../auto_examples/ensemble/images/thumb/plot_partial_dependence.png
+   :target: ./../../auto_examples/ensemble/plot_partial_dependence.html
+
+   :ref:`example_ensemble_plot_partial_dependence.py`
+
+
+.. raw:: html
+
+    </div>
+

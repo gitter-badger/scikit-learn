@@ -1,0 +1,89 @@
+
+Examples using ``sklearn.datasets.load_boston``
+-----------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example shows how to use `cross_val_predict` to visualize prediction errors.">
+
+.. figure:: ../../auto_examples/./images/thumb/plot_cv_predict.png
+   :target: ./../../auto_examples/./plot_cv_predict.html
+
+   :ref:`example_plot_cv_predict.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example shows that imputing the missing values can give better results than discarding the...">
+
+.. figure:: ../../auto_examples/./images/thumb/missing_values.png
+   :target: ./../../auto_examples/./missing_values.html
+
+   :ref:`example_missing_values.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example illustrates the need for robust covariance estimation on a real data set. It is us...">
+
+.. figure:: ../../auto_examples/applications/images/thumb/plot_outlier_detection_housing.png
+   :target: ./../../auto_examples/applications/plot_outlier_detection_housing.html
+
+   :ref:`example_applications_plot_outlier_detection_housing.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Demonstrate how model complexity influences both prediction accuracy and computational performa...">
+
+.. figure:: ../../auto_examples/applications/images/thumb/plot_model_complexity_influence.png
+   :target: ./../../auto_examples/applications/plot_model_complexity_influence.html
+
+   :ref:`example_applications_plot_model_complexity_influence.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Demonstrate Gradient Boosting on the Boston housing dataset.">
+
+.. figure:: ../../auto_examples/ensemble/images/thumb/plot_gradient_boosting_regression.png
+   :target: ./../../auto_examples/ensemble/plot_gradient_boosting_regression.html
+
+   :ref:`example_ensemble_plot_gradient_boosting_regression.py`
+
+
+.. raw:: html
+
+    </div>
+

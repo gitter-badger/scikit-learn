@@ -1,0 +1,21 @@
+
+Examples using ``sklearn.decomposition.LatentDirichletAllocation``
+------------------------------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This is an example of applying Non Negative Matrix Factorization and Latent Dirichlet Allocatio...">
+
+.. figure:: ../../auto_examples/applications/images/thumb/topics_extraction_with_nmf_lda.png
+   :target: ./../../auto_examples/applications/topics_extraction_with_nmf_lda.html
+
+   :ref:`example_applications_topics_extraction_with_nmf_lda.py`
+
+
+.. raw:: html
+
+    </div>
+

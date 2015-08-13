@@ -1,0 +1,23 @@
+
+
+.. _example_model_selection_plot_validation_curve.py:
+
+
+==========================
+Plotting Validation Curves
+==========================
+
+In this plot you can see the training scores and validation scores of an SVM
+for different values of the kernel parameter gamma. For very low values of
+gamma, you can see that both the training score and the validation score are
+low. This is called underfitting. Medium values of gamma will result in high
+values for both scores, i.e. the classifier is performing fairly well. If gamma
+is too high, the classifier will overfit, which means that the training score
+is good but the validation score is poor.
+
+
+**Python source code:** :download:`plot_validation_curve.py <plot_validation_curve.py>`
+
+.. literalinclude:: plot_validation_curve.py
+    :lines: 14-
+    

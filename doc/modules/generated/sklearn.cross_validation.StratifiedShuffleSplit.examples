@@ -1,0 +1,21 @@
+
+Examples using ``sklearn.cross_validation.StratifiedShuffleSplit``
+------------------------------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example illustrates the effect of the parameters ``gamma`` and ``C`` of the Radius Basis F...">
+
+.. figure:: ../../auto_examples/svm/images/thumb/plot_rbf_parameters.png
+   :target: ./../../auto_examples/svm/plot_rbf_parameters.html
+
+   :ref:`example_svm_plot_rbf_parameters.py`
+
+
+.. raw:: html
+
+    </div>
+

@@ -1,0 +1,38 @@
+
+Examples using ``sklearn.ensemble.VotingClassifier``
+----------------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Plot the decision boundaries of a `VotingClassifier` for two features of the Iris dataset.">
+
+.. figure:: ../../auto_examples/ensemble/images/thumb/plot_voting_decision_regions.png
+   :target: ./../../auto_examples/ensemble/plot_voting_decision_regions.html
+
+   :ref:`example_ensemble_plot_voting_decision_regions.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Plot the class probabilities of the first sample in a toy dataset predicted by three different ...">
+
+.. figure:: ../../auto_examples/ensemble/images/thumb/plot_voting_probas.png
+   :target: ./../../auto_examples/ensemble/plot_voting_probas.html
+
+   :ref:`example_ensemble_plot_voting_probas.py`
+
+
+.. raw:: html
+
+    </div>
+

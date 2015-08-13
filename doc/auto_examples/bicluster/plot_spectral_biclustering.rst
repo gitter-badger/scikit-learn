@@ -1,0 +1,27 @@
+
+
+.. _example_bicluster_plot_spectral_biclustering.py:
+
+
+=============================================
+A demo of the Spectral Biclustering algorithm
+=============================================
+
+This example demonstrates how to generate a checkerboard dataset and
+bicluster it using the Spectral Biclustering algorithm.
+
+The data is generated with the ``make_checkerboard`` function, then
+shuffled and passed to the Spectral Biclustering algorithm. The rows
+and columns of the shuffled matrix are rearranged to show the
+biclusters found by the algorithm.
+
+The outer product of the row and column label vectors shows a
+representation of the checkerboard structure.
+
+
+
+**Python source code:** :download:`plot_spectral_biclustering.py <plot_spectral_biclustering.py>`
+
+.. literalinclude:: plot_spectral_biclustering.py
+    :lines: 18-
+    

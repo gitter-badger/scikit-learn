@@ -1,0 +1,28 @@
+
+
+.. _example_linear_model_plot_bayesian_ridge.py:
+
+
+=========================
+Bayesian Ridge Regression
+=========================
+
+Computes a Bayesian Ridge Regression on a synthetic dataset.
+
+See :ref:`bayesian_ridge_regression` for more information on the regressor.
+
+Compared to the OLS (ordinary least squares) estimator, the coefficient
+weights are slightly shifted toward zeros, which stabilises them.
+
+As the prior on the weights is a Gaussian prior, the histogram of the
+estimated weights is Gaussian.
+
+The estimation of the model is done by iteratively maximizing the
+marginal log-likelihood of the observations.
+
+
+**Python source code:** :download:`plot_bayesian_ridge.py <plot_bayesian_ridge.py>`
+
+.. literalinclude:: plot_bayesian_ridge.py
+    :lines: 19-
+    

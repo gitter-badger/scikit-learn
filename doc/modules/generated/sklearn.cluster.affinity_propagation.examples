@@ -1,0 +1,21 @@
+
+Examples using ``sklearn.cluster.affinity_propagation``
+-------------------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example employs several unsupervised learning techniques to extract the stock market struc...">
+
+.. figure:: ../../auto_examples/applications/images/thumb/plot_stock_market.png
+   :target: ./../../auto_examples/applications/plot_stock_market.html
+
+   :ref:`example_applications_plot_stock_market.py`
+
+
+.. raw:: html
+
+    </div>
+

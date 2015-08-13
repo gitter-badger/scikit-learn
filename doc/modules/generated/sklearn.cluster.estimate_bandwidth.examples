@@ -1,0 +1,38 @@
+
+Examples using ``sklearn.cluster.estimate_bandwidth``
+-----------------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Reference:">
+
+.. figure:: ../../auto_examples/cluster/images/thumb/plot_mean_shift.png
+   :target: ./../../auto_examples/cluster/plot_mean_shift.html
+
+   :ref:`example_cluster_plot_mean_shift.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="This example aims at showing characteristics of different clustering algorithms on datasets tha...">
+
+.. figure:: ../../auto_examples/cluster/images/thumb/plot_cluster_comparison.png
+   :target: ./../../auto_examples/cluster/plot_cluster_comparison.html
+
+   :ref:`example_cluster_plot_cluster_comparison.py`
+
+
+.. raw:: html
+
+    </div>
+

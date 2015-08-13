@@ -1,0 +1,38 @@
+
+Examples using ``sklearn.linear_model.LassoCV``
+-----------------------------------------------
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="A tutorial exercise which uses cross-validation with linear models.">
+
+.. figure:: ../../auto_examples/exercises/images/thumb/plot_cv_diabetes.png
+   :target: ./../../auto_examples/exercises/plot_cv_diabetes.html
+
+   :ref:`example_exercises_plot_cv_diabetes.py`
+
+
+.. raw:: html
+
+    </div>
+
+
+
+.. raw:: html
+
+
+    <div class="thumbnailContainer" tooltip="Use the Akaike information criterion (AIC), the Bayes Information criterion (BIC) and cross-val...">
+
+.. figure:: ../../auto_examples/linear_model/images/thumb/plot_lasso_model_selection.png
+   :target: ./../../auto_examples/linear_model/plot_lasso_model_selection.html
+
+   :ref:`example_linear_model_plot_lasso_model_selection.py`
+
+
+.. raw:: html
+
+    </div>
+
