@@ -734,15 +734,9 @@ def test_check_cv_return_types():
                             list(cv.split(X, y_multiclass)))
 
     X = np.ones(5)
-    y_seq_of_seqs = [[], [1, 2], [3], [0, 1, 3], [2]]
-
-    with warnings.catch_warnings(record=True):
-        # deprecated sequence of sequence format
-        cv = check_cv(3, y_seq_of_seqs, classifier=True)
-    np.testing.assert_equal(list(KFold(3).split(X)), list(cv.split(X)))
-
-    y_indicator_matrix = MultiLabelBinarizer().fit_transform(y_seq_of_seqs)
-    cv = check_cv(3, y_indicator_matrix, classifier=True)
+    y_multilabel = np.array([[0, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 1],
+                            [1, 1, 0, 1], [0, 0, 1, 0]])
+    cv = check_cv(3, y_multilabel, classifier=True)
     np.testing.assert_equal(list(KFold(3).split(X)), list(cv.split(X)))
 
     y_multioutput = np.array([[1, 2], [0, 3], [0, 0], [3, 1], [2, 0]])
