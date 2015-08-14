@@ -35,9 +35,6 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.17.dev0 documentation" href="../../index.html" />
-    <link rel="up" title="API Reference" href="../classes.html" />
-    <link rel="next" title="sklearn.cross_validation.LeaveOneLabelOut" href="sklearn.cross_validation.LeaveOneLabelOut.html" />
-    <link rel="prev" title="sklearn.covariance.graph_lasso" href="sklearn.covariance.graph_lasso.html" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -106,43 +103,6 @@
 <div class="content-wrapper">
     <div class="sphinxsidebar">
     <div class="sphinxsidebarwrapper">
-        <div class="rel">
-    
-
-  <!-- rellinks[1:] is an ugly hack to avoid link to module
-  index -->
-        <div class="rellink">
-        <a href="sklearn.covariance.graph_lasso.html"
-        accesskey="P">Previous
-        <br/>
-        <span class="smallrellink">
-        sklearn.covar...
-        </span>
-            <span class="hiddenrellink">
-            sklearn.covariance.graph_lasso
-            </span>
-        </a>
-        </div>
-
-    <!-- Ad a link to the 'up' page -->
-        <div class="spacer">
-        &nbsp;
-        </div>
-        <div class="rellink">
-        <a href="../classes.html">
-        Up
-        <br/>
-        <span class="smallrellink">
-        API Reference
-        </span>
-            <span class="hiddenrellink">
-            API Reference
-            </span>
-            
-        </a>
-        </div>
-    </div>
-    
       <p class="doc-version">This documentation is for scikit-learn <strong>version 0.17.dev0</strong> &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
     <p class="citing">If you use the software, please consider <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <ul>
@@ -168,10 +128,10 @@
           <div class="body">
             
   <div class="section" id="sklearn-cross-validation-kfold">
-<h1><a class="reference internal" href="../classes.html#module-sklearn.cross_validation" title="sklearn.cross_validation"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cross_validation</span></tt></a>.KFold<a class="headerlink" href="#sklearn-cross-validation-kfold" title="Permalink to this headline">¶</a></h1>
+<h1><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cross_validation</span></tt>.KFold<a class="headerlink" href="#sklearn-cross-validation-kfold" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.cross_validation.KFold">
-<em class="property">class </em><tt class="descclassname">sklearn.cross_validation.</tt><tt class="descname">KFold</tt><big>(</big><em>n</em>, <em>n_folds=3</em>, <em>shuffle=False</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cross_validation.py#L261"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cross_validation.KFold" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.cross_validation.</tt><tt class="descname">KFold</tt><big>(</big><em>n</em>, <em>n_folds=3</em>, <em>shuffle=False</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cross_validation.py#L252"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cross_validation.KFold" title="Permalink to this definition">¶</a></dt>
 <dd><p>K-Folds cross validation iterator.</p>
 <p>Provides train/test indices to split data in train test sets. Split
 dataset into k consecutive folds (without shuffling).</p>
@@ -205,10 +165,11 @@ sampling. If None, use default numpy RNG for shuffling</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<dl class="last docutils">
+<dl class="docutils">
 <dt><a class="reference internal" href="sklearn.cross_validation.StratifiedKFold.html#sklearn.cross_validation.StratifiedKFold" title="sklearn.cross_validation.StratifiedKFold"><tt class="xref py py-obj docutils literal"><span class="pre">StratifiedKFold</span></tt></a></dt>
-<dd>Take label information into account to avoid building folds with imbalanced class distributions (for binary or multiclass classification tasks).</dd>
+<dd>take label information into account to avoid building</dd>
 </dl>
+<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">folds</span></tt>, <tt class="xref py py-obj docutils literal"><span class="pre">classification</span></tt></p>
 </div>
 <p class="rubric">Notes</p>
 <p>The first n % n_folds folds have size n // n_folds + 1, other folds have
@@ -267,12 +228,8 @@ size n // n_folds.</p>
         &copy; 2010 - 2014, scikit-learn developers (BSD License).
       <a href="../../_sources/modules/generated/sklearn.cross_validation.KFold.txt" rel="nofollow">Show this page source</a>
     </div>
-     <div class="rel">
+     <div class="rel rellarge">
     
-    <div class="buttonPrevious">
-      <a href="sklearn.covariance.graph_lasso.html">Previous
-      </a>
-    </div>
     
      </div>
 

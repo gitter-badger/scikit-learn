@@ -168,7 +168,7 @@
 <h1>3.2.4.1.10. <a class="reference internal" href="../classes.html#module-sklearn.linear_model" title="sklearn.linear_model"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.linear_model</span></tt></a>.RidgeClassifierCV<a class="headerlink" href="#sklearn-linear-model-ridgeclassifiercv" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.linear_model.RidgeClassifierCV">
-<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">RidgeClassifierCV</tt><big>(</big><em>alphas=(0.1</em>, <em>1.0</em>, <em>10.0)</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>scoring=None</em>, <em>cv=None</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/ridge.py#L977"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">RidgeClassifierCV</tt><big>(</big><em>alphas=(0.1</em>, <em>1.0</em>, <em>10.0)</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>scoring=None</em>, <em>cv=None</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/ridge.py#L976"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ridge classifier with built-in cross-validation.</p>
 <p>By default, it performs Generalized Cross-Validation, which is a form of
 efficient Leave-One-Out cross-validation. Currently, only the n_features &gt;
@@ -278,12 +278,12 @@ advantage of the multi-variate response support in Ridge.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.linear_model.RidgeClassifierCV.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>alphas=(0.1</em>, <em>1.0</em>, <em>10.0)</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>scoring=None</em>, <em>cv=None</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/ridge.py#L1047"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>alphas=(0.1</em>, <em>1.0</em>, <em>10.0)</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>scoring=None</em>, <em>cv=None</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/ridge.py#L1046"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.linear_model.RidgeClassifierCV.decision_function">
-<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L180"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.decision_function" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L180"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict confidence scores for samples.</p>
 <p>The confidence score for a sample is the signed distance of that
 sample to the hyperplane.</p>
@@ -311,7 +311,7 @@ class would be predicted.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.RidgeClassifierCV.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/ridge.py#L1054"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/ridge.py#L1053"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the ridge classifier.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -344,7 +344,7 @@ and n_features is the number of features.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.RidgeClassifierCV.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -369,7 +369,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.RidgeClassifierCV.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L213"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L213"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class labels for samples in X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -393,7 +393,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.RidgeClassifierCV.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the mean accuracy on the given test data and labels.</p>
 <p>In multi-label classification, this is the subset accuracy
 which is a harsh metric since you require for each sample that
@@ -428,7 +428,7 @@ each label set be correctly predicted.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.RidgeClassifierCV.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.RidgeClassifierCV.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

@@ -41,59 +41,67 @@ data in *folds* that we use for training and testing::
     >>> print(scores)
     [0.93489148580968284, 0.95659432387312182, 0.93989983305509184]
 
-.. currentmodule:: sklearn.cross_validation
+.. currentmodule:: sklearn.model_selection
 
 This is called a :class:`KFold` cross validation
 
 .. _cv_generators_tut:
 
-Cross-validation generators
-=============================
+Cross-validation classes
+========================
 
 
 
-The code above to split data in train and test sets is tedious to write.
-Scikit-learn exposes cross-validation generators to generate list
-of indices for this purpose::
+The above code, to split data into train and test sets, is tedious to write. 
+Scikit-learn provides a bunch of classes which can be used to generate lists
+of train/test indices based on popular cross-validation strategies.
 
-    >>> from sklearn import cross_validation
-    >>> k_fold = cross_validation.KFold(n=6, n_folds=3)
-    >>> for train_indices, test_indices in k_fold:
+These classes have a split method which generates the train/test indices.
+In the following example, let us use dummy values for X, to get the
+train/test indices based on a 3-fold cross-validation strategy::
+
+
+    >>> from sklearn.model_selection import KFold
+    >>> import numpy as np
+    >>> k_fold = KFold(n_folds=3)
+    >>> for train_indices, test_indices in k_fold.split(X=np.ones(6)):
     ...      print('Train: %s | test: %s' % (train_indices, test_indices))
     Train: [2 3 4 5] | test: [0 1]
     Train: [0 1 4 5] | test: [2 3]
     Train: [0 1 2 3] | test: [4 5]
 
-The cross-validation can then be implemented easily::
+Using these indices cross-validation can then be implemented easily::
 
-    >>> kfold = cross_validation.KFold(len(X_digits), n_folds=3)
-    >>> [svc.fit(X_digits[train], y_digits[train]).score(X_digits[test], y_digits[test])
-    ...          for train, test in kfold]
+    >>> kfold = KFold(n_folds=3)
+    >>> [svc.fit(X_digits[train], y_digits[train]).score(
+    ...      X_digits[test], y_digits[test])
+    ...  for train, test in kfold.split(X_digits)]
     [0.93489148580968284, 0.95659432387312182, 0.93989983305509184]
 
 To compute the ``score`` method of an estimator, the sklearn exposes
 a helper function::
 
-    >>> cross_validation.cross_val_score(svc, X_digits, y_digits, cv=kfold, n_jobs=-1)
+    >>> from sklearn.model_selection import cross_val_score
+    >>> cross_val_score(svc, X_digits, y_digits, cv=kfold, n_jobs=-1)
     array([ 0.93489149,  0.95659432,  0.93989983])
 
 `n_jobs=-1` means that the computation will be dispatched on all the CPUs
 of the computer.
 
-   **Cross-validation generators**
+   **Cross-validation classes**
 
 
 .. list-table::
 
    *
 
-    - :class:`KFold` **(n, k)**
+    - :class:`KFold` **(k)**
 
-    - :class:`StratifiedKFold` **(y, k)**
+    - :class:`StratifiedKFold` **(k)**
 
-    - :class:`LeaveOneOut` **(n)**
+    - :class:`LeaveOneOut` **()**
 
-    - :class:`LeaveOneLabelOut` **(labels)**
+    - :class:`LeaveOneLabelOut` **()**
 
    *
 
@@ -132,14 +140,14 @@ Grid-search and cross-validated estimators
 Grid-search
 -------------
 
-.. currentmodule:: sklearn.grid_search
+.. currentmodule:: sklearn.model_selection
 
 The sklearn provides an object that, given data, computes the score
 during the fit of an estimator on a parameter grid and chooses the
 parameters to maximize the cross-validation score. This object takes an
 estimator during the construction and exposes an estimator API::
 
-    >>> from sklearn.grid_search import GridSearchCV
+    >>> from sklearn.model_selection import GridSearchCV
     >>> Cs = np.logspace(-6, -1, 10)
     >>> clf = GridSearchCV(estimator=svc, param_grid=dict(C=Cs),
     ...                    n_jobs=-1)
@@ -163,8 +171,8 @@ a stratified 3-fold.
 
     ::
 
-        >>> cross_validation.cross_val_score(clf, X_digits, y_digits)
-        ...                                                  # doctest: +ELLIPSIS
+        >>> cross_val_score(clf, X_digits, y_digits)
+        ...                                          # doctest: +ELLIPSIS
         array([ 0.938...,  0.963...,  0.944...])
 
     Two cross-validation loops are performed in parallel: one by the

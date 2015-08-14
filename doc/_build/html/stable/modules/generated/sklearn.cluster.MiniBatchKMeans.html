@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.cluster" title="sklearn.cluster"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cluster</span></tt></a>.MiniBatchKMeans<a class="headerlink" href="#sklearn-cluster-minibatchkmeans" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.cluster.MiniBatchKMeans">
-<em class="property">class </em><tt class="descclassname">sklearn.cluster.</tt><tt class="descname">MiniBatchKMeans</tt><big>(</big><em>n_clusters=8</em>, <em>init='k-means++'</em>, <em>max_iter=100</em>, <em>batch_size=100</em>, <em>verbose=0</em>, <em>compute_labels=True</em>, <em>random_state=None</em>, <em>tol=0.0</em>, <em>max_no_improvement=10</em>, <em>init_size=None</em>, <em>n_init=3</em>, <em>reassignment_ratio=0.01</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L1087"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.cluster.</tt><tt class="descname">MiniBatchKMeans</tt><big>(</big><em>n_clusters=8</em>, <em>init='k-means++'</em>, <em>max_iter=100</em>, <em>batch_size=100</em>, <em>verbose=0</em>, <em>compute_labels=True</em>, <em>random_state=None</em>, <em>tol=0.0</em>, <em>max_no_improvement=10</em>, <em>init_size=None</em>, <em>n_init=3</em>, <em>reassignment_ratio=0.01</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L1087"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mini-Batch K-Means clustering</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -317,12 +317,12 @@ neighbor.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_clusters=8</em>, <em>init='k-means++'</em>, <em>max_iter=100</em>, <em>batch_size=100</em>, <em>verbose=0</em>, <em>compute_labels=True</em>, <em>random_state=None</em>, <em>tol=0.0</em>, <em>max_no_improvement=10</em>, <em>init_size=None</em>, <em>n_init=3</em>, <em>reassignment_ratio=0.01</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L1185"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_clusters=8</em>, <em>init='k-means++'</em>, <em>max_iter=100</em>, <em>batch_size=100</em>, <em>verbose=0</em>, <em>compute_labels=True</em>, <em>random_state=None</em>, <em>tol=0.0</em>, <em>max_no_improvement=10</em>, <em>init_size=None</em>, <em>n_init=3</em>, <em>reassignment_ratio=0.01</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L1185"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L1200"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L1200"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the centroids on X by chunking it into mini-batches.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -340,7 +340,7 @@ neighbor.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.fit_predict">
-<tt class="descname">fit_predict</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L798"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.fit_predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_predict</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L798"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.fit_predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute cluster centers and predict cluster index for each sample.</p>
 <p>Convenience method; equivalent to calling fit(X) followed by
 predict(X).</p>
@@ -348,14 +348,14 @@ predict(X).</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L806"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L806"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute clustering and transform X to cluster-distance space.</p>
 <p>Equivalent to fit(X).transform(X), but more efficiently implemented.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -380,7 +380,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.partial_fit">
-<tt class="descname">partial_fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L1362"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.partial_fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">partial_fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L1362"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.partial_fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update k means estimate on a single mini-batch X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -398,7 +398,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L1415"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L1415"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict the closest cluster each sample in X belongs to.</p>
 <p>In the vector quantization literature, <cite>cluster_centers_</cite> is called
 the code book and each value returned by <cite>predict</cite> is the index of
@@ -425,7 +425,7 @@ the closest code in the code book.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L867"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L867"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Opposite of the value of X on the K-means objective.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -449,7 +449,7 @@ the closest code in the code book.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -467,7 +467,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.MiniBatchKMeans.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/k_means_.py#L818"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/k_means_.py#L818"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.MiniBatchKMeans.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform X to a cluster-distance space.</p>
 <p>In the new space, each dimension is the distance to the cluster
 centers.  Note that even if X is sparse, the array returned by

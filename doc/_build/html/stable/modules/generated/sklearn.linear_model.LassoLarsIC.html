@@ -171,7 +171,7 @@
 <h1>3.2.4.2.1. <a class="reference internal" href="../classes.html#module-sklearn.linear_model" title="sklearn.linear_model"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.linear_model</span></tt></a>.LassoLarsIC<a class="headerlink" href="#sklearn-linear-model-lassolarsic" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.linear_model.LassoLarsIC">
-<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">LassoLarsIC</tt><big>(</big><em>criterion='aic'</em>, <em>fit_intercept=True</em>, <em>verbose=False</em>, <em>normalize=True</em>, <em>precompute='auto'</em>, <em>max_iter=500</em>, <em>eps=2.2204460492503131e-16</em>, <em>copy_X=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/least_angle.py#L1168"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">LassoLarsIC</tt><big>(</big><em>criterion='aic'</em>, <em>fit_intercept=True</em>, <em>verbose=False</em>, <em>normalize=True</em>, <em>precompute='auto'</em>, <em>max_iter=500</em>, <em>eps=2.2204460492503131e-16</em>, <em>copy_X=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/least_angle.py#L1168"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Lasso model fit with Lars using BIC or AIC for model selection</p>
 <p>The optimization objective for Lasso is:</p>
 <div class="highlight-python"><pre>(1 / (2 * n_samples)) * ||y - Xw||^2_2 + alpha * ||w||_1</pre>
@@ -308,12 +308,12 @@ Ann. Statist. Volume 35, Number 5 (2007), 2173-2192.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.linear_model.LassoLarsIC.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>criterion='aic'</em>, <em>fit_intercept=True</em>, <em>verbose=False</em>, <em>normalize=True</em>, <em>precompute='auto'</em>, <em>max_iter=500</em>, <em>eps=2.2204460492503131e-16</em>, <em>copy_X=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/least_angle.py#L1266"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>criterion='aic'</em>, <em>fit_intercept=True</em>, <em>verbose=False</em>, <em>normalize=True</em>, <em>precompute='auto'</em>, <em>max_iter=500</em>, <em>eps=2.2204460492503131e-16</em>, <em>copy_X=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/least_angle.py#L1266"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LassoLarsIC.decision_function">
-<tt class="descname">decision_function</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/__init__.py#L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.decision_function" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">decision_function</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/__init__.py#L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>DEPRECATED:  and will be removed in 0.19.</p>
 <p>Decision function of the linear model.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -338,7 +338,7 @@ Ann. Statist. Volume 35, Number 5 (2007), 2173-2192.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LassoLarsIC.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>copy_X=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/least_angle.py#L1278"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>copy_X=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/least_angle.py#L1278"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model using X, y as training data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -370,7 +370,7 @@ Ann. Statist. Volume 35, Number 5 (2007), 2173-2192.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LassoLarsIC.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -395,7 +395,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LassoLarsIC.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L145"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L145"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict using the linear model</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -419,7 +419,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LassoLarsIC.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L317"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L317"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the coefficient of determination R^2 of the prediction.</p>
 <p>The coefficient R^2 is defined as (1 - u/v), where u is the regression
 sum of squares ((y_true - y_pred) ** 2).sum() and v is the residual
@@ -458,7 +458,7 @@ would get a R^2 score of 0.0.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LassoLarsIC.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LassoLarsIC.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

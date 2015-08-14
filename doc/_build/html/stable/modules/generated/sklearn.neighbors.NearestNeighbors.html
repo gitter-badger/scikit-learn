@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.neighbors" title="sklearn.neighbors"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.neighbors</span></tt></a>.NearestNeighbors<a class="headerlink" href="#sklearn-neighbors-nearestneighbors" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.neighbors.NearestNeighbors">
-<em class="property">class </em><tt class="descclassname">sklearn.neighbors.</tt><tt class="descname">NearestNeighbors</tt><big>(</big><em>n_neighbors=5</em>, <em>radius=1.0</em>, <em>algorithm='auto'</em>, <em>leaf_size=30</em>, <em>metric='minkowski'</em>, <em>p=2</em>, <em>metric_params=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/neighbors/unsupervised.py#L9"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.neighbors.</tt><tt class="descname">NearestNeighbors</tt><big>(</big><em>n_neighbors=5</em>, <em>radius=1.0</em>, <em>algorithm='auto'</em>, <em>leaf_size=30</em>, <em>metric='minkowski'</em>, <em>p=2</em>, <em>metric_params=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/neighbors/unsupervised.py#L9"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unsupervised learner for implementing neighbor searches.</p>
 <p>Read more in the <a class="reference internal" href="../neighbors.html#unsupervised-neighbors"><em>User Guide</em></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -306,12 +306,12 @@ for a discussion of the choice of <tt class="docutils literal"><span class="pre"
 </table>
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_neighbors=5</em>, <em>radius=1.0</em>, <em>algorithm='auto'</em>, <em>leaf_size=30</em>, <em>metric='minkowski'</em>, <em>p=2</em>, <em>metric_params=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/neighbors/unsupervised.py#L111"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_neighbors=5</em>, <em>radius=1.0</em>, <em>algorithm='auto'</em>, <em>leaf_size=30</em>, <em>metric='minkowski'</em>, <em>p=2</em>, <em>metric_params=None</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/neighbors/unsupervised.py#L111"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/neighbors/base.py#L774"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/neighbors/base.py#L774"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model using X as training data</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -329,7 +329,7 @@ for a discussion of the choice of <tt class="docutils literal"><span class="pre"
 
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -354,7 +354,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.kneighbors">
-<tt class="descname">kneighbors</tt><big>(</big><em>X=None</em>, <em>n_neighbors=None</em>, <em>return_distance=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/neighbors/base.py#L267"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.kneighbors" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">kneighbors</tt><big>(</big><em>X=None</em>, <em>n_neighbors=None</em>, <em>return_distance=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/neighbors/base.py#L267"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.kneighbors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds the K-neighbors of a point.</p>
 <p>Returns distance</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -417,7 +417,7 @@ element is at distance 0.5 and is the third element of samples
 
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.kneighbors_graph">
-<tt class="descname">kneighbors_graph</tt><big>(</big><em>X=None</em>, <em>n_neighbors=None</em>, <em>mode='connectivity'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/neighbors/base.py#L409"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.kneighbors_graph" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">kneighbors_graph</tt><big>(</big><em>X=None</em>, <em>n_neighbors=None</em>, <em>mode='connectivity'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/neighbors/base.py#L409"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.kneighbors_graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the (weighted) graph of k-Neighbors for points in X</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -472,7 +472,7 @@ A[i, j] is assigned the weight of edge that connects i to j.</p>
 
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.radius_neighbors">
-<tt class="descname">radius_neighbors</tt><big>(</big><em>X=None</em>, <em>radius=None</em>, <em>return_distance=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/neighbors/base.py#L490"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.radius_neighbors" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">radius_neighbors</tt><big>(</big><em>X=None</em>, <em>radius=None</em>, <em>return_distance=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/neighbors/base.py#L490"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.radius_neighbors" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds the neighbors within a given radius of a point or points.</p>
 <p>Return the indices and distances of each point from the dataset
 lying in a ball with size <tt class="docutils literal"><span class="pre">radius</span></tt> around the points of the query
@@ -546,7 +546,7 @@ indices.  In general, multiple points can be queried at the same time.</p>
 
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.radius_neighbors_graph">
-<tt class="descname">radius_neighbors_graph</tt><big>(</big><em>X=None</em>, <em>radius=None</em>, <em>mode='connectivity'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/neighbors/base.py#L636"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.radius_neighbors_graph" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">radius_neighbors_graph</tt><big>(</big><em>X=None</em>, <em>radius=None</em>, <em>mode='connectivity'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/neighbors/base.py#L636"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.radius_neighbors_graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the (weighted) graph of Neighbors for points in X</p>
 <p>Neighborhoods are restricted the points at a distance lower than
 radius.</p>
@@ -602,7 +602,7 @@ edges are Euclidean distance between points.</p>
 
 <dl class="method">
 <dt id="sklearn.neighbors.NearestNeighbors.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.neighbors.NearestNeighbors.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

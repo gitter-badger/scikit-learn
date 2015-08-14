@@ -168,7 +168,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.preprocessing" title="sklearn.preprocessing"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.preprocessing</span></tt></a>.MinMaxScaler<a class="headerlink" href="#sklearn-preprocessing-minmaxscaler" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.preprocessing.MinMaxScaler">
-<em class="property">class </em><tt class="descclassname">sklearn.preprocessing.</tt><tt class="descname">MinMaxScaler</tt><big>(</big><em>feature_range=(0</em>, <em>1)</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/preprocessing/data.py#L197"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.preprocessing.</tt><tt class="descname">MinMaxScaler</tt><big>(</big><em>feature_range=(0</em>, <em>1)</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/preprocessing/data.py#L197"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transforms features by scaling each feature to a given range.</p>
 <p>This estimator scales and translates each feature individually such
 that it is in the given range on the training set, i.e. between
@@ -238,12 +238,12 @@ copy (if the input is already a numpy array).</p>
 </table>
 <dl class="method">
 <dt id="sklearn.preprocessing.MinMaxScaler.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>feature_range=(0</em>, <em>1)</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/preprocessing/data.py#L234"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>feature_range=(0</em>, <em>1)</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/preprocessing/data.py#L234"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.preprocessing.MinMaxScaler.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/preprocessing/data.py#L238"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/preprocessing/data.py#L238"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the minimum and maximum to be used for later scaling.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -262,7 +262,7 @@ used for later scaling along the features axis.</p>
 
 <dl class="method">
 <dt id="sklearn.preprocessing.MinMaxScaler.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to X and y with optional parameters fit_params
 and returns a transformed version of X.</p>
@@ -292,7 +292,7 @@ and returns a transformed version of X.</p>
 
 <dl class="method">
 <dt id="sklearn.preprocessing.MinMaxScaler.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -317,7 +317,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.preprocessing.MinMaxScaler.inverse_transform">
-<tt class="descname">inverse_transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/preprocessing/data.py#L277"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inverse_transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/preprocessing/data.py#L277"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.inverse_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Undo the scaling of X according to feature_range.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -335,7 +335,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.preprocessing.MinMaxScaler.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -353,7 +353,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.preprocessing.MinMaxScaler.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/preprocessing/data.py#L262"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/fe8f5a2/sklearn/preprocessing/data.py#L262"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.preprocessing.MinMaxScaler.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Scaling features of X according to feature_range.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

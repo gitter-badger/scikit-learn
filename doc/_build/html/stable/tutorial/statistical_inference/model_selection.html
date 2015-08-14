@@ -148,7 +148,7 @@
     <ul>
 <li><a class="reference internal" href="#">Model selection: choosing estimators and their parameters</a><ul>
 <li><a class="reference internal" href="#score-and-cross-validated-scores">Score, and cross-validated scores</a></li>
-<li><a class="reference internal" href="#cross-validation-generators">Cross-validation generators</a></li>
+<li><a class="reference internal" href="#cross-validation-classes">Cross-validation classes</a></li>
 <li><a class="reference internal" href="#grid-search-and-cross-validated-estimators">Grid-search and cross-validated estimators</a><ul>
 <li><a class="reference internal" href="#grid-search">Grid-search</a></li>
 <li><a class="reference internal" href="#cross-validated-estimators">Cross-validated estimators</a></li>
@@ -209,39 +209,45 @@ data in <em>folds</em> that we use for training and testing:</p>
 <span class="go">[0.93489148580968284, 0.95659432387312182, 0.93989983305509184]</span>
 </pre></div>
 </div>
-<p>This is called a <a class="reference internal" href="../../modules/generated/sklearn.cross_validation.KFold.html#sklearn.cross_validation.KFold" title="sklearn.cross_validation.KFold"><tt class="xref py py-class docutils literal"><span class="pre">KFold</span></tt></a> cross validation</p>
+<p>This is called a <a class="reference internal" href="../../modules/generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="sklearn.model_selection.KFold"><tt class="xref py py-class docutils literal"><span class="pre">KFold</span></tt></a> cross validation</p>
 </div>
-<div class="section" id="cross-validation-generators">
-<span id="cv-generators-tut"></span><h2>Cross-validation generators<a class="headerlink" href="#cross-validation-generators" title="Permalink to this headline">¶</a></h2>
-<p>The code above to split data in train and test sets is tedious to write.
-Scikit-learn exposes cross-validation generators to generate list
-of indices for this purpose:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k_fold</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">KFold</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">n_folds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">train_indices</span><span class="p">,</span> <span class="n">test_indices</span> <span class="ow">in</span> <span class="n">k_fold</span><span class="p">:</span>
+<div class="section" id="cross-validation-classes">
+<span id="cv-generators-tut"></span><h2>Cross-validation classes<a class="headerlink" href="#cross-validation-classes" title="Permalink to this headline">¶</a></h2>
+<p>The above code, to split data into train and test sets, is tedious to write.
+Scikit-learn provides a bunch of classes which can be used to generate lists
+of train/test indices based on popular cross-validation strategies.</p>
+<p>These classes have a split method which generates the train/test indices.
+In the following example, let us use dummy values for X, to get the
+train/test indices based on a 3-fold cross-validation strategy:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k_fold</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_folds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">train_indices</span><span class="p">,</span> <span class="n">test_indices</span> <span class="ow">in</span> <span class="n">k_fold</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">6</span><span class="p">)):</span>
 <span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;Train: </span><span class="si">%s</span><span class="s"> | test: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">train_indices</span><span class="p">,</span> <span class="n">test_indices</span><span class="p">))</span>
 <span class="go">Train: [2 3 4 5] | test: [0 1]</span>
 <span class="go">Train: [0 1 4 5] | test: [2 3]</span>
 <span class="go">Train: [0 1 2 3] | test: [4 5]</span>
 </pre></div>
 </div>
-<p>The cross-validation can then be implemented easily:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">kfold</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">KFold</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_digits</span><span class="p">),</span> <span class="n">n_folds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[</span><span class="n">train</span><span class="p">])</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="n">test</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[</span><span class="n">test</span><span class="p">])</span>
-<span class="gp">... </span>         <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">kfold</span><span class="p">]</span>
+<p>Using these indices cross-validation can then be implemented easily:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">kfold</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_folds</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[</span><span class="n">train</span><span class="p">])</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+<span class="gp">... </span>     <span class="n">X_digits</span><span class="p">[</span><span class="n">test</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[</span><span class="n">test</span><span class="p">])</span>
+<span class="gp">... </span> <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">kfold</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X_digits</span><span class="p">)]</span>
 <span class="go">[0.93489148580968284, 0.95659432387312182, 0.93989983305509184]</span>
 </pre></div>
 </div>
 <p>To compute the <tt class="docutils literal"><span class="pre">score</span></tt> method of an estimator, the sklearn exposes
 a helper function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cross_validation</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kfold</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kfold</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">array([ 0.93489149,  0.95659432,  0.93989983])</span>
 </pre></div>
 </div>
 <p><cite>n_jobs=-1</cite> means that the computation will be dispatched on all the CPUs
 of the computer.</p>
 <blockquote>
-<div><strong>Cross-validation generators</strong></div></blockquote>
+<div><strong>Cross-validation classes</strong></div></blockquote>
 <table border="1" class="docutils">
 <colgroup>
 <col width="25%" />
@@ -250,10 +256,10 @@ of the computer.</p>
 <col width="25%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="../../modules/generated/sklearn.cross_validation.KFold.html#sklearn.cross_validation.KFold" title="sklearn.cross_validation.KFold"><tt class="xref py py-class docutils literal"><span class="pre">KFold</span></tt></a> <strong>(n, k)</strong></td>
-<td><a class="reference internal" href="../../modules/generated/sklearn.cross_validation.StratifiedKFold.html#sklearn.cross_validation.StratifiedKFold" title="sklearn.cross_validation.StratifiedKFold"><tt class="xref py py-class docutils literal"><span class="pre">StratifiedKFold</span></tt></a> <strong>(y, k)</strong></td>
-<td><a class="reference internal" href="../../modules/generated/sklearn.cross_validation.LeaveOneOut.html#sklearn.cross_validation.LeaveOneOut" title="sklearn.cross_validation.LeaveOneOut"><tt class="xref py py-class docutils literal"><span class="pre">LeaveOneOut</span></tt></a> <strong>(n)</strong></td>
-<td><a class="reference internal" href="../../modules/generated/sklearn.cross_validation.LeaveOneLabelOut.html#sklearn.cross_validation.LeaveOneLabelOut" title="sklearn.cross_validation.LeaveOneLabelOut"><tt class="xref py py-class docutils literal"><span class="pre">LeaveOneLabelOut</span></tt></a> <strong>(labels)</strong></td>
+<tr class="row-odd"><td><a class="reference internal" href="../../modules/generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="sklearn.model_selection.KFold"><tt class="xref py py-class docutils literal"><span class="pre">KFold</span></tt></a> <strong>(k)</strong></td>
+<td><a class="reference internal" href="../../modules/generated/sklearn.model_selection.StratifiedKFold.html#sklearn.model_selection.StratifiedKFold" title="sklearn.model_selection.StratifiedKFold"><tt class="xref py py-class docutils literal"><span class="pre">StratifiedKFold</span></tt></a> <strong>(k)</strong></td>
+<td><a class="reference internal" href="../../modules/generated/sklearn.model_selection.LeaveOneOut.html#sklearn.model_selection.LeaveOneOut" title="sklearn.model_selection.LeaveOneOut"><tt class="xref py py-class docutils literal"><span class="pre">LeaveOneOut</span></tt></a> <strong>()</strong></td>
+<td><a class="reference internal" href="../../modules/generated/sklearn.model_selection.LeaveOneLabelOut.html#sklearn.model_selection.LeaveOneLabelOut" title="sklearn.model_selection.LeaveOneLabelOut"><tt class="xref py py-class docutils literal"><span class="pre">LeaveOneLabelOut</span></tt></a> <strong>()</strong></td>
 </tr>
 <tr class="row-even"><td>Split it K folds, train on K-1 and then test on left-out</td>
 <td>It preserves the class ratios / label distribution within each fold.</td>
@@ -290,7 +296,7 @@ logarithmic grid of points, from 1 to 10).</p>
 during the fit of an estimator on a parameter grid and chooses the
 parameters to maximize the cross-validation score. This object takes an
 estimator during the construction and exposes an estimator API:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Cs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">svc</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">Cs</span><span class="p">),</span>
 <span class="gp">... </span>                   <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
@@ -306,18 +312,18 @@ estimator during the construction and exposes an estimator API:</p>
 <span class="go">0.943...</span>
 </pre></div>
 </div>
-<p>By default, the <a class="reference internal" href="../../modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">GridSearchCV</span></tt></a> uses a 3-fold cross-validation. However,
+<p>By default, the <a class="reference internal" href="../../modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">GridSearchCV</span></tt></a> uses a 3-fold cross-validation. However,
 if it detects that a classifier is passed, rather than a regressor, it uses
 a stratified 3-fold.</p>
 <div class="topic">
 <p class="topic-title first">Nested cross-validation</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cross_validation</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">)</span>
-<span class="gp">... </span>                                                 
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">)</span>
+<span class="gp">... </span>                                         
 <span class="go">array([ 0.938...,  0.963...,  0.944...])</span>
 </pre></div>
 </div>
 <p>Two cross-validation loops are performed in parallel: one by the
-<a class="reference internal" href="../../modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">GridSearchCV</span></tt></a> estimator to set <tt class="docutils literal"><span class="pre">gamma</span></tt> and the other one by
+<a class="reference internal" href="../../modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">GridSearchCV</span></tt></a> estimator to set <tt class="docutils literal"><span class="pre">gamma</span></tt> and the other one by
 <tt class="docutils literal"><span class="pre">cross_val_score</span></tt> to measure the prediction performance of the
 estimator. The resulting scores are unbiased estimates of the
 prediction score on new data.</p>

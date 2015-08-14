@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.decomposition" title="sklearn.decomposition"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.decomposition</span></tt></a>.NMF<a class="headerlink" href="#sklearn-decomposition-nmf" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.decomposition.NMF">
-<em class="property">class </em><tt class="descclassname">sklearn.decomposition.</tt><tt class="descname">NMF</tt><big>(</big><em>n_components=None</em>, <em>init=None</em>, <em>sparseness=None</em>, <em>beta=1</em>, <em>eta=0.1</em>, <em>tol=0.0001</em>, <em>max_iter=200</em>, <em>nls_max_iter=2000</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/nmf.py#L581"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.decomposition.</tt><tt class="descname">NMF</tt><big>(</big><em>n_components=None</em>, <em>init=None</em>, <em>sparseness=None</em>, <em>beta=1</em>, <em>eta=0.1</em>, <em>tol=0.0001</em>, <em>max_iter=200</em>, <em>nls_max_iter=2000</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/nmf.py#L581"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF" title="Permalink to this definition">¶</a></dt>
 <dd><p>Non-Negative matrix factorization by Projected Gradient (NMF)</p>
 <p>Read more in the <a class="reference internal" href="../decomposition.html#nmf"><em>User Guide</em></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -316,12 +316,12 @@ matrix factorization - Pattern Recognition, 2008
 </table>
 <dl class="method">
 <dt id="sklearn.decomposition.NMF.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_components=None</em>, <em>init=None</em>, <em>sparseness=None</em>, <em>beta=1</em>, <em>eta=0.1</em>, <em>tol=0.0001</em>, <em>max_iter=200</em>, <em>nls_max_iter=2000</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/nmf.py#L362"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_components=None</em>, <em>init=None</em>, <em>sparseness=None</em>, <em>beta=1</em>, <em>eta=0.1</em>, <em>tol=0.0001</em>, <em>max_iter=200</em>, <em>nls_max_iter=2000</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/nmf.py#L362"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.decomposition.NMF.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/nmf.py#L535"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/nmf.py#L535"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn a NMF model for the data X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -342,7 +342,7 @@ matrix factorization - Pattern Recognition, 2008
 
 <dl class="method">
 <dt id="sklearn.decomposition.NMF.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/nmf.py#L456"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/nmf.py#L456"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn a NMF model for the data X and returns the transformed data.</p>
 <p>This is more efficient than calling fit followed by transform.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -367,7 +367,7 @@ matrix factorization - Pattern Recognition, 2008
 
 <dl class="method">
 <dt id="sklearn.decomposition.NMF.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -392,7 +392,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.NMF.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -410,7 +410,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.NMF.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/nmf.py#L551"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/nmf.py#L551"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.NMF.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform the data X according to the fitted NMF model</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

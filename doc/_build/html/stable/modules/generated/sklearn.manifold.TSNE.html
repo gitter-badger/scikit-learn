@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.manifold" title="sklearn.manifold"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.manifold</span></tt></a>.TSNE<a class="headerlink" href="#sklearn-manifold-tsne" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.manifold.TSNE">
-<em class="property">class </em><tt class="descclassname">sklearn.manifold.</tt><tt class="descname">TSNE</tt><big>(</big><em>n_components=2</em>, <em>perplexity=30.0</em>, <em>early_exaggeration=4.0</em>, <em>learning_rate=1000.0</em>, <em>n_iter=1000</em>, <em>metric='euclidean'</em>, <em>init='random'</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/manifold/t_sne.py#L290"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.manifold.</tt><tt class="descname">TSNE</tt><big>(</big><em>n_components=2</em>, <em>perplexity=30.0</em>, <em>early_exaggeration=4.0</em>, <em>learning_rate=1000.0</em>, <em>n_iter=1000</em>, <em>metric='euclidean'</em>, <em>init='random'</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/manifold/t_sne.py#L290"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE" title="Permalink to this definition">¶</a></dt>
 <dd><p>t-distributed Stochastic Neighbor Embedding.</p>
 <p>t-SNE [1] is a tool to visualize high-dimensional data. It converts
 similarities between data points to joint probabilities and tries
@@ -310,12 +310,12 @@ might result in different local minima of the cost function.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.manifold.TSNE.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_components=2</em>, <em>perplexity=30.0</em>, <em>early_exaggeration=4.0</em>, <em>learning_rate=1000.0</em>, <em>n_iter=1000</em>, <em>metric='euclidean'</em>, <em>init='random'</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/manifold/t_sne.py#L396"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_components=2</em>, <em>perplexity=30.0</em>, <em>early_exaggeration=4.0</em>, <em>learning_rate=1000.0</em>, <em>n_iter=1000</em>, <em>metric='euclidean'</em>, <em>init='random'</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/manifold/t_sne.py#L396"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.manifold.TSNE.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/manifold/t_sne.py#L412"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/manifold/t_sne.py#L412"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model using X as training data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -334,7 +334,7 @@ matrix. Otherwise it contains a sample per row.</p>
 
 <dl class="method">
 <dt id="sklearn.manifold.TSNE.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/manifold/t_sne.py#L517"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/manifold/t_sne.py#L517"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform X to the embedded space.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -359,7 +359,7 @@ matrix. Otherwise it contains a sample per row.</p>
 
 <dl class="method">
 <dt id="sklearn.manifold.TSNE.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -384,7 +384,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.manifold.TSNE.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.manifold.TSNE.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

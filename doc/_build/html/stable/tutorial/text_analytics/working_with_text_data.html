@@ -532,7 +532,7 @@ chain, it is possible to run an exhaustive search of the best
 parameters on a grid of possible values. We try out all classifiers
 on either words or bigrams, with or without idf, and with a penalty
 parameter of either 0.01 or 0.001 for the linear SVM:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;vect__ngram_range&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span>
 <span class="gp">... </span>              <span class="s">&#39;tfidf__use_idf&#39;</span><span class="p">:</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">),</span>
 <span class="gp">... </span>              <span class="s">&#39;clf__alpha&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">),</span>

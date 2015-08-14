@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.covariance" title="sklearn.covariance"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.covariance</span></tt></a>.ShrunkCovariance<a class="headerlink" href="#sklearn-covariance-shrunkcovariance" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.covariance.ShrunkCovariance">
-<em class="property">class </em><tt class="descclassname">sklearn.covariance.</tt><tt class="descname">ShrunkCovariance</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em>, <em>shrinkage=0.1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/covariance/shrunk_covariance_.py#L66"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.covariance.</tt><tt class="descname">ShrunkCovariance</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em>, <em>shrinkage=0.1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/shrunk_covariance_.py#L66"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Covariance estimator with shrinkage</p>
 <p>Read more in the <a class="reference internal" href="../covariance.html#shrunk-covariance"><em>User Guide</em></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -256,12 +256,12 @@ of the shrunk estimate.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em>, <em>shrinkage=0.1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/covariance/shrunk_covariance_.py#L109"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em>, <em>shrinkage=0.1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/shrunk_covariance_.py#L109"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.error_norm">
-<tt class="descname">error_norm</tt><big>(</big><em>comp_cov</em>, <em>norm='frobenius'</em>, <em>scaling=True</em>, <em>squared=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/covariance/empirical_covariance_.py#L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.error_norm" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">error_norm</tt><big>(</big><em>comp_cov</em>, <em>norm='frobenius'</em>, <em>scaling=True</em>, <em>squared=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.error_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the Mean Squared Error between two covariance estimators.
 (In the sense of the Frobenius norm).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -302,7 +302,7 @@ If False, the error norm is returned.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/covariance/shrunk_covariance_.py#L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/shrunk_covariance_.py#L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fits the shrunk covariance model
 according to the given training data and parameters.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -329,7 +329,7 @@ and n_features is the number of features.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -354,7 +354,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.get_precision">
-<tt class="descname">get_precision</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/covariance/empirical_covariance_.py#L137"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.get_precision" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_precision</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L137"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.get_precision" title="Permalink to this definition">¶</a></dt>
 <dd><p>Getter for the precision matrix.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -372,7 +372,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.mahalanobis">
-<tt class="descname">mahalanobis</tt><big>(</big><em>observations</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/covariance/empirical_covariance_.py#L262"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.mahalanobis" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">mahalanobis</tt><big>(</big><em>observations</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L262"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.mahalanobis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the squared Mahalanobis distances of given observations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -398,7 +398,7 @@ distribution than the data used in fit.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.score">
-<tt class="descname">score</tt><big>(</big><em>X_test</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/covariance/empirical_covariance_.py#L181"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X_test</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L181"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the log-likelihood of a Gaussian data set with
 <cite>self.covariance_</cite> as an estimator of its covariance matrix.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -428,7 +428,7 @@ estimator of its covariance matrix.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.ShrunkCovariance.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.ShrunkCovariance.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.pipeline" title="sklearn.pipeline"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.pipeline</span></tt></a>.Pipeline<a class="headerlink" href="#sklearn-pipeline-pipeline" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.pipeline.Pipeline">
-<em class="property">class </em><tt class="descclassname">sklearn.pipeline.</tt><tt class="descname">Pipeline</tt><big>(</big><em>steps</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/pipeline.py#L27"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.pipeline.</tt><tt class="descname">Pipeline</tt><big>(</big><em>steps</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/pipeline.py#L27"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pipeline of transforms with a final estimator.</p>
 <p>Sequentially apply a list of transforms and a final estimator.
 Intermediate steps of the pipeline must be &#8216;transforms&#8217;, that is, they
@@ -280,12 +280,12 @@ Keys are step names and values are steps parameters.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.pipeline.Pipeline.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>steps</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/pipeline.py#L88"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>steps</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/pipeline.py#L88"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.decision_function">
-<em class="property">static </em><tt class="descname">decision_function</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.decision_function" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">decision_function</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies transforms to the data, and the decision_function method of
 the final estimator. Valid only if the final estimator implements
 decision_function.</p>
@@ -306,7 +306,7 @@ the pipeline.</p>
 
 <dl class="method">
 <dt id="sklearn.pipeline.Pipeline.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/pipeline.py#L150"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/pipeline.py#L150"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit all the transforms one after the other and transform the
 data, then fit the transformed data using the final estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -331,7 +331,7 @@ the pipeline.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.fit_predict">
-<em class="property">static </em><tt class="descname">fit_predict</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.fit_predict" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">fit_predict</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.fit_predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies fit_predict of last step in pipeline after transforms.</p>
 <p>Applies fit_transforms of a pipeline to the data, followed by the
 fit_predict method of the final estimator in the pipeline. Valid
@@ -358,7 +358,7 @@ of the pipeline.</p>
 
 <dl class="method">
 <dt id="sklearn.pipeline.Pipeline.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/pipeline.py#L167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/pipeline.py#L167"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit all the transforms one after the other and transform the
 data, then use fit_transform on transformed data using the final
 estimator.</p>
@@ -384,7 +384,7 @@ the pipeline.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.inverse_transform">
-<em class="property">static </em><tt class="descname">inverse_transform</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">inverse_transform</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.inverse_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies inverse transform to the data.
 Starts with the last step of the pipeline and applies <tt class="docutils literal"><span class="pre">inverse_transform</span></tt> in
 inverse order of the pipeline steps.
@@ -406,7 +406,7 @@ last step of the pipeline.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.predict">
-<em class="property">static </em><tt class="descname">predict</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.predict" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">predict</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies transforms to the data, and the predict method of the
 final estimator. Valid only if the final estimator implements
 predict.</p>
@@ -427,7 +427,7 @@ the pipeline.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.predict_log_proba">
-<em class="property">static </em><tt class="descname">predict_log_proba</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.predict_log_proba" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">predict_log_proba</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.predict_log_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies transforms to the data, and the predict_log_proba method of
 the final estimator. Valid only if the final estimator implements
 predict_log_proba.</p>
@@ -448,7 +448,7 @@ the pipeline.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.predict_proba">
-<em class="property">static </em><tt class="descname">predict_proba</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.predict_proba" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">predict_proba</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies transforms to the data, and the predict_proba method of the
 final estimator. Valid only if the final estimator implements
 predict_proba.</p>
@@ -469,7 +469,7 @@ the pipeline.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.score">
-<em class="property">static </em><tt class="descname">score</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.score" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">score</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies transforms to the data, and the score method of the
 final estimator. Valid only if the final estimator implements
 score.</p>
@@ -495,7 +495,7 @@ the pipeline.</p>
 
 <dl class="method">
 <dt id="sklearn.pipeline.Pipeline.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -513,7 +513,7 @@ component of a nested object.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.pipeline.Pipeline.transform">
-<em class="property">static </em><tt class="descname">transform</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.transform" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">transform</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/metaestimators.py#L37"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.pipeline.Pipeline.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies transforms to the data, and the transform method of the
 final estimator. Valid only if the final estimator implements
 transform.</p>

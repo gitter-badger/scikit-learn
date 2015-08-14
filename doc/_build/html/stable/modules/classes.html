@@ -157,7 +157,13 @@
 <li><a class="reference internal" href="#module-sklearn.covariance"><tt class="docutils literal"><span class="pre">sklearn.covariance</span></tt>: Covariance Estimators</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-sklearn.cross_validation"><tt class="docutils literal"><span class="pre">sklearn.cross_validation</span></tt>: Cross Validation</a><ul>
+<li><a class="reference internal" href="#module-sklearn.model_selection"><tt class="docutils literal"><span class="pre">sklearn.model_selection</span></tt>: Model Selection</a><ul>
+<li><a class="reference internal" href="#id3">Classes</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">Functions</a><ul>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-sklearn.datasets"><tt class="docutils literal"><span class="pre">sklearn.datasets</span></tt>: Datasets</a><ul>
@@ -196,9 +202,6 @@
 <li><a class="reference internal" href="#module-sklearn.gaussian_process"><tt class="docutils literal"><span class="pre">sklearn.gaussian_process</span></tt>: Gaussian Processes</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-sklearn.grid_search"><tt class="docutils literal"><span class="pre">sklearn.grid_search</span></tt>: Grid Search</a><ul>
-</ul>
-</li>
 <li><a class="reference internal" href="#module-sklearn.isotonic"><tt class="docutils literal"><span class="pre">sklearn.isotonic</span></tt>: Isotonic regression</a><ul>
 </ul>
 </li>
@@ -209,9 +212,6 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#module-sklearn.lda"><tt class="docutils literal"><span class="pre">sklearn.lda</span></tt>: Linear Discriminant Analysis</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#module-sklearn.learning_curve"><tt class="docutils literal"><span class="pre">sklearn.learning_curve</span></tt> Learning curve evaluation</a><ul>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-sklearn.linear_model"><tt class="docutils literal"><span class="pre">sklearn.linear_model</span></tt>: Generalized Linear Models</a><ul>
@@ -529,69 +529,92 @@ Models.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="module-sklearn.cross_validation">
-<span id="sklearn-cross-validation-cross-validation"></span><span id="cross-validation-ref"></span><h2><a class="reference internal" href="#module-sklearn.cross_validation" title="sklearn.cross_validation"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cross_validation</span></tt></a>: Cross Validation<a class="headerlink" href="#module-sklearn.cross_validation" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="#module-sklearn.cross_validation" title="sklearn.cross_validation"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cross_validation</span></tt></a> module includes utilities for cross-
-validation and performance evaluation.</p>
-<p><strong>User guide:</strong> See the <a class="reference internal" href="cross_validation.html#cross-validation"><em>Cross-validation: evaluating estimator performance</em></a> section for further details.</p>
+<div class="section" id="module-sklearn.model_selection">
+<span id="sklearn-model-selection-model-selection"></span><span id="model-selection-ref"></span><h2><a class="reference internal" href="#module-sklearn.model_selection" title="sklearn.model_selection"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.model_selection</span></tt></a>: Model Selection<a class="headerlink" href="#module-sklearn.model_selection" title="Permalink to this headline">¶</a></h2>
+<p><strong>User guide:</strong> See the <a class="reference internal" href="cross_validation.html#cross-validation"><em>Cross-validation: evaluating estimator performance</em></a>, <a class="reference internal" href="grid_search.html#grid-search"><em>Search: Searching for estimator parameters</em></a> and
+<a class="reference internal" href="learning_curve.html#learning-curve"><em>Learning curve</em></a> sections for further details.</p>
+<div class="section" id="id3">
+<h3>Classes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.KFold.html#sklearn.cross_validation.KFold" title="sklearn.cross_validation.KFold"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.KFold</span></tt></a>(n[,&nbsp;n_folds,&nbsp;...])</td>
-<td>K-Folds cross validation iterator.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="sklearn.model_selection.KFold"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.KFold</span></tt></a>([n_folds,&nbsp;shuffle,&nbsp;...])</td>
+<td>K-Folds cross-validator</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.cross_validation.LeaveOneLabelOut.html#sklearn.cross_validation.LeaveOneLabelOut" title="sklearn.cross_validation.LeaveOneLabelOut"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.LeaveOneLabelOut</span></tt></a>(labels)</td>
-<td>Leave-One-Label_Out cross-validation iterator</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.LeaveOneLabelOut.html#sklearn.model_selection.LeaveOneLabelOut" title="sklearn.model_selection.LeaveOneLabelOut"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.LeaveOneLabelOut</span></tt></a></td>
+<td>Leave One Label Out cross-validator</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.LeaveOneOut.html#sklearn.cross_validation.LeaveOneOut" title="sklearn.cross_validation.LeaveOneOut"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.LeaveOneOut</span></tt></a>(n)</td>
-<td>Leave-One-Out cross validation iterator.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.LeaveOneOut.html#sklearn.model_selection.LeaveOneOut" title="sklearn.model_selection.LeaveOneOut"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.LeaveOneOut</span></tt></a></td>
+<td>Leave-One-Out cross-validator</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.cross_validation.LeavePLabelOut.html#sklearn.cross_validation.LeavePLabelOut" title="sklearn.cross_validation.LeavePLabelOut"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.LeavePLabelOut</span></tt></a>(labels,&nbsp;p)</td>
-<td>Leave-P-Label_Out cross-validation iterator</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.LeavePLabelOut.html#sklearn.model_selection.LeavePLabelOut" title="sklearn.model_selection.LeavePLabelOut"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.LeavePLabelOut</span></tt></a>(n_labels)</td>
+<td>Leave P Labels Out cross-validator</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.LeavePOut.html#sklearn.cross_validation.LeavePOut" title="sklearn.cross_validation.LeavePOut"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.LeavePOut</span></tt></a>(n,&nbsp;p)</td>
-<td>Leave-P-Out cross validation iterator</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.LeavePOut.html#sklearn.model_selection.LeavePOut" title="sklearn.model_selection.LeavePOut"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.LeavePOut</span></tt></a>(p)</td>
+<td>Leave-P-Out cross-validator</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.cross_validation.PredefinedSplit.html#sklearn.cross_validation.PredefinedSplit" title="sklearn.cross_validation.PredefinedSplit"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.PredefinedSplit</span></tt></a>(test_fold)</td>
-<td>Predefined split cross validation iterator</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.PredefinedSplit.html#sklearn.model_selection.PredefinedSplit" title="sklearn.model_selection.PredefinedSplit"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.PredefinedSplit</span></tt></a>(test_fold)</td>
+<td>Predefined split cross-validator</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.StratifiedKFold.html#sklearn.cross_validation.StratifiedKFold" title="sklearn.cross_validation.StratifiedKFold"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.StratifiedKFold</span></tt></a>(y[,&nbsp;...])</td>
-<td>Stratified K-Folds cross validation iterator</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.StratifiedKFold.html#sklearn.model_selection.StratifiedKFold" title="sklearn.model_selection.StratifiedKFold"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.StratifiedKFold</span></tt></a>([n_folds,&nbsp;...])</td>
+<td>Stratified K-Folds cross-validator</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.cross_validation.ShuffleSplit.html#sklearn.cross_validation.ShuffleSplit" title="sklearn.cross_validation.ShuffleSplit"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.ShuffleSplit</span></tt></a>(n[,&nbsp;n_iter,&nbsp;...])</td>
-<td>Random permutation cross-validation iterator.</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.ShuffleSplit.html#sklearn.model_selection.ShuffleSplit" title="sklearn.model_selection.ShuffleSplit"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.ShuffleSplit</span></tt></a>([n_iter,&nbsp;...])</td>
+<td>Random permutation cross-validator</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.StratifiedShuffleSplit.html#sklearn.cross_validation.StratifiedShuffleSplit" title="sklearn.cross_validation.StratifiedShuffleSplit"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.StratifiedShuffleSplit</span></tt></a>(y[,&nbsp;...])</td>
-<td>Stratified ShuffleSplit cross validation iterator</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.StratifiedShuffleSplit.html#sklearn.model_selection.StratifiedShuffleSplit" title="sklearn.model_selection.StratifiedShuffleSplit"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.StratifiedShuffleSplit</span></tt></a>([...])</td>
+<td>Stratified ShuffleSplit cross-validator</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.GridSearchCV</span></tt></a>(estimator,&nbsp;...)</td>
+<td>Exhaustive search over specified parameter values for an estimator.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.ParameterGrid.html#sklearn.model_selection.ParameterGrid" title="sklearn.model_selection.ParameterGrid"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.ParameterGrid</span></tt></a>(param_grid)</td>
+<td>Grid of parameters with a discrete number of values for each.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.ParameterSampler.html#sklearn.model_selection.ParameterSampler" title="sklearn.model_selection.ParameterSampler"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.ParameterSampler</span></tt></a>(...[,&nbsp;...])</td>
+<td>Generator on parameters sampled from given distributions.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.RandomizedSearchCV.html#sklearn.model_selection.RandomizedSearchCV" title="sklearn.model_selection.RandomizedSearchCV"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.RandomizedSearchCV</span></tt></a>(...[,&nbsp;...])</td>
+<td>Randomized search on hyper parameters.</td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="id4">
+<h3>Functions<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split" title="sklearn.cross_validation.train_test_split"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.train_test_split</span></tt></a>(*arrays,&nbsp;...)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split" title="sklearn.model_selection.train_test_split"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.train_test_split</span></tt></a>(*arrays,&nbsp;...)</td>
 <td>Split arrays or matrices into random train and test subsets</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.cross_validation.cross_val_score.html#sklearn.cross_validation.cross_val_score" title="sklearn.cross_validation.cross_val_score"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.cross_val_score</span></tt></a>(estimator,&nbsp;X)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="sklearn.model_selection.cross_val_score"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.cross_val_score</span></tt></a>(estimator,&nbsp;X)</td>
 <td>Evaluate a score by cross-validation</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.cross_val_predict.html#sklearn.cross_validation.cross_val_predict" title="sklearn.cross_validation.cross_val_predict"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.cross_val_predict</span></tt></a>(estimator,&nbsp;X)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.cross_val_predict.html#sklearn.model_selection.cross_val_predict" title="sklearn.model_selection.cross_val_predict"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.cross_val_predict</span></tt></a>(estimator,&nbsp;X)</td>
 <td>Generate cross-validated estimates for each input data point</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.cross_validation.permutation_test_score.html#sklearn.cross_validation.permutation_test_score" title="sklearn.cross_validation.permutation_test_score"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.permutation_test_score</span></tt></a>(...)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.permutation_test_score.html#sklearn.model_selection.permutation_test_score" title="sklearn.model_selection.permutation_test_score"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.permutation_test_score</span></tt></a>(...)</td>
 <td>Evaluate the significance of a cross-validated score with permutations</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.cross_validation.check_cv.html#sklearn.cross_validation.check_cv" title="sklearn.cross_validation.check_cv"><tt class="xref py py-obj docutils literal"><span class="pre">cross_validation.check_cv</span></tt></a>(cv[,&nbsp;X,&nbsp;y,&nbsp;classifier])</td>
-<td>Input checker utility for building a CV in a user friendly way.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.check_cv.html#sklearn.model_selection.check_cv" title="sklearn.model_selection.check_cv"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.check_cv</span></tt></a>([cv,&nbsp;y,&nbsp;classifier])</td>
+<td>Input checker utility for building a cross-validator</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.model_selection.learning_curve.html#sklearn.model_selection.learning_curve" title="sklearn.model_selection.learning_curve"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.learning_curve</span></tt></a>(estimator,&nbsp;X,&nbsp;y)</td>
+<td>Learning curve.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.model_selection.validation_curve.html#sklearn.model_selection.validation_curve" title="sklearn.model_selection.validation_curve"><tt class="xref py py-obj docutils literal"><span class="pre">model_selection.validation_curve</span></tt></a>(estimator,&nbsp;...)</td>
+<td>Validation curve.</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="section" id="module-sklearn.datasets">
 <span id="sklearn-datasets-datasets"></span><span id="datasets-ref"></span><h2><a class="reference internal" href="#module-sklearn.datasets" title="sklearn.datasets"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.datasets</span></tt></a>: Datasets<a class="headerlink" href="#module-sklearn.datasets" title="Permalink to this headline">¶</a></h2>
@@ -661,7 +684,7 @@ features some artificial data generators.</p>
 <tr class="row-even"><td><a class="reference internal" href="generated/sklearn.datasets.fetch_rcv1.html#sklearn.datasets.fetch_rcv1" title="sklearn.datasets.fetch_rcv1"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.fetch_rcv1</span></tt></a>([data_home,&nbsp;subset,&nbsp;...])</td>
 <td>Load the RCV1 multilabel dataset, downloading it if necessary.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.datasets.load_mlcomp.html#sklearn.datasets.load_mlcomp" title="sklearn.datasets.load_mlcomp"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.load_mlcomp</span></tt></a>(name_or_id[,&nbsp;<a href="#id3"><span class="problematic" id="id4">set_</span></a>,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.datasets.load_mlcomp.html#sklearn.datasets.load_mlcomp" title="sklearn.datasets.load_mlcomp"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.load_mlcomp</span></tt></a>(name_or_id[,&nbsp;<a href="#id5"><span class="problematic" id="id6">set_</span></a>,&nbsp;...])</td>
 <td>Load a datasets as downloaded from <a class="reference external" href="http://mlcomp.org">http://mlcomp.org</a></td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/sklearn.datasets.load_sample_image.html#sklearn.datasets.load_sample_image" title="sklearn.datasets.load_sample_image"><tt class="xref py py-obj docutils literal"><span class="pre">datasets.load_sample_image</span></tt></a>(image_name)</td>
@@ -1121,32 +1144,6 @@ based predictions.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="module-sklearn.grid_search">
-<span id="sklearn-grid-search-grid-search"></span><span id="grid-search-ref"></span><h2><a class="reference internal" href="#module-sklearn.grid_search" title="sklearn.grid_search"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.grid_search</span></tt></a>: Grid Search<a class="headerlink" href="#module-sklearn.grid_search" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="#module-sklearn.grid_search" title="sklearn.grid_search"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.grid_search</span></tt></a> includes utilities to fine-tune the parameters
-of an estimator.</p>
-<p><strong>User guide:</strong> See the <a class="reference internal" href="grid_search.html#grid-search"><em>Grid Search: Searching for estimator parameters</em></a> section for further details.</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-obj docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a>(estimator,&nbsp;param_grid)</td>
-<td>Exhaustive search over specified parameter values for an estimator.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.grid_search.ParameterGrid.html#sklearn.grid_search.ParameterGrid" title="sklearn.grid_search.ParameterGrid"><tt class="xref py py-obj docutils literal"><span class="pre">grid_search.ParameterGrid</span></tt></a>(param_grid)</td>
-<td>Grid of parameters with a discrete number of values for each.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.grid_search.ParameterSampler.html#sklearn.grid_search.ParameterSampler" title="sklearn.grid_search.ParameterSampler"><tt class="xref py py-obj docutils literal"><span class="pre">grid_search.ParameterSampler</span></tt></a>(...[,&nbsp;random_state])</td>
-<td>Generator on parameters sampled from given distributions.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.grid_search.RandomizedSearchCV.html#sklearn.grid_search.RandomizedSearchCV" title="sklearn.grid_search.RandomizedSearchCV"><tt class="xref py py-obj docutils literal"><span class="pre">grid_search.RandomizedSearchCV</span></tt></a>(estimator,&nbsp;...)</td>
-<td>Randomized search on hyper parameters.</td>
-</tr>
-</tbody>
-</table>
-</div>
 <div class="section" id="module-sklearn.isotonic">
 <span id="sklearn-isotonic-isotonic-regression"></span><span id="isotonic-ref"></span><h2><a class="reference internal" href="#module-sklearn.isotonic" title="sklearn.isotonic"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.isotonic</span></tt></a>: Isotonic regression<a class="headerlink" href="#module-sklearn.isotonic" title="Permalink to this headline">¶</a></h2>
 <p><strong>User guide:</strong> See the <a class="reference internal" href="isotonic.html#isotonic"><em>Isotonic regression</em></a> section for further details.</p>
@@ -1230,24 +1227,6 @@ approximate kernel feature maps base on Fourier transforms.</p>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.lda.LDA.html#sklearn.lda.LDA" title="sklearn.lda.LDA"><tt class="xref py py-obj docutils literal"><span class="pre">lda.LDA</span></tt></a>([solver,&nbsp;shrinkage,&nbsp;priors,&nbsp;...])</td>
 <td>Linear Discriminant Analysis (LDA).</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="module-sklearn.learning_curve">
-<span id="sklearn-learning-curve-learning-curve-evaluation"></span><span id="learning-curve-ref"></span><h2><a class="reference internal" href="#module-sklearn.learning_curve" title="sklearn.learning_curve"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.learning_curve</span></tt></a> Learning curve evaluation<a class="headerlink" href="#module-sklearn.learning_curve" title="Permalink to this headline">¶</a></h2>
-<p>Utilities to evaluate models with respect to a variable</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.learning_curve.learning_curve.html#sklearn.learning_curve.learning_curve" title="sklearn.learning_curve.learning_curve"><tt class="xref py py-obj docutils literal"><span class="pre">learning_curve.learning_curve</span></tt></a>(estimator,&nbsp;X,&nbsp;y)</td>
-<td>Learning curve.</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.learning_curve.validation_curve.html#sklearn.learning_curve.validation_curve" title="sklearn.learning_curve.validation_curve"><tt class="xref py py-obj docutils literal"><span class="pre">learning_curve.validation_curve</span></tt></a>(estimator,&nbsp;...)</td>
-<td>Validation curve.</td>
 </tr>
 </tbody>
 </table>

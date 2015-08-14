@@ -368,7 +368,7 @@ candidate feature and the best of these randomly-generated thresholds is
 picked as the splitting rule. This usually allows to reduce the variance
 of the model a bit more, at the expense of a slightly greater increase
 in bias:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span>
@@ -571,7 +571,7 @@ AdaBoost-SAMME and AdaBoost-SAMME.R <a class="reference internal" href="#zzrh200
 <h3>1.11.3.1. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>The following example shows how to fit an AdaBoost classifier with 100 weak
 learners:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
 
@@ -1157,7 +1157,7 @@ on the ascending sort order. E.g., in the following scenario</p>
 <h4>1.11.5.1.1. Usage<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
 <p>The following example shows how to fit the majority rule classifier:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -1173,7 +1173,7 @@ on the ascending sort order. E.g., in the following scenario</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eclf</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;lr&#39;</span><span class="p">,</span> <span class="n">clf1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;rf&#39;</span><span class="p">,</span> <span class="n">clf2</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;gnb&#39;</span><span class="p">,</span> <span class="n">clf3</span><span class="p">)],</span> <span class="n">voting</span><span class="o">=</span><span class="s">&#39;hard&#39;</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">clf</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">clf1</span><span class="p">,</span> <span class="n">clf2</span><span class="p">,</span> <span class="n">clf3</span><span class="p">,</span> <span class="n">eclf</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;Logistic Regression&#39;</span><span class="p">,</span> <span class="s">&#39;Random Forest&#39;</span><span class="p">,</span> <span class="s">&#39;naive Bayes&#39;</span><span class="p">,</span> <span class="s">&#39;Ensemble&#39;</span><span class="p">]):</span>
-<span class="gp">... </span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;accuracy&#39;</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Accuracy: </span><span class="si">%0.2f</span><span class="s"> (+/- </span><span class="si">%0.2f</span><span class="s">) [</span><span class="si">%s</span><span class="s">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">label</span><span class="p">))</span>
 <span class="go">Accuracy: 0.90 (+/- 0.05) [Logistic Regression]</span>
 <span class="go">Accuracy: 0.93 (+/- 0.05) [Random Forest]</span>
@@ -1271,7 +1271,7 @@ Vector Machine, a Decision Tree, and a K-nearest neighbor classifier:</p>
 <h3>1.11.5.3. Using the <cite>VotingClassifier</cite> with <cite>GridSearch</cite><a class="headerlink" href="#using-the-votingclassifier-with-gridsearch" title="Permalink to this headline">¶</a></h3>
 <p>The <cite>VotingClassifier</cite> can also be used together with <cite>GridSearch</cite> in order
 to tune the hyperparameters of the individual estimators:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf1</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf2</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf3</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>

@@ -37,7 +37,7 @@
     <link rel="top" title="scikit-learn 0.17.dev0 documentation" href="../../index.html" />
     <link rel="up" title="API Reference" href="../classes.html" />
     <link rel="next" title="sklearn.isotonic.isotonic_regression" href="sklearn.isotonic.isotonic_regression.html" />
-    <link rel="prev" title="sklearn.grid_search.RandomizedSearchCV" href="sklearn.grid_search.RandomizedSearchCV.html" />
+    <link rel="prev" title="sklearn.gaussian_process.regression_models.quadratic" href="sklearn.gaussian_process.regression_models.quadratic.html" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -112,14 +112,14 @@
   <!-- rellinks[1:] is an ugly hack to avoid link to module
   index -->
         <div class="rellink">
-        <a href="sklearn.grid_search.RandomizedSearchCV.html"
+        <a href="sklearn.gaussian_process.regression_models.quadratic.html"
         accesskey="P">Previous
         <br/>
         <span class="smallrellink">
-        sklearn.grid_...
+        sklearn.gauss...
         </span>
             <span class="hiddenrellink">
-            sklearn.grid_search.RandomizedSearchCV
+            sklearn.gaussian_process.regression_models.quadratic
             </span>
         </a>
         </div>
@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.isotonic" title="sklearn.isotonic"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.isotonic</span></tt></a>.IsotonicRegression<a class="headerlink" href="#sklearn-isotonic-isotonicregression" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.isotonic.IsotonicRegression">
-<em class="property">class </em><tt class="descclassname">sklearn.isotonic.</tt><tt class="descname">IsotonicRegression</tt><big>(</big><em>y_min=None</em>, <em>y_max=None</em>, <em>increasing=True</em>, <em>out_of_bounds='nan'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/isotonic.py#L151"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.isotonic.</tt><tt class="descname">IsotonicRegression</tt><big>(</big><em>y_min=None</em>, <em>y_max=None</em>, <em>increasing=True</em>, <em>out_of_bounds='nan'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/isotonic.py#L151"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Isotonic regression model.</p>
 <p>The isotonic regression optimization problem is defined by:</p>
 <div class="highlight-python"><pre>min sum w_i (y[i] - y_[i]) ** 2
@@ -290,12 +290,12 @@ Leeuw, Psychometrica, 1977</p>
 </table>
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>y_min=None</em>, <em>y_max=None</em>, <em>increasing=True</em>, <em>out_of_bounds='nan'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/isotonic.py#L230"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>y_min=None</em>, <em>y_max=None</em>, <em>increasing=True</em>, <em>out_of_bounds='nan'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/isotonic.py#L230"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/isotonic.py#L291"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/isotonic.py#L291"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model using X, y as training data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -331,7 +331,7 @@ new input data.</p>
 
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to X and y with optional parameters fit_params
 and returns a transformed version of X.</p>
@@ -361,7 +361,7 @@ and returns a transformed version of X.</p>
 
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -386,7 +386,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.predict">
-<tt class="descname">predict</tt><big>(</big><em>T</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/isotonic.py#L355"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>T</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/isotonic.py#L355"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict new data by linear interpolation.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -410,7 +410,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L317"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L317"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the coefficient of determination R^2 of the prediction.</p>
 <p>The coefficient R^2 is defined as (1 - u/v), where u is the regression
 sum of squares ((y_true - y_pred) ** 2).sum() and v is the residual
@@ -449,7 +449,7 @@ would get a R^2 score of 0.0.</p>
 
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -467,7 +467,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.isotonic.IsotonicRegression.transform">
-<tt class="descname">transform</tt><big>(</big><em>T</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/isotonic.py#L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>T</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/isotonic.py#L328"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.isotonic.IsotonicRegression.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform new data by linear interpolation</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -515,7 +515,7 @@ component of a nested object.</p>
      <div class="rel">
     
     <div class="buttonPrevious">
-      <a href="sklearn.grid_search.RandomizedSearchCV.html">Previous
+      <a href="sklearn.gaussian_process.regression_models.quadratic.html">Previous
       </a>
     </div>
     

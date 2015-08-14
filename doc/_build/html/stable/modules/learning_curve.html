@@ -209,7 +209,7 @@ this reason, it is often helpful to use the tools described below.</p>
 <p>To validate a model we need a scoring function (see <a class="reference internal" href="model_evaluation.html#model-evaluation"><em>Model evaluation: quantifying the quality of predictions</em></a>),
 for example accuracy for classifiers. The proper way of choosing multiple
 hyperparameters of an estimator are of course grid search or similar methods
-(see <a class="reference internal" href="grid_search.html#grid-search"><em>Grid Search: Searching for estimator parameters</em></a>) that select the hyperparameter with the maximum score
+(see <a class="reference internal" href="grid_search.html#grid-search"><em>Search: Searching for estimator parameters</em></a>) that select the hyperparameter with the maximum score
 on a validation set or multiple validation sets. Note that if we optimized
 the hyperparameters based on a validation score the validation score is biased
 and not a good estimate of the generalization any longer. To get a proper
@@ -219,9 +219,9 @@ set.</p>
 hyperparameter on the training score and the validation score to find out
 whether the estimator is overfitting or underfitting for some hyperparameter
 values.</p>
-<p>The function <a class="reference internal" href="generated/sklearn.learning_curve.validation_curve.html#sklearn.learning_curve.validation_curve" title="sklearn.learning_curve.validation_curve"><tt class="xref py py-func docutils literal"><span class="pre">validation_curve</span></tt></a> can help in this case:</p>
+<p>The function <a class="reference internal" href="generated/sklearn.model_selection.validation_curve.html#sklearn.model_selection.validation_curve" title="sklearn.model_selection.validation_curve"><tt class="xref py py-func docutils literal"><span class="pre">validation_curve</span></tt></a> can help in this case:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.learning_curve</span> <span class="kn">import</span> <span class="n">validation_curve</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">validation_curve</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
 
@@ -276,11 +276,11 @@ the SVM could benefit from more training examples.</p>
 <div class="figure align-center">
 <a class="reference external image-reference" href="../auto_examples/model_selection/plot_learning_curve.html"><img alt="modules/../auto_examples/model_selection/images/plot_learning_curve_002.png" src="modules/../auto_examples/model_selection/images/plot_learning_curve_002.png" /></a>
 </div>
-<p>We can use the function <a class="reference internal" href="generated/sklearn.learning_curve.learning_curve.html#sklearn.learning_curve.learning_curve" title="sklearn.learning_curve.learning_curve"><tt class="xref py py-func docutils literal"><span class="pre">learning_curve</span></tt></a> to generate the values
+<p>We can use the function <a class="reference internal" href="generated/sklearn.model_selection.learning_curve.html#sklearn.model_selection.learning_curve" title="sklearn.model_selection.learning_curve"><tt class="xref py py-func docutils literal"><span class="pre">learning_curve</span></tt></a> to generate the values
 that are required to plot such a learning curve (number of samples
 that have been used, the average scores on the training sets and the
 average scores on the validation sets):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.learning_curve</span> <span class="kn">import</span> <span class="n">learning_curve</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">learning_curve</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">train_sizes</span><span class="p">,</span> <span class="n">train_scores</span><span class="p">,</span> <span class="n">valid_scores</span> <span class="o">=</span> <span class="n">learning_curve</span><span class="p">(</span>

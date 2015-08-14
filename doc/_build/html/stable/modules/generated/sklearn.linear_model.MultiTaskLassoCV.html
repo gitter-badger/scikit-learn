@@ -168,7 +168,7 @@
 <h1>3.2.4.1.7. <a class="reference internal" href="../classes.html#module-sklearn.linear_model" title="sklearn.linear_model"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.linear_model</span></tt></a>.MultiTaskLassoCV<a class="headerlink" href="#sklearn-linear-model-multitasklassocv" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.linear_model.MultiTaskLassoCV">
-<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">MultiTaskLassoCV</tt><big>(</big><em>eps=0.001</em>, <em>n_alphas=100</em>, <em>alphas=None</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>max_iter=1000</em>, <em>tol=0.0001</em>, <em>copy_X=True</em>, <em>cv=None</em>, <em>verbose=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>selection='cyclic'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/coordinate_descent.py#L1921"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">MultiTaskLassoCV</tt><big>(</big><em>eps=0.001</em>, <em>n_alphas=100</em>, <em>alphas=None</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>max_iter=1000</em>, <em>tol=0.0001</em>, <em>copy_X=True</em>, <em>cv=None</em>, <em>verbose=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>selection='cyclic'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/coordinate_descent.py#L1920"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multi-task L1/L2 Lasso with built-in cross-validation.</p>
 <p>The optimization objective for MultiTaskLasso is:</p>
 <div class="highlight-python"><pre>(1 / (2 * n_samples)) * ||Y - XW||^Fro_2 + alpha * ||W||_21</pre>
@@ -225,8 +225,8 @@ than <tt class="docutils literal"><span class="pre">tol</span></tt>.</p>
 <blockquote>
 <div><p>If an integer is passed, it is the number of fold (default 3).
 Specific cross-validation objects can be passed, see the
-<tt class="xref py py-mod docutils literal"><span class="pre">sklearn.model_selection</span></tt> module for the list of
-possible objects.</p>
+<tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cross_validation</span></tt> module for the list of possible
+objects.</p>
 </div></blockquote>
 <p><strong>verbose</strong> : bool or integer</p>
 <blockquote>
@@ -322,12 +322,12 @@ should be directly passed as a Fortran-contiguous numpy array.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>eps=0.001</em>, <em>n_alphas=100</em>, <em>alphas=None</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>max_iter=1000</em>, <em>tol=0.0001</em>, <em>copy_X=True</em>, <em>cv=None</em>, <em>verbose=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>selection='cyclic'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/coordinate_descent.py#L2030"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>eps=0.001</em>, <em>n_alphas=100</em>, <em>alphas=None</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>max_iter=1000</em>, <em>tol=0.0001</em>, <em>copy_X=True</em>, <em>cv=None</em>, <em>verbose=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>selection='cyclic'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/coordinate_descent.py#L2029"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.decision_function">
-<tt class="descname">decision_function</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/utils/__init__.py#L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.decision_function" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">decision_function</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/utils/__init__.py#L92"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>DEPRECATED:  and will be removed in 0.19.</p>
 <p>Decision function of the linear model.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -352,7 +352,7 @@ should be directly passed as a Fortran-contiguous numpy array.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/coordinate_descent.py#L997"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/coordinate_descent.py#L996"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit linear model with coordinate descent</p>
 <p>Fit is on grid of alphas and best alpha estimated by cross-validation.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -377,7 +377,7 @@ X can be sparse.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -402,7 +402,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="staticmethod">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.path">
-<em class="property">static </em><tt class="descname">path</tt><big>(</big><em>X</em>, <em>y</em>, <em>eps=0.001</em>, <em>n_alphas=100</em>, <em>alphas=None</em>, <em>precompute='auto'</em>, <em>Xy=None</em>, <em>copy_X=True</em>, <em>coef_init=None</em>, <em>verbose=False</em>, <em>return_n_iter=False</em>, <em>positive=False</em>, <em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/coordinate_descent.py#L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.path" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">path</tt><big>(</big><em>X</em>, <em>y</em>, <em>eps=0.001</em>, <em>n_alphas=100</em>, <em>alphas=None</em>, <em>precompute='auto'</em>, <em>Xy=None</em>, <em>copy_X=True</em>, <em>coef_init=None</em>, <em>verbose=False</em>, <em>return_n_iter=False</em>, <em>positive=False</em>, <em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/coordinate_descent.py#L115"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute Lasso path with coordinate descent</p>
 <p>The Lasso optimization function varies for mono and multi-outputs.</p>
 <p>For mono-output tasks it is:</p>
@@ -542,7 +542,7 @@ values output by lars_path</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L145"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L145"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict using the linear model</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -566,7 +566,7 @@ values output by lars_path</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L317"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L317"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the coefficient of determination R^2 of the prediction.</p>
 <p>The coefficient R^2 is defined as (1 - u/v), where u is the regression
 sum of squares ((y_true - y_pred) ** 2).sum() and v is the residual
@@ -605,7 +605,7 @@ would get a R^2 score of 0.0.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.MultiTaskLassoCV.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.MultiTaskLassoCV.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.cluster" title="sklearn.cluster"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cluster</span></tt></a>.AffinityPropagation<a class="headerlink" href="#sklearn-cluster-affinitypropagation" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.cluster.AffinityPropagation">
-<em class="property">class </em><tt class="descclassname">sklearn.cluster.</tt><tt class="descname">AffinityPropagation</tt><big>(</big><em>damping=0.5</em>, <em>max_iter=200</em>, <em>convergence_iter=15</em>, <em>copy=True</em>, <em>preference=None</em>, <em>affinity='euclidean'</em>, <em>verbose=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/affinity_propagation_.py#L193"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.cluster.</tt><tt class="descname">AffinityPropagation</tt><big>(</big><em>damping=0.5</em>, <em>max_iter=200</em>, <em>convergence_iter=15</em>, <em>copy=True</em>, <em>preference=None</em>, <em>affinity='euclidean'</em>, <em>verbose=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/affinity_propagation_.py#L193"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform Affinity Propagation Clustering of data.</p>
 <p>Read more in the <a class="reference internal" href="../clustering.html#affinity-propagation"><em>User Guide</em></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -272,12 +272,12 @@ Between Data Points&#8221;, Science Feb. 2007</p>
 </table>
 <dl class="method">
 <dt id="sklearn.cluster.AffinityPropagation.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>damping=0.5</em>, <em>max_iter=200</em>, <em>convergence_iter=15</em>, <em>copy=True</em>, <em>preference=None</em>, <em>affinity='euclidean'</em>, <em>verbose=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/affinity_propagation_.py#L260"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>damping=0.5</em>, <em>max_iter=200</em>, <em>convergence_iter=15</em>, <em>copy=True</em>, <em>preference=None</em>, <em>affinity='euclidean'</em>, <em>verbose=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/affinity_propagation_.py#L260"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.cluster.AffinityPropagation.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/affinity_propagation_.py#L276"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/affinity_propagation_.py#L276"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create affinity matrix from negative euclidean distances, then
 apply affinity propagation clustering.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -297,7 +297,7 @@ similarities / affinities.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.AffinityPropagation.fit_predict">
-<tt class="descname">fit_predict</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L354"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.fit_predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_predict</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L354"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.fit_predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs clustering on X and returns cluster labels.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -321,7 +321,7 @@ similarities / affinities.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.AffinityPropagation.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -346,7 +346,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.AffinityPropagation.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/cluster/affinity_propagation_.py#L308"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/cluster/affinity_propagation_.py#L308"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict the closest cluster each sample in X belongs to.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -370,7 +370,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.cluster.AffinityPropagation.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.cluster.AffinityPropagation.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

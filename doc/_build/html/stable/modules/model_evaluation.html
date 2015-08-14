@@ -218,8 +218,8 @@ default evaluation criterion for the problem they are designed to solve.
 This is not discussed on this page, but in each estimator&#8217;s documentation.</li>
 <li><strong>Scoring parameter</strong>: Model-evaluation tools using
 <a class="reference internal" href="cross_validation.html#cross-validation"><em>cross-validation</em></a> (such as
-<a class="reference internal" href="generated/sklearn.cross_validation.cross_val_score.html#sklearn.cross_validation.cross_val_score" title="sklearn.cross_validation.cross_val_score"><tt class="xref py py-func docutils literal"><span class="pre">cross_validation.cross_val_score</span></tt></a> and
-<a class="reference internal" href="generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a>) rely on an internal <em>scoring</em> strategy.
+<a class="reference internal" href="generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="sklearn.model_selection.cross_val_score"><tt class="xref py py-func docutils literal"><span class="pre">model_selection.cross_val_score</span></tt></a> and
+<a class="reference internal" href="generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">model_selection.GridSearchCV</span></tt></a>) rely on an internal <em>scoring</em> strategy.
 This is discussed in the section <a class="reference internal" href="#scoring-parameter"><em>The scoring parameter: defining model evaluation rules</em></a>.</li>
 <li><strong>Metric functions</strong>: The <tt class="xref py py-mod docutils literal"><span class="pre">metrics</span></tt> module implements functions
 assessing prediction error for specific purposes. These metrics are detailed
@@ -237,8 +237,8 @@ predictions, see the <a class="reference internal" href="metrics.html#metrics"><
 <div class="section" id="the-scoring-parameter-defining-model-evaluation-rules">
 <span id="scoring-parameter"></span><h2>3.3.1. The <tt class="docutils literal"><span class="pre">scoring</span></tt> parameter: defining model evaluation rules<a class="headerlink" href="#the-scoring-parameter-defining-model-evaluation-rules" title="Permalink to this headline">¶</a></h2>
 <p>Model selection and evaluation using tools, such as
-<a class="reference internal" href="generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a> and
-<a class="reference internal" href="generated/sklearn.cross_validation.cross_val_score.html#sklearn.cross_validation.cross_val_score" title="sklearn.cross_validation.cross_val_score"><tt class="xref py py-func docutils literal"><span class="pre">cross_validation.cross_val_score</span></tt></a>, take a <tt class="docutils literal"><span class="pre">scoring</span></tt> parameter that
+<a class="reference internal" href="generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">model_selection.GridSearchCV</span></tt></a> and
+<a class="reference internal" href="generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="sklearn.model_selection.cross_val_score"><tt class="xref py py-func docutils literal"><span class="pre">model_selection.cross_val_score</span></tt></a>, take a <tt class="docutils literal"><span class="pre">scoring</span></tt> parameter that
 controls what metric they apply to the estimators evaluated.</p>
 <div class="section" id="common-cases-predefined-values">
 <h3>3.3.1.1. Common cases: predefined values<a class="headerlink" href="#common-cases-predefined-values" title="Permalink to this headline">¶</a></h3>
@@ -340,15 +340,16 @@ and the data, are negated.</p>
 </tbody>
 </table>
 <p>Usage examples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span><span class="p">,</span> <span class="n">cross_validation</span><span class="p">,</span> <span class="n">datasets</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span><span class="p">,</span> <span class="n">datasets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_validation</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;wrong_choice&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;wrong_choice&#39;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="gr">ValueError</span>: <span class="n">&#39;wrong_choice&#39; is not a valid scoring value. Valid options are [&#39;accuracy&#39;, &#39;adjusted_rand_score&#39;, &#39;average_precision&#39;, &#39;f1&#39;, &#39;f1_macro&#39;, &#39;f1_micro&#39;, &#39;f1_samples&#39;, &#39;f1_weighted&#39;, &#39;log_loss&#39;, &#39;mean_absolute_error&#39;, &#39;mean_squared_error&#39;, &#39;median_absolute_error&#39;, &#39;precision&#39;, &#39;precision_macro&#39;, &#39;precision_micro&#39;, &#39;precision_samples&#39;, &#39;precision_weighted&#39;, &#39;r2&#39;, &#39;recall&#39;, &#39;recall_macro&#39;, &#39;recall_micro&#39;, &#39;recall_samples&#39;, &#39;recall_weighted&#39;, &#39;roc_auc&#39;]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_validation</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;log_loss&#39;</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;log_loss&#39;</span><span class="p">)</span> 
 <span class="go">array([-0.07..., -0.16..., -0.06...])</span>
 </pre></div>
 </div>
@@ -386,7 +387,7 @@ with non-default values for its parameters, such as the <tt class="docutils lite
 the <a class="reference internal" href="generated/sklearn.metrics.fbeta_score.html#sklearn.metrics.fbeta_score" title="sklearn.metrics.fbeta_score"><tt class="xref py py-func docutils literal"><span class="pre">fbeta_score</span></tt></a> function:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">fbeta_score</span><span class="p">,</span> <span class="n">make_scorer</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ftwo_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">fbeta_score</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">LinearSVC</span><span class="p">(),</span> <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]},</span> <span class="n">scoring</span><span class="o">=</span><span class="n">ftwo_scorer</span><span class="p">)</span>
 </pre></div>
@@ -1581,7 +1582,7 @@ the input data!</p>
 <p>To illustrate <a class="reference internal" href="generated/sklearn.dummy.DummyClassifier.html#sklearn.dummy.DummyClassifier" title="sklearn.dummy.DummyClassifier"><tt class="xref py py-class docutils literal"><span class="pre">DummyClassifier</span></tt></a>, first let&#8217;s create an imbalanced
 dataset:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">[</span><span class="n">y</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -1612,7 +1613,7 @@ change the kernel:</p>
 strategy is recommended for a better estimate of the accuracy, if it
 is not too CPU costly. For more information see the <a class="reference internal" href="cross_validation.html#cross-validation"><em>Cross-validation: evaluating estimator performance</em></a>
 section. Moreover if you want to optimize over the parameter space, it is highly
-recommended to use an appropriate methodology; see the <a class="reference internal" href="grid_search.html#grid-search"><em>Grid Search: Searching for estimator parameters</em></a>
+recommended to use an appropriate methodology; see the <a class="reference internal" href="grid_search.html#grid-search"><em>Search: Searching for estimator parameters</em></a>
 section for details.</p>
 <p>More generally, when the accuracy of a classifier is too close to random, it
 probably means that something went wrong: features are not helpful, a

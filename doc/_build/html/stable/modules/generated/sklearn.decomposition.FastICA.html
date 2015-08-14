@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.decomposition" title="sklearn.decomposition"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.decomposition</span></tt></a>.FastICA<a class="headerlink" href="#sklearn-decomposition-fastica" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.decomposition.FastICA">
-<em class="property">class </em><tt class="descclassname">sklearn.decomposition.</tt><tt class="descname">FastICA</tt><big>(</big><em>n_components=None</em>, <em>algorithm='parallel'</em>, <em>whiten=True</em>, <em>fun='logcosh'</em>, <em>fun_args=None</em>, <em>max_iter=200</em>, <em>tol=0.0001</em>, <em>w_init=None</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/fastica_.py#L375"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.decomposition.</tt><tt class="descname">FastICA</tt><big>(</big><em>n_components=None</em>, <em>algorithm='parallel'</em>, <em>whiten=True</em>, <em>fun='logcosh'</em>, <em>fun_args=None</em>, <em>max_iter=200</em>, <em>tol=0.0001</em>, <em>w_init=None</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/fastica_.py#L375"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA" title="Permalink to this definition">¶</a></dt>
 <dd><p>FastICA: a fast algorithm for Independent Component Analysis.</p>
 <p>Read more in the <a class="reference internal" href="../decomposition.html#ica"><em>User Guide</em></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -281,12 +281,12 @@ pp. 411-430</cite></p>
 </table>
 <dl class="method">
 <dt id="sklearn.decomposition.FastICA.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_components=None</em>, <em>algorithm='parallel'</em>, <em>whiten=True</em>, <em>fun='logcosh'</em>, <em>fun_args=None</em>, <em>max_iter=200</em>, <em>tol=0.0001</em>, <em>w_init=None</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/fastica_.py#L441"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_components=None</em>, <em>algorithm='parallel'</em>, <em>whiten=True</em>, <em>fun='logcosh'</em>, <em>fun_args=None</em>, <em>max_iter=200</em>, <em>tol=0.0001</em>, <em>w_init=None</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/fastica_.py#L441"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.decomposition.FastICA.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/fastica_.py#L509"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/fastica_.py#L509"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model to X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -308,7 +308,7 @@ and n_features is the number of features.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.FastICA.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/fastica_.py#L494"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/fastica_.py#L494"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model and recover the sources from X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -330,7 +330,7 @@ and n_features is the number of features.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.FastICA.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -355,7 +355,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.FastICA.inverse_transform">
-<tt class="descname">inverse_transform</tt><big>(</big><em>X</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/fastica_.py#L549"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">inverse_transform</tt><big>(</big><em>X</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/fastica_.py#L549"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.inverse_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform the sources back to the mixed data (apply mixing matrix).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -381,7 +381,7 @@ and n_components is the number of components.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.FastICA.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -399,7 +399,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.FastICA.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/decomposition/fastica_.py#L525"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/fastica_.py#L525"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.FastICA.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recover the sources from X (apply the unmixing matrix).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

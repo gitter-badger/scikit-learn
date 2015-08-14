@@ -168,7 +168,7 @@
 <h1>3.2.4.1.5. <a class="reference internal" href="../classes.html#module-sklearn.linear_model" title="sklearn.linear_model"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.linear_model</span></tt></a>.LogisticRegressionCV<a class="headerlink" href="#sklearn-linear-model-logisticregressioncv" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.linear_model.LogisticRegressionCV">
-<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">LogisticRegressionCV</tt><big>(</big><em>Cs=10</em>, <em>fit_intercept=True</em>, <em>cv=None</em>, <em>dual=False</em>, <em>penalty='l2'</em>, <em>scoring=None</em>, <em>solver='lbfgs'</em>, <em>tol=0.0001</em>, <em>max_iter=100</em>, <em>class_weight=None</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>refit=True</em>, <em>intercept_scaling=1.0</em>, <em>multi_class='ovr'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/logistic.py#L1123"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.linear_model.</tt><tt class="descname">LogisticRegressionCV</tt><big>(</big><em>Cs=10</em>, <em>fit_intercept=True</em>, <em>cv=None</em>, <em>dual=False</em>, <em>penalty='l2'</em>, <em>scoring=None</em>, <em>solver='lbfgs'</em>, <em>tol=0.0001</em>, <em>max_iter=100</em>, <em>class_weight=None</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>refit=True</em>, <em>intercept_scaling=1.0</em>, <em>multi_class='ovr'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/logistic.py#L1122"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression CV (aka logit, MaxEnt) classifier.</p>
 <p>This class implements logistic regression using liblinear, newton-cg or
 LBFGS optimizer. The newton-cg and lbfgs solvers support only L2
@@ -214,7 +214,7 @@ as <tt class="docutils literal"><span class="pre">n_samples</span> <span class="
 <blockquote>
 <div><p>The default cross-validation generator used is Stratified K-Folds.
 If an integer is provided, then it is the number of folds used.
-See the module <tt class="xref py py-mod docutils literal"><span class="pre">sklearn.model_selection</span></tt> module for the
+See the module <tt class="xref py py-mod docutils literal"><span class="pre">sklearn.cross_validation</span></tt> module for the
 list of possible cross-validation objects.</p>
 </div></blockquote>
 <p><strong>penalty</strong> : str, &#8216;l1&#8217; or &#8216;l2&#8217;</p>
@@ -396,12 +396,12 @@ C&#8217;s that correspond to the best scores for each fold.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>Cs=10</em>, <em>fit_intercept=True</em>, <em>cv=None</em>, <em>dual=False</em>, <em>penalty='l2'</em>, <em>scoring=None</em>, <em>solver='lbfgs'</em>, <em>tol=0.0001</em>, <em>max_iter=100</em>, <em>class_weight=None</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>refit=True</em>, <em>intercept_scaling=1.0</em>, <em>multi_class='ovr'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/logistic.py#L1288"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>Cs=10</em>, <em>fit_intercept=True</em>, <em>cv=None</em>, <em>dual=False</em>, <em>penalty='l2'</em>, <em>scoring=None</em>, <em>solver='lbfgs'</em>, <em>tol=0.0001</em>, <em>max_iter=100</em>, <em>class_weight=None</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>refit=True</em>, <em>intercept_scaling=1.0</em>, <em>multi_class='ovr'</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/logistic.py#L1287"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.decision_function">
-<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L180"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.decision_function" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L180"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict confidence scores for samples.</p>
 <p>The confidence score for a sample is the signed distance of that
 sample to the hyperplane.</p>
@@ -429,7 +429,7 @@ class would be predicted.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.densify">
-<tt class="descname">densify</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L259"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.densify" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">densify</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L259"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.densify" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert coefficient matrix to dense array format.</p>
 <p>Converts the <tt class="docutils literal"><span class="pre">coef_</span></tt> member (back) to a numpy.ndarray. This is the
 default format of <tt class="docutils literal"><span class="pre">coef_</span></tt> and is required for fitting, so calling
@@ -447,7 +447,7 @@ sparsified; otherwise, it is a no-op.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/logistic.py#L1308"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/logistic.py#L1307"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model according to the given training data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -476,7 +476,7 @@ n_features is the number of features.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to X and y with optional parameters fit_params
 and returns a transformed version of X.</p>
@@ -506,7 +506,7 @@ and returns a transformed version of X.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -531,7 +531,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L213"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L213"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class labels for samples in X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -555,7 +555,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.predict_log_proba">
-<tt class="descname">predict_log_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/logistic.py#L1104"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.predict_log_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict_log_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/logistic.py#L1103"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.predict_log_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log of probability estimates.</p>
 <p>The returned estimates for all classes are ordered by the
 label of classes.</p>
@@ -579,7 +579,7 @@ model, where classes are ordered as they are in <tt class="docutils literal"><sp
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.predict_proba">
-<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/logistic.py#L1086"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.predict_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/logistic.py#L1085"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Probability estimates.</p>
 <p>The returned estimates for all classes are ordered by the
 label of classes.</p>
@@ -603,7 +603,7 @@ where classes are ordered as they are in <tt class="docutils literal"><span clas
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the mean accuracy on the given test data and labels.</p>
 <p>In multi-label classification, this is the subset accuracy
 which is a harsh metric since you require for each sample that
@@ -638,7 +638,7 @@ each label set be correctly predicted.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -656,7 +656,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.sparsify">
-<tt class="descname">sparsify</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/linear_model/base.py#L277"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.sparsify" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">sparsify</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/linear_model/base.py#L277"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.sparsify" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert coefficient matrix to sparse format.</p>
 <p>Converts the <tt class="docutils literal"><span class="pre">coef_</span></tt> member to a scipy.sparse matrix, which for
 L1-regularized models can be much more memory- and storage-efficient
@@ -682,7 +682,7 @@ method (if any) will not work until you call densify.</p>
 
 <dl class="method">
 <dt id="sklearn.linear_model.LogisticRegressionCV.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>threshold=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/7c70c03/sklearn/feature_selection/from_model.py#L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>threshold=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/feature_selection/from_model.py#L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.linear_model.LogisticRegressionCV.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce X to its most important features.</p>
 <p>Uses <tt class="docutils literal"><span class="pre">coef_</span></tt> or <tt class="docutils literal"><span class="pre">feature_importances_</span></tt> to determine the most
 important features.  For models with a <tt class="docutils literal"><span class="pre">coef_</span></tt> for each class, the
