@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.ensemble" title="sklearn.ensemble"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.ensemble</span></tt></a>.AdaBoostClassifier<a class="headerlink" href="#sklearn-ensemble-adaboostclassifier" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.ensemble.AdaBoostClassifier">
-<em class="property">class </em><tt class="descclassname">sklearn.ensemble.</tt><tt class="descname">AdaBoostClassifier</tt><big>(</big><em>base_estimator=None</em>, <em>n_estimators=50</em>, <em>learning_rate=1.0</em>, <em>algorithm='SAMME.R'</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L293"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.ensemble.</tt><tt class="descname">AdaBoostClassifier</tt><big>(</big><em>base_estimator=None</em>, <em>n_estimators=50</em>, <em>learning_rate=1.0</em>, <em>algorithm='SAMME.R'</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L293"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>An AdaBoost classifier.</p>
 <p>An AdaBoost [1] classifier is a meta-estimator that begins by fitting a
 classifier on the original dataset and then fits additional copies of the
@@ -315,12 +315,12 @@ on-Line Learning and an Application to Boosting&#8221;, 1995.</td></tr>
 </table>
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>base_estimator=None</em>, <em>n_estimators=50</em>, <em>learning_rate=1.0</em>, <em>algorithm='SAMME.R'</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L368"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>base_estimator=None</em>, <em>n_estimators=50</em>, <em>learning_rate=1.0</em>, <em>algorithm='SAMME.R'</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L368"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.decision_function">
-<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L641"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.decision_function" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L641"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the decision function of <tt class="docutils literal"><span class="pre">X</span></tt>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -367,7 +367,7 @@ class in <tt class="docutils literal"><span class="pre">classes_</span></tt>, re
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L383"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L383"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a boosted classifier from the training set (X, y).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -401,7 +401,7 @@ DOK, or LIL. DOK and LIL are converted to CSR.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -426,7 +426,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L585"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L585"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict classes for X.</p>
 <p>The predicted class of an input sample is computed as the weighted mean
 prediction of the classifiers in the ensemble.</p>
@@ -453,7 +453,7 @@ DOK, or LIL. DOK and LIL are converted to CSR.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.predict_log_proba">
-<tt class="descname">predict_log_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L828"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.predict_log_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict_log_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L828"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.predict_log_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class log-probabilities for X.</p>
 <p>The predicted class log-probabilities of an input sample is computed as
 the weighted mean predicted class log-probabilities of the classifiers
@@ -482,7 +482,7 @@ outputs is the same of that of the <cite>classes_</cite> attribute.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.predict_proba">
-<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L735"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L735"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class probabilities for X.</p>
 <p>The predicted class probabilities of an input sample is computed as
 the weighted mean predicted class probabilities of the classifiers
@@ -511,7 +511,7 @@ outputs is the same of that of the <cite>classes_</cite> attribute.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the mean accuracy on the given test data and labels.</p>
 <p>In multi-label classification, this is the subset accuracy
 which is a harsh metric since you require for each sample that
@@ -546,7 +546,7 @@ each label set be correctly predicted.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -564,7 +564,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.staged_decision_function">
-<tt class="descname">staged_decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L682"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_decision_function" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">staged_decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L682"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute decision function of <tt class="docutils literal"><span class="pre">X</span></tt> for each boosting iteration.</p>
 <p>This method allows monitoring (i.e. determine error on testing set)
 after each boosting iteration.</p>
@@ -596,7 +596,7 @@ class in <tt class="docutils literal"><span class="pre">classes_</span></tt>, re
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.staged_predict">
-<tt class="descname">staged_predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L609"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">staged_predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L609"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return staged predictions for X.</p>
 <p>The predicted class of an input sample is computed as the weighted mean
 prediction of the classifiers in the ensemble.</p>
@@ -625,7 +625,7 @@ determine the prediction on a test set after each boost.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.staged_predict_proba">
-<tt class="descname">staged_predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L776"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_predict_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">staged_predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L776"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class probabilities for X.</p>
 <p>The predicted class probabilities of an input sample is computed as
 the weighted mean predicted class probabilities of the classifiers
@@ -658,7 +658,7 @@ outputs is the same of that of the <cite>classes_</cite> attribute.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.AdaBoostClassifier.staged_score">
-<tt class="descname">staged_score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/weight_boosting.py#L201"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">staged_score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/weight_boosting.py#L201"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.AdaBoostClassifier.staged_score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return staged scores for X, y.</p>
 <p>This generator method yields the ensemble score after each iteration of
 boosting and therefore allows monitoring, such as to determine the

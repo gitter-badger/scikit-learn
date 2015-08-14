@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.kernel_approximation" title="sklearn.kernel_approximation"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.kernel_approximation</span></tt></a>.RBFSampler<a class="headerlink" href="#sklearn-kernel-approximation-rbfsampler" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.kernel_approximation.RBFSampler">
-<em class="property">class </em><tt class="descclassname">sklearn.kernel_approximation.</tt><tt class="descname">RBFSampler</tt><big>(</big><em>gamma=1.0</em>, <em>n_components=100</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/kernel_approximation.py#L24"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.kernel_approximation.</tt><tt class="descname">RBFSampler</tt><big>(</big><em>gamma=1.0</em>, <em>n_components=100</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/kernel_approximation.py#L24"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Approximates feature map of an RBF kernel by Monte Carlo approximation
 of its Fourier transform.</p>
 <p>It implements a variant of Random Kitchen Sinks.[1]</p>
@@ -231,12 +231,12 @@ Benjamin Recht.
 </table>
 <dl class="method">
 <dt id="sklearn.kernel_approximation.RBFSampler.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>gamma=1.0</em>, <em>n_components=100</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/kernel_approximation.py#L56"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>gamma=1.0</em>, <em>n_components=100</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/kernel_approximation.py#L56"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.kernel_approximation.RBFSampler.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/kernel_approximation.py#L61"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/kernel_approximation.py#L61"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model with X.</p>
 <p>Samples random projection according to n_features.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -262,7 +262,7 @@ and n_features is the number of features.</p>
 
 <dl class="method">
 <dt id="sklearn.kernel_approximation.RBFSampler.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to X and y with optional parameters fit_params
 and returns a transformed version of X.</p>
@@ -292,7 +292,7 @@ and returns a transformed version of X.</p>
 
 <dl class="method">
 <dt id="sklearn.kernel_approximation.RBFSampler.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -317,7 +317,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.kernel_approximation.RBFSampler.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -335,7 +335,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.kernel_approximation.RBFSampler.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/kernel_approximation.py#L89"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/kernel_approximation.py#L89"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.kernel_approximation.RBFSampler.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply the approximate feature map to X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

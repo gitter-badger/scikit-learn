@@ -133,7 +133,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.decomposition" title="sklearn.decomposition"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.decomposition</span></tt></a>.LatentDirichletAllocation<a class="headerlink" href="#sklearn-decomposition-latentdirichletallocation" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.decomposition.LatentDirichletAllocation">
-<em class="property">class </em><tt class="descclassname">sklearn.decomposition.</tt><tt class="descname">LatentDirichletAllocation</tt><big>(</big><em>n_topics=10</em>, <em>doc_topic_prior=None</em>, <em>topic_word_prior=None</em>, <em>learning_method='online'</em>, <em>learning_decay=0.7</em>, <em>learning_offset=10.0</em>, <em>max_iter=10</em>, <em>batch_size=128</em>, <em>evaluate_every=-1</em>, <em>total_samples=1000000.0</em>, <em>perp_tol=0.1</em>, <em>mean_change_tol=0.001</em>, <em>max_doc_update_iter=100</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/online_lda.py#L132"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.decomposition.</tt><tt class="descname">LatentDirichletAllocation</tt><big>(</big><em>n_topics=10</em>, <em>doc_topic_prior=None</em>, <em>topic_word_prior=None</em>, <em>learning_method='online'</em>, <em>learning_decay=0.7</em>, <em>learning_offset=10.0</em>, <em>max_iter=10</em>, <em>batch_size=128</em>, <em>evaluate_every=-1</em>, <em>total_samples=1000000.0</em>, <em>perp_tol=0.1</em>, <em>mean_change_tol=0.001</em>, <em>max_doc_update_iter=100</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/decomposition/online_lda.py#L132"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Latent Dirichlet Allocation with online variational Bayes algorithm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -296,12 +296,12 @@ topic <cite>i</cite>. In the literature, this is called lambda.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_topics=10</em>, <em>doc_topic_prior=None</em>, <em>topic_word_prior=None</em>, <em>learning_method='online'</em>, <em>learning_decay=0.7</em>, <em>learning_offset=10.0</em>, <em>max_iter=10</em>, <em>batch_size=128</em>, <em>evaluate_every=-1</em>, <em>total_samples=1000000.0</em>, <em>perp_tol=0.1</em>, <em>mean_change_tol=0.001</em>, <em>max_doc_update_iter=100</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/online_lda.py#L241"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_topics=10</em>, <em>doc_topic_prior=None</em>, <em>topic_word_prior=None</em>, <em>learning_method='online'</em>, <em>learning_decay=0.7</em>, <em>learning_offset=10.0</em>, <em>max_iter=10</em>, <em>batch_size=128</em>, <em>evaluate_every=-1</em>, <em>total_samples=1000000.0</em>, <em>perp_tol=0.1</em>, <em>mean_change_tol=0.001</em>, <em>max_doc_update_iter=100</em>, <em>n_jobs=1</em>, <em>verbose=0</em>, <em>random_state=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/decomposition/online_lda.py#L241"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/online_lda.py#L460"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/decomposition/online_lda.py#L460"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn model for the data X with variational Bayes method.</p>
 <p>When <cite>learning_method</cite> is &#8216;online&#8217;, use mini-batch update.
 Otherwise, use batch update.</p>
@@ -324,7 +324,7 @@ Otherwise, use batch update.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to X and y with optional parameters fit_params
 and returns a transformed version of X.</p>
@@ -354,7 +354,7 @@ and returns a transformed version of X.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -379,7 +379,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.partial_fit">
-<tt class="descname">partial_fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/online_lda.py#L426"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.partial_fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">partial_fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/decomposition/online_lda.py#L426"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.partial_fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Online VB with Mini-Batch update.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -400,7 +400,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.perplexity">
-<tt class="descname">perplexity</tt><big>(</big><em>X</em>, <em>doc_topic_distr=None</em>, <em>sub_sampling=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/online_lda.py#L636"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.perplexity" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">perplexity</tt><big>(</big><em>X</em>, <em>doc_topic_distr=None</em>, <em>sub_sampling=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/decomposition/online_lda.py#L636"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.perplexity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate approximate perplexity for data X.</p>
 <p>Perplexity is defined as exp(-1. * log-likelihood per word)</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -430,7 +430,7 @@ If it is None, it will be generated by applying transform on X.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/online_lda.py#L616"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/decomposition/online_lda.py#L616"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate approximate log-likelihood as score.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -454,7 +454,7 @@ If it is None, it will be generated by applying transform on X.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -472,7 +472,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.decomposition.LatentDirichletAllocation.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/decomposition/online_lda.py#L511"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/decomposition/online_lda.py#L511"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.decomposition.LatentDirichletAllocation.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform data X according to the fitted model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

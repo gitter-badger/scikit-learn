@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.feature_extraction.text" title="sklearn.feature_extraction.text"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.feature_extraction.text</span></tt></a>.TfidfTransformer<a class="headerlink" href="#sklearn-feature-extraction-text-tfidftransformer" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.feature_extraction.text.TfidfTransformer">
-<em class="property">class </em><tt class="descclassname">sklearn.feature_extraction.text.</tt><tt class="descname">TfidfTransformer</tt><big>(</big><em>norm=u'l2'</em>, <em>use_idf=True</em>, <em>smooth_idf=True</em>, <em>sublinear_tf=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/feature_extraction/text.py#L912"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.feature_extraction.text.</tt><tt class="descname">TfidfTransformer</tt><big>(</big><em>norm=u'l2'</em>, <em>use_idf=True</em>, <em>smooth_idf=True</em>, <em>sublinear_tf=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/feature_extraction/text.py#L912"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform a count matrix to a normalized tf or tf-idf representation</p>
 <p>Tf means term-frequency while tf-idf means term-frequency times inverse
 document-frequency. This is a common term weighting scheme in information
@@ -258,12 +258,12 @@ Press, pp. 118-120.</cite></td></tr>
 </table>
 <dl class="method">
 <dt id="sklearn.feature_extraction.text.TfidfTransformer.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>norm=u'l2'</em>, <em>use_idf=True</em>, <em>smooth_idf=True</em>, <em>sublinear_tf=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/feature_extraction/text.py#L964"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>norm=u'l2'</em>, <em>use_idf=True</em>, <em>smooth_idf=True</em>, <em>sublinear_tf=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/feature_extraction/text.py#L964"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.feature_extraction.text.TfidfTransformer.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/feature_extraction/text.py#L971"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/feature_extraction/text.py#L971"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learn the idf vector (global term weights)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -281,7 +281,7 @@ Press, pp. 118-120.</cite></td></tr>
 
 <dl class="method">
 <dt id="sklearn.feature_extraction.text.TfidfTransformer.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to X and y with optional parameters fit_params
 and returns a transformed version of X.</p>
@@ -311,7 +311,7 @@ and returns a transformed version of X.</p>
 
 <dl class="method">
 <dt id="sklearn.feature_extraction.text.TfidfTransformer.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -336,7 +336,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.feature_extraction.text.TfidfTransformer.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -354,7 +354,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.feature_extraction.text.TfidfTransformer.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/feature_extraction/text.py#L997"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>copy=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/feature_extraction/text.py#L997"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.feature_extraction.text.TfidfTransformer.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform a count matrix to a tf or tf-idf representation</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

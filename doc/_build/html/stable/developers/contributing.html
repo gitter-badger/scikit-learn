@@ -838,7 +838,7 @@ The following is wrong:</p>
 </div>
 <p>The reason for postponing the validation is that the same validation
 would have to be performed in <tt class="docutils literal"><span class="pre">set_params</span></tt>,
-which is used in algorithms like <tt class="docutils literal"><span class="pre">GridSearchCV</span></tt>.</p>
+which is used in algorithms like <a class="reference internal" href="../modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">model_selection.GridSearchCV</span></tt></a>.</p>
 </div>
 <div class="section" id="fitting">
 <h4>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h4>
@@ -932,7 +932,7 @@ adheres to the scikit-learn interface and standards by running
 </div>
 <p>The main motivation to make a class compatible to the scikit-learn estimator
 interface might be that you want to use it together with model assessment and
-selection tools such as <a class="reference internal" href="../modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a>.</p>
+selection tools such as <a class="reference internal" href="../modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">model_selection.GridSearchCV</span></tt></a>.</p>
 <p>For this to work, you need to implement the following interface.
 If a dependency on scikit-learn is okay for your code,
 you can prevent a lot of boilerplate code
@@ -989,7 +989,7 @@ implement the interface is:</p>
 </div>
 <div class="section" id="parameters-and-init">
 <h3>Parameters and init<a class="headerlink" href="#parameters-and-init" title="Permalink to this headline">¶</a></h3>
-<p>As <a class="reference internal" href="../modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a> uses <tt class="docutils literal"><span class="pre">set_params</span></tt>
+<p>As <a class="reference internal" href="../modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">model_selection.GridSearchCV</span></tt></a> uses <tt class="docutils literal"><span class="pre">set_params</span></tt>
 to apply parameter setting to estimators,
 it is essential that calling <tt class="docutils literal"><span class="pre">set_params</span></tt> has the same effect
 as setting parameters using the <tt class="docutils literal"><span class="pre">__init__</span></tt> method.
@@ -1004,8 +1004,8 @@ trailing <tt class="docutils literal"><span class="pre">_</span></tt> is used to
 </div>
 <div class="section" id="cloning">
 <span id="id5"></span><h3>Cloning<a class="headerlink" href="#cloning" title="Permalink to this headline">¶</a></h3>
-<p>For using <tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearch</span></tt> or any functionality of the
-<tt class="xref py py-mod docutils literal"><span class="pre">cross_validation</span></tt> module, an estimator must support the <tt class="docutils literal"><span class="pre">base.clone</span></tt>
+<p>For using <tt class="xref py py-class docutils literal"><span class="pre">model_selection.GridSearch</span></tt> or any functionality of the
+<tt class="xref py py-mod docutils literal"><span class="pre">model_selection</span></tt> module, an estimator must support the <tt class="docutils literal"><span class="pre">base.clone</span></tt>
 function to replicate an estimator.
 This can be done by providing a <tt class="docutils literal"><span class="pre">get_params</span></tt> method.
 If <tt class="docutils literal"><span class="pre">get_params</span></tt> is present, then <tt class="docutils literal"><span class="pre">clone(estimator)</span></tt> will be an instance of
@@ -1030,8 +1030,8 @@ accepts an optional <tt class="docutils literal"><span class="pre">y</span></tt>
 <div class="section" id="estimator-types">
 <h3>Estimator types<a class="headerlink" href="#estimator-types" title="Permalink to this headline">¶</a></h3>
 <p>Some common functionality depends on the kind of estimator passed.
-For example, cross-validation in <a class="reference internal" href="../modules/generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a> and
-<a class="reference internal" href="../modules/generated/sklearn.cross_validation.cross_val_score.html#sklearn.cross_validation.cross_val_score" title="sklearn.cross_validation.cross_val_score"><tt class="xref py py-func docutils literal"><span class="pre">cross_validation.cross_val_score</span></tt></a> defaults to being stratified when used
+For example, cross-validation in <a class="reference internal" href="../modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV" title="sklearn.model_selection.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">model_selection.GridSearchCV</span></tt></a> and
+<a class="reference internal" href="../modules/generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score" title="sklearn.model_selection.cross_val_score"><tt class="xref py py-func docutils literal"><span class="pre">model_selection.cross_val_score</span></tt></a> defaults to being stratified when used
 on a classifier, but not otherwise. Similarly, scorers for average precision
 that take a continuous prediction need to call <tt class="docutils literal"><span class="pre">decision_function</span></tt> for classifiers,
 but <tt class="docutils literal"><span class="pre">predict</span></tt> for regressors. This distinction between classifiers and regressors

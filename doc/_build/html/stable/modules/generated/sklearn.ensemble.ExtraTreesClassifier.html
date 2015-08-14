@@ -171,7 +171,7 @@
 <h1>3.2.4.3.3. <a class="reference internal" href="../classes.html#module-sklearn.ensemble" title="sklearn.ensemble"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.ensemble</span></tt></a>.ExtraTreesClassifier<a class="headerlink" href="#sklearn-ensemble-extratreesclassifier" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.ensemble.ExtraTreesClassifier">
-<em class="property">class </em><tt class="descclassname">sklearn.ensemble.</tt><tt class="descname">ExtraTreesClassifier</tt><big>(</big><em>n_estimators=10</em>, <em>criterion='gini'</em>, <em>max_depth=None</em>, <em>min_samples_split=2</em>, <em>min_samples_leaf=1</em>, <em>min_weight_fraction_leaf=0.0</em>, <em>max_features='auto'</em>, <em>max_leaf_nodes=None</em>, <em>bootstrap=False</em>, <em>oob_score=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>verbose=0</em>, <em>warm_start=False</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/forest.py#L1056"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.ensemble.</tt><tt class="descname">ExtraTreesClassifier</tt><big>(</big><em>n_estimators=10</em>, <em>criterion='gini'</em>, <em>max_depth=None</em>, <em>min_samples_split=2</em>, <em>min_samples_leaf=1</em>, <em>min_weight_fraction_leaf=0.0</em>, <em>max_features='auto'</em>, <em>max_leaf_nodes=None</em>, <em>bootstrap=False</em>, <em>oob_score=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>verbose=0</em>, <em>warm_start=False</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/forest.py#L1056"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>An extra-trees classifier.</p>
 <p>This class implements a meta estimator that fits a number of
 randomized decision trees (a.k.a. extra-trees) on various sub-samples
@@ -391,12 +391,12 @@ Machine Learning, 63(1), 3-42, 2006.</td></tr>
 </table>
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>n_estimators=10</em>, <em>criterion='gini'</em>, <em>max_depth=None</em>, <em>min_samples_split=2</em>, <em>min_samples_leaf=1</em>, <em>min_weight_fraction_leaf=0.0</em>, <em>max_features='auto'</em>, <em>max_leaf_nodes=None</em>, <em>bootstrap=False</em>, <em>oob_score=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>verbose=0</em>, <em>warm_start=False</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/forest.py#L1209"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>n_estimators=10</em>, <em>criterion='gini'</em>, <em>max_depth=None</em>, <em>min_samples_split=2</em>, <em>min_samples_leaf=1</em>, <em>min_weight_fraction_leaf=0.0</em>, <em>max_features='auto'</em>, <em>max_leaf_nodes=None</em>, <em>bootstrap=False</em>, <em>oob_score=False</em>, <em>n_jobs=1</em>, <em>random_state=None</em>, <em>verbose=0</em>, <em>warm_start=False</em>, <em>class_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/forest.py#L1209"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.apply">
-<tt class="descname">apply</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/forest.py#L160"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.apply" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">apply</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/forest.py#L160"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.apply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply trees in the forest to X, return leaf indices.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -440,7 +440,7 @@ return the index of the leaf x ends up in.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/forest.py#L184"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/forest.py#L184"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a forest of trees from the training set (X, y).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -479,7 +479,7 @@ single class carrying a negative weight in either child node.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.fit_transform">
-<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.fit_transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit_transform</tt><big>(</big><em>X</em>, <em>y=None</em>, <em>**fit_params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L429"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.fit_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit to data, then transform it.</p>
 <p>Fits transformer to X and y with optional parameters fit_params
 and returns a transformed version of X.</p>
@@ -509,7 +509,7 @@ and returns a transformed version of X.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -534,7 +534,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/forest.py#L474"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/forest.py#L474"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class for X.</p>
 <p>The predicted class of an input sample is a vote by the trees in
 the forest, weighted by their probability estimates. That is,
@@ -564,7 +564,7 @@ to a sparse <tt class="docutils literal"><span class="pre">csr_matrix</span></tt
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.predict_log_proba">
-<tt class="descname">predict_log_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/forest.py#L564"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.predict_log_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict_log_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/forest.py#L564"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.predict_log_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class log-probabilities for X.</p>
 <p>The predicted class log-probabilities of an input sample is computed as
 the log of the mean predicted class probabilities of the trees in the
@@ -595,7 +595,7 @@ classes corresponds to that in the attribute <cite>classes_</cite>.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.predict_proba">
-<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/ensemble/forest.py#L510"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/ensemble/forest.py#L510"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict class probabilities for X.</p>
 <p>The predicted class probabilities of an input sample is computed as
 the mean predicted class probabilities of the trees in the forest. The
@@ -627,7 +627,7 @@ classes corresponds to that in the attribute <cite>classes_</cite>.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the mean accuracy on the given test data and labels.</p>
 <p>In multi-label classification, this is the subset accuracy
 which is a harsh metric since you require for each sample that
@@ -662,7 +662,7 @@ each label set be correctly predicted.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
@@ -680,7 +680,7 @@ component of a nested object.</p>
 
 <dl class="method">
 <dt id="sklearn.ensemble.ExtraTreesClassifier.transform">
-<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>threshold=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/feature_selection/from_model.py#L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.transform" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">transform</tt><big>(</big><em>X</em>, <em>threshold=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/feature_selection/from_model.py#L21"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.ensemble.ExtraTreesClassifier.transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce X to its most important features.</p>
 <p>Uses <tt class="docutils literal"><span class="pre">coef_</span></tt> or <tt class="docutils literal"><span class="pre">feature_importances_</span></tt> to determine the most
 important features.  For models with a <tt class="docutils literal"><span class="pre">coef_</span></tt> for each class, the

@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.covariance" title="sklearn.covariance"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.covariance</span></tt></a>.OAS<a class="headerlink" href="#sklearn-covariance-oas" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.covariance.OAS">
-<em class="property">class </em><tt class="descclassname">sklearn.covariance.</tt><tt class="descname">OAS</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/shrunk_covariance_.py#L472"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.covariance.</tt><tt class="descname">OAS</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/covariance/shrunk_covariance_.py#L472"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Oracle Approximating Shrinkage Estimator</p>
 <p>Read more in the <a class="reference internal" href="../covariance.html#shrunk-covariance"><em>User Guide</em></a>.</p>
 <p>OAS is a particular form of shrinkage described in
@@ -257,12 +257,12 @@ Chen et al., IEEE Trans. on Sign. Proc., Volume 58, Issue 10, October 2010.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.covariance.OAS.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L111"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>store_precision=True</em>, <em>assume_centered=False</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/covariance/empirical_covariance_.py#L111"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.covariance.OAS.error_norm">
-<tt class="descname">error_norm</tt><big>(</big><em>comp_cov</em>, <em>norm='frobenius'</em>, <em>scaling=True</em>, <em>squared=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.error_norm" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">error_norm</tt><big>(</big><em>comp_cov</em>, <em>norm='frobenius'</em>, <em>scaling=True</em>, <em>squared=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/covariance/empirical_covariance_.py#L210"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.error_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the Mean Squared Error between two covariance estimators.
 (In the sense of the Frobenius norm).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -303,7 +303,7 @@ If False, the error norm is returned.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.OAS.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/shrunk_covariance_.py#L526"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/covariance/shrunk_covariance_.py#L526"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fits the Oracle Approximating Shrinkage covariance model
 according to the given training data and parameters.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -330,7 +330,7 @@ and n_features is the number of features.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.OAS.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -355,7 +355,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.OAS.get_precision">
-<tt class="descname">get_precision</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L137"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.get_precision" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_precision</tt><big>(</big><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/covariance/empirical_covariance_.py#L137"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.get_precision" title="Permalink to this definition">¶</a></dt>
 <dd><p>Getter for the precision matrix.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -373,7 +373,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.OAS.mahalanobis">
-<tt class="descname">mahalanobis</tt><big>(</big><em>observations</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L262"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.mahalanobis" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">mahalanobis</tt><big>(</big><em>observations</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/covariance/empirical_covariance_.py#L262"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.mahalanobis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the squared Mahalanobis distances of given observations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -399,7 +399,7 @@ distribution than the data used in fit.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.OAS.score">
-<tt class="descname">score</tt><big>(</big><em>X_test</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/covariance/empirical_covariance_.py#L181"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X_test</em>, <em>y=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/covariance/empirical_covariance_.py#L181"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the log-likelihood of a Gaussian data set with
 <cite>self.covariance_</cite> as an estimator of its covariance matrix.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -429,7 +429,7 @@ estimator of its covariance matrix.</p>
 
 <dl class="method">
 <dt id="sklearn.covariance.OAS.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.covariance.OAS.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form

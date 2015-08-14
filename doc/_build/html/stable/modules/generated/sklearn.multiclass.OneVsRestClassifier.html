@@ -171,7 +171,7 @@
 <h1><a class="reference internal" href="../classes.html#module-sklearn.multiclass" title="sklearn.multiclass"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.multiclass</span></tt></a>.OneVsRestClassifier<a class="headerlink" href="#sklearn-multiclass-onevsrestclassifier" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="sklearn.multiclass.OneVsRestClassifier">
-<em class="property">class </em><tt class="descclassname">sklearn.multiclass.</tt><tt class="descname">OneVsRestClassifier</tt><big>(</big><em>estimator</em>, <em>n_jobs=1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/multiclass.py#L205"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">sklearn.multiclass.</tt><tt class="descname">OneVsRestClassifier</tt><big>(</big><em>estimator</em>, <em>n_jobs=1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/multiclass.py#L205"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>One-vs-the-rest (OvR) multiclass/multilabel strategy</p>
 <p>Also known as one-vs-all, this strategy consists in fitting one classifier
 per class. For each classifier, the class is fitted against all the other
@@ -258,12 +258,12 @@ vice-versa.</p>
 </table>
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>estimator</em>, <em>n_jobs=1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/multiclass.py#L252"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>estimator</em>, <em>n_jobs=1</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/multiclass.py#L252"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.decision_function">
-<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/multiclass.py#L370"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.decision_function" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">decision_function</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/multiclass.py#L370"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the distance of each sample from the decision boundary for
 each class. This can only be used with estimators which implement the
 decision_function method.</p>
@@ -281,7 +281,7 @@ decision_function method.</p>
 
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.fit">
-<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/multiclass.py#L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">fit</tt><big>(</big><em>X</em>, <em>y</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/multiclass.py#L256"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit underlying estimators.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -307,7 +307,7 @@ classification.</p>
 
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.get_params">
-<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.get_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L198"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -338,7 +338,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.predict">
-<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/multiclass.py#L291"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/multiclass.py#L291"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict multi-class targets using underlying estimators.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -362,7 +362,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.predict_proba">
-<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/multiclass.py#L332"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">predict_proba</tt><big>(</big><em>X</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/multiclass.py#L332"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Probability estimates.</p>
 <p>The returned estimates for all classes are ordered by label of classes.</p>
 <p>Note that in the multilabel case, each sample can have any number of
@@ -391,7 +391,7 @@ where classes are ordered as they are in <cite>self.classes_</cite>.</p>
 
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.score">
-<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.score" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">score</tt><big>(</big><em>X</em>, <em>y</em>, <em>sample_weight=None</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L284"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.score" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the mean accuracy on the given test data and labels.</p>
 <p>In multi-label classification, this is the subset accuracy
 which is a harsh metric since you require for each sample that
@@ -426,7 +426,7 @@ each label set be correctly predicted.</p>
 
 <dl class="method">
 <dt id="sklearn.multiclass.OneVsRestClassifier.set_params">
-<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/a545a4f/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.set_params" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/479ae78/sklearn/base.py#L235"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sklearn.multiclass.OneVsRestClassifier.set_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the parameters of this estimator.</p>
 <p>The method works on simple estimators as well as on nested objects
 (such as pipelines). The former have parameters of the form
