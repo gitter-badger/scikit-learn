@@ -982,7 +982,7 @@ union __pyx_t_7sklearn_4tree_9_splitter_SplitValue {
   __pyx_t_7sklearn_4tree_9_splitter_UINT64_t cat_split;
 };
 
-/* "sklearn/tree/_splitter.pxd":46
+/* "sklearn/tree/_splitter.pxd":45
  *     UINT64_t cat_split
  * 
  * cdef struct SplitRecord:             # <<<<<<<<<<<<<<
@@ -998,7 +998,7 @@ struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord {
   double impurity_right;
 };
 
-/* "sklearn/tree/_splitter.pxd":111
+/* "sklearn/tree/_splitter.pxd":110
  * 
  *     # Methods
  *     cdef void init(self, object X, np.ndarray y,             # <<<<<<<<<<<<<<
@@ -1022,7 +1022,7 @@ struct __pyx_opt_args_7sklearn_4tree_9_splitter_17BaseDenseSplitter_init {
   PyArrayObject *X_idx_sorted;
 };
 
-/* "sklearn/tree/_splitter.pyx":935
+/* "sklearn/tree/_splitter.pyx":929
  *         free(self.sorted_samples)
  * 
  *     cdef void init(self,             # <<<<<<<<<<<<<<
@@ -1095,7 +1095,7 @@ struct __pyx_obj_7sklearn_4tree_6_utils_PriorityHeap {
 };
 
 
-/* "sklearn/tree/_splitter.pxd":58
+/* "sklearn/tree/_splitter.pxd":57
  *     double impurity_right  # Impurity of the right split.
  * 
  * cdef class Splitter:             # <<<<<<<<<<<<<<
@@ -1173,7 +1173,7 @@ struct __pyx_obj_7sklearn_4tree_9_splitter_RandomSplitter {
 };
 
 
-/* "sklearn/tree/_splitter.pyx":905
+/* "sklearn/tree/_splitter.pyx":899
  * 
  * 
  * cdef class BaseSparseSplitter(Splitter):             # <<<<<<<<<<<<<<
@@ -1191,7 +1191,7 @@ struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter {
 };
 
 
-/* "sklearn/tree/_splitter.pyx":1226
+/* "sklearn/tree/_splitter.pyx":1220
  * 
  * 
  * cdef class BestSparseSplitter(BaseSparseSplitter):             # <<<<<<<<<<<<<<
@@ -1203,7 +1203,7 @@ struct __pyx_obj_7sklearn_4tree_9_splitter_BestSparseSplitter {
 };
 
 
-/* "sklearn/tree/_splitter.pyx":1453
+/* "sklearn/tree/_splitter.pyx":1447
  * 
  * 
  * cdef class RandomSparseSplitter(BaseSparseSplitter):             # <<<<<<<<<<<<<<
@@ -1330,7 +1330,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_RandomSplitter {
 static struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_RandomSplitter *__pyx_vtabptr_7sklearn_4tree_9_splitter_RandomSplitter;
 
 
-/* "sklearn/tree/_splitter.pyx":905
+/* "sklearn/tree/_splitter.pyx":899
  * 
  * 
  * cdef class BaseSparseSplitter(Splitter):             # <<<<<<<<<<<<<<
@@ -1348,7 +1348,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
 static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_extract_nnz(struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *, int *);
 
 
-/* "sklearn/tree/_splitter.pyx":1226
+/* "sklearn/tree/_splitter.pyx":1220
  * 
  * 
  * cdef class BestSparseSplitter(BaseSparseSplitter):             # <<<<<<<<<<<<<<
@@ -1362,7 +1362,7 @@ struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_BestSparseSplitter {
 static struct __pyx_vtabstruct_7sklearn_4tree_9_splitter_BestSparseSplitter *__pyx_vtabptr_7sklearn_4tree_9_splitter_BestSparseSplitter;
 
 
-/* "sklearn/tree/_splitter.pyx":1453
+/* "sklearn/tree/_splitter.pyx":1447
  * 
  * 
  * cdef class RandomSparseSplitter(BaseSparseSplitter):             # <<<<<<<<<<<<<<
@@ -3118,7 +3118,7 @@ static double __pyx_f_7sklearn_4tree_9_splitter_8Splitter_node_impurity(struct _
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pxd":65
+/* "sklearn/tree/_splitter.pxd":64
  * 
  *     # Internal structures
  *     cdef public Criterion criterion      # Impurity criterion             # <<<<<<<<<<<<<<
@@ -3176,7 +3176,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_8Splitter_9criterion_2__set__(stru
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  if (!(likely(((__pyx_v_value) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_value, __pyx_ptype_7sklearn_4tree_10_criterion_Criterion))))) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_v_value) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_value, __pyx_ptype_7sklearn_4tree_10_criterion_Criterion))))) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -3226,7 +3226,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_8Splitter_9criterion_4__del__(stru
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pxd":66
+/* "sklearn/tree/_splitter.pxd":65
  *     # Internal structures
  *     cdef public Criterion criterion      # Impurity criterion
  *     cdef public SIZE_t max_features      # Number of features to test             # <<<<<<<<<<<<<<
@@ -3256,7 +3256,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_8Splitter_12max_features___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3294,7 +3294,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_8Splitter_12max_features_2__set__(
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->max_features = __pyx_t_1;
 
   /* function exit code */
@@ -3308,7 +3308,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_8Splitter_12max_features_2__set__(
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pxd":67
+/* "sklearn/tree/_splitter.pxd":66
  *     cdef public Criterion criterion      # Impurity criterion
  *     cdef public SIZE_t max_features      # Number of features to test
  *     cdef public SIZE_t min_samples_leaf  # Min samples in a leaf             # <<<<<<<<<<<<<<
@@ -3338,7 +3338,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_8Splitter_16min_samples_leaf
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->min_samples_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->min_samples_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3376,7 +3376,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_8Splitter_16min_samples_leaf_2__se
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_As_Py_intptr_t(__pyx_v_value); if (unlikely((__pyx_t_1 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->min_samples_leaf = __pyx_t_1;
 
   /* function exit code */
@@ -3390,7 +3390,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_8Splitter_16min_samples_leaf_2__se
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pxd":68
+/* "sklearn/tree/_splitter.pxd":67
  *     cdef public SIZE_t max_features      # Number of features to test
  *     cdef public SIZE_t min_samples_leaf  # Min samples in a leaf
  *     cdef public double min_weight_leaf   # Minimum weight in a leaf             # <<<<<<<<<<<<<<
@@ -3420,7 +3420,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_8Splitter_15min_weight_leaf_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->min_weight_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->min_weight_leaf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3458,7 +3458,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_8Splitter_15min_weight_leaf_2__set
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->min_weight_leaf = __pyx_t_1;
 
   /* function exit code */
@@ -6483,7 +6483,6 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
   __pyx_t_7sklearn_4tree_9_splitter_DTYPE_t __pyx_v_current_feature_value;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_v_partition_end;
   int __pyx_v_is_categorical;
-  __pyx_t_7sklearn_4tree_9_splitter_UINT32_t __pyx_v_split_n_draw;
   __pyx_t_7sklearn_4tree_9_splitter_UINT64_t __pyx_v_split_seed;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *__pyx_t_1;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_t_2;
@@ -6704,7 +6703,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
   __pyx_v_n_visited_features = 0;
 
-  /* "sklearn/tree/_splitter.pyx":732
+  /* "sklearn/tree/_splitter.pyx":731
  *         cdef UINT64_t split_seed
  * 
  *         _init_split(&best, end)             # <<<<<<<<<<<<<<
@@ -6713,7 +6712,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
   __pyx_f_7sklearn_4tree_9_splitter__init_split((&__pyx_v_best), __pyx_v_end);
 
-  /* "sklearn/tree/_splitter.pyx":743
+  /* "sklearn/tree/_splitter.pyx":742
  *         # newly discovered constant features to spare computation on descendant
  *         # nodes.
  *         while (f_i > n_total_constants and  # Stop early if remaining features             # <<<<<<<<<<<<<<
@@ -6728,7 +6727,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":745
+    /* "sklearn/tree/_splitter.pyx":744
  *         while (f_i > n_total_constants and  # Stop early if remaining features
  *                                             # are constant
  *                 (n_visited_features < max_features or             # <<<<<<<<<<<<<<
@@ -6742,7 +6741,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":747
+    /* "sklearn/tree/_splitter.pyx":746
  *                 (n_visited_features < max_features or
  *                  # At least one drawn features must be non constant
  *                  n_visited_features <= n_found_constants + n_drawn_constants)):             # <<<<<<<<<<<<<<
@@ -6754,7 +6753,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
     __pyx_L5_bool_binop_done:;
     if (!__pyx_t_5) break;
 
-    /* "sklearn/tree/_splitter.pyx":748
+    /* "sklearn/tree/_splitter.pyx":747
  *                  # At least one drawn features must be non constant
  *                  n_visited_features <= n_found_constants + n_drawn_constants)):
  *             n_visited_features += 1             # <<<<<<<<<<<<<<
@@ -6763,7 +6762,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
     __pyx_v_n_visited_features = (__pyx_v_n_visited_features + 1);
 
-    /* "sklearn/tree/_splitter.pyx":762
+    /* "sklearn/tree/_splitter.pyx":761
  * 
  *             # Draw a feature at random
  *             f_j = rand_int(n_drawn_constants, f_i - n_found_constants,             # <<<<<<<<<<<<<<
@@ -6772,7 +6771,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
     __pyx_v_f_j = __pyx_f_7sklearn_4tree_6_utils_rand_int(__pyx_v_n_drawn_constants, (__pyx_v_f_i - __pyx_v_n_found_constants), __pyx_v_random_state);
 
-    /* "sklearn/tree/_splitter.pyx":765
+    /* "sklearn/tree/_splitter.pyx":764
  *                            random_state)
  * 
  *             if f_j < n_known_constants:             # <<<<<<<<<<<<<<
@@ -6782,7 +6781,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
     __pyx_t_5 = ((__pyx_v_f_j < __pyx_v_n_known_constants) != 0);
     if (__pyx_t_5) {
 
-      /* "sklearn/tree/_splitter.pyx":768
+      /* "sklearn/tree/_splitter.pyx":767
  *                 # f_j in the interval [n_drawn_constants, n_known_constants[
  *                 features[f_j], features[n_drawn_constants] = (
  *                     features[n_drawn_constants], features[f_j])             # <<<<<<<<<<<<<<
@@ -6792,7 +6791,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
       __pyx_t_2 = (__pyx_v_features[__pyx_v_n_drawn_constants]);
       __pyx_t_7 = (__pyx_v_features[__pyx_v_f_j]);
 
-      /* "sklearn/tree/_splitter.pyx":767
+      /* "sklearn/tree/_splitter.pyx":766
  *             if f_j < n_known_constants:
  *                 # f_j in the interval [n_drawn_constants, n_known_constants[
  *                 features[f_j], features[n_drawn_constants] = (             # <<<<<<<<<<<<<<
@@ -6802,7 +6801,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
       (__pyx_v_features[__pyx_v_f_j]) = __pyx_t_2;
       (__pyx_v_features[__pyx_v_n_drawn_constants]) = __pyx_t_7;
 
-      /* "sklearn/tree/_splitter.pyx":770
+      /* "sklearn/tree/_splitter.pyx":769
  *                     features[n_drawn_constants], features[f_j])
  * 
  *                 n_drawn_constants += 1             # <<<<<<<<<<<<<<
@@ -6814,7 +6813,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
     }
     /*else*/ {
 
-      /* "sklearn/tree/_splitter.pyx":774
+      /* "sklearn/tree/_splitter.pyx":773
  *             else:
  *                 # f_j in the interval [n_known_constants, f_i - n_found_constants[
  *                 f_j += n_found_constants             # <<<<<<<<<<<<<<
@@ -6823,7 +6822,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       __pyx_v_f_j = (__pyx_v_f_j + __pyx_v_n_found_constants);
 
-      /* "sklearn/tree/_splitter.pyx":777
+      /* "sklearn/tree/_splitter.pyx":776
  *                 # f_j in the interval [n_total_constants, f_i[
  * 
  *                 current.feature = features[f_j]             # <<<<<<<<<<<<<<
@@ -6832,7 +6831,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       __pyx_v_current.feature = (__pyx_v_features[__pyx_v_f_j]);
 
-      /* "sklearn/tree/_splitter.pyx":778
+      /* "sklearn/tree/_splitter.pyx":777
  * 
  *                 current.feature = features[f_j]
  *                 feature_stride = X_feature_stride * current.feature             # <<<<<<<<<<<<<<
@@ -6841,7 +6840,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       __pyx_v_feature_stride = (__pyx_v_X_feature_stride * __pyx_v_current.feature);
 
-      /* "sklearn/tree/_splitter.pyx":781
+      /* "sklearn/tree/_splitter.pyx":780
  * 
  *                 # Find min, max
  *                 min_feature_value = X[X_sample_stride * samples[start] + feature_stride]             # <<<<<<<<<<<<<<
@@ -6850,7 +6849,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       __pyx_v_min_feature_value = (__pyx_v_X[((__pyx_v_X_sample_stride * (__pyx_v_samples[__pyx_v_start])) + __pyx_v_feature_stride)]);
 
-      /* "sklearn/tree/_splitter.pyx":782
+      /* "sklearn/tree/_splitter.pyx":781
  *                 # Find min, max
  *                 min_feature_value = X[X_sample_stride * samples[start] + feature_stride]
  *                 max_feature_value = min_feature_value             # <<<<<<<<<<<<<<
@@ -6859,7 +6858,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       __pyx_v_max_feature_value = __pyx_v_min_feature_value;
 
-      /* "sklearn/tree/_splitter.pyx":783
+      /* "sklearn/tree/_splitter.pyx":782
  *                 min_feature_value = X[X_sample_stride * samples[start] + feature_stride]
  *                 max_feature_value = min_feature_value
  *                 Xf[start] = min_feature_value             # <<<<<<<<<<<<<<
@@ -6868,7 +6867,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       (__pyx_v_Xf[__pyx_v_start]) = __pyx_v_min_feature_value;
 
-      /* "sklearn/tree/_splitter.pyx":785
+      /* "sklearn/tree/_splitter.pyx":784
  *                 Xf[start] = min_feature_value
  * 
  *                 for p in range(start + 1, end):             # <<<<<<<<<<<<<<
@@ -6879,7 +6878,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
       for (__pyx_t_2 = (__pyx_v_start + 1); __pyx_t_2 < __pyx_t_7; __pyx_t_2+=1) {
         __pyx_v_p = __pyx_t_2;
 
-        /* "sklearn/tree/_splitter.pyx":786
+        /* "sklearn/tree/_splitter.pyx":785
  * 
  *                 for p in range(start + 1, end):
  *                     current_feature_value = X[X_sample_stride * samples[p] + feature_stride]             # <<<<<<<<<<<<<<
@@ -6888,7 +6887,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_v_current_feature_value = (__pyx_v_X[((__pyx_v_X_sample_stride * (__pyx_v_samples[__pyx_v_p])) + __pyx_v_feature_stride)]);
 
-        /* "sklearn/tree/_splitter.pyx":787
+        /* "sklearn/tree/_splitter.pyx":786
  *                 for p in range(start + 1, end):
  *                     current_feature_value = X[X_sample_stride * samples[p] + feature_stride]
  *                     Xf[p] = current_feature_value             # <<<<<<<<<<<<<<
@@ -6897,7 +6896,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         (__pyx_v_Xf[__pyx_v_p]) = __pyx_v_current_feature_value;
 
-        /* "sklearn/tree/_splitter.pyx":789
+        /* "sklearn/tree/_splitter.pyx":788
  *                     Xf[p] = current_feature_value
  * 
  *                     if current_feature_value < min_feature_value:             # <<<<<<<<<<<<<<
@@ -6907,7 +6906,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_t_5 = ((__pyx_v_current_feature_value < __pyx_v_min_feature_value) != 0);
         if (__pyx_t_5) {
 
-          /* "sklearn/tree/_splitter.pyx":790
+          /* "sklearn/tree/_splitter.pyx":789
  * 
  *                     if current_feature_value < min_feature_value:
  *                         min_feature_value = current_feature_value             # <<<<<<<<<<<<<<
@@ -6918,7 +6917,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           goto __pyx_L11;
         }
 
-        /* "sklearn/tree/_splitter.pyx":791
+        /* "sklearn/tree/_splitter.pyx":790
  *                     if current_feature_value < min_feature_value:
  *                         min_feature_value = current_feature_value
  *                     elif current_feature_value > max_feature_value:             # <<<<<<<<<<<<<<
@@ -6928,7 +6927,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_t_5 = ((__pyx_v_current_feature_value > __pyx_v_max_feature_value) != 0);
         if (__pyx_t_5) {
 
-          /* "sklearn/tree/_splitter.pyx":792
+          /* "sklearn/tree/_splitter.pyx":791
  *                         min_feature_value = current_feature_value
  *                     elif current_feature_value > max_feature_value:
  *                         max_feature_value = current_feature_value             # <<<<<<<<<<<<<<
@@ -6941,7 +6940,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_L11:;
       }
 
-      /* "sklearn/tree/_splitter.pyx":794
+      /* "sklearn/tree/_splitter.pyx":793
  *                         max_feature_value = current_feature_value
  * 
  *                 if max_feature_value <= min_feature_value + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
@@ -6951,7 +6950,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
       __pyx_t_5 = ((__pyx_v_max_feature_value <= (__pyx_v_min_feature_value + __pyx_v_7sklearn_4tree_9_splitter_FEATURE_THRESHOLD)) != 0);
       if (__pyx_t_5) {
 
-        /* "sklearn/tree/_splitter.pyx":795
+        /* "sklearn/tree/_splitter.pyx":794
  * 
  *                 if max_feature_value <= min_feature_value + FEATURE_THRESHOLD:
  *                     features[f_j] = features[n_total_constants]             # <<<<<<<<<<<<<<
@@ -6960,7 +6959,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         (__pyx_v_features[__pyx_v_f_j]) = (__pyx_v_features[__pyx_v_n_total_constants]);
 
-        /* "sklearn/tree/_splitter.pyx":796
+        /* "sklearn/tree/_splitter.pyx":795
  *                 if max_feature_value <= min_feature_value + FEATURE_THRESHOLD:
  *                     features[f_j] = features[n_total_constants]
  *                     features[n_total_constants] = current.feature             # <<<<<<<<<<<<<<
@@ -6970,7 +6969,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_t_7 = __pyx_v_current.feature;
         (__pyx_v_features[__pyx_v_n_total_constants]) = __pyx_t_7;
 
-        /* "sklearn/tree/_splitter.pyx":798
+        /* "sklearn/tree/_splitter.pyx":797
  *                     features[n_total_constants] = current.feature
  * 
  *                     n_found_constants += 1             # <<<<<<<<<<<<<<
@@ -6979,7 +6978,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_v_n_found_constants = (__pyx_v_n_found_constants + 1);
 
-        /* "sklearn/tree/_splitter.pyx":799
+        /* "sklearn/tree/_splitter.pyx":798
  * 
  *                     n_found_constants += 1
  *                     n_total_constants += 1             # <<<<<<<<<<<<<<
@@ -6991,7 +6990,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
       }
       /*else*/ {
 
-        /* "sklearn/tree/_splitter.pyx":802
+        /* "sklearn/tree/_splitter.pyx":801
  * 
  *                 else:
  *                     f_i -= 1             # <<<<<<<<<<<<<<
@@ -7000,7 +6999,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_v_f_i = (__pyx_v_f_i - 1);
 
-        /* "sklearn/tree/_splitter.pyx":803
+        /* "sklearn/tree/_splitter.pyx":802
  *                 else:
  *                     f_i -= 1
  *                     features[f_i], features[f_j] = features[f_j], features[f_i]             # <<<<<<<<<<<<<<
@@ -7012,57 +7011,48 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         (__pyx_v_features[__pyx_v_f_i]) = __pyx_t_7;
         (__pyx_v_features[__pyx_v_f_j]) = __pyx_t_2;
 
-        /* "sklearn/tree/_splitter.pyx":806
+        /* "sklearn/tree/_splitter.pyx":805
  * 
  *                     # Construct a random split
  *                     is_categorical = self.n_categories[current.feature] > 0             # <<<<<<<<<<<<<<
  *                     if is_categorical:
- *                         # split_n_draw is the number of categories to send left
+ *                         split_seed = our_rand_r(random_state)
  */
         __pyx_v_is_categorical = ((__pyx_v_self->__pyx_base.__pyx_base.n_categories[__pyx_v_current.feature]) > 0);
 
-        /* "sklearn/tree/_splitter.pyx":807
+        /* "sklearn/tree/_splitter.pyx":806
  *                     # Construct a random split
  *                     is_categorical = self.n_categories[current.feature] > 0
  *                     if is_categorical:             # <<<<<<<<<<<<<<
- *                         # split_n_draw is the number of categories to send left
- *                         # TODO: this should be a binomial draw
+ *                         split_seed = our_rand_r(random_state)
+ *                         current.split_value.cat_split = (split_seed << 32) | 1
  */
         __pyx_t_5 = (__pyx_v_is_categorical != 0);
         if (__pyx_t_5) {
 
-          /* "sklearn/tree/_splitter.pyx":811
- *                         # TODO: this should be a binomial draw
- *                         split_n_draw = rand_int(1, self.n_categories[current.feature],
- *                                                 random_state) & <SIZE_t>0x7FFFFFFF             # <<<<<<<<<<<<<<
- *                         split_seed = our_rand_r(random_state)
- *                         current.split_value.cat_split = (
- */
-          __pyx_v_split_n_draw = (__pyx_f_7sklearn_4tree_6_utils_rand_int(1, (__pyx_v_self->__pyx_base.__pyx_base.n_categories[__pyx_v_current.feature]), __pyx_v_random_state) & ((__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)0x7FFFFFFF));
-
-          /* "sklearn/tree/_splitter.pyx":812
- *                         split_n_draw = rand_int(1, self.n_categories[current.feature],
- *                                                 random_state) & <SIZE_t>0x7FFFFFFF
+          /* "sklearn/tree/_splitter.pyx":807
+ *                     is_categorical = self.n_categories[current.feature] > 0
+ *                     if is_categorical:
  *                         split_seed = our_rand_r(random_state)             # <<<<<<<<<<<<<<
- *                         current.split_value.cat_split = (
- *                             (split_seed << 32) | (split_n_draw << 1) | 1)
+ *                         current.split_value.cat_split = (split_seed << 32) | 1
+ *                     else:
  */
           __pyx_v_split_seed = __pyx_f_7sklearn_4tree_6_utils_our_rand_r(__pyx_v_random_state);
 
-          /* "sklearn/tree/_splitter.pyx":813
- *                                                 random_state) & <SIZE_t>0x7FFFFFFF
+          /* "sklearn/tree/_splitter.pyx":808
+ *                     if is_categorical:
  *                         split_seed = our_rand_r(random_state)
- *                         current.split_value.cat_split = (             # <<<<<<<<<<<<<<
- *                             (split_seed << 32) | (split_n_draw << 1) | 1)
+ *                         current.split_value.cat_split = (split_seed << 32) | 1             # <<<<<<<<<<<<<<
  *                     else:
+ *                         current.split_value.threshold = rand_uniform(
  */
-          __pyx_v_current.split_value.cat_split = (((__pyx_v_split_seed << 32) | (__pyx_v_split_n_draw << 1)) | 1);
+          __pyx_v_current.split_value.cat_split = ((__pyx_v_split_seed << 32) | 1);
           goto __pyx_L13;
         }
         /*else*/ {
 
-          /* "sklearn/tree/_splitter.pyx":816
- *                             (split_seed << 32) | (split_n_draw << 1) | 1)
+          /* "sklearn/tree/_splitter.pyx":810
+ *                         current.split_value.cat_split = (split_seed << 32) | 1
  *                     else:
  *                         current.split_value.threshold = rand_uniform(             # <<<<<<<<<<<<<<
  *                             min_feature_value, max_feature_value, random_state)
@@ -7070,7 +7060,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
           __pyx_v_current.split_value.threshold = __pyx_f_7sklearn_4tree_6_utils_rand_uniform(__pyx_v_min_feature_value, __pyx_v_max_feature_value, __pyx_v_random_state);
 
-          /* "sklearn/tree/_splitter.pyx":818
+          /* "sklearn/tree/_splitter.pyx":812
  *                         current.split_value.threshold = rand_uniform(
  *                             min_feature_value, max_feature_value, random_state)
  *                         if current.split_value.threshold == max_feature_value:             # <<<<<<<<<<<<<<
@@ -7080,7 +7070,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           __pyx_t_5 = ((__pyx_v_current.split_value.threshold == __pyx_v_max_feature_value) != 0);
           if (__pyx_t_5) {
 
-            /* "sklearn/tree/_splitter.pyx":819
+            /* "sklearn/tree/_splitter.pyx":813
  *                             min_feature_value, max_feature_value, random_state)
  *                         if current.split_value.threshold == max_feature_value:
  *                             current.split_value.threshold = min_feature_value             # <<<<<<<<<<<<<<
@@ -7094,7 +7084,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         }
         __pyx_L13:;
 
-        /* "sklearn/tree/_splitter.pyx":822
+        /* "sklearn/tree/_splitter.pyx":816
  * 
  *                     # Partition
  *                     make_bit_cache(current.split_value, self.n_categories[current.feature],             # <<<<<<<<<<<<<<
@@ -7103,7 +7093,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_f_7sklearn_4tree_6_utils_make_bit_cache(__pyx_v_current.split_value, (__pyx_v_self->__pyx_base.__pyx_base.n_categories[__pyx_v_current.feature]), __pyx_v_self->__pyx_base.__pyx_base._bit_cache);
 
-        /* "sklearn/tree/_splitter.pyx":824
+        /* "sklearn/tree/_splitter.pyx":818
  *                     make_bit_cache(current.split_value, self.n_categories[current.feature],
  *                                    self._bit_cache)
  *                     partition_end = end             # <<<<<<<<<<<<<<
@@ -7112,7 +7102,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_v_partition_end = __pyx_v_end;
 
-        /* "sklearn/tree/_splitter.pyx":825
+        /* "sklearn/tree/_splitter.pyx":819
  *                                    self._bit_cache)
  *                     partition_end = end
  *                     p = start             # <<<<<<<<<<<<<<
@@ -7121,7 +7111,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_v_p = __pyx_v_start;
 
-        /* "sklearn/tree/_splitter.pyx":826
+        /* "sklearn/tree/_splitter.pyx":820
  *                     partition_end = end
  *                     p = start
  *                     while p < partition_end:             # <<<<<<<<<<<<<<
@@ -7132,7 +7122,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           __pyx_t_5 = ((__pyx_v_p < __pyx_v_partition_end) != 0);
           if (!__pyx_t_5) break;
 
-          /* "sklearn/tree/_splitter.pyx":827
+          /* "sklearn/tree/_splitter.pyx":821
  *                     p = start
  *                     while p < partition_end:
  *                         current_feature_value = Xf[p]             # <<<<<<<<<<<<<<
@@ -7141,7 +7131,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
           __pyx_v_current_feature_value = (__pyx_v_Xf[__pyx_v_p]);
 
-          /* "sklearn/tree/_splitter.pyx":828
+          /* "sklearn/tree/_splitter.pyx":822
  *                     while p < partition_end:
  *                         current_feature_value = Xf[p]
  *                         if goes_left(current_feature_value, current.split_value,             # <<<<<<<<<<<<<<
@@ -7151,7 +7141,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           __pyx_t_5 = (__pyx_f_7sklearn_4tree_6_utils_goes_left(__pyx_v_current_feature_value, __pyx_v_current.split_value, (__pyx_v_self->__pyx_base.__pyx_base.n_categories[__pyx_v_current.feature]), __pyx_v_self->__pyx_base.__pyx_base._bit_cache) != 0);
           if (__pyx_t_5) {
 
-            /* "sklearn/tree/_splitter.pyx":830
+            /* "sklearn/tree/_splitter.pyx":824
  *                         if goes_left(current_feature_value, current.split_value,
  *                                      self.n_categories[current.feature], self._bit_cache):
  *                             p += 1             # <<<<<<<<<<<<<<
@@ -7163,7 +7153,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           }
           /*else*/ {
 
-            /* "sklearn/tree/_splitter.pyx":832
+            /* "sklearn/tree/_splitter.pyx":826
  *                             p += 1
  *                         else:
  *                             partition_end -= 1             # <<<<<<<<<<<<<<
@@ -7172,7 +7162,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
             __pyx_v_partition_end = (__pyx_v_partition_end - 1);
 
-            /* "sklearn/tree/_splitter.pyx":834
+            /* "sklearn/tree/_splitter.pyx":828
  *                             partition_end -= 1
  * 
  *                             Xf[p] = Xf[partition_end]             # <<<<<<<<<<<<<<
@@ -7181,7 +7171,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
             (__pyx_v_Xf[__pyx_v_p]) = (__pyx_v_Xf[__pyx_v_partition_end]);
 
-            /* "sklearn/tree/_splitter.pyx":835
+            /* "sklearn/tree/_splitter.pyx":829
  * 
  *                             Xf[p] = Xf[partition_end]
  *                             Xf[partition_end] = current_feature_value             # <<<<<<<<<<<<<<
@@ -7190,7 +7180,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
             (__pyx_v_Xf[__pyx_v_partition_end]) = __pyx_v_current_feature_value;
 
-            /* "sklearn/tree/_splitter.pyx":838
+            /* "sklearn/tree/_splitter.pyx":832
  * 
  *                             samples[p], samples[partition_end] = (
  *                                 samples[partition_end], samples[p])             # <<<<<<<<<<<<<<
@@ -7200,7 +7190,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
             __pyx_t_2 = (__pyx_v_samples[__pyx_v_partition_end]);
             __pyx_t_7 = (__pyx_v_samples[__pyx_v_p]);
 
-            /* "sklearn/tree/_splitter.pyx":837
+            /* "sklearn/tree/_splitter.pyx":831
  *                             Xf[partition_end] = current_feature_value
  * 
  *                             samples[p], samples[partition_end] = (             # <<<<<<<<<<<<<<
@@ -7213,7 +7203,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           __pyx_L17:;
         }
 
-        /* "sklearn/tree/_splitter.pyx":840
+        /* "sklearn/tree/_splitter.pyx":834
  *                                 samples[partition_end], samples[p])
  * 
  *                     current.pos = partition_end             # <<<<<<<<<<<<<<
@@ -7222,7 +7212,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_v_current.pos = __pyx_v_partition_end;
 
-        /* "sklearn/tree/_splitter.pyx":843
+        /* "sklearn/tree/_splitter.pyx":837
  * 
  *                     # Reject if min_samples_leaf is not guaranteed
  *                     if (((current.pos - start) < min_samples_leaf) or             # <<<<<<<<<<<<<<
@@ -7236,7 +7226,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           goto __pyx_L19_bool_binop_done;
         }
 
-        /* "sklearn/tree/_splitter.pyx":844
+        /* "sklearn/tree/_splitter.pyx":838
  *                     # Reject if min_samples_leaf is not guaranteed
  *                     if (((current.pos - start) < min_samples_leaf) or
  *                             ((end - current.pos) < min_samples_leaf)):             # <<<<<<<<<<<<<<
@@ -7248,7 +7238,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_L19_bool_binop_done:;
         if (__pyx_t_5) {
 
-          /* "sklearn/tree/_splitter.pyx":845
+          /* "sklearn/tree/_splitter.pyx":839
  *                     if (((current.pos - start) < min_samples_leaf) or
  *                             ((end - current.pos) < min_samples_leaf)):
  *                         continue             # <<<<<<<<<<<<<<
@@ -7258,7 +7248,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           goto __pyx_L3_continue;
         }
 
-        /* "sklearn/tree/_splitter.pyx":848
+        /* "sklearn/tree/_splitter.pyx":842
  * 
  *                     # Evaluate split
  *                     self.criterion.reset()             # <<<<<<<<<<<<<<
@@ -7267,7 +7257,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->reset(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-        /* "sklearn/tree/_splitter.pyx":849
+        /* "sklearn/tree/_splitter.pyx":843
  *                     # Evaluate split
  *                     self.criterion.reset()
  *                     self.criterion.update(current.pos)             # <<<<<<<<<<<<<<
@@ -7276,7 +7266,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->update(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_current.pos);
 
-        /* "sklearn/tree/_splitter.pyx":852
+        /* "sklearn/tree/_splitter.pyx":846
  * 
  *                     # Reject if min_weight_leaf is not satisfied
  *                     if ((self.criterion.weighted_n_left < min_weight_leaf) or             # <<<<<<<<<<<<<<
@@ -7290,7 +7280,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           goto __pyx_L22_bool_binop_done;
         }
 
-        /* "sklearn/tree/_splitter.pyx":853
+        /* "sklearn/tree/_splitter.pyx":847
  *                     # Reject if min_weight_leaf is not satisfied
  *                     if ((self.criterion.weighted_n_left < min_weight_leaf) or
  *                             (self.criterion.weighted_n_right < min_weight_leaf)):             # <<<<<<<<<<<<<<
@@ -7302,7 +7292,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_L22_bool_binop_done:;
         if (__pyx_t_5) {
 
-          /* "sklearn/tree/_splitter.pyx":854
+          /* "sklearn/tree/_splitter.pyx":848
  *                     if ((self.criterion.weighted_n_left < min_weight_leaf) or
  *                             (self.criterion.weighted_n_right < min_weight_leaf)):
  *                         continue             # <<<<<<<<<<<<<<
@@ -7312,7 +7302,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           goto __pyx_L3_continue;
         }
 
-        /* "sklearn/tree/_splitter.pyx":856
+        /* "sklearn/tree/_splitter.pyx":850
  *                         continue
  * 
  *                     current_proxy_improvement = self.criterion.proxy_impurity_improvement()             # <<<<<<<<<<<<<<
@@ -7321,7 +7311,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
         __pyx_v_current_proxy_improvement = ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->proxy_impurity_improvement(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-        /* "sklearn/tree/_splitter.pyx":858
+        /* "sklearn/tree/_splitter.pyx":852
  *                     current_proxy_improvement = self.criterion.proxy_impurity_improvement()
  * 
  *                     if current_proxy_improvement > best_proxy_improvement:             # <<<<<<<<<<<<<<
@@ -7331,7 +7321,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_t_5 = ((__pyx_v_current_proxy_improvement > __pyx_v_best_proxy_improvement) != 0);
         if (__pyx_t_5) {
 
-          /* "sklearn/tree/_splitter.pyx":859
+          /* "sklearn/tree/_splitter.pyx":853
  * 
  *                     if current_proxy_improvement > best_proxy_improvement:
  *                         best_proxy_improvement = current_proxy_improvement             # <<<<<<<<<<<<<<
@@ -7340,7 +7330,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
           __pyx_v_best_proxy_improvement = __pyx_v_current_proxy_improvement;
 
-          /* "sklearn/tree/_splitter.pyx":860
+          /* "sklearn/tree/_splitter.pyx":854
  *                     if current_proxy_improvement > best_proxy_improvement:
  *                         best_proxy_improvement = current_proxy_improvement
  *                         best = current  # copy             # <<<<<<<<<<<<<<
@@ -7358,7 +7348,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
     __pyx_L3_continue:;
   }
 
-  /* "sklearn/tree/_splitter.pyx":863
+  /* "sklearn/tree/_splitter.pyx":857
  * 
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         feature_stride = X_feature_stride * best.feature             # <<<<<<<<<<<<<<
@@ -7367,7 +7357,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
   __pyx_v_feature_stride = (__pyx_v_X_feature_stride * __pyx_v_best.feature);
 
-  /* "sklearn/tree/_splitter.pyx":864
+  /* "sklearn/tree/_splitter.pyx":858
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         feature_stride = X_feature_stride * best.feature
  *         if best.pos < end:             # <<<<<<<<<<<<<<
@@ -7377,7 +7367,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
   __pyx_t_5 = ((__pyx_v_best.pos < __pyx_v_end) != 0);
   if (__pyx_t_5) {
 
-    /* "sklearn/tree/_splitter.pyx":865
+    /* "sklearn/tree/_splitter.pyx":859
  *         feature_stride = X_feature_stride * best.feature
  *         if best.pos < end:
  *             make_bit_cache(best.split_value, self.n_categories[best.feature],             # <<<<<<<<<<<<<<
@@ -7386,7 +7376,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
     __pyx_f_7sklearn_4tree_6_utils_make_bit_cache(__pyx_v_best.split_value, (__pyx_v_self->__pyx_base.__pyx_base.n_categories[__pyx_v_best.feature]), __pyx_v_self->__pyx_base.__pyx_base._bit_cache);
 
-    /* "sklearn/tree/_splitter.pyx":867
+    /* "sklearn/tree/_splitter.pyx":861
  *             make_bit_cache(best.split_value, self.n_categories[best.feature],
  *                            self._bit_cache)
  *             if current.feature != best.feature:             # <<<<<<<<<<<<<<
@@ -7396,7 +7386,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
     __pyx_t_5 = ((__pyx_v_current.feature != __pyx_v_best.feature) != 0);
     if (__pyx_t_5) {
 
-      /* "sklearn/tree/_splitter.pyx":868
+      /* "sklearn/tree/_splitter.pyx":862
  *                            self._bit_cache)
  *             if current.feature != best.feature:
  *                 partition_end = end             # <<<<<<<<<<<<<<
@@ -7405,7 +7395,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       __pyx_v_partition_end = __pyx_v_end;
 
-      /* "sklearn/tree/_splitter.pyx":869
+      /* "sklearn/tree/_splitter.pyx":863
  *             if current.feature != best.feature:
  *                 partition_end = end
  *                 p = start             # <<<<<<<<<<<<<<
@@ -7414,7 +7404,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
       __pyx_v_p = __pyx_v_start;
 
-      /* "sklearn/tree/_splitter.pyx":871
+      /* "sklearn/tree/_splitter.pyx":865
  *                 p = start
  * 
  *                 while p < partition_end:             # <<<<<<<<<<<<<<
@@ -7425,7 +7415,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_t_5 = ((__pyx_v_p < __pyx_v_partition_end) != 0);
         if (!__pyx_t_5) break;
 
-        /* "sklearn/tree/_splitter.pyx":872
+        /* "sklearn/tree/_splitter.pyx":866
  * 
  *                 while p < partition_end:
  *                     if goes_left(X[X_sample_stride * samples[p] + feature_stride],             # <<<<<<<<<<<<<<
@@ -7435,7 +7425,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         __pyx_t_5 = (__pyx_f_7sklearn_4tree_6_utils_goes_left((__pyx_v_X[((__pyx_v_X_sample_stride * (__pyx_v_samples[__pyx_v_p])) + __pyx_v_feature_stride)]), __pyx_v_best.split_value, (__pyx_v_self->__pyx_base.__pyx_base.n_categories[__pyx_v_best.feature]), __pyx_v_self->__pyx_base.__pyx_base._bit_cache) != 0);
         if (__pyx_t_5) {
 
-          /* "sklearn/tree/_splitter.pyx":875
+          /* "sklearn/tree/_splitter.pyx":869
  *                                  best.split_value, self.n_categories[best.feature],
  *                                  self._bit_cache):
  *                         p += 1             # <<<<<<<<<<<<<<
@@ -7447,7 +7437,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
         }
         /*else*/ {
 
-          /* "sklearn/tree/_splitter.pyx":878
+          /* "sklearn/tree/_splitter.pyx":872
  * 
  *                     else:
  *                         partition_end -= 1             # <<<<<<<<<<<<<<
@@ -7456,7 +7446,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
           __pyx_v_partition_end = (__pyx_v_partition_end - 1);
 
-          /* "sklearn/tree/_splitter.pyx":881
+          /* "sklearn/tree/_splitter.pyx":875
  * 
  *                         samples[p], samples[partition_end] = (
  *                             samples[partition_end], samples[p])             # <<<<<<<<<<<<<<
@@ -7466,7 +7456,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
           __pyx_t_7 = (__pyx_v_samples[__pyx_v_partition_end]);
           __pyx_t_2 = (__pyx_v_samples[__pyx_v_p]);
 
-          /* "sklearn/tree/_splitter.pyx":880
+          /* "sklearn/tree/_splitter.pyx":874
  *                         partition_end -= 1
  * 
  *                         samples[p], samples[partition_end] = (             # <<<<<<<<<<<<<<
@@ -7482,7 +7472,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
     }
     __pyx_L26:;
 
-    /* "sklearn/tree/_splitter.pyx":884
+    /* "sklearn/tree/_splitter.pyx":878
  * 
  * 
  *             self.criterion.reset()             # <<<<<<<<<<<<<<
@@ -7491,7 +7481,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
     ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->reset(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-    /* "sklearn/tree/_splitter.pyx":885
+    /* "sklearn/tree/_splitter.pyx":879
  * 
  *             self.criterion.reset()
  *             self.criterion.update(best.pos)             # <<<<<<<<<<<<<<
@@ -7500,7 +7490,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
     ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->update(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_best.pos);
 
-    /* "sklearn/tree/_splitter.pyx":886
+    /* "sklearn/tree/_splitter.pyx":880
  *             self.criterion.reset()
  *             self.criterion.update(best.pos)
  *             best.improvement = self.criterion.impurity_improvement(impurity)             # <<<<<<<<<<<<<<
@@ -7509,7 +7499,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
     __pyx_v_best.improvement = ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->impurity_improvement(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_impurity);
 
-    /* "sklearn/tree/_splitter.pyx":887
+    /* "sklearn/tree/_splitter.pyx":881
  *             self.criterion.update(best.pos)
  *             best.improvement = self.criterion.impurity_improvement(impurity)
  *             self.criterion.children_impurity(&best.impurity_left,             # <<<<<<<<<<<<<<
@@ -7521,7 +7511,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
   }
   __pyx_L25:;
 
-  /* "sklearn/tree/_splitter.pyx":893
+  /* "sklearn/tree/_splitter.pyx":887
  *         # element in features[:n_known_constants] must be preserved for sibling
  *         # and child nodes
  *         memcpy(features, constant_features, sizeof(SIZE_t) * n_known_constants)             # <<<<<<<<<<<<<<
@@ -7530,7 +7520,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
   memcpy(__pyx_v_features, __pyx_v_constant_features, ((sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)) * __pyx_v_n_known_constants));
 
-  /* "sklearn/tree/_splitter.pyx":896
+  /* "sklearn/tree/_splitter.pyx":890
  * 
  *         # Copy newly found constant features
  *         memcpy(constant_features + n_known_constants,             # <<<<<<<<<<<<<<
@@ -7539,7 +7529,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
   memcpy((__pyx_v_constant_features + __pyx_v_n_known_constants), (__pyx_v_features + __pyx_v_n_known_constants), ((sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)) * __pyx_v_n_found_constants));
 
-  /* "sklearn/tree/_splitter.pyx":901
+  /* "sklearn/tree/_splitter.pyx":895
  * 
  *         # Return values
  *         split[0] = best             # <<<<<<<<<<<<<<
@@ -7548,7 +7538,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
  */
   (__pyx_v_split[0]) = __pyx_v_best;
 
-  /* "sklearn/tree/_splitter.pyx":902
+  /* "sklearn/tree/_splitter.pyx":896
  *         # Return values
  *         split[0] = best
  *         n_constant_features[0] = n_total_constants             # <<<<<<<<<<<<<<
@@ -7568,7 +7558,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_14RandomSplitter_node_split(struct
   /* function exit code */
 }
 
-/* "sklearn/tree/_splitter.pyx":916
+/* "sklearn/tree/_splitter.pyx":910
  *     cdef SIZE_t* sorted_samples
  * 
  *     def __cinit__(self, Criterion criterion, SIZE_t max_features,             # <<<<<<<<<<<<<<
@@ -7615,31 +7605,31 @@ static int __pyx_pw_7sklearn_4tree_9_splitter_18BaseSparseSplitter_1__cinit__(Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_max_features)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_samples_leaf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_weight_leaf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_random_state)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_presort)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -7652,21 +7642,21 @@ static int __pyx_pw_7sklearn_4tree_9_splitter_18BaseSparseSplitter_1__cinit__(Py
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
     __pyx_v_criterion = ((struct __pyx_obj_7sklearn_4tree_10_criterion_Criterion *)values[0]);
-    __pyx_v_max_features = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_max_features == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_min_samples_leaf = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_min_samples_leaf == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 917; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_min_weight_leaf = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_min_weight_leaf == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 917; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_max_features = __Pyx_PyInt_As_Py_intptr_t(values[1]); if (unlikely((__pyx_v_max_features == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_min_samples_leaf = __Pyx_PyInt_As_Py_intptr_t(values[2]); if (unlikely((__pyx_v_min_samples_leaf == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 911; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_min_weight_leaf = __pyx_PyFloat_AsDouble(values[3]); if (unlikely((__pyx_v_min_weight_leaf == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 911; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_random_state = values[4];
-    __pyx_v_presort = __Pyx_PyObject_IsTrue(values[5]); if (unlikely((__pyx_v_presort == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 918; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_presort = __Pyx_PyObject_IsTrue(values[5]); if (unlikely((__pyx_v_presort == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 912; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("sklearn.tree._splitter.BaseSparseSplitter.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_criterion), __pyx_ptype_7sklearn_4tree_10_criterion_Criterion, 1, "criterion", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 916; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_criterion), __pyx_ptype_7sklearn_4tree_10_criterion_Criterion, 1, "criterion", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(((struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *)__pyx_v_self), __pyx_v_criterion, __pyx_v_max_features, __pyx_v_min_samples_leaf, __pyx_v_min_weight_leaf, __pyx_v_random_state, __pyx_v_presort);
 
   /* function exit code */
@@ -7683,7 +7673,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sklearn/tree/_splitter.pyx":921
+  /* "sklearn/tree/_splitter.pyx":915
  *         # Parent __cinit__ is automatically called
  * 
  *         self.X_data = NULL             # <<<<<<<<<<<<<<
@@ -7692,7 +7682,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
  */
   __pyx_v_self->X_data = NULL;
 
-  /* "sklearn/tree/_splitter.pyx":922
+  /* "sklearn/tree/_splitter.pyx":916
  * 
  *         self.X_data = NULL
  *         self.X_indices = NULL             # <<<<<<<<<<<<<<
@@ -7701,7 +7691,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
  */
   __pyx_v_self->X_indices = NULL;
 
-  /* "sklearn/tree/_splitter.pyx":923
+  /* "sklearn/tree/_splitter.pyx":917
  *         self.X_data = NULL
  *         self.X_indices = NULL
  *         self.X_indptr = NULL             # <<<<<<<<<<<<<<
@@ -7710,7 +7700,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
  */
   __pyx_v_self->X_indptr = NULL;
 
-  /* "sklearn/tree/_splitter.pyx":925
+  /* "sklearn/tree/_splitter.pyx":919
  *         self.X_indptr = NULL
  * 
  *         self.n_total_samples = 0             # <<<<<<<<<<<<<<
@@ -7719,7 +7709,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
  */
   __pyx_v_self->n_total_samples = 0;
 
-  /* "sklearn/tree/_splitter.pyx":927
+  /* "sklearn/tree/_splitter.pyx":921
  *         self.n_total_samples = 0
  * 
  *         self.index_to_samples = NULL             # <<<<<<<<<<<<<<
@@ -7728,7 +7718,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
  */
   __pyx_v_self->index_to_samples = NULL;
 
-  /* "sklearn/tree/_splitter.pyx":928
+  /* "sklearn/tree/_splitter.pyx":922
  * 
  *         self.index_to_samples = NULL
  *         self.sorted_samples = NULL             # <<<<<<<<<<<<<<
@@ -7737,7 +7727,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
  */
   __pyx_v_self->sorted_samples = NULL;
 
-  /* "sklearn/tree/_splitter.pyx":916
+  /* "sklearn/tree/_splitter.pyx":910
  *     cdef SIZE_t* sorted_samples
  * 
  *     def __cinit__(self, Criterion criterion, SIZE_t max_features,             # <<<<<<<<<<<<<<
@@ -7751,7 +7741,7 @@ static int __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter___cinit__(str
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pyx":930
+/* "sklearn/tree/_splitter.pyx":924
  *         self.sorted_samples = NULL
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -7774,7 +7764,7 @@ static void __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter_2__dealloc__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sklearn/tree/_splitter.pyx":932
+  /* "sklearn/tree/_splitter.pyx":926
  *     def __dealloc__(self):
  *         """Deallocate memory."""
  *         free(self.index_to_samples)             # <<<<<<<<<<<<<<
@@ -7783,7 +7773,7 @@ static void __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter_2__dealloc__
  */
   free(__pyx_v_self->index_to_samples);
 
-  /* "sklearn/tree/_splitter.pyx":933
+  /* "sklearn/tree/_splitter.pyx":927
  *         """Deallocate memory."""
  *         free(self.index_to_samples)
  *         free(self.sorted_samples)             # <<<<<<<<<<<<<<
@@ -7792,7 +7782,7 @@ static void __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter_2__dealloc__
  */
   free(__pyx_v_self->sorted_samples);
 
-  /* "sklearn/tree/_splitter.pyx":930
+  /* "sklearn/tree/_splitter.pyx":924
  *         self.sorted_samples = NULL
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -7804,7 +7794,7 @@ static void __pyx_pf_7sklearn_4tree_9_splitter_18BaseSparseSplitter_2__dealloc__
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_splitter.pyx":935
+/* "sklearn/tree/_splitter.pyx":929
  *         free(self.sorted_samples)
  * 
  *     cdef void init(self,             # <<<<<<<<<<<<<<
@@ -7864,48 +7854,48 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __pyx_pybuffernd_y.rcbuffer = &__pyx_pybuffer_y;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_y.rcbuffer->pybuffer, (PyObject*)__pyx_v_y, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 935; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_y.rcbuffer->pybuffer, (PyObject*)__pyx_v_y, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_9_splitter_DOUBLE_t, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 2, 0, __pyx_stack) == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 929; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_pybuffernd_y.diminfo[0].strides = __pyx_pybuffernd_y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_y.diminfo[0].shape = __pyx_pybuffernd_y.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_y.diminfo[1].strides = __pyx_pybuffernd_y.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_y.diminfo[1].shape = __pyx_pybuffernd_y.rcbuffer->pybuffer.shape[1];
 
-  /* "sklearn/tree/_splitter.pyx":944
+  /* "sklearn/tree/_splitter.pyx":938
  * 
  *         # Call parent init
  *         Splitter.init(self, X, y, sample_weight, n_categories)             # <<<<<<<<<<<<<<
  * 
  *         if not isinstance(X, csc_matrix):
  */
-  __pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter->init(((struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *)__pyx_v_self), __pyx_v_X, ((PyArrayObject *)__pyx_v_y), __pyx_v_sample_weight, __pyx_v_n_categories, NULL); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 944; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_vtabptr_7sklearn_4tree_9_splitter_Splitter->init(((struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *)__pyx_v_self), __pyx_v_X, ((PyArrayObject *)__pyx_v_y), __pyx_v_sample_weight, __pyx_v_n_categories, NULL); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 938; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_splitter.pyx":946
+  /* "sklearn/tree/_splitter.pyx":940
  *         Splitter.init(self, X, y, sample_weight, n_categories)
  * 
  *         if not isinstance(X, csc_matrix):             # <<<<<<<<<<<<<<
  *             raise ValueError("X should be in csc format")
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_csc_matrix); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 946; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_csc_matrix); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 940; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_X, __pyx_t_1); if (unlikely(__pyx_t_2 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 946; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_X, __pyx_t_1); if (unlikely(__pyx_t_2 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 940; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = ((!(__pyx_t_2 != 0)) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_splitter.pyx":947
+    /* "sklearn/tree/_splitter.pyx":941
  * 
  *         if not isinstance(X, csc_matrix):
  *             raise ValueError("X should be in csc format")             # <<<<<<<<<<<<<<
  * 
  *         cdef SIZE_t* samples = self.samples
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 941; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 941; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "sklearn/tree/_splitter.pyx":949
+  /* "sklearn/tree/_splitter.pyx":943
  *             raise ValueError("X should be in csc format")
  * 
  *         cdef SIZE_t* samples = self.samples             # <<<<<<<<<<<<<<
@@ -7915,7 +7905,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __pyx_t_4 = __pyx_v_self->__pyx_base.samples;
   __pyx_v_samples = __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":950
+  /* "sklearn/tree/_splitter.pyx":944
  * 
  *         cdef SIZE_t* samples = self.samples
  *         cdef SIZE_t n_samples = self.n_samples             # <<<<<<<<<<<<<<
@@ -7925,22 +7915,22 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __pyx_t_5 = __pyx_v_self->__pyx_base.n_samples;
   __pyx_v_n_samples = __pyx_t_5;
 
-  /* "sklearn/tree/_splitter.pyx":953
+  /* "sklearn/tree/_splitter.pyx":947
  * 
  *         # Initialize X
  *         cdef np.ndarray[dtype=DTYPE_t, ndim=1] data = X.data             # <<<<<<<<<<<<<<
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indices = X.indices
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indptr = X.indptr
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 953; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_data); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 953; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_data.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_9_splitter_DTYPE_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_data = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_data.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 953; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_data.diminfo[0].strides = __pyx_pybuffernd_data.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_data.diminfo[0].shape = __pyx_pybuffernd_data.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -7948,22 +7938,22 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __pyx_v_data = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_splitter.pyx":954
+  /* "sklearn/tree/_splitter.pyx":948
  *         # Initialize X
  *         cdef np.ndarray[dtype=DTYPE_t, ndim=1] data = X.data
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indices = X.indices             # <<<<<<<<<<<<<<
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indptr = X.indptr
  *         cdef SIZE_t n_total_samples = X.shape[0]
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indices); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indices); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 948; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 948; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_indices.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_9_splitter_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_indices = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_indices.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 954; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 948; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_indices.diminfo[0].strides = __pyx_pybuffernd_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_indices.diminfo[0].shape = __pyx_pybuffernd_indices.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -7971,22 +7961,22 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __pyx_v_indices = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_splitter.pyx":955
+  /* "sklearn/tree/_splitter.pyx":949
  *         cdef np.ndarray[dtype=DTYPE_t, ndim=1] data = X.data
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indices = X.indices
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indptr = X.indptr             # <<<<<<<<<<<<<<
  *         cdef SIZE_t n_total_samples = X.shape[0]
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 955; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_indptr); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 955; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_8 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_indptr.rcbuffer->pybuffer, (PyObject*)__pyx_t_8, &__Pyx_TypeInfo_nn___pyx_t_7sklearn_4tree_9_splitter_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_indptr = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_indptr.rcbuffer->pybuffer.buf = NULL;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 955; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     } else {__pyx_pybuffernd_indptr.diminfo[0].strides = __pyx_pybuffernd_indptr.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_indptr.diminfo[0].shape = __pyx_pybuffernd_indptr.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -7994,23 +7984,23 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __pyx_v_indptr = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sklearn/tree/_splitter.pyx":956
+  /* "sklearn/tree/_splitter.pyx":950
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indices = X.indices
  *         cdef np.ndarray[dtype=INT32_t, ndim=1] indptr = X.indptr
  *         cdef SIZE_t n_total_samples = X.shape[0]             # <<<<<<<<<<<<<<
  * 
  *         self.X_data = <DTYPE_t*> data.data
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 956; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 950; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 956; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_9 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 950; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_9); if (unlikely((__pyx_t_5 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 956; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_As_Py_intptr_t(__pyx_t_9); if (unlikely((__pyx_t_5 == (npy_intp)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 950; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_v_n_total_samples = __pyx_t_5;
 
-  /* "sklearn/tree/_splitter.pyx":958
+  /* "sklearn/tree/_splitter.pyx":952
  *         cdef SIZE_t n_total_samples = X.shape[0]
  * 
  *         self.X_data = <DTYPE_t*> data.data             # <<<<<<<<<<<<<<
@@ -8019,7 +8009,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
  */
   __pyx_v_self->X_data = ((__pyx_t_7sklearn_4tree_9_splitter_DTYPE_t *)__pyx_v_data->data);
 
-  /* "sklearn/tree/_splitter.pyx":959
+  /* "sklearn/tree/_splitter.pyx":953
  * 
  *         self.X_data = <DTYPE_t*> data.data
  *         self.X_indices = <INT32_t*> indices.data             # <<<<<<<<<<<<<<
@@ -8028,7 +8018,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
  */
   __pyx_v_self->X_indices = ((__pyx_t_7sklearn_4tree_9_splitter_INT32_t *)__pyx_v_indices->data);
 
-  /* "sklearn/tree/_splitter.pyx":960
+  /* "sklearn/tree/_splitter.pyx":954
  *         self.X_data = <DTYPE_t*> data.data
  *         self.X_indices = <INT32_t*> indices.data
  *         self.X_indptr = <INT32_t*> indptr.data             # <<<<<<<<<<<<<<
@@ -8037,7 +8027,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
  */
   __pyx_v_self->X_indptr = ((__pyx_t_7sklearn_4tree_9_splitter_INT32_t *)__pyx_v_indptr->data);
 
-  /* "sklearn/tree/_splitter.pyx":961
+  /* "sklearn/tree/_splitter.pyx":955
  *         self.X_indices = <INT32_t*> indices.data
  *         self.X_indptr = <INT32_t*> indptr.data
  *         self.n_total_samples = n_total_samples             # <<<<<<<<<<<<<<
@@ -8046,25 +8036,25 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
  */
   __pyx_v_self->n_total_samples = __pyx_v_n_total_samples;
 
-  /* "sklearn/tree/_splitter.pyx":964
+  /* "sklearn/tree/_splitter.pyx":958
  * 
  *         # Initialize auxiliary array used to perform split
  *         safe_realloc(&self.index_to_samples, n_total_samples)             # <<<<<<<<<<<<<<
  *         safe_realloc(&self.sorted_samples, n_samples)
  * 
  */
-  __pyx_fuse_1__pyx_f_7sklearn_4tree_6_utils_safe_realloc((&__pyx_v_self->index_to_samples), __pyx_v_n_total_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_1__pyx_f_7sklearn_4tree_6_utils_safe_realloc((&__pyx_v_self->index_to_samples), __pyx_v_n_total_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 958; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_splitter.pyx":965
+  /* "sklearn/tree/_splitter.pyx":959
  *         # Initialize auxiliary array used to perform split
  *         safe_realloc(&self.index_to_samples, n_total_samples)
  *         safe_realloc(&self.sorted_samples, n_samples)             # <<<<<<<<<<<<<<
  * 
  *         cdef SIZE_t* index_to_samples = self.index_to_samples
  */
-  __pyx_fuse_1__pyx_f_7sklearn_4tree_6_utils_safe_realloc((&__pyx_v_self->sorted_samples), __pyx_v_n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 965; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_fuse_1__pyx_f_7sklearn_4tree_6_utils_safe_realloc((&__pyx_v_self->sorted_samples), __pyx_v_n_samples); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 959; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "sklearn/tree/_splitter.pyx":967
+  /* "sklearn/tree/_splitter.pyx":961
  *         safe_realloc(&self.sorted_samples, n_samples)
  * 
  *         cdef SIZE_t* index_to_samples = self.index_to_samples             # <<<<<<<<<<<<<<
@@ -8074,7 +8064,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __pyx_t_4 = __pyx_v_self->index_to_samples;
   __pyx_v_index_to_samples = __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":969
+  /* "sklearn/tree/_splitter.pyx":963
  *         cdef SIZE_t* index_to_samples = self.index_to_samples
  *         cdef SIZE_t p
  *         for p in range(n_total_samples):             # <<<<<<<<<<<<<<
@@ -8085,7 +8075,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_5; __pyx_t_10+=1) {
     __pyx_v_p = __pyx_t_10;
 
-    /* "sklearn/tree/_splitter.pyx":970
+    /* "sklearn/tree/_splitter.pyx":964
  *         cdef SIZE_t p
  *         for p in range(n_total_samples):
  *             index_to_samples[p] = -1             # <<<<<<<<<<<<<<
@@ -8095,7 +8085,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
     (__pyx_v_index_to_samples[__pyx_v_p]) = -1;
   }
 
-  /* "sklearn/tree/_splitter.pyx":972
+  /* "sklearn/tree/_splitter.pyx":966
  *             index_to_samples[p] = -1
  * 
  *         for p in range(n_samples):             # <<<<<<<<<<<<<<
@@ -8106,7 +8096,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_5; __pyx_t_10+=1) {
     __pyx_v_p = __pyx_t_10;
 
-    /* "sklearn/tree/_splitter.pyx":973
+    /* "sklearn/tree/_splitter.pyx":967
  * 
  *         for p in range(n_samples):
  *             index_to_samples[samples[p]] = p             # <<<<<<<<<<<<<<
@@ -8116,7 +8106,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
     (__pyx_v_index_to_samples[(__pyx_v_samples[__pyx_v_p])]) = __pyx_v_p;
   }
 
-  /* "sklearn/tree/_splitter.pyx":935
+  /* "sklearn/tree/_splitter.pyx":929
  *         free(self.sorted_samples)
  * 
  *     cdef void init(self,             # <<<<<<<<<<<<<<
@@ -8150,7 +8140,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_init(struct _
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sklearn/tree/_splitter.pyx":975
+/* "sklearn/tree/_splitter.pyx":969
  *             index_to_samples[samples[p]] = p
  * 
  *     cdef inline SIZE_t _partition(self, double threshold,             # <<<<<<<<<<<<<<
@@ -8171,7 +8161,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   int __pyx_t_3;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":984
+  /* "sklearn/tree/_splitter.pyx":978
  *         cdef SIZE_t p
  * 
  *         cdef DTYPE_t* Xf = self.feature_values             # <<<<<<<<<<<<<<
@@ -8181,7 +8171,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   __pyx_t_1 = __pyx_v_self->__pyx_base.feature_values;
   __pyx_v_Xf = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":985
+  /* "sklearn/tree/_splitter.pyx":979
  * 
  *         cdef DTYPE_t* Xf = self.feature_values
  *         cdef SIZE_t* samples = self.samples             # <<<<<<<<<<<<<<
@@ -8191,7 +8181,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   __pyx_t_2 = __pyx_v_self->__pyx_base.samples;
   __pyx_v_samples = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":986
+  /* "sklearn/tree/_splitter.pyx":980
  *         cdef DTYPE_t* Xf = self.feature_values
  *         cdef SIZE_t* samples = self.samples
  *         cdef SIZE_t* index_to_samples = self.index_to_samples             # <<<<<<<<<<<<<<
@@ -8201,7 +8191,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   __pyx_t_2 = __pyx_v_self->index_to_samples;
   __pyx_v_index_to_samples = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":988
+  /* "sklearn/tree/_splitter.pyx":982
  *         cdef SIZE_t* index_to_samples = self.index_to_samples
  * 
  *         if threshold < 0.:             # <<<<<<<<<<<<<<
@@ -8211,7 +8201,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   __pyx_t_3 = ((__pyx_v_threshold < 0.) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_splitter.pyx":989
+    /* "sklearn/tree/_splitter.pyx":983
  * 
  *         if threshold < 0.:
  *             p = self.start             # <<<<<<<<<<<<<<
@@ -8221,7 +8211,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
     __pyx_t_4 = __pyx_v_self->__pyx_base.start;
     __pyx_v_p = __pyx_t_4;
 
-    /* "sklearn/tree/_splitter.pyx":990
+    /* "sklearn/tree/_splitter.pyx":984
  *         if threshold < 0.:
  *             p = self.start
  *             partition_end = end_negative             # <<<<<<<<<<<<<<
@@ -8232,7 +8222,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
     goto __pyx_L3;
   }
 
-  /* "sklearn/tree/_splitter.pyx":991
+  /* "sklearn/tree/_splitter.pyx":985
  *             p = self.start
  *             partition_end = end_negative
  *         elif threshold > 0.:             # <<<<<<<<<<<<<<
@@ -8242,7 +8232,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   __pyx_t_3 = ((__pyx_v_threshold > 0.) != 0);
   if (__pyx_t_3) {
 
-    /* "sklearn/tree/_splitter.pyx":992
+    /* "sklearn/tree/_splitter.pyx":986
  *             partition_end = end_negative
  *         elif threshold > 0.:
  *             p = start_positive             # <<<<<<<<<<<<<<
@@ -8251,7 +8241,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
  */
     __pyx_v_p = __pyx_v_start_positive;
 
-    /* "sklearn/tree/_splitter.pyx":993
+    /* "sklearn/tree/_splitter.pyx":987
  *         elif threshold > 0.:
  *             p = start_positive
  *             partition_end = self.end             # <<<<<<<<<<<<<<
@@ -8264,7 +8254,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   }
   /*else*/ {
 
-    /* "sklearn/tree/_splitter.pyx":996
+    /* "sklearn/tree/_splitter.pyx":990
  *         else:
  *             # Data are already split
  *             return zero_pos             # <<<<<<<<<<<<<<
@@ -8276,7 +8266,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_splitter.pyx":998
+  /* "sklearn/tree/_splitter.pyx":992
  *             return zero_pos
  * 
  *         while p < partition_end:             # <<<<<<<<<<<<<<
@@ -8287,7 +8277,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
     __pyx_t_3 = ((__pyx_v_p < __pyx_v_partition_end) != 0);
     if (!__pyx_t_3) break;
 
-    /* "sklearn/tree/_splitter.pyx":999
+    /* "sklearn/tree/_splitter.pyx":993
  * 
  *         while p < partition_end:
  *             value = Xf[p]             # <<<<<<<<<<<<<<
@@ -8296,7 +8286,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
  */
     __pyx_v_value = (__pyx_v_Xf[__pyx_v_p]);
 
-    /* "sklearn/tree/_splitter.pyx":1001
+    /* "sklearn/tree/_splitter.pyx":995
  *             value = Xf[p]
  * 
  *             if value <= threshold:             # <<<<<<<<<<<<<<
@@ -8306,7 +8296,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
     __pyx_t_3 = ((__pyx_v_value <= __pyx_v_threshold) != 0);
     if (__pyx_t_3) {
 
-      /* "sklearn/tree/_splitter.pyx":1002
+      /* "sklearn/tree/_splitter.pyx":996
  * 
  *             if value <= threshold:
  *                 p += 1             # <<<<<<<<<<<<<<
@@ -8318,7 +8308,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
     }
     /*else*/ {
 
-      /* "sklearn/tree/_splitter.pyx":1005
+      /* "sklearn/tree/_splitter.pyx":999
  * 
  *             else:
  *                 partition_end -= 1             # <<<<<<<<<<<<<<
@@ -8327,7 +8317,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
  */
       __pyx_v_partition_end = (__pyx_v_partition_end - 1);
 
-      /* "sklearn/tree/_splitter.pyx":1007
+      /* "sklearn/tree/_splitter.pyx":1001
  *                 partition_end -= 1
  * 
  *                 Xf[p] = Xf[partition_end]             # <<<<<<<<<<<<<<
@@ -8336,7 +8326,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
  */
       (__pyx_v_Xf[__pyx_v_p]) = (__pyx_v_Xf[__pyx_v_partition_end]);
 
-      /* "sklearn/tree/_splitter.pyx":1008
+      /* "sklearn/tree/_splitter.pyx":1002
  * 
  *                 Xf[p] = Xf[partition_end]
  *                 Xf[partition_end] = value             # <<<<<<<<<<<<<<
@@ -8345,7 +8335,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
  */
       (__pyx_v_Xf[__pyx_v_partition_end]) = __pyx_v_value;
 
-      /* "sklearn/tree/_splitter.pyx":1009
+      /* "sklearn/tree/_splitter.pyx":1003
  *                 Xf[p] = Xf[partition_end]
  *                 Xf[partition_end] = value
  *                 sparse_swap(index_to_samples, samples, p, partition_end)             # <<<<<<<<<<<<<<
@@ -8357,7 +8347,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
     __pyx_L6:;
   }
 
-  /* "sklearn/tree/_splitter.pyx":1011
+  /* "sklearn/tree/_splitter.pyx":1005
  *                 sparse_swap(index_to_samples, samples, p, partition_end)
  * 
  *         return partition_end             # <<<<<<<<<<<<<<
@@ -8367,7 +8357,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   __pyx_r = __pyx_v_partition_end;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_splitter.pyx":975
+  /* "sklearn/tree/_splitter.pyx":969
  *             index_to_samples[samples[p]] = p
  * 
  *     cdef inline SIZE_t _partition(self, double threshold,             # <<<<<<<<<<<<<<
@@ -8380,7 +8370,7 @@ static CYTHON_INLINE __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_f_7sklearn_4
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pyx":1013
+/* "sklearn/tree/_splitter.pyx":1007
  *         return partition_end
  * 
  *     cdef inline void extract_nnz(self, SIZE_t feature,             # <<<<<<<<<<<<<<
@@ -8395,7 +8385,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_v_n_samples;
   int __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1045
+  /* "sklearn/tree/_splitter.pyx":1039
  * 
  *         """
  *         cdef SIZE_t indptr_start = self.X_indptr[feature],             # <<<<<<<<<<<<<<
@@ -8404,7 +8394,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
  */
   __pyx_v_indptr_start = (__pyx_v_self->X_indptr[__pyx_v_feature]);
 
-  /* "sklearn/tree/_splitter.pyx":1046
+  /* "sklearn/tree/_splitter.pyx":1040
  *         """
  *         cdef SIZE_t indptr_start = self.X_indptr[feature],
  *         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]             # <<<<<<<<<<<<<<
@@ -8413,7 +8403,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
  */
   __pyx_v_indptr_end = (__pyx_v_self->X_indptr[(__pyx_v_feature + 1)]);
 
-  /* "sklearn/tree/_splitter.pyx":1047
+  /* "sklearn/tree/_splitter.pyx":1041
  *         cdef SIZE_t indptr_start = self.X_indptr[feature],
  *         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]
  *         cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)             # <<<<<<<<<<<<<<
@@ -8422,7 +8412,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
  */
   __pyx_v_n_indices = ((__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)(__pyx_v_indptr_end - __pyx_v_indptr_start));
 
-  /* "sklearn/tree/_splitter.pyx":1048
+  /* "sklearn/tree/_splitter.pyx":1042
  *         cdef SIZE_t indptr_end = self.X_indptr[feature + 1]
  *         cdef SIZE_t n_indices = <SIZE_t>(indptr_end - indptr_start)
  *         cdef SIZE_t n_samples = self.end - self.start             # <<<<<<<<<<<<<<
@@ -8431,7 +8421,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
  */
   __pyx_v_n_samples = (__pyx_v_self->__pyx_base.end - __pyx_v_self->__pyx_base.start);
 
-  /* "sklearn/tree/_splitter.pyx":1056
+  /* "sklearn/tree/_splitter.pyx":1050
  *         # approach.
  *         if ((1 - is_samples_sorted[0]) * n_samples * log(n_samples) +
  *                 n_samples * log(n_indices) < EXTRACT_NNZ_SWITCH * n_indices):             # <<<<<<<<<<<<<<
@@ -8441,7 +8431,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
   __pyx_t_1 = ((((((1 - (__pyx_v_is_samples_sorted[0])) * __pyx_v_n_samples) * __pyx_f_7sklearn_4tree_6_utils_log(__pyx_v_n_samples)) + (__pyx_v_n_samples * __pyx_f_7sklearn_4tree_6_utils_log(__pyx_v_n_indices))) < (__pyx_v_7sklearn_4tree_9_splitter_EXTRACT_NNZ_SWITCH * __pyx_v_n_indices)) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_splitter.pyx":1057
+    /* "sklearn/tree/_splitter.pyx":1051
  *         if ((1 - is_samples_sorted[0]) * n_samples * log(n_samples) +
  *                 n_samples * log(n_indices) < EXTRACT_NNZ_SWITCH * n_indices):
  *             extract_nnz_binary_search(self.X_indices, self.X_data,             # <<<<<<<<<<<<<<
@@ -8453,7 +8443,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
   }
   /*else*/ {
 
-    /* "sklearn/tree/_splitter.pyx":1068
+    /* "sklearn/tree/_splitter.pyx":1062
  *         # index_to_samples is a mapping from X_indices to samples
  *         else:
  *             extract_nnz_index_to_samples(self.X_indices, self.X_data,             # <<<<<<<<<<<<<<
@@ -8464,7 +8454,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_splitter.pyx":1013
+  /* "sklearn/tree/_splitter.pyx":1007
  *         return partition_end
  * 
  *     cdef inline void extract_nnz(self, SIZE_t feature,             # <<<<<<<<<<<<<<
@@ -8475,7 +8465,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
   /* function exit code */
 }
 
-/* "sklearn/tree/_splitter.pyx":1076
+/* "sklearn/tree/_splitter.pyx":1070
  * 
  * 
  * cdef int compare_SIZE_t(const void* a, const void* b) nogil:             # <<<<<<<<<<<<<<
@@ -8486,7 +8476,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter
 static int __pyx_f_7sklearn_4tree_9_splitter_compare_SIZE_t(void const *__pyx_v_a, void const *__pyx_v_b) {
   int __pyx_r;
 
-  /* "sklearn/tree/_splitter.pyx":1078
+  /* "sklearn/tree/_splitter.pyx":1072
  * cdef int compare_SIZE_t(const void* a, const void* b) nogil:
  *     """Comparison function for sort."""
  *     return <int>((<SIZE_t*>a)[0] - (<SIZE_t*>b)[0])             # <<<<<<<<<<<<<<
@@ -8496,7 +8486,7 @@ static int __pyx_f_7sklearn_4tree_9_splitter_compare_SIZE_t(void const *__pyx_v_
   __pyx_r = ((int)((((__pyx_t_7sklearn_4tree_9_splitter_SIZE_t *)__pyx_v_a)[0]) - (((__pyx_t_7sklearn_4tree_9_splitter_SIZE_t *)__pyx_v_b)[0])));
   goto __pyx_L0;
 
-  /* "sklearn/tree/_splitter.pyx":1076
+  /* "sklearn/tree/_splitter.pyx":1070
  * 
  * 
  * cdef int compare_SIZE_t(const void* a, const void* b) nogil:             # <<<<<<<<<<<<<<
@@ -8509,7 +8499,7 @@ static int __pyx_f_7sklearn_4tree_9_splitter_compare_SIZE_t(void const *__pyx_v_
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pyx":1081
+/* "sklearn/tree/_splitter.pyx":1075
  * 
  * 
  * cdef inline void binary_search(INT32_t* sorted_array,             # <<<<<<<<<<<<<<
@@ -8521,7 +8511,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
   __pyx_t_7sklearn_4tree_9_splitter_INT32_t __pyx_v_pivot;
   int __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1090
+  /* "sklearn/tree/_splitter.pyx":1084
  *     """
  *     cdef INT32_t pivot
  *     index[0] = -1             # <<<<<<<<<<<<<<
@@ -8530,7 +8520,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
  */
   (__pyx_v_index[0]) = -1;
 
-  /* "sklearn/tree/_splitter.pyx":1091
+  /* "sklearn/tree/_splitter.pyx":1085
  *     cdef INT32_t pivot
  *     index[0] = -1
  *     while start < end:             # <<<<<<<<<<<<<<
@@ -8541,7 +8531,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
     __pyx_t_1 = ((__pyx_v_start < __pyx_v_end) != 0);
     if (!__pyx_t_1) break;
 
-    /* "sklearn/tree/_splitter.pyx":1092
+    /* "sklearn/tree/_splitter.pyx":1086
  *     index[0] = -1
  *     while start < end:
  *         pivot = start + (end - start) / 2             # <<<<<<<<<<<<<<
@@ -8550,7 +8540,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
  */
     __pyx_v_pivot = (__pyx_v_start + ((__pyx_v_end - __pyx_v_start) / 2));
 
-    /* "sklearn/tree/_splitter.pyx":1094
+    /* "sklearn/tree/_splitter.pyx":1088
  *         pivot = start + (end - start) / 2
  * 
  *         if sorted_array[pivot] == value:             # <<<<<<<<<<<<<<
@@ -8560,7 +8550,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
     __pyx_t_1 = (((__pyx_v_sorted_array[__pyx_v_pivot]) == __pyx_v_value) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_splitter.pyx":1095
+      /* "sklearn/tree/_splitter.pyx":1089
  * 
  *         if sorted_array[pivot] == value:
  *             index[0] = pivot             # <<<<<<<<<<<<<<
@@ -8569,7 +8559,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
  */
       (__pyx_v_index[0]) = __pyx_v_pivot;
 
-      /* "sklearn/tree/_splitter.pyx":1096
+      /* "sklearn/tree/_splitter.pyx":1090
  *         if sorted_array[pivot] == value:
  *             index[0] = pivot
  *             start = pivot + 1             # <<<<<<<<<<<<<<
@@ -8578,7 +8568,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
  */
       __pyx_v_start = (__pyx_v_pivot + 1);
 
-      /* "sklearn/tree/_splitter.pyx":1097
+      /* "sklearn/tree/_splitter.pyx":1091
  *             index[0] = pivot
  *             start = pivot + 1
  *             break             # <<<<<<<<<<<<<<
@@ -8588,7 +8578,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
       goto __pyx_L4_break;
     }
 
-    /* "sklearn/tree/_splitter.pyx":1099
+    /* "sklearn/tree/_splitter.pyx":1093
  *             break
  * 
  *         if sorted_array[pivot] < value:             # <<<<<<<<<<<<<<
@@ -8598,7 +8588,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
     __pyx_t_1 = (((__pyx_v_sorted_array[__pyx_v_pivot]) < __pyx_v_value) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_splitter.pyx":1100
+      /* "sklearn/tree/_splitter.pyx":1094
  * 
  *         if sorted_array[pivot] < value:
  *             start = pivot + 1             # <<<<<<<<<<<<<<
@@ -8610,7 +8600,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
     }
     /*else*/ {
 
-      /* "sklearn/tree/_splitter.pyx":1102
+      /* "sklearn/tree/_splitter.pyx":1096
  *             start = pivot + 1
  *         else:
  *             end = pivot             # <<<<<<<<<<<<<<
@@ -8623,7 +8613,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
   }
   __pyx_L4_break:;
 
-  /* "sklearn/tree/_splitter.pyx":1103
+  /* "sklearn/tree/_splitter.pyx":1097
  *         else:
  *             end = pivot
  *     new_start[0] = start             # <<<<<<<<<<<<<<
@@ -8632,7 +8622,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
  */
   (__pyx_v_new_start[0]) = __pyx_v_start;
 
-  /* "sklearn/tree/_splitter.pyx":1081
+  /* "sklearn/tree/_splitter.pyx":1075
  * 
  * 
  * cdef inline void binary_search(INT32_t* sorted_array,             # <<<<<<<<<<<<<<
@@ -8643,7 +8633,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_
   /* function exit code */
 }
 
-/* "sklearn/tree/_splitter.pyx":1106
+/* "sklearn/tree/_splitter.pyx":1100
  * 
  * 
  * cdef inline void extract_nnz_index_to_samples(INT32_t* X_indices,             # <<<<<<<<<<<<<<
@@ -8661,7 +8651,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
   int __pyx_t_3;
   int __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":1123
+  /* "sklearn/tree/_splitter.pyx":1117
  *     cdef INT32_t k
  *     cdef SIZE_t index
  *     cdef SIZE_t end_negative_ = start             # <<<<<<<<<<<<<<
@@ -8670,7 +8660,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
   __pyx_v_end_negative_ = __pyx_v_start;
 
-  /* "sklearn/tree/_splitter.pyx":1124
+  /* "sklearn/tree/_splitter.pyx":1118
  *     cdef SIZE_t index
  *     cdef SIZE_t end_negative_ = start
  *     cdef SIZE_t start_positive_ = end             # <<<<<<<<<<<<<<
@@ -8679,7 +8669,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
   __pyx_v_start_positive_ = __pyx_v_end;
 
-  /* "sklearn/tree/_splitter.pyx":1126
+  /* "sklearn/tree/_splitter.pyx":1120
  *     cdef SIZE_t start_positive_ = end
  * 
  *     for k in range(indptr_start, indptr_end):             # <<<<<<<<<<<<<<
@@ -8690,7 +8680,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
   for (__pyx_t_2 = __pyx_v_indptr_start; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_k = __pyx_t_2;
 
-    /* "sklearn/tree/_splitter.pyx":1127
+    /* "sklearn/tree/_splitter.pyx":1121
  * 
  *     for k in range(indptr_start, indptr_end):
  *         if start <= index_to_samples[X_indices[k]] < end:             # <<<<<<<<<<<<<<
@@ -8704,7 +8694,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
     __pyx_t_4 = (__pyx_t_3 != 0);
     if (__pyx_t_4) {
 
-      /* "sklearn/tree/_splitter.pyx":1128
+      /* "sklearn/tree/_splitter.pyx":1122
  *     for k in range(indptr_start, indptr_end):
  *         if start <= index_to_samples[X_indices[k]] < end:
  *             if X_data[k] > 0:             # <<<<<<<<<<<<<<
@@ -8714,7 +8704,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
       __pyx_t_4 = (((__pyx_v_X_data[__pyx_v_k]) > 0.0) != 0);
       if (__pyx_t_4) {
 
-        /* "sklearn/tree/_splitter.pyx":1129
+        /* "sklearn/tree/_splitter.pyx":1123
  *         if start <= index_to_samples[X_indices[k]] < end:
  *             if X_data[k] > 0:
  *                 start_positive_ -= 1             # <<<<<<<<<<<<<<
@@ -8723,7 +8713,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
         __pyx_v_start_positive_ = (__pyx_v_start_positive_ - 1);
 
-        /* "sklearn/tree/_splitter.pyx":1130
+        /* "sklearn/tree/_splitter.pyx":1124
  *             if X_data[k] > 0:
  *                 start_positive_ -= 1
  *                 Xf[start_positive_] = X_data[k]             # <<<<<<<<<<<<<<
@@ -8732,7 +8722,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
         (__pyx_v_Xf[__pyx_v_start_positive_]) = (__pyx_v_X_data[__pyx_v_k]);
 
-        /* "sklearn/tree/_splitter.pyx":1131
+        /* "sklearn/tree/_splitter.pyx":1125
  *                 start_positive_ -= 1
  *                 Xf[start_positive_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]             # <<<<<<<<<<<<<<
@@ -8741,7 +8731,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
         __pyx_v_index = (__pyx_v_index_to_samples[(__pyx_v_X_indices[__pyx_v_k])]);
 
-        /* "sklearn/tree/_splitter.pyx":1132
+        /* "sklearn/tree/_splitter.pyx":1126
  *                 Xf[start_positive_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, start_positive_)             # <<<<<<<<<<<<<<
@@ -8752,7 +8742,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
         goto __pyx_L6;
       }
 
-      /* "sklearn/tree/_splitter.pyx":1135
+      /* "sklearn/tree/_splitter.pyx":1129
  * 
  * 
  *             elif X_data[k] < 0:             # <<<<<<<<<<<<<<
@@ -8762,7 +8752,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
       __pyx_t_4 = (((__pyx_v_X_data[__pyx_v_k]) < 0.0) != 0);
       if (__pyx_t_4) {
 
-        /* "sklearn/tree/_splitter.pyx":1136
+        /* "sklearn/tree/_splitter.pyx":1130
  * 
  *             elif X_data[k] < 0:
  *                 Xf[end_negative_] = X_data[k]             # <<<<<<<<<<<<<<
@@ -8771,7 +8761,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
         (__pyx_v_Xf[__pyx_v_end_negative_]) = (__pyx_v_X_data[__pyx_v_k]);
 
-        /* "sklearn/tree/_splitter.pyx":1137
+        /* "sklearn/tree/_splitter.pyx":1131
  *             elif X_data[k] < 0:
  *                 Xf[end_negative_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]             # <<<<<<<<<<<<<<
@@ -8780,7 +8770,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
         __pyx_v_index = (__pyx_v_index_to_samples[(__pyx_v_X_indices[__pyx_v_k])]);
 
-        /* "sklearn/tree/_splitter.pyx":1138
+        /* "sklearn/tree/_splitter.pyx":1132
  *                 Xf[end_negative_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, end_negative_)             # <<<<<<<<<<<<<<
@@ -8789,7 +8779,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
         __pyx_f_7sklearn_4tree_9_splitter_sparse_swap(__pyx_v_index_to_samples, __pyx_v_samples, __pyx_v_index, __pyx_v_end_negative_);
 
-        /* "sklearn/tree/_splitter.pyx":1139
+        /* "sklearn/tree/_splitter.pyx":1133
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, end_negative_)
  *                 end_negative_ += 1             # <<<<<<<<<<<<<<
@@ -8805,7 +8795,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
     __pyx_L5:;
   }
 
-  /* "sklearn/tree/_splitter.pyx":1142
+  /* "sklearn/tree/_splitter.pyx":1136
  * 
  *     # Returned values
  *     end_negative[0] = end_negative_             # <<<<<<<<<<<<<<
@@ -8814,7 +8804,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
   (__pyx_v_end_negative[0]) = __pyx_v_end_negative_;
 
-  /* "sklearn/tree/_splitter.pyx":1143
+  /* "sklearn/tree/_splitter.pyx":1137
  *     # Returned values
  *     end_negative[0] = end_negative_
  *     start_positive[0] = start_positive_             # <<<<<<<<<<<<<<
@@ -8823,7 +8813,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
  */
   (__pyx_v_start_positive[0]) = __pyx_v_start_positive_;
 
-  /* "sklearn/tree/_splitter.pyx":1106
+  /* "sklearn/tree/_splitter.pyx":1100
  * 
  * 
  * cdef inline void extract_nnz_index_to_samples(INT32_t* X_indices,             # <<<<<<<<<<<<<<
@@ -8834,7 +8824,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_index_to
   /* function exit code */
 }
 
-/* "sklearn/tree/_splitter.pyx":1146
+/* "sklearn/tree/_splitter.pyx":1140
  * 
  * 
  * cdef inline void extract_nnz_binary_search(INT32_t* X_indices,             # <<<<<<<<<<<<<<
@@ -8852,7 +8842,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1169
+  /* "sklearn/tree/_splitter.pyx":1163
  *     cdef SIZE_t n_samples
  * 
  *     if not is_samples_sorted[0]:             # <<<<<<<<<<<<<<
@@ -8862,7 +8852,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
   __pyx_t_1 = ((!((__pyx_v_is_samples_sorted[0]) != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "sklearn/tree/_splitter.pyx":1170
+    /* "sklearn/tree/_splitter.pyx":1164
  * 
  *     if not is_samples_sorted[0]:
  *         n_samples = end - start             # <<<<<<<<<<<<<<
@@ -8871,7 +8861,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
     __pyx_v_n_samples = (__pyx_v_end - __pyx_v_start);
 
-    /* "sklearn/tree/_splitter.pyx":1171
+    /* "sklearn/tree/_splitter.pyx":1165
  *     if not is_samples_sorted[0]:
  *         n_samples = end - start
  *         memcpy(sorted_samples + start, samples + start,             # <<<<<<<<<<<<<<
@@ -8880,7 +8870,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
     memcpy((__pyx_v_sorted_samples + __pyx_v_start), (__pyx_v_samples + __pyx_v_start), (__pyx_v_n_samples * (sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t))));
 
-    /* "sklearn/tree/_splitter.pyx":1173
+    /* "sklearn/tree/_splitter.pyx":1167
  *         memcpy(sorted_samples + start, samples + start,
  *                n_samples * sizeof(SIZE_t))
  *         qsort(sorted_samples + start, n_samples, sizeof(SIZE_t),             # <<<<<<<<<<<<<<
@@ -8889,7 +8879,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
     qsort((__pyx_v_sorted_samples + __pyx_v_start), __pyx_v_n_samples, (sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)), __pyx_f_7sklearn_4tree_9_splitter_compare_SIZE_t);
 
-    /* "sklearn/tree/_splitter.pyx":1175
+    /* "sklearn/tree/_splitter.pyx":1169
  *         qsort(sorted_samples + start, n_samples, sizeof(SIZE_t),
  *               compare_SIZE_t)
  *         is_samples_sorted[0] = 1             # <<<<<<<<<<<<<<
@@ -8901,7 +8891,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
   }
   __pyx_L3:;
 
-  /* "sklearn/tree/_splitter.pyx":1177
+  /* "sklearn/tree/_splitter.pyx":1171
  *         is_samples_sorted[0] = 1
  * 
  *     while (indptr_start < indptr_end and             # <<<<<<<<<<<<<<
@@ -8916,7 +8906,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
       goto __pyx_L6_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":1178
+    /* "sklearn/tree/_splitter.pyx":1172
  * 
  *     while (indptr_start < indptr_end and
  *            sorted_samples[start] > X_indices[indptr_start]):             # <<<<<<<<<<<<<<
@@ -8928,7 +8918,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     __pyx_L6_bool_binop_done:;
     if (!__pyx_t_1) break;
 
-    /* "sklearn/tree/_splitter.pyx":1179
+    /* "sklearn/tree/_splitter.pyx":1173
  *     while (indptr_start < indptr_end and
  *            sorted_samples[start] > X_indices[indptr_start]):
  *         indptr_start += 1             # <<<<<<<<<<<<<<
@@ -8938,7 +8928,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     __pyx_v_indptr_start = (__pyx_v_indptr_start + 1);
   }
 
-  /* "sklearn/tree/_splitter.pyx":1181
+  /* "sklearn/tree/_splitter.pyx":1175
  *         indptr_start += 1
  * 
  *     while (indptr_start < indptr_end and             # <<<<<<<<<<<<<<
@@ -8953,7 +8943,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
       goto __pyx_L10_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":1182
+    /* "sklearn/tree/_splitter.pyx":1176
  * 
  *     while (indptr_start < indptr_end and
  *            sorted_samples[end - 1] < X_indices[indptr_end - 1]):             # <<<<<<<<<<<<<<
@@ -8965,7 +8955,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     __pyx_L10_bool_binop_done:;
     if (!__pyx_t_1) break;
 
-    /* "sklearn/tree/_splitter.pyx":1183
+    /* "sklearn/tree/_splitter.pyx":1177
  *     while (indptr_start < indptr_end and
  *            sorted_samples[end - 1] < X_indices[indptr_end - 1]):
  *         indptr_end -= 1             # <<<<<<<<<<<<<<
@@ -8975,7 +8965,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     __pyx_v_indptr_end = (__pyx_v_indptr_end - 1);
   }
 
-  /* "sklearn/tree/_splitter.pyx":1185
+  /* "sklearn/tree/_splitter.pyx":1179
  *         indptr_end -= 1
  * 
  *     cdef SIZE_t p = start             # <<<<<<<<<<<<<<
@@ -8984,7 +8974,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
   __pyx_v_p = __pyx_v_start;
 
-  /* "sklearn/tree/_splitter.pyx":1188
+  /* "sklearn/tree/_splitter.pyx":1182
  *     cdef SIZE_t index
  *     cdef SIZE_t k
  *     cdef SIZE_t end_negative_ = start             # <<<<<<<<<<<<<<
@@ -8993,7 +8983,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
   __pyx_v_end_negative_ = __pyx_v_start;
 
-  /* "sklearn/tree/_splitter.pyx":1189
+  /* "sklearn/tree/_splitter.pyx":1183
  *     cdef SIZE_t k
  *     cdef SIZE_t end_negative_ = start
  *     cdef SIZE_t start_positive_ = end             # <<<<<<<<<<<<<<
@@ -9002,7 +8992,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
   __pyx_v_start_positive_ = __pyx_v_end;
 
-  /* "sklearn/tree/_splitter.pyx":1191
+  /* "sklearn/tree/_splitter.pyx":1185
  *     cdef SIZE_t start_positive_ = end
  * 
  *     while (p < end and indptr_start < indptr_end):             # <<<<<<<<<<<<<<
@@ -9021,7 +9011,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     __pyx_L14_bool_binop_done:;
     if (!__pyx_t_1) break;
 
-    /* "sklearn/tree/_splitter.pyx":1193
+    /* "sklearn/tree/_splitter.pyx":1187
  *     while (p < end and indptr_start < indptr_end):
  *         # Find index of sorted_samples[p] in X_indices
  *         binary_search(X_indices, indptr_start, indptr_end,             # <<<<<<<<<<<<<<
@@ -9030,7 +9020,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
     __pyx_f_7sklearn_4tree_9_splitter_binary_search(__pyx_v_X_indices, __pyx_v_indptr_start, __pyx_v_indptr_end, (__pyx_v_sorted_samples[__pyx_v_p]), (&__pyx_v_k), (&__pyx_v_indptr_start));
 
-    /* "sklearn/tree/_splitter.pyx":1196
+    /* "sklearn/tree/_splitter.pyx":1190
  *                       sorted_samples[p], &k, &indptr_start)
  * 
  *         if k != -1:             # <<<<<<<<<<<<<<
@@ -9040,7 +9030,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     __pyx_t_1 = ((__pyx_v_k != -1) != 0);
     if (__pyx_t_1) {
 
-      /* "sklearn/tree/_splitter.pyx":1199
+      /* "sklearn/tree/_splitter.pyx":1193
  *              # If k != -1, we have found a non zero value
  * 
  *             if X_data[k] > 0:             # <<<<<<<<<<<<<<
@@ -9050,7 +9040,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
       __pyx_t_1 = (((__pyx_v_X_data[__pyx_v_k]) > 0.0) != 0);
       if (__pyx_t_1) {
 
-        /* "sklearn/tree/_splitter.pyx":1200
+        /* "sklearn/tree/_splitter.pyx":1194
  * 
  *             if X_data[k] > 0:
  *                 start_positive_ -= 1             # <<<<<<<<<<<<<<
@@ -9059,7 +9049,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
         __pyx_v_start_positive_ = (__pyx_v_start_positive_ - 1);
 
-        /* "sklearn/tree/_splitter.pyx":1201
+        /* "sklearn/tree/_splitter.pyx":1195
  *             if X_data[k] > 0:
  *                 start_positive_ -= 1
  *                 Xf[start_positive_] = X_data[k]             # <<<<<<<<<<<<<<
@@ -9068,7 +9058,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
         (__pyx_v_Xf[__pyx_v_start_positive_]) = (__pyx_v_X_data[__pyx_v_k]);
 
-        /* "sklearn/tree/_splitter.pyx":1202
+        /* "sklearn/tree/_splitter.pyx":1196
  *                 start_positive_ -= 1
  *                 Xf[start_positive_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]             # <<<<<<<<<<<<<<
@@ -9077,7 +9067,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
         __pyx_v_index = (__pyx_v_index_to_samples[(__pyx_v_X_indices[__pyx_v_k])]);
 
-        /* "sklearn/tree/_splitter.pyx":1203
+        /* "sklearn/tree/_splitter.pyx":1197
  *                 Xf[start_positive_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, start_positive_)             # <<<<<<<<<<<<<<
@@ -9088,7 +9078,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
         goto __pyx_L17;
       }
 
-      /* "sklearn/tree/_splitter.pyx":1206
+      /* "sklearn/tree/_splitter.pyx":1200
  * 
  * 
  *             elif X_data[k] < 0:             # <<<<<<<<<<<<<<
@@ -9098,7 +9088,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
       __pyx_t_1 = (((__pyx_v_X_data[__pyx_v_k]) < 0.0) != 0);
       if (__pyx_t_1) {
 
-        /* "sklearn/tree/_splitter.pyx":1207
+        /* "sklearn/tree/_splitter.pyx":1201
  * 
  *             elif X_data[k] < 0:
  *                 Xf[end_negative_] = X_data[k]             # <<<<<<<<<<<<<<
@@ -9107,7 +9097,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
         (__pyx_v_Xf[__pyx_v_end_negative_]) = (__pyx_v_X_data[__pyx_v_k]);
 
-        /* "sklearn/tree/_splitter.pyx":1208
+        /* "sklearn/tree/_splitter.pyx":1202
  *             elif X_data[k] < 0:
  *                 Xf[end_negative_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]             # <<<<<<<<<<<<<<
@@ -9116,7 +9106,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
         __pyx_v_index = (__pyx_v_index_to_samples[(__pyx_v_X_indices[__pyx_v_k])]);
 
-        /* "sklearn/tree/_splitter.pyx":1209
+        /* "sklearn/tree/_splitter.pyx":1203
  *                 Xf[end_negative_] = X_data[k]
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, end_negative_)             # <<<<<<<<<<<<<<
@@ -9125,7 +9115,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
         __pyx_f_7sklearn_4tree_9_splitter_sparse_swap(__pyx_v_index_to_samples, __pyx_v_samples, __pyx_v_index, __pyx_v_end_negative_);
 
-        /* "sklearn/tree/_splitter.pyx":1210
+        /* "sklearn/tree/_splitter.pyx":1204
  *                 index = index_to_samples[X_indices[k]]
  *                 sparse_swap(index_to_samples, samples, index, end_negative_)
  *                 end_negative_ += 1             # <<<<<<<<<<<<<<
@@ -9140,7 +9130,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     }
     __pyx_L16:;
 
-    /* "sklearn/tree/_splitter.pyx":1211
+    /* "sklearn/tree/_splitter.pyx":1205
  *                 sparse_swap(index_to_samples, samples, index, end_negative_)
  *                 end_negative_ += 1
  *         p += 1             # <<<<<<<<<<<<<<
@@ -9150,7 +9140,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
     __pyx_v_p = (__pyx_v_p + 1);
   }
 
-  /* "sklearn/tree/_splitter.pyx":1214
+  /* "sklearn/tree/_splitter.pyx":1208
  * 
  *     # Returned values
  *     end_negative[0] = end_negative_             # <<<<<<<<<<<<<<
@@ -9159,7 +9149,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
   (__pyx_v_end_negative[0]) = __pyx_v_end_negative_;
 
-  /* "sklearn/tree/_splitter.pyx":1215
+  /* "sklearn/tree/_splitter.pyx":1209
  *     # Returned values
  *     end_negative[0] = end_negative_
  *     start_positive[0] = start_positive_             # <<<<<<<<<<<<<<
@@ -9168,7 +9158,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
  */
   (__pyx_v_start_positive[0]) = __pyx_v_start_positive_;
 
-  /* "sklearn/tree/_splitter.pyx":1146
+  /* "sklearn/tree/_splitter.pyx":1140
  * 
  * 
  * cdef inline void extract_nnz_binary_search(INT32_t* X_indices,             # <<<<<<<<<<<<<<
@@ -9179,7 +9169,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_extract_nnz_binary_s
   /* function exit code */
 }
 
-/* "sklearn/tree/_splitter.pyx":1218
+/* "sklearn/tree/_splitter.pyx":1212
  * 
  * 
  * cdef inline void sparse_swap(SIZE_t* index_to_samples, SIZE_t* samples,             # <<<<<<<<<<<<<<
@@ -9191,7 +9181,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_sparse_swap(__pyx_t_
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_t_1;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1221
+  /* "sklearn/tree/_splitter.pyx":1215
  *                              SIZE_t pos_1, SIZE_t pos_2) nogil  :
  *     """Swap sample pos_1 and pos_2 preserving sparse invariant."""
  *     samples[pos_1], samples[pos_2] =  samples[pos_2], samples[pos_1]             # <<<<<<<<<<<<<<
@@ -9203,7 +9193,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_sparse_swap(__pyx_t_
   (__pyx_v_samples[__pyx_v_pos_1]) = __pyx_t_1;
   (__pyx_v_samples[__pyx_v_pos_2]) = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1222
+  /* "sklearn/tree/_splitter.pyx":1216
  *     """Swap sample pos_1 and pos_2 preserving sparse invariant."""
  *     samples[pos_1], samples[pos_2] =  samples[pos_2], samples[pos_1]
  *     index_to_samples[samples[pos_1]] = pos_1             # <<<<<<<<<<<<<<
@@ -9212,7 +9202,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_sparse_swap(__pyx_t_
  */
   (__pyx_v_index_to_samples[(__pyx_v_samples[__pyx_v_pos_1])]) = __pyx_v_pos_1;
 
-  /* "sklearn/tree/_splitter.pyx":1223
+  /* "sklearn/tree/_splitter.pyx":1217
  *     samples[pos_1], samples[pos_2] =  samples[pos_2], samples[pos_1]
  *     index_to_samples[samples[pos_1]] = pos_1
  *     index_to_samples[samples[pos_2]] = pos_2             # <<<<<<<<<<<<<<
@@ -9221,7 +9211,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_sparse_swap(__pyx_t_
  */
   (__pyx_v_index_to_samples[(__pyx_v_samples[__pyx_v_pos_2])]) = __pyx_v_pos_2;
 
-  /* "sklearn/tree/_splitter.pyx":1218
+  /* "sklearn/tree/_splitter.pyx":1212
  * 
  * 
  * cdef inline void sparse_swap(SIZE_t* index_to_samples, SIZE_t* samples,             # <<<<<<<<<<<<<<
@@ -9232,7 +9222,7 @@ static CYTHON_INLINE void __pyx_f_7sklearn_4tree_9_splitter_sparse_swap(__pyx_t_
   /* function exit code */
 }
 
-/* "sklearn/tree/_splitter.pyx":1229
+/* "sklearn/tree/_splitter.pyx":1223
  *     """Splitter for finding the best split, using the sparse data."""
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -9266,7 +9256,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_18BestSparseSplitter___reduc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "sklearn/tree/_splitter.pyx":1230
+  /* "sklearn/tree/_splitter.pyx":1224
  * 
  *     def __reduce__(self):
  *         return (BestSparseSplitter, (self.criterion,             # <<<<<<<<<<<<<<
@@ -9275,54 +9265,54 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_18BestSparseSplitter___reduc
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "sklearn/tree/_splitter.pyx":1231
+  /* "sklearn/tree/_splitter.pyx":1225
  *     def __reduce__(self):
  *         return (BestSparseSplitter, (self.criterion,
  *                                      self.max_features,             # <<<<<<<<<<<<<<
  *                                      self.min_samples_leaf,
  *                                      self.min_weight_leaf,
  */
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1225; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sklearn/tree/_splitter.pyx":1232
+  /* "sklearn/tree/_splitter.pyx":1226
  *         return (BestSparseSplitter, (self.criterion,
  *                                      self.max_features,
  *                                      self.min_samples_leaf,             # <<<<<<<<<<<<<<
  *                                      self.min_weight_leaf,
  *                                      self.random_state,
  */
-  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.min_samples_leaf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.min_samples_leaf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "sklearn/tree/_splitter.pyx":1233
+  /* "sklearn/tree/_splitter.pyx":1227
  *                                      self.max_features,
  *                                      self.min_samples_leaf,
  *                                      self.min_weight_leaf,             # <<<<<<<<<<<<<<
  *                                      self.random_state,
  *                                      self.presort), self.__getstate__())
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->__pyx_base.__pyx_base.min_weight_leaf); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->__pyx_base.__pyx_base.min_weight_leaf); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "sklearn/tree/_splitter.pyx":1235
+  /* "sklearn/tree/_splitter.pyx":1229
  *                                      self.min_weight_leaf,
  *                                      self.random_state,
  *                                      self.presort), self.__getstate__())             # <<<<<<<<<<<<<<
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,
  */
-  __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_self->__pyx_base.__pyx_base.presort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_self->__pyx_base.__pyx_base.presort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "sklearn/tree/_splitter.pyx":1230
+  /* "sklearn/tree/_splitter.pyx":1224
  * 
  *     def __reduce__(self):
  *         return (BestSparseSplitter, (self.criterion,             # <<<<<<<<<<<<<<
  *                                      self.max_features,
  *                                      self.min_samples_leaf,
  */
-  __pyx_t_5 = PyTuple_New(6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.__pyx_base.criterion));
   PyTuple_SET_ITEM(__pyx_t_5, 0, ((PyObject *)__pyx_v_self->__pyx_base.__pyx_base.criterion));
@@ -9343,14 +9333,14 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_18BestSparseSplitter___reduc
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1235
+  /* "sklearn/tree/_splitter.pyx":1229
  *                                      self.min_weight_leaf,
  *                                      self.random_state,
  *                                      self.presort), self.__getstate__())             # <<<<<<<<<<<<<<
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_3))) {
@@ -9363,22 +9353,22 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_18BestSparseSplitter___reduc
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1230
+  /* "sklearn/tree/_splitter.pyx":1224
  * 
  *     def __reduce__(self):
  *         return (BestSparseSplitter, (self.criterion,             # <<<<<<<<<<<<<<
  *                                      self.max_features,
  *                                      self.min_samples_leaf,
  */
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_9_splitter_BestSparseSplitter)));
   PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_9_splitter_BestSparseSplitter)));
@@ -9393,7 +9383,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_18BestSparseSplitter___reduc
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_splitter.pyx":1229
+  /* "sklearn/tree/_splitter.pyx":1223
  *     """Splitter for finding the best split, using the sparse data."""
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -9416,7 +9406,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_18BestSparseSplitter___reduc
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pyx":1237
+/* "sklearn/tree/_splitter.pyx":1231
  *                                      self.presort), self.__getstate__())
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,             # <<<<<<<<<<<<<<
@@ -9468,7 +9458,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   int __pyx_t_7;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_t_8;
 
-  /* "sklearn/tree/_splitter.pyx":1243
+  /* "sklearn/tree/_splitter.pyx":1237
  *         """
  *         # Find the best split
  *         cdef SIZE_t* samples = self.samples             # <<<<<<<<<<<<<<
@@ -9478,7 +9468,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.samples;
   __pyx_v_samples = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1244
+  /* "sklearn/tree/_splitter.pyx":1238
  *         # Find the best split
  *         cdef SIZE_t* samples = self.samples
  *         cdef SIZE_t start = self.start             # <<<<<<<<<<<<<<
@@ -9488,7 +9478,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.start;
   __pyx_v_start = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1245
+  /* "sklearn/tree/_splitter.pyx":1239
  *         cdef SIZE_t* samples = self.samples
  *         cdef SIZE_t start = self.start
  *         cdef SIZE_t end = self.end             # <<<<<<<<<<<<<<
@@ -9498,7 +9488,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.end;
   __pyx_v_end = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1247
+  /* "sklearn/tree/_splitter.pyx":1241
  *         cdef SIZE_t end = self.end
  * 
  *         cdef INT32_t* X_indices = self.X_indices             # <<<<<<<<<<<<<<
@@ -9508,7 +9498,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_3 = __pyx_v_self->__pyx_base.X_indices;
   __pyx_v_X_indices = __pyx_t_3;
 
-  /* "sklearn/tree/_splitter.pyx":1248
+  /* "sklearn/tree/_splitter.pyx":1242
  * 
  *         cdef INT32_t* X_indices = self.X_indices
  *         cdef INT32_t* X_indptr = self.X_indptr             # <<<<<<<<<<<<<<
@@ -9518,7 +9508,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_3 = __pyx_v_self->__pyx_base.X_indptr;
   __pyx_v_X_indptr = __pyx_t_3;
 
-  /* "sklearn/tree/_splitter.pyx":1249
+  /* "sklearn/tree/_splitter.pyx":1243
  *         cdef INT32_t* X_indices = self.X_indices
  *         cdef INT32_t* X_indptr = self.X_indptr
  *         cdef DTYPE_t* X_data = self.X_data             # <<<<<<<<<<<<<<
@@ -9528,7 +9518,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_4 = __pyx_v_self->__pyx_base.X_data;
   __pyx_v_X_data = __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":1251
+  /* "sklearn/tree/_splitter.pyx":1245
  *         cdef DTYPE_t* X_data = self.X_data
  * 
  *         cdef SIZE_t* features = self.features             # <<<<<<<<<<<<<<
@@ -9538,7 +9528,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.features;
   __pyx_v_features = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1252
+  /* "sklearn/tree/_splitter.pyx":1246
  * 
  *         cdef SIZE_t* features = self.features
  *         cdef SIZE_t* constant_features = self.constant_features             # <<<<<<<<<<<<<<
@@ -9548,7 +9538,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.constant_features;
   __pyx_v_constant_features = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1253
+  /* "sklearn/tree/_splitter.pyx":1247
  *         cdef SIZE_t* features = self.features
  *         cdef SIZE_t* constant_features = self.constant_features
  *         cdef SIZE_t n_features = self.n_features             # <<<<<<<<<<<<<<
@@ -9558,7 +9548,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.n_features;
   __pyx_v_n_features = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1255
+  /* "sklearn/tree/_splitter.pyx":1249
  *         cdef SIZE_t n_features = self.n_features
  * 
  *         cdef DTYPE_t* Xf = self.feature_values             # <<<<<<<<<<<<<<
@@ -9568,7 +9558,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_4 = __pyx_v_self->__pyx_base.__pyx_base.feature_values;
   __pyx_v_Xf = __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":1256
+  /* "sklearn/tree/_splitter.pyx":1250
  * 
  *         cdef DTYPE_t* Xf = self.feature_values
  *         cdef SIZE_t* sorted_samples = self.sorted_samples             # <<<<<<<<<<<<<<
@@ -9578,7 +9568,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_1 = __pyx_v_self->__pyx_base.sorted_samples;
   __pyx_v_sorted_samples = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1257
+  /* "sklearn/tree/_splitter.pyx":1251
  *         cdef DTYPE_t* Xf = self.feature_values
  *         cdef SIZE_t* sorted_samples = self.sorted_samples
  *         cdef SIZE_t* index_to_samples = self.index_to_samples             # <<<<<<<<<<<<<<
@@ -9588,7 +9578,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_1 = __pyx_v_self->__pyx_base.index_to_samples;
   __pyx_v_index_to_samples = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1258
+  /* "sklearn/tree/_splitter.pyx":1252
  *         cdef SIZE_t* sorted_samples = self.sorted_samples
  *         cdef SIZE_t* index_to_samples = self.index_to_samples
  *         cdef SIZE_t max_features = self.max_features             # <<<<<<<<<<<<<<
@@ -9598,7 +9588,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.max_features;
   __pyx_v_max_features = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1259
+  /* "sklearn/tree/_splitter.pyx":1253
  *         cdef SIZE_t* index_to_samples = self.index_to_samples
  *         cdef SIZE_t max_features = self.max_features
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf             # <<<<<<<<<<<<<<
@@ -9608,7 +9598,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.min_samples_leaf;
   __pyx_v_min_samples_leaf = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1260
+  /* "sklearn/tree/_splitter.pyx":1254
  *         cdef SIZE_t max_features = self.max_features
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf             # <<<<<<<<<<<<<<
@@ -9618,7 +9608,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_5 = __pyx_v_self->__pyx_base.__pyx_base.min_weight_leaf;
   __pyx_v_min_weight_leaf = __pyx_t_5;
 
-  /* "sklearn/tree/_splitter.pyx":1261
+  /* "sklearn/tree/_splitter.pyx":1255
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf
  *         cdef UINT32_t* random_state = &self.rand_r_state             # <<<<<<<<<<<<<<
@@ -9627,7 +9617,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_random_state = (&__pyx_v_self->__pyx_base.__pyx_base.rand_r_state);
 
-  /* "sklearn/tree/_splitter.pyx":1264
+  /* "sklearn/tree/_splitter.pyx":1258
  * 
  *         cdef SplitRecord best, current
  *         _init_split(&best, end)             # <<<<<<<<<<<<<<
@@ -9636,7 +9626,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_f_7sklearn_4tree_9_splitter__init_split((&__pyx_v_best), __pyx_v_end);
 
-  /* "sklearn/tree/_splitter.pyx":1265
+  /* "sklearn/tree/_splitter.pyx":1259
  *         cdef SplitRecord best, current
  *         _init_split(&best, end)
  *         cdef double current_proxy_improvement = - INFINITY             # <<<<<<<<<<<<<<
@@ -9645,7 +9635,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_current_proxy_improvement = (-__pyx_v_7sklearn_4tree_9_splitter_INFINITY);
 
-  /* "sklearn/tree/_splitter.pyx":1266
+  /* "sklearn/tree/_splitter.pyx":1260
  *         _init_split(&best, end)
  *         cdef double current_proxy_improvement = - INFINITY
  *         cdef double best_proxy_improvement = - INFINITY             # <<<<<<<<<<<<<<
@@ -9654,7 +9644,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_best_proxy_improvement = (-__pyx_v_7sklearn_4tree_9_splitter_INFINITY);
 
-  /* "sklearn/tree/_splitter.pyx":1268
+  /* "sklearn/tree/_splitter.pyx":1262
  *         cdef double best_proxy_improvement = - INFINITY
  * 
  *         cdef SIZE_t f_i = n_features             # <<<<<<<<<<<<<<
@@ -9663,7 +9653,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_f_i = __pyx_v_n_features;
 
-  /* "sklearn/tree/_splitter.pyx":1270
+  /* "sklearn/tree/_splitter.pyx":1264
  *         cdef SIZE_t f_i = n_features
  *         cdef SIZE_t f_j, p, tmp
  *         cdef SIZE_t n_visited_features = 0             # <<<<<<<<<<<<<<
@@ -9672,7 +9662,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_n_visited_features = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1272
+  /* "sklearn/tree/_splitter.pyx":1266
  *         cdef SIZE_t n_visited_features = 0
  *         # Number of features discovered to be constant during the split search
  *         cdef SIZE_t n_found_constants = 0             # <<<<<<<<<<<<<<
@@ -9681,7 +9671,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_n_found_constants = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1274
+  /* "sklearn/tree/_splitter.pyx":1268
  *         cdef SIZE_t n_found_constants = 0
  *         # Number of features known to be constant and drawn without replacement
  *         cdef SIZE_t n_drawn_constants = 0             # <<<<<<<<<<<<<<
@@ -9690,7 +9680,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_n_drawn_constants = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1275
+  /* "sklearn/tree/_splitter.pyx":1269
  *         # Number of features known to be constant and drawn without replacement
  *         cdef SIZE_t n_drawn_constants = 0
  *         cdef SIZE_t n_known_constants = n_constant_features[0]             # <<<<<<<<<<<<<<
@@ -9699,7 +9689,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_n_known_constants = (__pyx_v_n_constant_features[0]);
 
-  /* "sklearn/tree/_splitter.pyx":1277
+  /* "sklearn/tree/_splitter.pyx":1271
  *         cdef SIZE_t n_known_constants = n_constant_features[0]
  *         # n_total_constants = n_known_constants + n_found_constants
  *         cdef SIZE_t n_total_constants = n_known_constants             # <<<<<<<<<<<<<<
@@ -9708,7 +9698,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_n_total_constants = __pyx_v_n_known_constants;
 
-  /* "sklearn/tree/_splitter.pyx":1282
+  /* "sklearn/tree/_splitter.pyx":1276
  *         cdef SIZE_t p_next
  *         cdef SIZE_t p_prev
  *         cdef bint is_samples_sorted = 0  # indicate is sorted_samples is             # <<<<<<<<<<<<<<
@@ -9717,7 +9707,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   __pyx_v_is_samples_sorted = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1299
+  /* "sklearn/tree/_splitter.pyx":1293
  *         # newly discovered constant features to spare computation on descendant
  *         # nodes.
  *         while (f_i > n_total_constants and  # Stop early if remaining features             # <<<<<<<<<<<<<<
@@ -9732,7 +9722,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":1301
+    /* "sklearn/tree/_splitter.pyx":1295
  *         while (f_i > n_total_constants and  # Stop early if remaining features
  *                                             # are constant
  *                 (n_visited_features < max_features or             # <<<<<<<<<<<<<<
@@ -9746,7 +9736,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":1303
+    /* "sklearn/tree/_splitter.pyx":1297
  *                 (n_visited_features < max_features or
  *                  # At least one drawn features must be non constant
  *                  n_visited_features <= n_found_constants + n_drawn_constants)):             # <<<<<<<<<<<<<<
@@ -9758,7 +9748,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
     __pyx_L5_bool_binop_done:;
     if (!__pyx_t_6) break;
 
-    /* "sklearn/tree/_splitter.pyx":1305
+    /* "sklearn/tree/_splitter.pyx":1299
  *                  n_visited_features <= n_found_constants + n_drawn_constants)):
  * 
  *             n_visited_features += 1             # <<<<<<<<<<<<<<
@@ -9767,7 +9757,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
     __pyx_v_n_visited_features = (__pyx_v_n_visited_features + 1);
 
-    /* "sklearn/tree/_splitter.pyx":1319
+    /* "sklearn/tree/_splitter.pyx":1313
  * 
  *             # Draw a feature at random
  *             f_j = rand_int(n_drawn_constants, f_i - n_found_constants,             # <<<<<<<<<<<<<<
@@ -9776,7 +9766,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
     __pyx_v_f_j = __pyx_f_7sklearn_4tree_6_utils_rand_int(__pyx_v_n_drawn_constants, (__pyx_v_f_i - __pyx_v_n_found_constants), __pyx_v_random_state);
 
-    /* "sklearn/tree/_splitter.pyx":1322
+    /* "sklearn/tree/_splitter.pyx":1316
  *                            random_state)
  * 
  *             if f_j < n_known_constants:             # <<<<<<<<<<<<<<
@@ -9786,7 +9776,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
     __pyx_t_6 = ((__pyx_v_f_j < __pyx_v_n_known_constants) != 0);
     if (__pyx_t_6) {
 
-      /* "sklearn/tree/_splitter.pyx":1324
+      /* "sklearn/tree/_splitter.pyx":1318
  *             if f_j < n_known_constants:
  *                 # f_j in the interval [n_drawn_constants, n_known_constants[
  *                 tmp = features[f_j]             # <<<<<<<<<<<<<<
@@ -9795,7 +9785,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       __pyx_v_tmp = (__pyx_v_features[__pyx_v_f_j]);
 
-      /* "sklearn/tree/_splitter.pyx":1325
+      /* "sklearn/tree/_splitter.pyx":1319
  *                 # f_j in the interval [n_drawn_constants, n_known_constants[
  *                 tmp = features[f_j]
  *                 features[f_j] = features[n_drawn_constants]             # <<<<<<<<<<<<<<
@@ -9804,7 +9794,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       (__pyx_v_features[__pyx_v_f_j]) = (__pyx_v_features[__pyx_v_n_drawn_constants]);
 
-      /* "sklearn/tree/_splitter.pyx":1326
+      /* "sklearn/tree/_splitter.pyx":1320
  *                 tmp = features[f_j]
  *                 features[f_j] = features[n_drawn_constants]
  *                 features[n_drawn_constants] = tmp             # <<<<<<<<<<<<<<
@@ -9813,7 +9803,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       (__pyx_v_features[__pyx_v_n_drawn_constants]) = __pyx_v_tmp;
 
-      /* "sklearn/tree/_splitter.pyx":1328
+      /* "sklearn/tree/_splitter.pyx":1322
  *                 features[n_drawn_constants] = tmp
  * 
  *                 n_drawn_constants += 1             # <<<<<<<<<<<<<<
@@ -9825,7 +9815,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
     }
     /*else*/ {
 
-      /* "sklearn/tree/_splitter.pyx":1332
+      /* "sklearn/tree/_splitter.pyx":1326
  *             else:
  *                 # f_j in the interval [n_known_constants, f_i - n_found_constants[
  *                 f_j += n_found_constants             # <<<<<<<<<<<<<<
@@ -9834,7 +9824,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       __pyx_v_f_j = (__pyx_v_f_j + __pyx_v_n_found_constants);
 
-      /* "sklearn/tree/_splitter.pyx":1335
+      /* "sklearn/tree/_splitter.pyx":1329
  *                 # f_j in the interval [n_total_constants, f_i[
  * 
  *                 current.feature = features[f_j]             # <<<<<<<<<<<<<<
@@ -9843,7 +9833,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       __pyx_v_current.feature = (__pyx_v_features[__pyx_v_f_j]);
 
-      /* "sklearn/tree/_splitter.pyx":1336
+      /* "sklearn/tree/_splitter.pyx":1330
  * 
  *                 current.feature = features[f_j]
  *                 self.extract_nnz(current.feature,             # <<<<<<<<<<<<<<
@@ -9852,7 +9842,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_extract_nnz(((struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *)__pyx_v_self), __pyx_v_current.feature, (&__pyx_v_end_negative), (&__pyx_v_start_positive), (&__pyx_v_is_samples_sorted));
 
-      /* "sklearn/tree/_splitter.pyx":1341
+      /* "sklearn/tree/_splitter.pyx":1335
  * 
  *                 # Sort the positive and negative parts of `Xf`
  *                 sort(Xf + start, samples + start, end_negative - start)             # <<<<<<<<<<<<<<
@@ -9861,7 +9851,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       __pyx_f_7sklearn_4tree_9_splitter_sort((__pyx_v_Xf + __pyx_v_start), (__pyx_v_samples + __pyx_v_start), (__pyx_v_end_negative - __pyx_v_start));
 
-      /* "sklearn/tree/_splitter.pyx":1342
+      /* "sklearn/tree/_splitter.pyx":1336
  *                 # Sort the positive and negative parts of `Xf`
  *                 sort(Xf + start, samples + start, end_negative - start)
  *                 sort(Xf + start_positive, samples + start_positive,             # <<<<<<<<<<<<<<
@@ -9870,7 +9860,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
       __pyx_f_7sklearn_4tree_9_splitter_sort((__pyx_v_Xf + __pyx_v_start_positive), (__pyx_v_samples + __pyx_v_start_positive), (__pyx_v_end - __pyx_v_start_positive));
 
-      /* "sklearn/tree/_splitter.pyx":1346
+      /* "sklearn/tree/_splitter.pyx":1340
  * 
  *                 # Update index_to_samples to take into account the sort
  *                 for p in range(start, end_negative):             # <<<<<<<<<<<<<<
@@ -9881,7 +9871,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       for (__pyx_t_8 = __pyx_v_start; __pyx_t_8 < __pyx_t_2; __pyx_t_8+=1) {
         __pyx_v_p = __pyx_t_8;
 
-        /* "sklearn/tree/_splitter.pyx":1347
+        /* "sklearn/tree/_splitter.pyx":1341
  *                 # Update index_to_samples to take into account the sort
  *                 for p in range(start, end_negative):
  *                     index_to_samples[samples[p]] = p             # <<<<<<<<<<<<<<
@@ -9891,7 +9881,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
         (__pyx_v_index_to_samples[(__pyx_v_samples[__pyx_v_p])]) = __pyx_v_p;
       }
 
-      /* "sklearn/tree/_splitter.pyx":1348
+      /* "sklearn/tree/_splitter.pyx":1342
  *                 for p in range(start, end_negative):
  *                     index_to_samples[samples[p]] = p
  *                 for p in range(start_positive, end):             # <<<<<<<<<<<<<<
@@ -9902,7 +9892,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       for (__pyx_t_8 = __pyx_v_start_positive; __pyx_t_8 < __pyx_t_2; __pyx_t_8+=1) {
         __pyx_v_p = __pyx_t_8;
 
-        /* "sklearn/tree/_splitter.pyx":1349
+        /* "sklearn/tree/_splitter.pyx":1343
  *                     index_to_samples[samples[p]] = p
  *                 for p in range(start_positive, end):
  *                     index_to_samples[samples[p]] = p             # <<<<<<<<<<<<<<
@@ -9912,7 +9902,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
         (__pyx_v_index_to_samples[(__pyx_v_samples[__pyx_v_p])]) = __pyx_v_p;
       }
 
-      /* "sklearn/tree/_splitter.pyx":1352
+      /* "sklearn/tree/_splitter.pyx":1346
  * 
  *                 # Add one or two zeros in Xf, if there is any
  *                 if end_negative < start_positive:             # <<<<<<<<<<<<<<
@@ -9922,7 +9912,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       __pyx_t_6 = ((__pyx_v_end_negative < __pyx_v_start_positive) != 0);
       if (__pyx_t_6) {
 
-        /* "sklearn/tree/_splitter.pyx":1353
+        /* "sklearn/tree/_splitter.pyx":1347
  *                 # Add one or two zeros in Xf, if there is any
  *                 if end_negative < start_positive:
  *                     start_positive -= 1             # <<<<<<<<<<<<<<
@@ -9931,7 +9921,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
         __pyx_v_start_positive = (__pyx_v_start_positive - 1);
 
-        /* "sklearn/tree/_splitter.pyx":1354
+        /* "sklearn/tree/_splitter.pyx":1348
  *                 if end_negative < start_positive:
  *                     start_positive -= 1
  *                     Xf[start_positive] = 0.             # <<<<<<<<<<<<<<
@@ -9940,7 +9930,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
         (__pyx_v_Xf[__pyx_v_start_positive]) = 0.;
 
-        /* "sklearn/tree/_splitter.pyx":1356
+        /* "sklearn/tree/_splitter.pyx":1350
  *                     Xf[start_positive] = 0.
  * 
  *                     if end_negative != start_positive:             # <<<<<<<<<<<<<<
@@ -9950,7 +9940,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
         __pyx_t_6 = ((__pyx_v_end_negative != __pyx_v_start_positive) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1357
+          /* "sklearn/tree/_splitter.pyx":1351
  * 
  *                     if end_negative != start_positive:
  *                         Xf[end_negative] = 0.             # <<<<<<<<<<<<<<
@@ -9959,7 +9949,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
           (__pyx_v_Xf[__pyx_v_end_negative]) = 0.;
 
-          /* "sklearn/tree/_splitter.pyx":1358
+          /* "sklearn/tree/_splitter.pyx":1352
  *                     if end_negative != start_positive:
  *                         Xf[end_negative] = 0.
  *                         end_negative += 1             # <<<<<<<<<<<<<<
@@ -9974,7 +9964,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       }
       __pyx_L13:;
 
-      /* "sklearn/tree/_splitter.pyx":1360
+      /* "sklearn/tree/_splitter.pyx":1354
  *                         end_negative += 1
  * 
  *                 if Xf[end - 1] <= Xf[start] + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
@@ -9984,7 +9974,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       __pyx_t_6 = (((__pyx_v_Xf[(__pyx_v_end - 1)]) <= ((__pyx_v_Xf[__pyx_v_start]) + __pyx_v_7sklearn_4tree_9_splitter_FEATURE_THRESHOLD)) != 0);
       if (__pyx_t_6) {
 
-        /* "sklearn/tree/_splitter.pyx":1361
+        /* "sklearn/tree/_splitter.pyx":1355
  * 
  *                 if Xf[end - 1] <= Xf[start] + FEATURE_THRESHOLD:
  *                     features[f_j] = features[n_total_constants]             # <<<<<<<<<<<<<<
@@ -9993,7 +9983,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
         (__pyx_v_features[__pyx_v_f_j]) = (__pyx_v_features[__pyx_v_n_total_constants]);
 
-        /* "sklearn/tree/_splitter.pyx":1362
+        /* "sklearn/tree/_splitter.pyx":1356
  *                 if Xf[end - 1] <= Xf[start] + FEATURE_THRESHOLD:
  *                     features[f_j] = features[n_total_constants]
  *                     features[n_total_constants] = current.feature             # <<<<<<<<<<<<<<
@@ -10003,7 +9993,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
         __pyx_t_2 = __pyx_v_current.feature;
         (__pyx_v_features[__pyx_v_n_total_constants]) = __pyx_t_2;
 
-        /* "sklearn/tree/_splitter.pyx":1364
+        /* "sklearn/tree/_splitter.pyx":1358
  *                     features[n_total_constants] = current.feature
  * 
  *                     n_found_constants += 1             # <<<<<<<<<<<<<<
@@ -10012,7 +10002,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
         __pyx_v_n_found_constants = (__pyx_v_n_found_constants + 1);
 
-        /* "sklearn/tree/_splitter.pyx":1365
+        /* "sklearn/tree/_splitter.pyx":1359
  * 
  *                     n_found_constants += 1
  *                     n_total_constants += 1             # <<<<<<<<<<<<<<
@@ -10024,7 +10014,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
       }
       /*else*/ {
 
-        /* "sklearn/tree/_splitter.pyx":1368
+        /* "sklearn/tree/_splitter.pyx":1362
  * 
  *                 else:
  *                     f_i -= 1             # <<<<<<<<<<<<<<
@@ -10033,7 +10023,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
         __pyx_v_f_i = (__pyx_v_f_i - 1);
 
-        /* "sklearn/tree/_splitter.pyx":1369
+        /* "sklearn/tree/_splitter.pyx":1363
  *                 else:
  *                     f_i -= 1
  *                     features[f_i], features[f_j] = features[f_j], features[f_i]             # <<<<<<<<<<<<<<
@@ -10045,7 +10035,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
         (__pyx_v_features[__pyx_v_f_i]) = __pyx_t_2;
         (__pyx_v_features[__pyx_v_f_j]) = __pyx_t_8;
 
-        /* "sklearn/tree/_splitter.pyx":1372
+        /* "sklearn/tree/_splitter.pyx":1366
  * 
  *                     # Evaluate all splits
  *                     self.criterion.reset()             # <<<<<<<<<<<<<<
@@ -10054,7 +10044,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
         ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->reset(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-        /* "sklearn/tree/_splitter.pyx":1373
+        /* "sklearn/tree/_splitter.pyx":1367
  *                     # Evaluate all splits
  *                     self.criterion.reset()
  *                     p = start             # <<<<<<<<<<<<<<
@@ -10063,7 +10053,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
         __pyx_v_p = __pyx_v_start;
 
-        /* "sklearn/tree/_splitter.pyx":1375
+        /* "sklearn/tree/_splitter.pyx":1369
  *                     p = start
  * 
  *                     while p < end:             # <<<<<<<<<<<<<<
@@ -10074,7 +10064,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
           __pyx_t_6 = ((__pyx_v_p < __pyx_v_end) != 0);
           if (!__pyx_t_6) break;
 
-          /* "sklearn/tree/_splitter.pyx":1376
+          /* "sklearn/tree/_splitter.pyx":1370
  * 
  *                     while p < end:
  *                         if p + 1 != end_negative:             # <<<<<<<<<<<<<<
@@ -10084,7 +10074,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
           __pyx_t_6 = (((__pyx_v_p + 1) != __pyx_v_end_negative) != 0);
           if (__pyx_t_6) {
 
-            /* "sklearn/tree/_splitter.pyx":1377
+            /* "sklearn/tree/_splitter.pyx":1371
  *                     while p < end:
  *                         if p + 1 != end_negative:
  *                             p_next = p + 1             # <<<<<<<<<<<<<<
@@ -10096,7 +10086,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
           }
           /*else*/ {
 
-            /* "sklearn/tree/_splitter.pyx":1379
+            /* "sklearn/tree/_splitter.pyx":1373
  *                             p_next = p + 1
  *                         else:
  *                             p_next = start_positive             # <<<<<<<<<<<<<<
@@ -10107,7 +10097,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
           }
           __pyx_L18:;
 
-          /* "sklearn/tree/_splitter.pyx":1381
+          /* "sklearn/tree/_splitter.pyx":1375
  *                             p_next = start_positive
  * 
  *                         while (p_next < end and             # <<<<<<<<<<<<<<
@@ -10122,7 +10112,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
               goto __pyx_L21_bool_binop_done;
             }
 
-            /* "sklearn/tree/_splitter.pyx":1382
+            /* "sklearn/tree/_splitter.pyx":1376
  * 
  *                         while (p_next < end and
  *                                Xf[p_next] <= Xf[p] + FEATURE_THRESHOLD):             # <<<<<<<<<<<<<<
@@ -10134,7 +10124,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
             __pyx_L21_bool_binop_done:;
             if (!__pyx_t_6) break;
 
-            /* "sklearn/tree/_splitter.pyx":1383
+            /* "sklearn/tree/_splitter.pyx":1377
  *                         while (p_next < end and
  *                                Xf[p_next] <= Xf[p] + FEATURE_THRESHOLD):
  *                             p = p_next             # <<<<<<<<<<<<<<
@@ -10143,7 +10133,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
             __pyx_v_p = __pyx_v_p_next;
 
-            /* "sklearn/tree/_splitter.pyx":1384
+            /* "sklearn/tree/_splitter.pyx":1378
  *                                Xf[p_next] <= Xf[p] + FEATURE_THRESHOLD):
  *                             p = p_next
  *                             if p + 1 != end_negative:             # <<<<<<<<<<<<<<
@@ -10153,7 +10143,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
             __pyx_t_6 = (((__pyx_v_p + 1) != __pyx_v_end_negative) != 0);
             if (__pyx_t_6) {
 
-              /* "sklearn/tree/_splitter.pyx":1385
+              /* "sklearn/tree/_splitter.pyx":1379
  *                             p = p_next
  *                             if p + 1 != end_negative:
  *                                 p_next = p + 1             # <<<<<<<<<<<<<<
@@ -10165,7 +10155,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
             }
             /*else*/ {
 
-              /* "sklearn/tree/_splitter.pyx":1387
+              /* "sklearn/tree/_splitter.pyx":1381
  *                                 p_next = p + 1
  *                             else:
  *                                 p_next = start_positive             # <<<<<<<<<<<<<<
@@ -10177,7 +10167,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
             __pyx_L23:;
           }
 
-          /* "sklearn/tree/_splitter.pyx":1392
+          /* "sklearn/tree/_splitter.pyx":1386
  *                         # (p_next >= end) or (X[samples[p_next], current.feature] >
  *                         #                     X[samples[p], current.feature])
  *                         p_prev = p             # <<<<<<<<<<<<<<
@@ -10186,7 +10176,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
           __pyx_v_p_prev = __pyx_v_p;
 
-          /* "sklearn/tree/_splitter.pyx":1393
+          /* "sklearn/tree/_splitter.pyx":1387
  *                         #                     X[samples[p], current.feature])
  *                         p_prev = p
  *                         p = p_next             # <<<<<<<<<<<<<<
@@ -10195,7 +10185,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
           __pyx_v_p = __pyx_v_p_next;
 
-          /* "sklearn/tree/_splitter.pyx":1398
+          /* "sklearn/tree/_splitter.pyx":1392
  * 
  * 
  *                         if p < end:             # <<<<<<<<<<<<<<
@@ -10205,7 +10195,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
           __pyx_t_6 = ((__pyx_v_p < __pyx_v_end) != 0);
           if (__pyx_t_6) {
 
-            /* "sklearn/tree/_splitter.pyx":1399
+            /* "sklearn/tree/_splitter.pyx":1393
  * 
  *                         if p < end:
  *                             current.pos = p             # <<<<<<<<<<<<<<
@@ -10214,7 +10204,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
             __pyx_v_current.pos = __pyx_v_p;
 
-            /* "sklearn/tree/_splitter.pyx":1402
+            /* "sklearn/tree/_splitter.pyx":1396
  * 
  *                             # Reject if min_samples_leaf is not guaranteed
  *                             if (((current.pos - start) < min_samples_leaf) or             # <<<<<<<<<<<<<<
@@ -10228,7 +10218,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
               goto __pyx_L26_bool_binop_done;
             }
 
-            /* "sklearn/tree/_splitter.pyx":1403
+            /* "sklearn/tree/_splitter.pyx":1397
  *                             # Reject if min_samples_leaf is not guaranteed
  *                             if (((current.pos - start) < min_samples_leaf) or
  *                                     ((end - current.pos) < min_samples_leaf)):             # <<<<<<<<<<<<<<
@@ -10240,7 +10230,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
             __pyx_L26_bool_binop_done:;
             if (__pyx_t_6) {
 
-              /* "sklearn/tree/_splitter.pyx":1404
+              /* "sklearn/tree/_splitter.pyx":1398
  *                             if (((current.pos - start) < min_samples_leaf) or
  *                                     ((end - current.pos) < min_samples_leaf)):
  *                                 continue             # <<<<<<<<<<<<<<
@@ -10250,7 +10240,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
               goto __pyx_L16_continue;
             }
 
-            /* "sklearn/tree/_splitter.pyx":1406
+            /* "sklearn/tree/_splitter.pyx":1400
  *                                 continue
  * 
  *                             self.criterion.update(current.pos)             # <<<<<<<<<<<<<<
@@ -10259,7 +10249,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
             ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->update(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_current.pos);
 
-            /* "sklearn/tree/_splitter.pyx":1409
+            /* "sklearn/tree/_splitter.pyx":1403
  * 
  *                             # Reject if min_weight_leaf is not satisfied
  *                             if ((self.criterion.weighted_n_left < min_weight_leaf) or             # <<<<<<<<<<<<<<
@@ -10273,7 +10263,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
               goto __pyx_L29_bool_binop_done;
             }
 
-            /* "sklearn/tree/_splitter.pyx":1410
+            /* "sklearn/tree/_splitter.pyx":1404
  *                             # Reject if min_weight_leaf is not satisfied
  *                             if ((self.criterion.weighted_n_left < min_weight_leaf) or
  *                                     (self.criterion.weighted_n_right < min_weight_leaf)):             # <<<<<<<<<<<<<<
@@ -10285,7 +10275,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
             __pyx_L29_bool_binop_done:;
             if (__pyx_t_6) {
 
-              /* "sklearn/tree/_splitter.pyx":1411
+              /* "sklearn/tree/_splitter.pyx":1405
  *                             if ((self.criterion.weighted_n_left < min_weight_leaf) or
  *                                     (self.criterion.weighted_n_right < min_weight_leaf)):
  *                                 continue             # <<<<<<<<<<<<<<
@@ -10295,7 +10285,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
               goto __pyx_L16_continue;
             }
 
-            /* "sklearn/tree/_splitter.pyx":1413
+            /* "sklearn/tree/_splitter.pyx":1407
  *                                 continue
  * 
  *                             current_proxy_improvement = self.criterion.proxy_impurity_improvement()             # <<<<<<<<<<<<<<
@@ -10304,7 +10294,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
             __pyx_v_current_proxy_improvement = ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->proxy_impurity_improvement(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-            /* "sklearn/tree/_splitter.pyx":1415
+            /* "sklearn/tree/_splitter.pyx":1409
  *                             current_proxy_improvement = self.criterion.proxy_impurity_improvement()
  * 
  *                             if current_proxy_improvement > best_proxy_improvement:             # <<<<<<<<<<<<<<
@@ -10314,7 +10304,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
             __pyx_t_6 = ((__pyx_v_current_proxy_improvement > __pyx_v_best_proxy_improvement) != 0);
             if (__pyx_t_6) {
 
-              /* "sklearn/tree/_splitter.pyx":1416
+              /* "sklearn/tree/_splitter.pyx":1410
  * 
  *                             if current_proxy_improvement > best_proxy_improvement:
  *                                 best_proxy_improvement = current_proxy_improvement             # <<<<<<<<<<<<<<
@@ -10323,7 +10313,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
               __pyx_v_best_proxy_improvement = __pyx_v_current_proxy_improvement;
 
-              /* "sklearn/tree/_splitter.pyx":1418
+              /* "sklearn/tree/_splitter.pyx":1412
  *                                 best_proxy_improvement = current_proxy_improvement
  * 
  *                                 current.split_value.threshold = (Xf[p_prev] + Xf[p]) / 2.0             # <<<<<<<<<<<<<<
@@ -10332,7 +10322,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
               __pyx_v_current.split_value.threshold = (((__pyx_v_Xf[__pyx_v_p_prev]) + (__pyx_v_Xf[__pyx_v_p])) / 2.0);
 
-              /* "sklearn/tree/_splitter.pyx":1419
+              /* "sklearn/tree/_splitter.pyx":1413
  * 
  *                                 current.split_value.threshold = (Xf[p_prev] + Xf[p]) / 2.0
  *                                 if current.split_value.threshold == Xf[p]:             # <<<<<<<<<<<<<<
@@ -10342,7 +10332,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
               __pyx_t_6 = ((__pyx_v_current.split_value.threshold == (__pyx_v_Xf[__pyx_v_p])) != 0);
               if (__pyx_t_6) {
 
-                /* "sklearn/tree/_splitter.pyx":1420
+                /* "sklearn/tree/_splitter.pyx":1414
  *                                 current.split_value.threshold = (Xf[p_prev] + Xf[p]) / 2.0
  *                                 if current.split_value.threshold == Xf[p]:
  *                                     current.split_value.threshold = Xf[p_prev]             # <<<<<<<<<<<<<<
@@ -10354,7 +10344,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
               }
               __pyx_L32:;
 
-              /* "sklearn/tree/_splitter.pyx":1422
+              /* "sklearn/tree/_splitter.pyx":1416
  *                                     current.split_value.threshold = Xf[p_prev]
  * 
  *                                 best = current             # <<<<<<<<<<<<<<
@@ -10376,7 +10366,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
     __pyx_L8:;
   }
 
-  /* "sklearn/tree/_splitter.pyx":1425
+  /* "sklearn/tree/_splitter.pyx":1419
  * 
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         if best.pos < end:             # <<<<<<<<<<<<<<
@@ -10386,7 +10376,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   __pyx_t_6 = ((__pyx_v_best.pos < __pyx_v_end) != 0);
   if (__pyx_t_6) {
 
-    /* "sklearn/tree/_splitter.pyx":1426
+    /* "sklearn/tree/_splitter.pyx":1420
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         if best.pos < end:
  *             self.extract_nnz(best.feature, &end_negative, &start_positive,             # <<<<<<<<<<<<<<
@@ -10395,7 +10385,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
     __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_extract_nnz(((struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *)__pyx_v_self), __pyx_v_best.feature, (&__pyx_v_end_negative), (&__pyx_v_start_positive), (&__pyx_v_is_samples_sorted));
 
-    /* "sklearn/tree/_splitter.pyx":1429
+    /* "sklearn/tree/_splitter.pyx":1423
  *                              &is_samples_sorted)
  * 
  *             self._partition(best.split_value.threshold, end_negative, start_positive,             # <<<<<<<<<<<<<<
@@ -10404,7 +10394,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
     __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter__partition(((struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *)__pyx_v_self), __pyx_v_best.split_value.threshold, __pyx_v_end_negative, __pyx_v_start_positive, __pyx_v_best.pos);
 
-    /* "sklearn/tree/_splitter.pyx":1432
+    /* "sklearn/tree/_splitter.pyx":1426
  *                             best.pos)
  * 
  *             self.criterion.reset()             # <<<<<<<<<<<<<<
@@ -10413,7 +10403,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
     ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->reset(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-    /* "sklearn/tree/_splitter.pyx":1433
+    /* "sklearn/tree/_splitter.pyx":1427
  * 
  *             self.criterion.reset()
  *             self.criterion.update(best.pos)             # <<<<<<<<<<<<<<
@@ -10422,7 +10412,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
     ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->update(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_best.pos);
 
-    /* "sklearn/tree/_splitter.pyx":1434
+    /* "sklearn/tree/_splitter.pyx":1428
  *             self.criterion.reset()
  *             self.criterion.update(best.pos)
  *             best.improvement = self.criterion.impurity_improvement(impurity)             # <<<<<<<<<<<<<<
@@ -10431,7 +10421,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
     __pyx_v_best.improvement = ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->impurity_improvement(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_impurity);
 
-    /* "sklearn/tree/_splitter.pyx":1435
+    /* "sklearn/tree/_splitter.pyx":1429
  *             self.criterion.update(best.pos)
  *             best.improvement = self.criterion.impurity_improvement(impurity)
  *             self.criterion.children_impurity(&best.impurity_left,             # <<<<<<<<<<<<<<
@@ -10443,7 +10433,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   }
   __pyx_L33:;
 
-  /* "sklearn/tree/_splitter.pyx":1441
+  /* "sklearn/tree/_splitter.pyx":1435
  *         # element in features[:n_known_constants] must be preserved for sibling
  *         # and child nodes
  *         memcpy(features, constant_features, sizeof(SIZE_t) * n_known_constants)             # <<<<<<<<<<<<<<
@@ -10452,7 +10442,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   memcpy(__pyx_v_features, __pyx_v_constant_features, ((sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)) * __pyx_v_n_known_constants));
 
-  /* "sklearn/tree/_splitter.pyx":1444
+  /* "sklearn/tree/_splitter.pyx":1438
  * 
  *         # Copy newly found constant features
  *         memcpy(constant_features + n_known_constants,             # <<<<<<<<<<<<<<
@@ -10461,7 +10451,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   memcpy((__pyx_v_constant_features + __pyx_v_n_known_constants), (__pyx_v_features + __pyx_v_n_known_constants), ((sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)) * __pyx_v_n_found_constants));
 
-  /* "sklearn/tree/_splitter.pyx":1449
+  /* "sklearn/tree/_splitter.pyx":1443
  * 
  *         # Return values
  *         split[0] = best             # <<<<<<<<<<<<<<
@@ -10470,7 +10460,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   (__pyx_v_split[0]) = __pyx_v_best;
 
-  /* "sklearn/tree/_splitter.pyx":1450
+  /* "sklearn/tree/_splitter.pyx":1444
  *         # Return values
  *         split[0] = best
  *         n_constant_features[0] = n_total_constants             # <<<<<<<<<<<<<<
@@ -10479,7 +10469,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
  */
   (__pyx_v_n_constant_features[0]) = __pyx_v_n_total_constants;
 
-  /* "sklearn/tree/_splitter.pyx":1237
+  /* "sklearn/tree/_splitter.pyx":1231
  *                                      self.presort), self.__getstate__())
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,             # <<<<<<<<<<<<<<
@@ -10490,7 +10480,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split(st
   /* function exit code */
 }
 
-/* "sklearn/tree/_splitter.pyx":1456
+/* "sklearn/tree/_splitter.pyx":1450
  *     """Splitter for finding a random split, using the sparse data."""
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -10524,7 +10514,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_20RandomSparseSplitter___red
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "sklearn/tree/_splitter.pyx":1457
+  /* "sklearn/tree/_splitter.pyx":1451
  * 
  *     def __reduce__(self):
  *         return (RandomSparseSplitter, (self.criterion,             # <<<<<<<<<<<<<<
@@ -10533,54 +10523,54 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_20RandomSparseSplitter___red
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "sklearn/tree/_splitter.pyx":1458
+  /* "sklearn/tree/_splitter.pyx":1452
  *     def __reduce__(self):
  *         return (RandomSparseSplitter, (self.criterion,
  *                                        self.max_features,             # <<<<<<<<<<<<<<
  *                                        self.min_samples_leaf,
  *                                        self.min_weight_leaf,
  */
-  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1458; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.max_features); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1452; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sklearn/tree/_splitter.pyx":1459
+  /* "sklearn/tree/_splitter.pyx":1453
  *         return (RandomSparseSplitter, (self.criterion,
  *                                        self.max_features,
  *                                        self.min_samples_leaf,             # <<<<<<<<<<<<<<
  *                                        self.min_weight_leaf,
  *                                        self.random_state,
  */
-  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.min_samples_leaf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1459; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_Py_intptr_t(__pyx_v_self->__pyx_base.__pyx_base.min_samples_leaf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "sklearn/tree/_splitter.pyx":1460
+  /* "sklearn/tree/_splitter.pyx":1454
  *                                        self.max_features,
  *                                        self.min_samples_leaf,
  *                                        self.min_weight_leaf,             # <<<<<<<<<<<<<<
  *                                        self.random_state,
  *                                        self.presort), self.__getstate__())
  */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->__pyx_base.__pyx_base.min_weight_leaf); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1460; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_self->__pyx_base.__pyx_base.min_weight_leaf); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1454; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "sklearn/tree/_splitter.pyx":1462
+  /* "sklearn/tree/_splitter.pyx":1456
  *                                        self.min_weight_leaf,
  *                                        self.random_state,
  *                                        self.presort), self.__getstate__())             # <<<<<<<<<<<<<<
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,
  */
-  __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_self->__pyx_base.__pyx_base.presort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyBool_FromLong(__pyx_v_self->__pyx_base.__pyx_base.presort); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1456; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "sklearn/tree/_splitter.pyx":1457
+  /* "sklearn/tree/_splitter.pyx":1451
  * 
  *     def __reduce__(self):
  *         return (RandomSparseSplitter, (self.criterion,             # <<<<<<<<<<<<<<
  *                                        self.max_features,
  *                                        self.min_samples_leaf,
  */
-  __pyx_t_5 = PyTuple_New(6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1457; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(6); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->__pyx_base.__pyx_base.criterion));
   PyTuple_SET_ITEM(__pyx_t_5, 0, ((PyObject *)__pyx_v_self->__pyx_base.__pyx_base.criterion));
@@ -10601,14 +10591,14 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_20RandomSparseSplitter___red
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1462
+  /* "sklearn/tree/_splitter.pyx":1456
  *                                        self.min_weight_leaf,
  *                                        self.random_state,
  *                                        self.presort), self.__getstate__())             # <<<<<<<<<<<<<<
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_getstate); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1456; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_3))) {
@@ -10621,22 +10611,22 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_20RandomSparseSplitter___red
     }
   }
   if (__pyx_t_2) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1456; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1462; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1456; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1457
+  /* "sklearn/tree/_splitter.pyx":1451
  * 
  *     def __reduce__(self):
  *         return (RandomSparseSplitter, (self.criterion,             # <<<<<<<<<<<<<<
  *                                        self.max_features,
  *                                        self.min_samples_leaf,
  */
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1457; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_9_splitter_RandomSparseSplitter)));
   PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)((PyObject*)__pyx_ptype_7sklearn_4tree_9_splitter_RandomSparseSplitter)));
@@ -10651,7 +10641,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_20RandomSparseSplitter___red
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "sklearn/tree/_splitter.pyx":1456
+  /* "sklearn/tree/_splitter.pyx":1450
  *     """Splitter for finding a random split, using the sparse data."""
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -10674,7 +10664,7 @@ static PyObject *__pyx_pf_7sklearn_4tree_9_splitter_20RandomSparseSplitter___red
   return __pyx_r;
 }
 
-/* "sklearn/tree/_splitter.pyx":1464
+/* "sklearn/tree/_splitter.pyx":1458
  *                                        self.presort), self.__getstate__())
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,             # <<<<<<<<<<<<<<
@@ -10727,7 +10717,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   int __pyx_t_7;
   __pyx_t_7sklearn_4tree_9_splitter_SIZE_t __pyx_t_8;
 
-  /* "sklearn/tree/_splitter.pyx":1470
+  /* "sklearn/tree/_splitter.pyx":1464
  *         """
  *         # Find the best split
  *         cdef SIZE_t* samples = self.samples             # <<<<<<<<<<<<<<
@@ -10737,7 +10727,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.samples;
   __pyx_v_samples = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1471
+  /* "sklearn/tree/_splitter.pyx":1465
  *         # Find the best split
  *         cdef SIZE_t* samples = self.samples
  *         cdef SIZE_t start = self.start             # <<<<<<<<<<<<<<
@@ -10747,7 +10737,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.start;
   __pyx_v_start = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1472
+  /* "sklearn/tree/_splitter.pyx":1466
  *         cdef SIZE_t* samples = self.samples
  *         cdef SIZE_t start = self.start
  *         cdef SIZE_t end = self.end             # <<<<<<<<<<<<<<
@@ -10757,7 +10747,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.end;
   __pyx_v_end = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1474
+  /* "sklearn/tree/_splitter.pyx":1468
  *         cdef SIZE_t end = self.end
  * 
  *         cdef INT32_t* X_indices = self.X_indices             # <<<<<<<<<<<<<<
@@ -10767,7 +10757,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_3 = __pyx_v_self->__pyx_base.X_indices;
   __pyx_v_X_indices = __pyx_t_3;
 
-  /* "sklearn/tree/_splitter.pyx":1475
+  /* "sklearn/tree/_splitter.pyx":1469
  * 
  *         cdef INT32_t* X_indices = self.X_indices
  *         cdef INT32_t* X_indptr = self.X_indptr             # <<<<<<<<<<<<<<
@@ -10777,7 +10767,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_3 = __pyx_v_self->__pyx_base.X_indptr;
   __pyx_v_X_indptr = __pyx_t_3;
 
-  /* "sklearn/tree/_splitter.pyx":1476
+  /* "sklearn/tree/_splitter.pyx":1470
  *         cdef INT32_t* X_indices = self.X_indices
  *         cdef INT32_t* X_indptr = self.X_indptr
  *         cdef DTYPE_t* X_data = self.X_data             # <<<<<<<<<<<<<<
@@ -10787,7 +10777,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_4 = __pyx_v_self->__pyx_base.X_data;
   __pyx_v_X_data = __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":1478
+  /* "sklearn/tree/_splitter.pyx":1472
  *         cdef DTYPE_t* X_data = self.X_data
  * 
  *         cdef SIZE_t* features = self.features             # <<<<<<<<<<<<<<
@@ -10797,7 +10787,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.features;
   __pyx_v_features = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1479
+  /* "sklearn/tree/_splitter.pyx":1473
  * 
  *         cdef SIZE_t* features = self.features
  *         cdef SIZE_t* constant_features = self.constant_features             # <<<<<<<<<<<<<<
@@ -10807,7 +10797,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_1 = __pyx_v_self->__pyx_base.__pyx_base.constant_features;
   __pyx_v_constant_features = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1480
+  /* "sklearn/tree/_splitter.pyx":1474
  *         cdef SIZE_t* features = self.features
  *         cdef SIZE_t* constant_features = self.constant_features
  *         cdef SIZE_t n_features = self.n_features             # <<<<<<<<<<<<<<
@@ -10817,7 +10807,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.n_features;
   __pyx_v_n_features = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1482
+  /* "sklearn/tree/_splitter.pyx":1476
  *         cdef SIZE_t n_features = self.n_features
  * 
  *         cdef DTYPE_t* Xf = self.feature_values             # <<<<<<<<<<<<<<
@@ -10827,7 +10817,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_4 = __pyx_v_self->__pyx_base.__pyx_base.feature_values;
   __pyx_v_Xf = __pyx_t_4;
 
-  /* "sklearn/tree/_splitter.pyx":1483
+  /* "sklearn/tree/_splitter.pyx":1477
  * 
  *         cdef DTYPE_t* Xf = self.feature_values
  *         cdef SIZE_t* sorted_samples = self.sorted_samples             # <<<<<<<<<<<<<<
@@ -10837,7 +10827,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_1 = __pyx_v_self->__pyx_base.sorted_samples;
   __pyx_v_sorted_samples = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1484
+  /* "sklearn/tree/_splitter.pyx":1478
  *         cdef DTYPE_t* Xf = self.feature_values
  *         cdef SIZE_t* sorted_samples = self.sorted_samples
  *         cdef SIZE_t* index_to_samples = self.index_to_samples             # <<<<<<<<<<<<<<
@@ -10847,7 +10837,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_1 = __pyx_v_self->__pyx_base.index_to_samples;
   __pyx_v_index_to_samples = __pyx_t_1;
 
-  /* "sklearn/tree/_splitter.pyx":1485
+  /* "sklearn/tree/_splitter.pyx":1479
  *         cdef SIZE_t* sorted_samples = self.sorted_samples
  *         cdef SIZE_t* index_to_samples = self.index_to_samples
  *         cdef SIZE_t max_features = self.max_features             # <<<<<<<<<<<<<<
@@ -10857,7 +10847,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.max_features;
   __pyx_v_max_features = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1486
+  /* "sklearn/tree/_splitter.pyx":1480
  *         cdef SIZE_t* index_to_samples = self.index_to_samples
  *         cdef SIZE_t max_features = self.max_features
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf             # <<<<<<<<<<<<<<
@@ -10867,7 +10857,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_2 = __pyx_v_self->__pyx_base.__pyx_base.min_samples_leaf;
   __pyx_v_min_samples_leaf = __pyx_t_2;
 
-  /* "sklearn/tree/_splitter.pyx":1487
+  /* "sklearn/tree/_splitter.pyx":1481
  *         cdef SIZE_t max_features = self.max_features
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf             # <<<<<<<<<<<<<<
@@ -10877,7 +10867,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_5 = __pyx_v_self->__pyx_base.__pyx_base.min_weight_leaf;
   __pyx_v_min_weight_leaf = __pyx_t_5;
 
-  /* "sklearn/tree/_splitter.pyx":1488
+  /* "sklearn/tree/_splitter.pyx":1482
  *         cdef SIZE_t min_samples_leaf = self.min_samples_leaf
  *         cdef double min_weight_leaf = self.min_weight_leaf
  *         cdef UINT32_t* random_state = &self.rand_r_state             # <<<<<<<<<<<<<<
@@ -10886,7 +10876,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_random_state = (&__pyx_v_self->__pyx_base.__pyx_base.rand_r_state);
 
-  /* "sklearn/tree/_splitter.pyx":1491
+  /* "sklearn/tree/_splitter.pyx":1485
  * 
  *         cdef SplitRecord best, current
  *         _init_split(&best, end)             # <<<<<<<<<<<<<<
@@ -10895,7 +10885,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_f_7sklearn_4tree_9_splitter__init_split((&__pyx_v_best), __pyx_v_end);
 
-  /* "sklearn/tree/_splitter.pyx":1492
+  /* "sklearn/tree/_splitter.pyx":1486
  *         cdef SplitRecord best, current
  *         _init_split(&best, end)
  *         cdef double current_proxy_improvement = - INFINITY             # <<<<<<<<<<<<<<
@@ -10904,7 +10894,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_current_proxy_improvement = (-__pyx_v_7sklearn_4tree_9_splitter_INFINITY);
 
-  /* "sklearn/tree/_splitter.pyx":1493
+  /* "sklearn/tree/_splitter.pyx":1487
  *         _init_split(&best, end)
  *         cdef double current_proxy_improvement = - INFINITY
  *         cdef double best_proxy_improvement = - INFINITY             # <<<<<<<<<<<<<<
@@ -10913,7 +10903,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_best_proxy_improvement = (-__pyx_v_7sklearn_4tree_9_splitter_INFINITY);
 
-  /* "sklearn/tree/_splitter.pyx":1497
+  /* "sklearn/tree/_splitter.pyx":1491
  *         cdef DTYPE_t current_feature_value
  * 
  *         cdef SIZE_t f_i = n_features             # <<<<<<<<<<<<<<
@@ -10922,7 +10912,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_f_i = __pyx_v_n_features;
 
-  /* "sklearn/tree/_splitter.pyx":1499
+  /* "sklearn/tree/_splitter.pyx":1493
  *         cdef SIZE_t f_i = n_features
  *         cdef SIZE_t f_j, p, tmp
  *         cdef SIZE_t n_visited_features = 0             # <<<<<<<<<<<<<<
@@ -10931,7 +10921,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_n_visited_features = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1501
+  /* "sklearn/tree/_splitter.pyx":1495
  *         cdef SIZE_t n_visited_features = 0
  *         # Number of features discovered to be constant during the split search
  *         cdef SIZE_t n_found_constants = 0             # <<<<<<<<<<<<<<
@@ -10940,7 +10930,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_n_found_constants = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1503
+  /* "sklearn/tree/_splitter.pyx":1497
  *         cdef SIZE_t n_found_constants = 0
  *         # Number of features known to be constant and drawn without replacement
  *         cdef SIZE_t n_drawn_constants = 0             # <<<<<<<<<<<<<<
@@ -10949,7 +10939,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_n_drawn_constants = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1504
+  /* "sklearn/tree/_splitter.pyx":1498
  *         # Number of features known to be constant and drawn without replacement
  *         cdef SIZE_t n_drawn_constants = 0
  *         cdef SIZE_t n_known_constants = n_constant_features[0]             # <<<<<<<<<<<<<<
@@ -10958,7 +10948,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_n_known_constants = (__pyx_v_n_constant_features[0]);
 
-  /* "sklearn/tree/_splitter.pyx":1506
+  /* "sklearn/tree/_splitter.pyx":1500
  *         cdef SIZE_t n_known_constants = n_constant_features[0]
  *         # n_total_constants = n_known_constants + n_found_constants
  *         cdef SIZE_t n_total_constants = n_known_constants             # <<<<<<<<<<<<<<
@@ -10967,7 +10957,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_n_total_constants = __pyx_v_n_known_constants;
 
-  /* "sklearn/tree/_splitter.pyx":1512
+  /* "sklearn/tree/_splitter.pyx":1506
  *         cdef DTYPE_t max_feature_value
  * 
  *         cdef bint is_samples_sorted = 0  # indicate that sorted_samples is             # <<<<<<<<<<<<<<
@@ -10976,7 +10966,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   __pyx_v_is_samples_sorted = 0;
 
-  /* "sklearn/tree/_splitter.pyx":1529
+  /* "sklearn/tree/_splitter.pyx":1523
  *         # newly discovered constant features to spare computation on descendant
  *         # nodes.
  *         while (f_i > n_total_constants and  # Stop early if remaining features             # <<<<<<<<<<<<<<
@@ -10991,7 +10981,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":1531
+    /* "sklearn/tree/_splitter.pyx":1525
  *         while (f_i > n_total_constants and  # Stop early if remaining features
  *                                             # are constant
  *                 (n_visited_features < max_features or             # <<<<<<<<<<<<<<
@@ -11005,7 +10995,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "sklearn/tree/_splitter.pyx":1533
+    /* "sklearn/tree/_splitter.pyx":1527
  *                 (n_visited_features < max_features or
  *                  # At least one drawn features must be non constant
  *                  n_visited_features <= n_found_constants + n_drawn_constants)):             # <<<<<<<<<<<<<<
@@ -11017,7 +11007,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
     __pyx_L5_bool_binop_done:;
     if (!__pyx_t_6) break;
 
-    /* "sklearn/tree/_splitter.pyx":1535
+    /* "sklearn/tree/_splitter.pyx":1529
  *                  n_visited_features <= n_found_constants + n_drawn_constants)):
  * 
  *             n_visited_features += 1             # <<<<<<<<<<<<<<
@@ -11026,7 +11016,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
     __pyx_v_n_visited_features = (__pyx_v_n_visited_features + 1);
 
-    /* "sklearn/tree/_splitter.pyx":1549
+    /* "sklearn/tree/_splitter.pyx":1543
  * 
  *             # Draw a feature at random
  *             f_j = rand_int(n_drawn_constants, f_i - n_found_constants,             # <<<<<<<<<<<<<<
@@ -11035,7 +11025,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
     __pyx_v_f_j = __pyx_f_7sklearn_4tree_6_utils_rand_int(__pyx_v_n_drawn_constants, (__pyx_v_f_i - __pyx_v_n_found_constants), __pyx_v_random_state);
 
-    /* "sklearn/tree/_splitter.pyx":1552
+    /* "sklearn/tree/_splitter.pyx":1546
  *                            random_state)
  * 
  *             if f_j < n_known_constants:             # <<<<<<<<<<<<<<
@@ -11045,7 +11035,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
     __pyx_t_6 = ((__pyx_v_f_j < __pyx_v_n_known_constants) != 0);
     if (__pyx_t_6) {
 
-      /* "sklearn/tree/_splitter.pyx":1554
+      /* "sklearn/tree/_splitter.pyx":1548
  *             if f_j < n_known_constants:
  *                 # f_j in the interval [n_drawn_constants, n_known_constants[
  *                 tmp = features[f_j]             # <<<<<<<<<<<<<<
@@ -11054,7 +11044,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       __pyx_v_tmp = (__pyx_v_features[__pyx_v_f_j]);
 
-      /* "sklearn/tree/_splitter.pyx":1555
+      /* "sklearn/tree/_splitter.pyx":1549
  *                 # f_j in the interval [n_drawn_constants, n_known_constants[
  *                 tmp = features[f_j]
  *                 features[f_j] = features[n_drawn_constants]             # <<<<<<<<<<<<<<
@@ -11063,7 +11053,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       (__pyx_v_features[__pyx_v_f_j]) = (__pyx_v_features[__pyx_v_n_drawn_constants]);
 
-      /* "sklearn/tree/_splitter.pyx":1556
+      /* "sklearn/tree/_splitter.pyx":1550
  *                 tmp = features[f_j]
  *                 features[f_j] = features[n_drawn_constants]
  *                 features[n_drawn_constants] = tmp             # <<<<<<<<<<<<<<
@@ -11072,7 +11062,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       (__pyx_v_features[__pyx_v_n_drawn_constants]) = __pyx_v_tmp;
 
-      /* "sklearn/tree/_splitter.pyx":1558
+      /* "sklearn/tree/_splitter.pyx":1552
  *                 features[n_drawn_constants] = tmp
  * 
  *                 n_drawn_constants += 1             # <<<<<<<<<<<<<<
@@ -11084,7 +11074,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
     }
     /*else*/ {
 
-      /* "sklearn/tree/_splitter.pyx":1562
+      /* "sklearn/tree/_splitter.pyx":1556
  *             else:
  *                 # f_j in the interval [n_known_constants, f_i - n_found_constants[
  *                 f_j += n_found_constants             # <<<<<<<<<<<<<<
@@ -11093,7 +11083,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       __pyx_v_f_j = (__pyx_v_f_j + __pyx_v_n_found_constants);
 
-      /* "sklearn/tree/_splitter.pyx":1565
+      /* "sklearn/tree/_splitter.pyx":1559
  *                 # f_j in the interval [n_total_constants, f_i[
  * 
  *                 current.feature = features[f_j]             # <<<<<<<<<<<<<<
@@ -11102,7 +11092,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       __pyx_v_current.feature = (__pyx_v_features[__pyx_v_f_j]);
 
-      /* "sklearn/tree/_splitter.pyx":1567
+      /* "sklearn/tree/_splitter.pyx":1561
  *                 current.feature = features[f_j]
  * 
  *                 self.extract_nnz(current.feature,             # <<<<<<<<<<<<<<
@@ -11111,7 +11101,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_extract_nnz(((struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *)__pyx_v_self), __pyx_v_current.feature, (&__pyx_v_end_negative), (&__pyx_v_start_positive), (&__pyx_v_is_samples_sorted));
 
-      /* "sklearn/tree/_splitter.pyx":1572
+      /* "sklearn/tree/_splitter.pyx":1566
  * 
  *                 # Add one or two zeros in Xf, if there is any
  *                 if end_negative < start_positive:             # <<<<<<<<<<<<<<
@@ -11121,7 +11111,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       __pyx_t_6 = ((__pyx_v_end_negative < __pyx_v_start_positive) != 0);
       if (__pyx_t_6) {
 
-        /* "sklearn/tree/_splitter.pyx":1573
+        /* "sklearn/tree/_splitter.pyx":1567
  *                 # Add one or two zeros in Xf, if there is any
  *                 if end_negative < start_positive:
  *                     start_positive -= 1             # <<<<<<<<<<<<<<
@@ -11130,7 +11120,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_start_positive = (__pyx_v_start_positive - 1);
 
-        /* "sklearn/tree/_splitter.pyx":1574
+        /* "sklearn/tree/_splitter.pyx":1568
  *                 if end_negative < start_positive:
  *                     start_positive -= 1
  *                     Xf[start_positive] = 0.             # <<<<<<<<<<<<<<
@@ -11139,7 +11129,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         (__pyx_v_Xf[__pyx_v_start_positive]) = 0.;
 
-        /* "sklearn/tree/_splitter.pyx":1576
+        /* "sklearn/tree/_splitter.pyx":1570
  *                     Xf[start_positive] = 0.
  * 
  *                     if end_negative != start_positive:             # <<<<<<<<<<<<<<
@@ -11149,7 +11139,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_6 = ((__pyx_v_end_negative != __pyx_v_start_positive) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1577
+          /* "sklearn/tree/_splitter.pyx":1571
  * 
  *                     if end_negative != start_positive:
  *                         Xf[end_negative] = 0.             # <<<<<<<<<<<<<<
@@ -11158,7 +11148,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
           (__pyx_v_Xf[__pyx_v_end_negative]) = 0.;
 
-          /* "sklearn/tree/_splitter.pyx":1578
+          /* "sklearn/tree/_splitter.pyx":1572
  *                     if end_negative != start_positive:
  *                         Xf[end_negative] = 0.
  *                         end_negative += 1             # <<<<<<<<<<<<<<
@@ -11173,7 +11163,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       }
       __pyx_L9:;
 
-      /* "sklearn/tree/_splitter.pyx":1581
+      /* "sklearn/tree/_splitter.pyx":1575
  * 
  *                 # Find min, max in Xf[start:end_negative]
  *                 min_feature_value = Xf[start]             # <<<<<<<<<<<<<<
@@ -11182,7 +11172,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       __pyx_v_min_feature_value = (__pyx_v_Xf[__pyx_v_start]);
 
-      /* "sklearn/tree/_splitter.pyx":1582
+      /* "sklearn/tree/_splitter.pyx":1576
  *                 # Find min, max in Xf[start:end_negative]
  *                 min_feature_value = Xf[start]
  *                 max_feature_value = min_feature_value             # <<<<<<<<<<<<<<
@@ -11191,7 +11181,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       __pyx_v_max_feature_value = __pyx_v_min_feature_value;
 
-      /* "sklearn/tree/_splitter.pyx":1584
+      /* "sklearn/tree/_splitter.pyx":1578
  *                 max_feature_value = min_feature_value
  * 
  *                 for p in range(start, end_negative):             # <<<<<<<<<<<<<<
@@ -11202,7 +11192,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       for (__pyx_t_8 = __pyx_v_start; __pyx_t_8 < __pyx_t_2; __pyx_t_8+=1) {
         __pyx_v_p = __pyx_t_8;
 
-        /* "sklearn/tree/_splitter.pyx":1585
+        /* "sklearn/tree/_splitter.pyx":1579
  * 
  *                 for p in range(start, end_negative):
  *                     current_feature_value = Xf[p]             # <<<<<<<<<<<<<<
@@ -11211,7 +11201,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_current_feature_value = (__pyx_v_Xf[__pyx_v_p]);
 
-        /* "sklearn/tree/_splitter.pyx":1587
+        /* "sklearn/tree/_splitter.pyx":1581
  *                     current_feature_value = Xf[p]
  * 
  *                     if current_feature_value < min_feature_value:             # <<<<<<<<<<<<<<
@@ -11221,7 +11211,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_6 = ((__pyx_v_current_feature_value < __pyx_v_min_feature_value) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1588
+          /* "sklearn/tree/_splitter.pyx":1582
  * 
  *                     if current_feature_value < min_feature_value:
  *                         min_feature_value = current_feature_value             # <<<<<<<<<<<<<<
@@ -11232,7 +11222,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
           goto __pyx_L13;
         }
 
-        /* "sklearn/tree/_splitter.pyx":1589
+        /* "sklearn/tree/_splitter.pyx":1583
  *                     if current_feature_value < min_feature_value:
  *                         min_feature_value = current_feature_value
  *                     elif current_feature_value > max_feature_value:             # <<<<<<<<<<<<<<
@@ -11242,7 +11232,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_6 = ((__pyx_v_current_feature_value > __pyx_v_max_feature_value) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1590
+          /* "sklearn/tree/_splitter.pyx":1584
  *                         min_feature_value = current_feature_value
  *                     elif current_feature_value > max_feature_value:
  *                         max_feature_value = current_feature_value             # <<<<<<<<<<<<<<
@@ -11255,7 +11245,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_L13:;
       }
 
-      /* "sklearn/tree/_splitter.pyx":1593
+      /* "sklearn/tree/_splitter.pyx":1587
  * 
  *                 # Update min, max given Xf[start_positive:end]
  *                 for p in range(start_positive, end):             # <<<<<<<<<<<<<<
@@ -11266,7 +11256,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       for (__pyx_t_8 = __pyx_v_start_positive; __pyx_t_8 < __pyx_t_2; __pyx_t_8+=1) {
         __pyx_v_p = __pyx_t_8;
 
-        /* "sklearn/tree/_splitter.pyx":1594
+        /* "sklearn/tree/_splitter.pyx":1588
  *                 # Update min, max given Xf[start_positive:end]
  *                 for p in range(start_positive, end):
  *                     current_feature_value = Xf[p]             # <<<<<<<<<<<<<<
@@ -11275,7 +11265,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_current_feature_value = (__pyx_v_Xf[__pyx_v_p]);
 
-        /* "sklearn/tree/_splitter.pyx":1596
+        /* "sklearn/tree/_splitter.pyx":1590
  *                     current_feature_value = Xf[p]
  * 
  *                     if current_feature_value < min_feature_value:             # <<<<<<<<<<<<<<
@@ -11285,7 +11275,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_6 = ((__pyx_v_current_feature_value < __pyx_v_min_feature_value) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1597
+          /* "sklearn/tree/_splitter.pyx":1591
  * 
  *                     if current_feature_value < min_feature_value:
  *                         min_feature_value = current_feature_value             # <<<<<<<<<<<<<<
@@ -11296,7 +11286,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
           goto __pyx_L16;
         }
 
-        /* "sklearn/tree/_splitter.pyx":1598
+        /* "sklearn/tree/_splitter.pyx":1592
  *                     if current_feature_value < min_feature_value:
  *                         min_feature_value = current_feature_value
  *                     elif current_feature_value > max_feature_value:             # <<<<<<<<<<<<<<
@@ -11306,7 +11296,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_6 = ((__pyx_v_current_feature_value > __pyx_v_max_feature_value) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1599
+          /* "sklearn/tree/_splitter.pyx":1593
  *                         min_feature_value = current_feature_value
  *                     elif current_feature_value > max_feature_value:
  *                         max_feature_value = current_feature_value             # <<<<<<<<<<<<<<
@@ -11319,7 +11309,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_L16:;
       }
 
-      /* "sklearn/tree/_splitter.pyx":1601
+      /* "sklearn/tree/_splitter.pyx":1595
  *                         max_feature_value = current_feature_value
  * 
  *                 if max_feature_value <= min_feature_value + FEATURE_THRESHOLD:             # <<<<<<<<<<<<<<
@@ -11329,7 +11319,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       __pyx_t_6 = ((__pyx_v_max_feature_value <= (__pyx_v_min_feature_value + __pyx_v_7sklearn_4tree_9_splitter_FEATURE_THRESHOLD)) != 0);
       if (__pyx_t_6) {
 
-        /* "sklearn/tree/_splitter.pyx":1602
+        /* "sklearn/tree/_splitter.pyx":1596
  * 
  *                 if max_feature_value <= min_feature_value + FEATURE_THRESHOLD:
  *                     features[f_j] = features[n_total_constants]             # <<<<<<<<<<<<<<
@@ -11338,7 +11328,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         (__pyx_v_features[__pyx_v_f_j]) = (__pyx_v_features[__pyx_v_n_total_constants]);
 
-        /* "sklearn/tree/_splitter.pyx":1603
+        /* "sklearn/tree/_splitter.pyx":1597
  *                 if max_feature_value <= min_feature_value + FEATURE_THRESHOLD:
  *                     features[f_j] = features[n_total_constants]
  *                     features[n_total_constants] = current.feature             # <<<<<<<<<<<<<<
@@ -11348,7 +11338,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_2 = __pyx_v_current.feature;
         (__pyx_v_features[__pyx_v_n_total_constants]) = __pyx_t_2;
 
-        /* "sklearn/tree/_splitter.pyx":1605
+        /* "sklearn/tree/_splitter.pyx":1599
  *                     features[n_total_constants] = current.feature
  * 
  *                     n_found_constants += 1             # <<<<<<<<<<<<<<
@@ -11357,7 +11347,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_n_found_constants = (__pyx_v_n_found_constants + 1);
 
-        /* "sklearn/tree/_splitter.pyx":1606
+        /* "sklearn/tree/_splitter.pyx":1600
  * 
  *                     n_found_constants += 1
  *                     n_total_constants += 1             # <<<<<<<<<<<<<<
@@ -11369,7 +11359,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
       }
       /*else*/ {
 
-        /* "sklearn/tree/_splitter.pyx":1609
+        /* "sklearn/tree/_splitter.pyx":1603
  * 
  *                 else:
  *                     f_i -= 1             # <<<<<<<<<<<<<<
@@ -11378,7 +11368,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_f_i = (__pyx_v_f_i - 1);
 
-        /* "sklearn/tree/_splitter.pyx":1610
+        /* "sklearn/tree/_splitter.pyx":1604
  *                 else:
  *                     f_i -= 1
  *                     features[f_i], features[f_j] = features[f_j], features[f_i]             # <<<<<<<<<<<<<<
@@ -11390,7 +11380,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         (__pyx_v_features[__pyx_v_f_i]) = __pyx_t_2;
         (__pyx_v_features[__pyx_v_f_j]) = __pyx_t_8;
 
-        /* "sklearn/tree/_splitter.pyx":1613
+        /* "sklearn/tree/_splitter.pyx":1607
  * 
  *                     # Draw a random threshold
  *                     current.split_value.threshold = rand_uniform(             # <<<<<<<<<<<<<<
@@ -11399,7 +11389,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_current.split_value.threshold = __pyx_f_7sklearn_4tree_6_utils_rand_uniform(__pyx_v_min_feature_value, __pyx_v_max_feature_value, __pyx_v_random_state);
 
-        /* "sklearn/tree/_splitter.pyx":1616
+        /* "sklearn/tree/_splitter.pyx":1610
  *                         min_feature_value, max_feature_value, random_state)
  * 
  *                     if current.split_value.threshold == max_feature_value:             # <<<<<<<<<<<<<<
@@ -11409,7 +11399,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_6 = ((__pyx_v_current.split_value.threshold == __pyx_v_max_feature_value) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1617
+          /* "sklearn/tree/_splitter.pyx":1611
  * 
  *                     if current.split_value.threshold == max_feature_value:
  *                         current.split_value.threshold = min_feature_value             # <<<<<<<<<<<<<<
@@ -11421,7 +11411,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         }
         __pyx_L18:;
 
-        /* "sklearn/tree/_splitter.pyx":1620
+        /* "sklearn/tree/_splitter.pyx":1614
  * 
  *                     # Partition
  *                     current.pos = self._partition(current.split_value.threshold,             # <<<<<<<<<<<<<<
@@ -11430,7 +11420,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_current.pos = __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter__partition(((struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *)__pyx_v_self), __pyx_v_current.split_value.threshold, __pyx_v_end_negative, __pyx_v_start_positive, (__pyx_v_start_positive + ((__pyx_v_Xf[__pyx_v_start_positive]) == 0.)));
 
-        /* "sklearn/tree/_splitter.pyx":1627
+        /* "sklearn/tree/_splitter.pyx":1621
  * 
  *                     # Reject if min_samples_leaf is not guaranteed
  *                     if (((current.pos - start) < min_samples_leaf) or             # <<<<<<<<<<<<<<
@@ -11444,7 +11434,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
           goto __pyx_L20_bool_binop_done;
         }
 
-        /* "sklearn/tree/_splitter.pyx":1628
+        /* "sklearn/tree/_splitter.pyx":1622
  *                     # Reject if min_samples_leaf is not guaranteed
  *                     if (((current.pos - start) < min_samples_leaf) or
  *                             ((end - current.pos) < min_samples_leaf)):             # <<<<<<<<<<<<<<
@@ -11456,7 +11446,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_L20_bool_binop_done:;
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1629
+          /* "sklearn/tree/_splitter.pyx":1623
  *                     if (((current.pos - start) < min_samples_leaf) or
  *                             ((end - current.pos) < min_samples_leaf)):
  *                         continue             # <<<<<<<<<<<<<<
@@ -11466,7 +11456,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
           goto __pyx_L3_continue;
         }
 
-        /* "sklearn/tree/_splitter.pyx":1632
+        /* "sklearn/tree/_splitter.pyx":1626
  * 
  *                     # Evaluate split
  *                     self.criterion.reset()             # <<<<<<<<<<<<<<
@@ -11475,7 +11465,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->reset(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-        /* "sklearn/tree/_splitter.pyx":1633
+        /* "sklearn/tree/_splitter.pyx":1627
  *                     # Evaluate split
  *                     self.criterion.reset()
  *                     self.criterion.update(current.pos)             # <<<<<<<<<<<<<<
@@ -11484,7 +11474,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->update(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_current.pos);
 
-        /* "sklearn/tree/_splitter.pyx":1636
+        /* "sklearn/tree/_splitter.pyx":1630
  * 
  *                     # Reject if min_weight_leaf is not satisfied
  *                     if ((self.criterion.weighted_n_left < min_weight_leaf) or             # <<<<<<<<<<<<<<
@@ -11498,7 +11488,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
           goto __pyx_L23_bool_binop_done;
         }
 
-        /* "sklearn/tree/_splitter.pyx":1637
+        /* "sklearn/tree/_splitter.pyx":1631
  *                     # Reject if min_weight_leaf is not satisfied
  *                     if ((self.criterion.weighted_n_left < min_weight_leaf) or
  *                             (self.criterion.weighted_n_right < min_weight_leaf)):             # <<<<<<<<<<<<<<
@@ -11510,7 +11500,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_L23_bool_binop_done:;
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1638
+          /* "sklearn/tree/_splitter.pyx":1632
  *                     if ((self.criterion.weighted_n_left < min_weight_leaf) or
  *                             (self.criterion.weighted_n_right < min_weight_leaf)):
  *                         continue             # <<<<<<<<<<<<<<
@@ -11520,7 +11510,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
           goto __pyx_L3_continue;
         }
 
-        /* "sklearn/tree/_splitter.pyx":1640
+        /* "sklearn/tree/_splitter.pyx":1634
  *                         continue
  * 
  *                     current_proxy_improvement = self.criterion.proxy_impurity_improvement()             # <<<<<<<<<<<<<<
@@ -11529,7 +11519,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
         __pyx_v_current_proxy_improvement = ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->proxy_impurity_improvement(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-        /* "sklearn/tree/_splitter.pyx":1642
+        /* "sklearn/tree/_splitter.pyx":1636
  *                     current_proxy_improvement = self.criterion.proxy_impurity_improvement()
  * 
  *                     if current_proxy_improvement > best_proxy_improvement:             # <<<<<<<<<<<<<<
@@ -11539,7 +11529,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
         __pyx_t_6 = ((__pyx_v_current_proxy_improvement > __pyx_v_best_proxy_improvement) != 0);
         if (__pyx_t_6) {
 
-          /* "sklearn/tree/_splitter.pyx":1643
+          /* "sklearn/tree/_splitter.pyx":1637
  * 
  *                     if current_proxy_improvement > best_proxy_improvement:
  *                         best_proxy_improvement = current_proxy_improvement             # <<<<<<<<<<<<<<
@@ -11548,7 +11538,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
           __pyx_v_best_proxy_improvement = __pyx_v_current_proxy_improvement;
 
-          /* "sklearn/tree/_splitter.pyx":1644
+          /* "sklearn/tree/_splitter.pyx":1638
  *                     if current_proxy_improvement > best_proxy_improvement:
  *                         best_proxy_improvement = current_proxy_improvement
  *                         current.improvement = self.criterion.impurity_improvement(impurity)             # <<<<<<<<<<<<<<
@@ -11557,7 +11547,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
           __pyx_v_current.improvement = ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->impurity_improvement(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_impurity);
 
-          /* "sklearn/tree/_splitter.pyx":1646
+          /* "sklearn/tree/_splitter.pyx":1640
  *                         current.improvement = self.criterion.impurity_improvement(impurity)
  * 
  *                         self.criterion.children_impurity(&current.impurity_left,             # <<<<<<<<<<<<<<
@@ -11566,7 +11556,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
           ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->children_impurity(__pyx_v_self->__pyx_base.__pyx_base.criterion, (&__pyx_v_current.impurity_left), (&__pyx_v_current.impurity_right));
 
-          /* "sklearn/tree/_splitter.pyx":1648
+          /* "sklearn/tree/_splitter.pyx":1642
  *                         self.criterion.children_impurity(&current.impurity_left,
  *                                                          &current.impurity_right)
  *                         best = current             # <<<<<<<<<<<<<<
@@ -11584,7 +11574,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
     __pyx_L3_continue:;
   }
 
-  /* "sklearn/tree/_splitter.pyx":1651
+  /* "sklearn/tree/_splitter.pyx":1645
  * 
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         if best.pos < end:             # <<<<<<<<<<<<<<
@@ -11594,7 +11584,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   __pyx_t_6 = ((__pyx_v_best.pos < __pyx_v_end) != 0);
   if (__pyx_t_6) {
 
-    /* "sklearn/tree/_splitter.pyx":1652
+    /* "sklearn/tree/_splitter.pyx":1646
  *         # Reorganize into samples[start:best.pos] + samples[best.pos:end]
  *         if best.pos < end:
  *             if current.feature != best.feature:             # <<<<<<<<<<<<<<
@@ -11604,7 +11594,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
     __pyx_t_6 = ((__pyx_v_current.feature != __pyx_v_best.feature) != 0);
     if (__pyx_t_6) {
 
-      /* "sklearn/tree/_splitter.pyx":1653
+      /* "sklearn/tree/_splitter.pyx":1647
  *         if best.pos < end:
  *             if current.feature != best.feature:
  *                 self.extract_nnz(best.feature, &end_negative, &start_positive,             # <<<<<<<<<<<<<<
@@ -11613,7 +11603,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
       __pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_extract_nnz(((struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *)__pyx_v_self), __pyx_v_best.feature, (&__pyx_v_end_negative), (&__pyx_v_start_positive), (&__pyx_v_is_samples_sorted));
 
-      /* "sklearn/tree/_splitter.pyx":1656
+      /* "sklearn/tree/_splitter.pyx":1650
  *                                  &is_samples_sorted)
  * 
  *                 self._partition(best.split_value.threshold, end_negative, start_positive,             # <<<<<<<<<<<<<<
@@ -11625,7 +11615,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
     }
     __pyx_L27:;
 
-    /* "sklearn/tree/_splitter.pyx":1659
+    /* "sklearn/tree/_splitter.pyx":1653
  *                                 best.pos)
  * 
  *             self.criterion.reset()             # <<<<<<<<<<<<<<
@@ -11634,7 +11624,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
     ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->reset(__pyx_v_self->__pyx_base.__pyx_base.criterion);
 
-    /* "sklearn/tree/_splitter.pyx":1660
+    /* "sklearn/tree/_splitter.pyx":1654
  * 
  *             self.criterion.reset()
  *             self.criterion.update(best.pos)             # <<<<<<<<<<<<<<
@@ -11643,7 +11633,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
     ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->update(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_best.pos);
 
-    /* "sklearn/tree/_splitter.pyx":1661
+    /* "sklearn/tree/_splitter.pyx":1655
  *             self.criterion.reset()
  *             self.criterion.update(best.pos)
  *             best.improvement = self.criterion.impurity_improvement(impurity)             # <<<<<<<<<<<<<<
@@ -11652,7 +11642,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
     __pyx_v_best.improvement = ((struct __pyx_vtabstruct_7sklearn_4tree_10_criterion_Criterion *)__pyx_v_self->__pyx_base.__pyx_base.criterion->__pyx_vtab)->impurity_improvement(__pyx_v_self->__pyx_base.__pyx_base.criterion, __pyx_v_impurity);
 
-    /* "sklearn/tree/_splitter.pyx":1662
+    /* "sklearn/tree/_splitter.pyx":1656
  *             self.criterion.update(best.pos)
  *             best.improvement = self.criterion.impurity_improvement(impurity)
  *             self.criterion.children_impurity(&best.impurity_left,             # <<<<<<<<<<<<<<
@@ -11664,7 +11654,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
   }
   __pyx_L26:;
 
-  /* "sklearn/tree/_splitter.pyx":1668
+  /* "sklearn/tree/_splitter.pyx":1662
  *         # element in features[:n_known_constants] must be preserved for sibling
  *         # and child nodes
  *         memcpy(features, constant_features, sizeof(SIZE_t) * n_known_constants)             # <<<<<<<<<<<<<<
@@ -11673,7 +11663,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   memcpy(__pyx_v_features, __pyx_v_constant_features, ((sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)) * __pyx_v_n_known_constants));
 
-  /* "sklearn/tree/_splitter.pyx":1671
+  /* "sklearn/tree/_splitter.pyx":1665
  * 
  *         # Copy newly found constant features
  *         memcpy(constant_features + n_known_constants,             # <<<<<<<<<<<<<<
@@ -11682,7 +11672,7 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   memcpy((__pyx_v_constant_features + __pyx_v_n_known_constants), (__pyx_v_features + __pyx_v_n_known_constants), ((sizeof(__pyx_t_7sklearn_4tree_9_splitter_SIZE_t)) * __pyx_v_n_found_constants));
 
-  /* "sklearn/tree/_splitter.pyx":1676
+  /* "sklearn/tree/_splitter.pyx":1670
  * 
  *         # Return values
  *         split[0] = best             # <<<<<<<<<<<<<<
@@ -11690,14 +11680,14 @@ static void __pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split(
  */
   (__pyx_v_split[0]) = __pyx_v_best;
 
-  /* "sklearn/tree/_splitter.pyx":1677
+  /* "sklearn/tree/_splitter.pyx":1671
  *         # Return values
  *         split[0] = best
  *         n_constant_features[0] = n_total_constants             # <<<<<<<<<<<<<<
  */
   (__pyx_v_n_constant_features[0]) = __pyx_v_n_total_constants;
 
-  /* "sklearn/tree/_splitter.pyx":1464
+  /* "sklearn/tree/_splitter.pyx":1458
  *                                        self.presort), self.__getstate__())
  * 
  *     cdef void node_split(self, double impurity, SplitRecord* split,             # <<<<<<<<<<<<<<
@@ -14460,7 +14450,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_max = __Pyx_GetBuiltinName(__pyx_n_s_max); if (!__pyx_builtin_max) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 941; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) {__pyx_filename = __pyx_f[2]; __pyx_lineno = 802; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
@@ -14471,14 +14461,14 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "sklearn/tree/_splitter.pyx":947
+  /* "sklearn/tree/_splitter.pyx":941
  * 
  *         if not isinstance(X, csc_matrix):
  *             raise ValueError("X should be in csc format")             # <<<<<<<<<<<<<<
  * 
  *         cdef SIZE_t* samples = self.samples
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_X_should_be_in_csc_format); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 947; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_X_should_be_in_csc_format); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 941; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
@@ -14689,28 +14679,28 @@ PyMODINIT_FUNC PyInit__splitter(void)
   __pyx_vtable_7sklearn_4tree_9_splitter_BaseSparseSplitter._partition = (__pyx_t_7sklearn_4tree_9_splitter_SIZE_t (*)(struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *, double, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t))__pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter__partition;
   __pyx_vtable_7sklearn_4tree_9_splitter_BaseSparseSplitter.extract_nnz = (void (*)(struct __pyx_obj_7sklearn_4tree_9_splitter_BaseSparseSplitter *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *, int *))__pyx_f_7sklearn_4tree_9_splitter_18BaseSparseSplitter_extract_nnz;
   __pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter.tp_base = __pyx_ptype_7sklearn_4tree_9_splitter_Splitter;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 905; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 899; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_9_splitter_BaseSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 905; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "BaseSparseSplitter", (PyObject *)&__pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 905; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_9_splitter_BaseSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 899; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "BaseSparseSplitter", (PyObject *)&__pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 899; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_9_splitter_BaseSparseSplitter = &__pyx_type_7sklearn_4tree_9_splitter_BaseSparseSplitter;
   __pyx_vtabptr_7sklearn_4tree_9_splitter_BestSparseSplitter = &__pyx_vtable_7sklearn_4tree_9_splitter_BestSparseSplitter;
   __pyx_vtable_7sklearn_4tree_9_splitter_BestSparseSplitter.__pyx_base = *__pyx_vtabptr_7sklearn_4tree_9_splitter_BaseSparseSplitter;
   __pyx_vtable_7sklearn_4tree_9_splitter_BestSparseSplitter.__pyx_base.__pyx_base.node_split = (void (*)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, double, struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *))__pyx_f_7sklearn_4tree_9_splitter_18BestSparseSplitter_node_split;
   __pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter.tp_base = __pyx_ptype_7sklearn_4tree_9_splitter_BaseSparseSplitter;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_9_splitter_BestSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "BestSparseSplitter", (PyObject *)&__pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_9_splitter_BestSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "BestSparseSplitter", (PyObject *)&__pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_9_splitter_BestSparseSplitter = &__pyx_type_7sklearn_4tree_9_splitter_BestSparseSplitter;
   __pyx_vtabptr_7sklearn_4tree_9_splitter_RandomSparseSplitter = &__pyx_vtable_7sklearn_4tree_9_splitter_RandomSparseSplitter;
   __pyx_vtable_7sklearn_4tree_9_splitter_RandomSparseSplitter.__pyx_base = *__pyx_vtabptr_7sklearn_4tree_9_splitter_BaseSparseSplitter;
   __pyx_vtable_7sklearn_4tree_9_splitter_RandomSparseSplitter.__pyx_base.__pyx_base.node_split = (void (*)(struct __pyx_obj_7sklearn_4tree_9_splitter_Splitter *, double, struct __pyx_t_7sklearn_4tree_9_splitter_SplitRecord *, __pyx_t_7sklearn_4tree_9_splitter_SIZE_t *))__pyx_f_7sklearn_4tree_9_splitter_20RandomSparseSplitter_node_split;
   __pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter.tp_base = __pyx_ptype_7sklearn_4tree_9_splitter_BaseSparseSplitter;
-  if (PyType_Ready(&__pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_9_splitter_RandomSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "RandomSparseSplitter", (PyObject *)&__pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter.tp_dict, __pyx_vtabptr_7sklearn_4tree_9_splitter_RandomSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "RandomSparseSplitter", (PyObject *)&__pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7sklearn_4tree_9_splitter_RandomSparseSplitter = &__pyx_type_7sklearn_4tree_9_splitter_RandomSparseSplitter;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
