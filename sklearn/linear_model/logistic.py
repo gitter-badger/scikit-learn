@@ -1,4 +1,3 @@
-
 """
 Logistic Regression
 """
@@ -898,7 +897,8 @@ def _log_reg_scoring_path(X, y, train, test, pos_class=None, Cs=10,
         y_test[~mask] = -1.
 
     # To deal with object dtypes, we need to convert into an array of floats.
-    y_test = check_array(y_test, dtype=np.float64, ensure_2d=False)
+    y_test = check_array(LabelEncoder().fit_transform(y_test),
+                         dtype=np.float64, ensure_2d=False)
 
     scores = list()
 
@@ -1524,9 +1524,6 @@ class LogisticRegressionCV(LogisticRegression, BaseEstimator,
         # init cross-validation generator
         cv = check_cv(self.cv, y, classifier=True)
         folds = list(cv.split(X, y))
-
-        self._enc = LabelEncoder()
-        self._enc.fit(y)
 
         labels = self.classes_ = np.unique(y)
         n_classes = len(labels)

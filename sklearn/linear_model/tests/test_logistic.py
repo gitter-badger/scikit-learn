@@ -1,3 +1,4 @@
+
 import numpy as np
 import scipy.sparse as sp
 from scipy import linalg, optimize, sparse
@@ -380,6 +381,7 @@ def test_logistic_cv():
     rng = np.random.RandomState(0)
     X_ref = rng.randn(n_samples, n_features)
     y = np.sign(X_ref.dot(5 * rng.randn(n_features)))
+    y_str = rng.choice(['foo', 'bar', 'baz'], n_samples)
     X_ref -= X_ref.mean()
     X_ref /= X_ref.std()
     lr_cv = LogisticRegressionCV(Cs=[1.], fit_intercept=False,
@@ -398,6 +400,10 @@ def test_logistic_cv():
     assert_array_equal(lr_cv.Cs_.shape, (1, ))
     scores = np.asarray(list(lr_cv.scores_.values()))
     assert_array_equal(scores.shape, (1, 3, 1))
+
+    # Test for string labels
+    lr_cv = LogisticRegressionCV(multi_class='multinomial')
+    lr_cv.fit(X_ref, y_str)
 
 
 def test_logistic_cv_sparse():
