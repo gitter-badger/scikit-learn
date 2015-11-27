@@ -56,10 +56,14 @@ __all__ = [
 ]
 
 
-def _fit_binary(estimator, X, y, classes=None):
-    """Fit a single binary estimator."""
+def _partial_fit(estimator, X, y, classes=None, first_partial_fit=False):
+    """Partial fit a single binary estimator."""
+
+
+def _fit_binary(estimator, X, y, classes=None, partial_fit=False):
+    """(Partial)Fit a single binary estimator."""
     unique_y = np.unique(y)
-    if len(unique_y) == 1:
+    if partial_fit and (len(unique_y) == 1):
         if classes is not None:
             if y[0] == -1:
                 c = 0
