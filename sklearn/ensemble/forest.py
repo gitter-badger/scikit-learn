@@ -885,6 +885,11 @@ class RandomForestClassifier(ForestClassifier):
         was never left out during the bootstrap. In this case,
         `oob_decision_function_` might contain NaN.
 
+
+    Examples
+    --------
+
+
     References
     ----------
 
@@ -1047,6 +1052,12 @@ class RandomForestRegressor(ForestRegressor):
 
     oob_prediction_ : array of shape = [n_samples]
         Prediction computed with out-of-bag estimate on the training set.
+
+    Examples
+    --------
+
+    >>>
+
 
     References
     ----------
@@ -1236,6 +1247,21 @@ class ExtraTreesClassifier(ForestClassifier):
         was never left out during the bootstrap. In this case,
         `oob_decision_function_` might contain NaN.
 
+    Examples
+    --------
+    >>> from sklearn.model_selection import cross_val_score
+    >>> from sklearn.datasets import make_blobs
+    >>> from sklearn.ensemble import ExtraTreesClassifier
+
+    >>> X, y = make_blobs(n_samples=10000, n_features=10, centers=100,
+    ...     random_state=0)
+
+    >>> clf = ExtraTreesClassifier(n_estimators=5, max_depth=None,
+    ...     min_samples_split=1, random_state=0)
+    >>> scores = cross_val_score(clf, X, y)
+    >>> scores.mean()
+    0.9952...
+
     References
     ----------
 
@@ -1399,6 +1425,20 @@ class ExtraTreesRegressor(ForestRegressor):
     oob_prediction_ : array of shape = [n_samples]
         Prediction computed with out-of-bag estimate on the training set.
 
+    Examples
+    --------
+    >>> from sklearn.model_selection import cross_val_score
+    >>> from sklearn.datasets import make_regression
+    >>> from sklearn.ensemble import ExtraTreesRegressor
+
+    >>> X, y = make_regression(n_samples=10000, n_features=10,
+    ...                        random_state=0)
+    >>> clf = ExtraTreesRegressor(n_estimators=10, max_depth=None,
+    ...                           min_samples_split=1, random_state=0)
+    >>> scores = cross_val_score(clf, X, y)
+    >>> scores.mean()
+    0.929...
+
     References
     ----------
 
@@ -1526,6 +1566,11 @@ class RandomTreesEmbedding(BaseForest):
     ----------
     estimators_ : list of DecisionTreeClassifier
         The collection of fitted sub-estimators.
+
+    Examples
+    --------
+
+    >>> from sklearn.ensemble import RandomTreesEmbedding
 
     References
     ----------
