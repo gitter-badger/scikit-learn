@@ -426,8 +426,6 @@ cdef class ClassificationCriterion(Criterion):
             self.missing_direction == MISSING_DIR_UNDEF
             return
 
-        cdef SIZE_t* n_classes = self.n_classes
-        cdef double* sum_total = self.sum_total
         cdef SIZE_t end = self.end
         cdef SIZE_t* samples = self.samples
         cdef DOUBLE_t* sample_weight = self.sample_weight
@@ -448,6 +446,9 @@ cdef class ClassificationCriterion(Criterion):
 
         cdef double* sum_missing = self.sum_missing
         cdef double* sum_available = self.sum_available
+
+        cdef SIZE_t* n_classes = self.n_classes
+        cdef double* sum_total = self.sum_total
 
         # SELFNOTE
         # Why can't we - memset(sum_missing, 0, self.n_outputs * self.sum_stride * sizeof(double))
@@ -475,12 +476,14 @@ cdef class ClassificationCriterion(Criterion):
 
         # {sum_total} --> {sum_available} + {sum_missing}
         for k in range(self.n_outputs):
-            i = k * self.sum_stride + <SIZE_t> y[samples[p] * y_stride + k]
-            sum_available[i] = sum_total[i] - sum_missing[i]
+            offset = k * self.sum_stride
+            for c in range(n_classes[k]):
+                i = c + offset
+                sum_available[c] = sum_total[c] - sum_missing[c]
 
         self.weighted_n_node_available = self.weighted_n_node_samples - self.weighted_n_node_missing
-        with gil:
-            print "The av/mis stats are", self.weighted_n_node_available, self.weighted_n_node_missing
+        # with gil:
+        #     print "The av/mis stats are", self.weighted_n_node_available, self.weighted_n_node_missing
 
     cdef void reset(self) nogil:
         """Reset the criterion at pos=start. Move the missing values also to the right"""
