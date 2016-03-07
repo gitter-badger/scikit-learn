@@ -701,9 +701,9 @@ cdef class BestSplitter(BaseDenseSplitter):
         #     print(start, best.pos, best.missing_direction, end_available, end)
         #     print("The samples before partitioning is ")
         #     for i in range(start, end):
-        #         if p == best.pos:
+        #         if i == best.pos:
         #             print "|",
-        #         print samples[i],
+        #         print samples[i], ",",
         #         pass
         #     print
 
@@ -724,7 +724,7 @@ cdef class BestSplitter(BaseDenseSplitter):
             while p < partition_end:
                 if X[X_sample_stride * samples[p] + feature_offset] <= best.threshold:
                     # with gil:
-                    #     print "%s is in correct partition" % p
+                    #     print "%s is in correct partition" % samples[p]
                     p += 1
 
                 else:
@@ -732,10 +732,20 @@ cdef class BestSplitter(BaseDenseSplitter):
                     samples[partition_end], samples[p] = samples[p], samples[partition_end]
 
                     # with gil:
-                    #     print "swapping %d and %d" % (partition_end, p)
+                    #     print "swapping %d and %d" % (samples[partition_end], samples[p])
 
+            # with gil:
+            #     print(start, best.pos, best.missing_direction, end_available, end)
+            #     print("The samples before moving MV is ")
+            #     for i in range(start, end):
+            #         if i == best.pos:
+            #             print "|",
+            #         print samples[i], ",",
+            #         pass
+            #     print
 
-            p -= 1
+            # p is now partition_end
+            # Now iterate from [partition_end ... end)
             # Move the missing to the start if missing direction is not
             # MISSING_DIR_RIGHT (don't worry about sort order)
             if (n_missing > 0 and (best.pos < end_available) and
@@ -743,10 +753,10 @@ cdef class BestSplitter(BaseDenseSplitter):
                 partition_end = end_available + n_missing
                 while p < partition_end:
                     partition_end -= 1
-                    p += 1
                     samples[partition_end], samples[p] = samples[p], samples[partition_end]
                     # with gil:
-                    #     print "swapping %d and %d" % (partition_end, p)
+                    #     print "swapping MV %d and %d" % (samples[partition_end], samples[p])
+                    p += 1
 
                 # Correct the position
                 best.pos += n_missing

@@ -847,7 +847,7 @@ cdef class Tree:
                     while node.left_child != _TREE_LEAF:
                         # ... and node.right_child != _TREE_LEAF:
                         if missing_mask_ptr[i + missing_mask_fx_stride * node.feature] == 1:
-                            if True: #node.missing_direction == 2:  # MISSING_DIR_UNDEF
+                            if node.missing_direction == 2:  # MISSING_DIR_UNDEF
                                 # Send to either right or left randomly
                                 temp = rand_int(0, 2, random_state)
                                 # with gil:
