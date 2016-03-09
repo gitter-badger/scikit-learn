@@ -1648,8 +1648,7 @@ cdef class RandomSparseSplitter(BaseSparseSplitter):
         cdef UINT32_t* random_state = &self.rand_r_state
 
         cdef SplitRecord best, current
-        cdef SIZE_t n_missing = 0
-        _init_split(&best, end, n_missing)
+        _init_split(&best, end)
         cdef double current_proxy_improvement = - INFINITY
         cdef double best_proxy_improvement = - INFINITY
 

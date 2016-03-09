@@ -476,7 +476,7 @@ cdef class ClassificationCriterion(Criterion):
                 sum_missing[k * self.sum_stride + c] += w
             self.weighted_n_node_missing += w
 
-        # Using the computed sum_missing split, separate the sum_available
+        # Using the computed sum_missing, separate the sum_available
         # from the sum_total
         # {sum_total} --> {sum_available} + {sum_missing}
         for k in range(self.n_outputs):
@@ -484,7 +484,7 @@ cdef class ClassificationCriterion(Criterion):
             for c in range(n_classes[k]):
                 i = c + offset
                 sum_available[c] = sum_total[c] - sum_missing[c]
-
+        self.weighted_n_node_available = self.weighted_n_node_samples - self.weighted_n_node_missing
 
     cdef void reset(self) nogil:
         """Reset the criterion at pos=start. Move the missing values also to the right"""

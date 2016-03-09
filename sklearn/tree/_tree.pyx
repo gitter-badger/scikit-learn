@@ -69,12 +69,9 @@ cdef SIZE_t INITIAL_STACK_SIZE = 10
 cdef DTYPE_t MIN_IMPURITY_SPLIT = 1e-7
 
 # Constants to decide the direction of missing values in a node
-MISSING_DIR_LEFT = 0
-MISSING_DIR_RIGHT = 1
-MISSING_DIR_UNDEF = 2
-cdef SIZE_t _MISSING_DIR_LEFT = MISSING_DIR_LEFT
-cdef SIZE_t _MISSING_DIR_RIGHT = MISSING_DIR_RIGHT
-cdef SIZE_t _MISSING_DIR_UNDEF = MISSING_DIR_UNDEF
+cdef SIZE_t MISSING_DIR_LEFT = 0
+cdef SIZE_t MISSING_DIR_RIGHT = 1
+cdef SIZE_t MISSING_DIR_UNDEF = 2
 
 # Repeat struct definition for numpy
 NODE_DTYPE = np.dtype({
@@ -206,7 +203,6 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef int rc = 0
 
         cdef SIZE_t allow_missing = self.allow_missing
-        cdef SIZE_t missing_direction = _MISSING_DIR_UNDEF
 
         cdef Stack stack = Stack(INITIAL_STACK_SIZE)
         cdef StackRecord stack_record
@@ -466,7 +462,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
                                  else _TREE_UNDEFINED,
                                  is_left, is_leaf,
                                  split.feature, split.threshold, impurity, n_node_samples,
-                                 weighted_n_node_samples, _MISSING_DIR_UNDEF)
+                                 weighted_n_node_samples, MISSING_DIR_UNDEF)
         if node_id == <SIZE_t>(-1):
             return -1
 
@@ -840,13 +836,13 @@ cdef class Tree:
                     while node.left_child != _TREE_LEAF:
                         # ... and node.right_child != _TREE_LEAF:
                         if missing_mask_ptr[i + missing_mask_fx_stride * node.feature] == 1:
-                            if node.missing_direction == _MISSING_DIR_UNDEF:
+                            if node.missing_direction == MISSING_DIR_UNDEF:
                                 # Send to either right or left randomly
                                 temp = rand_int(0, 2, random_state)
                                 node = &self.nodes[node.left_child
                                                    if temp
                                                    else node.right_child]
-                            elif node.missing_direction == _MISSING_DIR_RIGHT:
+                            elif node.missing_direction == MISSING_DIR_RIGHT:
                                 node = &self.nodes[node.right_child]
                             else:
                                 node = &self.nodes[node.left_child]
