@@ -49,7 +49,7 @@ cdef SIZE_t MISSING_DIR_RIGHT = 1
 cdef SIZE_t MISSING_DIR_UNDEF = 2
 
 cdef inline void _init_split(SplitRecord* self,
-                             SIZE_t start_pos, SIZE_t n_missing) nogil:
+                             SIZE_t start_pos) nogil:
     self.impurity_left = INFINITY
     self.impurity_right = INFINITY
     self.pos = start_pos
@@ -57,7 +57,7 @@ cdef inline void _init_split(SplitRecord* self,
     self.threshold = 0.
     self.improvement = -INFINITY
     self.missing_direction = MISSING_DIR_UNDEF
-    self.n_missing = n_missing
+    self.n_missing = 0
 
 cdef class Splitter:
     """Abstract splitter class.
@@ -374,7 +374,7 @@ cdef class BestSplitter(BaseDenseSplitter):
         cdef BOOL_t* missing_mask = self.missing_mask
         cdef SIZE_t pos_missing_offset = 0  # missing offset based on missing direction to help compute the stopping criteria correctly
 
-        _init_split(&best, end, n_missing)
+        _init_split(&best, end)
 
         if self.presort == 1:
             for p in range(start, end):
@@ -901,8 +901,7 @@ cdef class RandomSplitter(BaseDenseSplitter):
         cdef DTYPE_t current_feature_value
         cdef SIZE_t partition_end
 
-        cdef SIZE_t n_missing = 0
-        _init_split(&best, end, n_missing)
+        _init_split(&best, end)
 
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm (using the local variables `f_i` and
@@ -1422,8 +1421,7 @@ cdef class BestSparseSplitter(BaseSparseSplitter):
         cdef UINT32_t* random_state = &self.rand_r_state
 
         cdef SplitRecord best, current
-        cdef SIZE_t n_missing = 0
-        _init_split(&best, end, n_missing)
+        _init_split(&best, end)
         cdef double current_proxy_improvement = - INFINITY
         cdef double best_proxy_improvement = - INFINITY
 
