@@ -43,13 +43,21 @@ cdef DTYPE_t FEATURE_THRESHOLD = 1e-7
 # in SparseSplitter
 cdef DTYPE_t EXTRACT_NNZ_SWITCH = 0.1
 
-cdef inline void _init_split(SplitRecord* self, SIZE_t start_pos) nogil:
+# Constants to handle missing values
+cdef SIZE_t MISSING_DIR_LEFT = 0
+cdef SIZE_t MISSING_DIR_RIGHT = 1
+cdef SIZE_t MISSING_DIR_UNDEF = 2
+
+cdef inline void _init_split(SplitRecord* self,
+                             SIZE_t start_pos, SIZE_t n_missing) nogil:
     self.impurity_left = INFINITY
     self.impurity_right = INFINITY
     self.pos = start_pos
     self.feature = 0
     self.threshold = 0.
     self.improvement = -INFINITY
+    self.missing_direction = MISSING_DIR_UNDEF
+    self.n_missing = n_missing
 
 cdef class Splitter:
     """Abstract splitter class.
@@ -60,7 +68,7 @@ cdef class Splitter:
 
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
-                  object random_state, bint presort):
+                  object random_state, bint presort, bint allow_missing):
         """
         Parameters
         ----------
@@ -102,6 +110,9 @@ cdef class Splitter:
         self.random_state = random_state
         self.presort = presort
 
+        self.allow_missing = allow_missing
+        self.n_missing = 0
+
     def __dealloc__(self):
         """Destructor."""
 
@@ -120,7 +131,8 @@ cdef class Splitter:
                    object X,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight,
-                   np.ndarray X_idx_sorted=None) except *:
+                   np.ndarray X_idx_sorted=None,
+                   np.ndarray missing_mask=None) except*:
         """Initialize the splitter.
 
         Take in the input data X, the target Y, and optional sample weights.
@@ -180,6 +192,11 @@ cdef class Splitter:
         self.y_stride = <SIZE_t> y.strides[0] / <SIZE_t> y.itemsize
 
         self.sample_weight = sample_weight
+
+        if self.allow_missing:
+            self.missing_mask = <BOOL_t*> missing_mask.data
+            self.missing_mask_stride = <SIZE_t> missing_mask.strides[1] / missing_mask.itemsize
+            self.n_missing = 0
 
     cdef void node_reset(self, SIZE_t start, SIZE_t end,
                          double* weighted_n_node_samples) nogil:
@@ -242,7 +259,7 @@ cdef class BaseDenseSplitter(Splitter):
 
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
-                  object random_state, bint presort):
+                  object random_state, bint presort, bint allow_missing):
 
         self.X = NULL
         self.X_sample_stride = 0
@@ -250,6 +267,7 @@ cdef class BaseDenseSplitter(Splitter):
         self.X_idx_sorted_ptr = NULL
         self.X_idx_sorted_stride = 0
         self.sample_mask = NULL
+        # SELFNOTE Why doesn't the parent cinit take care of this?
         self.presort = presort
 
     def __dealloc__(self):
@@ -261,11 +279,13 @@ cdef class BaseDenseSplitter(Splitter):
                    object X,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight,
-                   np.ndarray X_idx_sorted=None) except *:
+                   np.ndarray X_idx_sorted=None,
+                   np.ndarray missing_mask=None) except *:
         """Initialize the splitter."""
 
         # Call parent init
-        Splitter.init(self, X, y, sample_weight)
+        Splitter.init(self, X=X, y=y, sample_weight=sample_weight,
+                      X_idx_sorted=X_idx_sorted, missing_mask=missing_mask)
 
         # Initialize X
         cdef np.ndarray X_ndarray = X
@@ -343,7 +363,18 @@ cdef class BestSplitter(BaseDenseSplitter):
         cdef DTYPE_t current_feature_value
         cdef SIZE_t partition_end
 
-        _init_split(&best, end)
+        # To handle missing
+        cdef SIZE_t missing_direction
+        cdef SIZE_t end_available
+        cdef SIZE_t start_available
+        cdef SIZE_t q
+        cdef SIZE_t n_missing = 0
+        cdef SIZE_t miss_mask_feat_offset
+        cdef SIZE_t directions_to_check
+        cdef BOOL_t* missing_mask = self.missing_mask
+        cdef SIZE_t pos_missing_offset = 0  # missing offset based on missing direction to help compute the stopping criteria correctly
+
+        _init_split(&best, end, n_missing)
 
         if self.presort == 1:
             for p in range(start, end):
@@ -400,23 +431,89 @@ cdef class BestSplitter(BaseDenseSplitter):
                 # presorting, or by copying the values into an array and
                 # sorting the array in a manner which utilizes the cache more
                 # effectively.
-                if self.presort == 1:
+                n_missing = 0
+                if self.allow_missing:
+                    miss_mask_feat_offset = self.missing_mask_stride * current.feature
                     p = start
-                    feature_idx_offset = self.X_idx_sorted_stride * current.feature
+                    end_available = end
 
-                    for i in range(self.n_total_samples): 
-                        j = X_idx_sorted[i + feature_idx_offset]
-                        if sample_mask[j] == 1:
-                            samples[p] = j
-                            Xf[p] = X[self.X_sample_stride * j + feature_offset]
-                            p += 1
-                else:
-                    for i in range(start, end):
-                        Xf[i] = X[self.X_sample_stride * samples[i] + feature_offset]
+                    if self.presort == 1:
+                        # TODO SELFNOTE XXX IMP test presort
+                        feature_idx_offset = self.X_idx_sorted_stride * current.feature
 
-                    sort(Xf + start, samples + start, end - start)
+                        for i in range(self.n_total_samples):
+                            if p >= end_available:
+                                break
+                            j = X_idx_sorted[i + feature_idx_offset]
+                            if sample_mask[j] == 1:
+                                if missing_mask[j + miss_mask_feat_offset] == 0:
+                                    samples[p] = j
+                                    Xf[p] = X[self.X_sample_stride * j + feature_offset]
+                                    p += 1
+                                else:
+                                    end_available -= 1
+                                    # If missing store from the end
+                                    samples[end_available] = j
+                                    # Don't store the "missing value"
+                    else:  # If not self.presort
+                        # SELFNOTE Remove before merge
+                        #
+                        #   1st swap   ----------
+                        #   2nd swap   |  ----  |
+                        #              V  V  V  V
+                        # m_mask  = 0  1  1  0  0
+                        # samples = 4  5  6  8  9  .
+                        #           ^              ^
+                        #           p           e_av/end
+                        #
+                        # m_mask  = 0  0  0  1  1
+                        # samples = 4  9  8  6  5  .
+                        #                    ^     ^
+                        #                 e_av/p  end
+                        #
+                        # n_missing = end - end_available
+                        #
+                        # SELFNOTE If we refactor into helper, we can't
+                        # move in-place the missing values
+                        # in one pass without disturbing the sort order
+                        while p < end_available:
+                            j = samples[p]
+                            if missing_mask[j + miss_mask_feat_offset] == 0:
+                                Xf[p] = X[self.X_sample_stride * j + feature_offset]
+                                p += 1
+                            else:
+                                end_available -= 1
+                                samples[p] = samples[end_available]
+                                samples[end_available] = j
 
-                if Xf[end - 1] <= Xf[start] + FEATURE_THRESHOLD:
+                        sort(Xf + start, samples + start, end_available - start)
+                        if (p != end_available):
+                            pass
+                    n_missing = end - end_available
+
+                else:   # If not self.allow_missing
+                    if self.presort == 1:
+                        p = start
+                        feature_idx_offset = self.X_idx_sorted_stride * current.feature
+
+                        for i in range(self.n_total_samples):
+                            j = X_idx_sorted[i + feature_idx_offset]
+                            if sample_mask[j] == 1:
+                                samples[p] = j
+                                Xf[p] = X[self.X_sample_stride * j + feature_offset]
+                                p += 1
+                    else:
+                        for i in range(start, end):
+                            Xf[i] = X[self.X_sample_stride * samples[i] + feature_offset]
+
+                        sort(Xf + start, samples + start, end - start)
+                    end_available = end
+
+                # If there are no missing values and all the available values are constant,
+                # in the current feature
+                if (((Xf[end_available - 1] <= Xf[start] + FEATURE_THRESHOLD) and (n_missing == 0)) or
+                        # or if all the values are missing
+                        (n_missing == (end - start))):
                     features[f_j] = features[n_total_constants]
                     features[n_total_constants] = current.feature
 
@@ -427,64 +524,194 @@ cdef class BestSplitter(BaseDenseSplitter):
                     f_i -= 1
                     features[f_i], features[f_j] = features[f_j], features[f_i]
 
-                    # Evaluate all splits
+
+                    self.criterion.init_missing(n_missing)
+                    current.n_missing = n_missing
+
+                    if n_missing > 0:
+                        # Search for the best split by sending the missing values
+                        # both sides
+                        directions_to_check = 2
+                        current.missing_direction = MISSING_DIR_RIGHT
+                    else:
+                        directions_to_check = 1
+                        current.missing_direction = MISSING_DIR_UNDEF
+
+                    pos_missing_offset = 0
                     self.criterion.reset()
-                    p = start
 
-                    while p < end:
-                        while (p + 1 < end and
-                               Xf[p + 1] <= Xf[p] + FEATURE_THRESHOLD):
+                    while directions_to_check > 0:
+                        p = start
+                        while p < end_available:
+                            while (p + 1 < end_available and
+                                   Xf[p + 1] <= Xf[p] + FEATURE_THRESHOLD):
+                                p += 1
+
+                            # (p + 1 >= end_available) or (X[samples[p + 1], current.feature] >
+                            #                    X[samples[p], current.feature])
                             p += 1
+                            # (p >= end_available) or (X[samples[p], current.feature] >
+                            #                X[samples[p - 1], current.feature])
 
-                        # (p + 1 >= end) or (X[samples[p + 1], current.feature] >
-                        #                    X[samples[p], current.feature])
-                        p += 1
-                        # (p >= end) or (X[samples[p], current.feature] >
-                        #                X[samples[p - 1], current.feature])
+                            if p < end_available:
+                                current.pos = p
 
-                        if p < end:
-                            current.pos = p
+                                if ((((p + pos_missing_offset) - start) < min_samples_leaf) or
+                                        ((end - (p + pos_missing_offset)) < min_samples_leaf)):
+                                    continue
 
-                            # Reject if min_samples_leaf is not guaranteed
-                            if (((current.pos - start) < min_samples_leaf) or
-                                    ((end - current.pos) < min_samples_leaf)):
-                                continue
+                                # The criterion is updated with the split position w.r.t
+                                # start always as the missing sample indices
+                                # remain at the end of the `samples` array,
+                                # irrespective of the missing_direction
+                                self.criterion.update(current.pos)
 
-                            self.criterion.update(current.pos)
+                                # Reject if min_weight_leaf is not satisfied
+                                if ((self.criterion.weighted_n_left < min_weight_leaf) or
+                                        (self.criterion.weighted_n_right < min_weight_leaf)):
+                                    continue
 
-                            # Reject if min_weight_leaf is not satisfied
-                            if ((self.criterion.weighted_n_left < min_weight_leaf) or
-                                    (self.criterion.weighted_n_right < min_weight_leaf)):
-                                continue
+                                current_proxy_improvement = self.criterion.proxy_impurity_improvement()
 
+                                if current_proxy_improvement > best_proxy_improvement:
+                                    best_proxy_improvement = current_proxy_improvement
+                                    current.threshold = (Xf[p - 1] + Xf[p]) / 2.0
+                                    if current.threshold == Xf[p]:
+                                        current.threshold = Xf[p - 1]
+
+                                    best = current  # copy
+
+                        directions_to_check -= 1
+                        if directions_to_check == 1:
+                            # Check if sending missing values alone to the right gives the best split
+                            # (where all the available values remain at the left partition)
+                            # (We need to reverse reset to get this partition
+                            # as criterion does not update beyond the last sample)
+                            self.criterion.reverse_reset_without_missing()
                             current_proxy_improvement = self.criterion.proxy_impurity_improvement()
 
-                            if current_proxy_improvement > best_proxy_improvement:
+                            # Now check if it satisfies the stopping criterion
+                            # and is better than current best
+                            if ((n_missing >= min_samples_leaf) and
+                                    ((end_available - start) >= min_samples_leaf) and
+                                    (self.criterion.weighted_n_left >= min_weight_leaf) and
+                                    (self.criterion.weighted_n_right >= min_weight_leaf) and
+                                    (current_proxy_improvement > best_proxy_improvement)):
                                 best_proxy_improvement = current_proxy_improvement
-                                current.threshold = (Xf[p - 1] + Xf[p]) / 2.0
 
-                                if current.threshold == Xf[p]:
-                                    current.threshold = Xf[p - 1]
+                                # If yes, retain the missing at right, and the available at the left
+                                # and set the threshold to infinity, so all values, which are not missing,
+                                # are sent to the left
+                                current.threshold = INFINITY
+                                # Don't move the missing samples, just
+                                # set pos to end_available, to denote that all
+                                # the available samples must be moved left
+                                current.pos = end_available
+                                best = current
 
-                                best = current  # copy
+                            # Now compute all the other splits with the missing kept at the left
+                            # NOTE do not offset the criterion's position, as the missing sample
+                            # indices are stored at the end in the `samples`, irrespective of the
+                            # missing_direction
+                            pos_missing_offset = n_missing
+                            self.criterion.reset_without_missing()
+                            self.criterion.update_missing_direction(MISSING_DIR_LEFT)
+                            current.missing_direction = MISSING_DIR_LEFT
 
-        # Reorganize into samples[start:best.pos] + samples[best.pos:end]
-        if best.pos < end:
+
+        # Update n_missing/end_available for the best's feature
+        # XXX Not doing this is what screwed up the implementation :@
+        n_missing = best.n_missing
+        start_available = start
+        end_available = end - n_missing
+
+        # The samples array is now organized based on the last feature searched for split
+        # Reorganize this samples array based on the best split's feature.
+
+        # If missing_direction is UNDEF (n_missing is 0)
+        #   {Right partition available vals}  | {Left partition available vals}
+        #       samples[start:best.pos]       |      samples[best.pos:end]
+        #                                     |
+        #                                 best.thres
+
+        # If missing_direction is LEFT
+        # samples[:n_missing] + samples[start+n_missing:best.pos] |      samples[best.pos:end]
+        #   {Missing vals     +  left partition available vals}   | {Right partition available vals}
+        #                                                         |
+        #                                                     best.thres
+
+        # If missing_direction is RIGHT
+        #     samples[start:best.pos]     | samples[best.pos:end-n_missing] + samples[end-n_missing:end]
+        # {left partition available vals} | {Right partition available vals +     Missing vals}
+        #                                 |
+        #                             best.thres
+
+        # If best pos is invalid (at the end) don't allow
+        # except when the right split contains all the missing values
+        if (best.pos < end_available or
+                (best.pos == end_available and
+                    best.missing_direction == MISSING_DIR_RIGHT)):
             feature_offset = X_feature_stride * best.feature
-            partition_end = end
-            p = start
+            miss_mask_feat_offset = self.missing_mask_stride * best.feature
 
-            while p < partition_end:
+            if n_missing > 0:
+                # Move missing to the end, if missing_direction is RIGHT
+                # TODO refactor As a helper?
+                if best.missing_direction == MISSING_DIR_RIGHT:
+                    p = start
+                    q = end
+                    while p < q:
+                        j = samples[p]
+                        if missing_mask[j + miss_mask_feat_offset] == 0:
+                            p += 1
+                        else:
+                            q -= 1
+                            samples[p] = samples[q]
+                            samples[q] = j
+
+                    # start_available = start
+                    # end_available = end_available
+                    # best.pos is at correct position, as missing is at right
+                    # of the split position, no need to adjust
+
+                # Move missing to the start, if missing_direction is LEFT
+                elif best.missing_direction == MISSING_DIR_LEFT:
+                    p = start
+                    partition_end = end - 1
+                    while partition_end > p:
+                        j = samples[partition_end]
+                        if missing_mask[j + miss_mask_feat_offset] == 0:
+                            partition_end -= 1
+                        else:
+                            samples[partition_end] = samples[p]
+                            samples[p] = j
+                            p += 1
+
+                    # Adjust best.pos to include the missing values which
+                    # has now been moved to the start
+                    best.pos += n_missing
+                    start_available += n_missing
+                    end_available += n_missing
+
+            # If there are no missing values
+            # start_available = start_available
+            # end_available = end
+            # best.pos is at correct position
+
+            p = start_available
+            q = end_available
+            # Now repartition the samples based on the available values.
+            while p < q:
                 if X[X_sample_stride * samples[p] + feature_offset] <= best.threshold:
                     p += 1
-
                 else:
-                    partition_end -= 1
+                    q -= 1
+                    samples[q], samples[p] = samples[p], samples[q]
 
-                    tmp = samples[partition_end]
-                    samples[partition_end] = samples[p]
-                    samples[p] = tmp
-
+            # Now that we have sent the missing values to start/end of `samples`,
+            # forget that they exist and update the criterion based on the
+            # adjusted best.pos
+            self.criterion.init_missing(0)
             self.criterion.reset()
             self.criterion.update(best.pos)
             best.improvement = self.criterion.impurity_improvement(impurity)
@@ -674,7 +901,8 @@ cdef class RandomSplitter(BaseDenseSplitter):
         cdef DTYPE_t current_feature_value
         cdef SIZE_t partition_end
 
-        _init_split(&best, end)
+        cdef SIZE_t n_missing = 0
+        _init_split(&best, end, n_missing)
 
         # Sample up to max_features without replacement using a
         # Fisher-Yates-based algorithm (using the local variables `f_i` and
@@ -869,7 +1097,8 @@ cdef class BaseSparseSplitter(Splitter):
                    object X,
                    np.ndarray[DOUBLE_t, ndim=2, mode="c"] y,
                    DOUBLE_t* sample_weight,
-                   np.ndarray X_idx_sorted=None) except *:
+                   np.ndarray X_idx_sorted=None,
+                   np.ndarray missing_mask=None) except *:
         """Initialize the splitter."""
 
         # Call parent init
@@ -1193,7 +1422,8 @@ cdef class BestSparseSplitter(BaseSparseSplitter):
         cdef UINT32_t* random_state = &self.rand_r_state
 
         cdef SplitRecord best, current
-        _init_split(&best, end)
+        cdef SIZE_t n_missing = 0
+        _init_split(&best, end, n_missing)
         cdef double current_proxy_improvement = - INFINITY
         cdef double best_proxy_improvement = - INFINITY
 
@@ -1420,7 +1650,8 @@ cdef class RandomSparseSplitter(BaseSparseSplitter):
         cdef UINT32_t* random_state = &self.rand_r_state
 
         cdef SplitRecord best, current
-        _init_split(&best, end)
+        cdef SIZE_t n_missing = 0
+        _init_split(&best, end, n_missing)
         cdef double current_proxy_improvement = - INFINITY
         cdef double best_proxy_improvement = - INFINITY
 
