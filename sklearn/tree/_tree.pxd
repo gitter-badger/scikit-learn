@@ -4,6 +4,7 @@
 #          Joel Nothman <joel.nothman@gmail.com>
 #          Arnaud Joly <arnaud.v.joly@gmail.com>
 #          Jacob Schreiber <jmschreiber91@gmail.com>
+#          Raghav R V <rvraghav93@gmail.com>
 #
 # Licence: BSD 3 clause
 
@@ -17,6 +18,7 @@ ctypedef np.npy_float64 DOUBLE_t         # Type of y, sample_weight
 ctypedef np.npy_intp SIZE_t              # Type for indices and counters
 ctypedef np.npy_int32 INT32_t            # Signed 32 bit integer
 ctypedef np.npy_uint32 UINT32_t          # Unsigned 32 bit integer
+ctypedef np.npy_uint8 BOOL_t             # 8 bit boolean
 
 from ._splitter cimport Splitter
 from ._splitter cimport SplitRecord
@@ -31,6 +33,7 @@ cdef struct Node:
     DOUBLE_t impurity                    # Impurity of the node (i.e., the value of the criterion)
     SIZE_t n_node_samples                # Number of samples at the node
     DOUBLE_t weighted_n_node_samples     # Weighted number of samples at the node
+    SIZE_t missing_direction             # To specify the path of missing samples in a node
 
 
 cdef class Tree:
@@ -43,6 +46,9 @@ cdef class Tree:
     cdef SIZE_t* n_classes               # Number of classes in y[:, k]
     cdef public SIZE_t n_outputs         # Number of outputs in y
     cdef public SIZE_t max_n_classes     # max(n_classes)
+    cdef object random_state             # Random state
+    cdef UINT32_t rand_r_state           # sklearn_rand_r random number state
+    cdef bint allow_missing              # Whether to allow missing values or not
 
     # Inner structures: values are stored separately from node structure,
     # since size is determined at runtime.
@@ -57,18 +63,19 @@ cdef class Tree:
     cdef SIZE_t _add_node(self, SIZE_t parent, bint is_left, bint is_leaf,
                           SIZE_t feature, double threshold, double impurity,
                           SIZE_t n_node_samples,
-                          double weighted_n_samples) nogil
+                          double weighted_n_samples,
+                          SIZE_t missing_direction) nogil
     cdef void _resize(self, SIZE_t capacity) except *
     cdef int _resize_c(self, SIZE_t capacity=*) nogil
 
     cdef np.ndarray _get_value_ndarray(self)
     cdef np.ndarray _get_node_ndarray(self)
 
-    cpdef np.ndarray predict(self, object X)
+    cpdef np.ndarray predict(self, object X, np.ndarray missing_mask)
 
-    cpdef np.ndarray apply(self, object X)
-    cdef np.ndarray _apply_dense(self, object X)
-    cdef np.ndarray _apply_sparse_csr(self, object X)
+    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask)
+    cdef np.ndarray _apply_dense(self, object X, np.ndarray missing_mask)
+    cdef np.ndarray _apply_sparse_csr(self, object X, np.ndarray missing_mask)
 
     cpdef object decision_path(self, object X)
     cdef object _decision_path_dense(self, object X)
@@ -95,8 +102,10 @@ cdef class TreeBuilder:
     cdef SIZE_t min_samples_leaf    # Minimum number of samples in a leaf
     cdef double min_weight_leaf     # Minimum weight in a leaf
     cdef SIZE_t max_depth           # Maximal tree depth
+    cdef SIZE_t allow_missing       # Whether to allow missing values or not
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=*,
-                np.ndarray X_idx_sorted=*)
+                np.ndarray X_idx_sorted=*,
+                np.ndarray missing_mask=*)
     cdef _check_input(self, object X, np.ndarray y, np.ndarray sample_weight)
