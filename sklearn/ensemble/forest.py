@@ -31,11 +31,11 @@ The module structure is the following:
 Single and multi-output problems are both handled.
 
 """
-
 # Authors: Gilles Louppe <g.louppe@gmail.com>
 #          Brian Holt <bdholt1@gmail.com>
 #          Joly Arnaud <arnaud.v.joly@gmail.com>
 #          Fares Hedayati <fares.hedayati@gmail.com>
+#          Raghav R V <rvraghav93@gmail.com>
 #
 # License: BSD 3 clause
 
@@ -91,7 +91,7 @@ def _generate_unsampled_indices(random_state, n_samples):
     return unsampled_indices
 
 def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
-                          verbose=0, class_weight=None):
+                          verbose=0, class_weight=None, missing_mask=None):
     """Private function used to fit a single tree in parallel."""
     if verbose > 1:
         print("building tree %d of %d" % (tree_idx + 1, n_trees))
@@ -114,9 +114,11 @@ def _parallel_build_trees(tree, forest, X, y, sample_weight, tree_idx, n_trees,
         elif class_weight == 'balanced_subsample':
             curr_sample_weight *= compute_sample_weight('balanced', y, indices)
 
-        tree.fit(X, y, sample_weight=curr_sample_weight, check_input=False)
+        tree.fit(X, y, sample_weight=curr_sample_weight, check_input=False,
+                 missing_mask=missing_mask)
     else:
-        tree.fit(X, y, sample_weight=sample_weight, check_input=False)
+        tree.fit(X, y, sample_weight=sample_weight, check_input=False,
+                 missing_mask=missing_mask)
 
     return tree
 
@@ -145,7 +147,8 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
                  random_state=None,
                  verbose=0,
                  warm_start=False,
-                 class_weight=None):
+                 class_weight=None,
+                 missing_values=None):
         super(BaseForest, self).__init__(
             base_estimator=base_estimator,
             n_estimators=n_estimators,
@@ -159,7 +162,8 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
         self.warm_start = warm_start
         self.class_weight = class_weight
 
-    def apply(self, X):
+
+    def apply(self, X, missing_mask=None):
         """Apply trees in the forest to X, return leaf indices.
 
         Parameters
@@ -176,14 +180,17 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             return the index of the leaf x ends up in.
         """
         X = self._validate_X_predict(X)
+        missing_mask = self._validate_missing_mask(X, missing_mask)
         results = Parallel(n_jobs=self.n_jobs, verbose=self.verbose,
                            backend="threading")(
-            delayed(_parallel_helper)(tree, 'apply', X, check_input=False)
+            delayed(_parallel_helper)(tree, 'apply', X,
+                                      check_input=False,
+                                      missing_mask=missing_mask)
             for tree in self.estimators_)
 
         return np.array(results).T
 
-    def decision_path(self, X):
+    def decision_path(self, X, missing_mask=None):
         """Return the decision path in the forest
 
         Parameters
@@ -204,10 +211,12 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             gives the indicator value for the i-th estimator.
         """
         X = self._validate_X_predict(X)
+        missing_mask = self._validate_missing_mask(X, missing_mask)
         indicators = Parallel(n_jobs=self.n_jobs, verbose=self.verbose,
                               backend="threading")(
             delayed(_parallel_helper)(tree, 'decision_path', X,
-                                      check_input=False)
+                                      check_input=False,
+                                      missing_mask=missing_mask)
             for tree in self.estimators_)
 
         n_nodes = [0]
@@ -216,7 +225,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         return sparse_hstack(indicators).tocsr(), n_nodes_ptr
 
-    def fit(self, X, y, sample_weight=None):
+    def fit(self, X, y, sample_weight=None, missing_mask=None):
         """Build a forest of trees from the training set (X, y).
 
         Parameters
@@ -243,7 +252,9 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             Returns self.
         """
         # Validate or convert input data
-        X = check_array(X, accept_sparse="csc", dtype=DTYPE)
+        X = check_array(X, accept_sparse="csc", dtype=DTYPE,
+                        allow_nan = self._allow_nan)
+        missing_mask = self._validate_missing_mask(X, missing_mask)
         y = check_array(y, accept_sparse='csc', ensure_2d=False, dtype=None)
         if issparse(X):
             # Pre-sort indices to avoid that each individual tree of the
@@ -311,6 +322,8 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             for i in range(n_more_estimators):
                 tree = self._make_estimator(append=False)
                 tree.set_params(random_state=random_state.randint(MAX_INT))
+                tree.allow_missing = self.allow_missing
+                tree._allow_nan = self._allow_nan
                 trees.append(tree)
 
             # Parallel loop: we use the threading backend as the Cython code
@@ -321,7 +334,8 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
                              backend="threading")(
                 delayed(_parallel_build_trees)(
                     t, self, X, y, sample_weight, i, len(trees),
-                    verbose=self.verbose, class_weight=self.class_weight)
+                    verbose=self.verbose, class_weight=self.class_weight,
+                    missing_mask=missing_mask)
                 for i, t in enumerate(trees))
 
             # Collect newly grown trees
@@ -352,6 +366,17 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
                                  "call `fit` before exploiting the model.")
 
         return self.estimators_[0]._validate_X_predict(X, check_input=True)
+
+    def _validate_missing_mask(self, X, missing_mask=None):
+        """Generate a new missing_mask or validate a given one"""
+        if self.allow_missing and missing_mask is None:
+            # Fortran ordered 8 bit boolean mask
+            if self._allow_nan:  # Missing value is a NaN
+                missing_mask = np.asfortranarray(np.isnan(X), dtype=np.bool8)
+            else:
+                missing_mask = np.zeros(X.shape, dtype=np.bool8, order='F')
+                missing_mask[X == self.missing_values] = True
+        return missing_mask
 
     @property
     def feature_importances_(self):
@@ -393,7 +418,8 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
                  random_state=None,
                  verbose=0,
                  warm_start=False,
-                 class_weight=None):
+                 class_weight=None,
+                 missing_values=None):
 
         super(ForestClassifier, self).__init__(
             base_estimator,
@@ -405,11 +431,14 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
             random_state=random_state,
             verbose=verbose,
             warm_start=warm_start,
-            class_weight=class_weight)
+            class_weight=class_weight,
+            missing_values=missing_values)
 
-    def _set_oob_score(self, X, y):
+    def _set_oob_score(self, X, y, missing_mask=None):
         """Compute out-of-bag score"""
-        X = check_array(X, dtype=DTYPE, accept_sparse='csr')
+        X = check_array(X, dtype=DTYPE, accept_sparse='csr',
+                        allow_nan=self._allow_nan)
+        missing_mask = self._validate_missing_mask(X, missing_mask)
 
         n_classes_ = self.n_classes_
         n_samples = y.shape[0]
@@ -425,7 +454,8 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
             unsampled_indices = _generate_unsampled_indices(
                 estimator.random_state, n_samples)
             p_estimator = estimator.predict_proba(X[unsampled_indices, :],
-                                                  check_input=False)
+                                                  check_input=False,
+                                                  missing_mask=missing_mask)
 
             if self.n_outputs_ == 1:
                 p_estimator = [p_estimator]
@@ -510,7 +540,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
 
         return y, expanded_class_weight
 
-    def predict(self, X):
+    def predict(self, X, missing_mask=None):
         """Predict class for X.
 
         The predicted class of an input sample is a vote by the trees in
@@ -530,7 +560,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
         y : array of shape = [n_samples] or [n_samples, n_outputs]
             The predicted classes.
         """
-        proba = self.predict_proba(X)
+        proba = self.predict_proba(X, missing_mask)
 
         if self.n_outputs_ == 1:
             return self.classes_.take(np.argmax(proba, axis=1), axis=0)
@@ -546,7 +576,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
 
             return predictions
 
-    def predict_proba(self, X):
+    def predict_proba(self, X, missing_mask):
         """Predict class probabilities for X.
 
         The predicted class probabilities of an input sample is computed as
@@ -570,6 +600,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
         """
         # Check data
         X = self._validate_X_predict(X)
+        missing_mask = self._validate_missing_mask(X, missing_mask)
 
         # Assign chunk of trees to jobs
         n_jobs, _, _ = _partition_estimators(self.n_estimators, self.n_jobs)
@@ -578,7 +609,8 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
         all_proba = Parallel(n_jobs=n_jobs, verbose=self.verbose,
                              backend="threading")(
             delayed(_parallel_helper)(e, 'predict_proba', X,
-                                      check_input=False)
+                                      check_input=False,
+                                      missing_mask=missing_mask)
             for e in self.estimators_)
 
         # Reduce
@@ -600,7 +632,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
 
         return proba
 
-    def predict_log_proba(self, X):
+    def predict_log_proba(self, X, missing_mask):
         """Predict class log-probabilities for X.
 
         The predicted class log-probabilities of an input sample is computed as
@@ -621,7 +653,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
             The class probabilities of the input samples. The order of the
             classes corresponds to that in the attribute `classes_`.
         """
-        proba = self.predict_proba(X)
+        proba = self.predict_proba(X, missing_mask)
 
         if self.n_outputs_ == 1:
             return np.log(proba)
@@ -650,7 +682,8 @@ class ForestRegressor(six.with_metaclass(ABCMeta, BaseForest, RegressorMixin)):
                  n_jobs=1,
                  random_state=None,
                  verbose=0,
-                 warm_start=False):
+                 warm_start=False,
+                 missing_values=None):
         super(ForestRegressor, self).__init__(
             base_estimator,
             n_estimators=n_estimators,
@@ -660,7 +693,8 @@ class ForestRegressor(six.with_metaclass(ABCMeta, BaseForest, RegressorMixin)):
             n_jobs=n_jobs,
             random_state=random_state,
             verbose=verbose,
-            warm_start=warm_start)
+            warm_start=warm_start,
+            missing_values=missing_values)
 
     def predict(self, X):
         """Predict regression target for X.
@@ -699,7 +733,8 @@ class ForestRegressor(six.with_metaclass(ABCMeta, BaseForest, RegressorMixin)):
 
     def _set_oob_score(self, X, y):
         """Compute out-of-bag scores"""
-        X = check_array(X, dtype=DTYPE, accept_sparse='csr')
+        X = check_array(X, dtype=DTYPE, accept_sparse='csr',
+                        allow_nan = self._allow_nan)
 
         n_samples = y.shape[0]
 
@@ -909,21 +944,23 @@ class RandomForestClassifier(ForestClassifier):
                  random_state=None,
                  verbose=0,
                  warm_start=False,
-                 class_weight=None):
+                 class_weight=None,
+                 missing_values=None):
         super(RandomForestClassifier, self).__init__(
             base_estimator=DecisionTreeClassifier(),
             n_estimators=n_estimators,
             estimator_params=("criterion", "max_depth", "min_samples_split",
                               "min_samples_leaf", "min_weight_fraction_leaf",
                               "max_features", "max_leaf_nodes",
-                              "random_state"),
+                              "random_state", "missing_values"),
             bootstrap=bootstrap,
             oob_score=oob_score,
             n_jobs=n_jobs,
             random_state=random_state,
             verbose=verbose,
             warm_start=warm_start,
-            class_weight=class_weight)
+            class_weight=class_weight,
+            missing_values=missing_values)
 
         self.criterion = criterion
         self.max_depth = max_depth
@@ -932,7 +969,22 @@ class RandomForestClassifier(ForestClassifier):
         self.min_weight_fraction_leaf = min_weight_fraction_leaf
         self.max_features = max_features
         self.max_leaf_nodes = max_leaf_nodes
+        self.allow_missing = missing_values is not None
 
+        # If missing values is int/None
+        self._allow_nan = False
+        self.missing_values = missing_values
+
+        if self.allow_missing:
+            if ((isinstance(missing_values, str) and
+                        missing_values.strip().lower() == "nan") or
+                    (isinstance(missing_values, np.float) and
+                        np.isnan(missing_values))):
+                self._allow_nan = True
+                self.missing_values = np.nan
+            elif not isinstance(missing_values, int):
+                raise ValueError("missing_values should be 'NaN' or int. "
+                                 "Got %s" % missing_values)
 
 class RandomForestRegressor(ForestRegressor):
     """A random forest regressor.
@@ -1594,7 +1646,7 @@ class RandomTreesEmbedding(BaseForest):
         self.fit_transform(X, y, sample_weight=sample_weight)
         return self
 
-    def fit_transform(self, X, y=None, sample_weight=None):
+    def fit_transform(self, X, y=None, sample_weight=None, missing_mask=None):
         """Fit estimator and transform dataset.
 
         Parameters
@@ -1610,7 +1662,8 @@ class RandomTreesEmbedding(BaseForest):
         """
         # ensure_2d=False because there are actually unit test checking we fail
         # for 1d.
-        X = check_array(X, accept_sparse=['csc'], ensure_2d=False)
+        X = check_array(X, accept_sparse=['csc'], ensure_2d=False,
+                        allow_nan=self._allow_nan)
         if issparse(X):
             # Pre-sort indices to avoid that each individual tree of the
             # ensemble sorts the indices.
@@ -1619,12 +1672,14 @@ class RandomTreesEmbedding(BaseForest):
         rnd = check_random_state(self.random_state)
         y = rnd.uniform(size=X.shape[0])
         super(RandomTreesEmbedding, self).fit(X, y,
-                                              sample_weight=sample_weight)
+                                              sample_weight=sample_weight,
+                                              missing_mask=missing_mask)
 
         self.one_hot_encoder_ = OneHotEncoder(sparse=self.sparse_output)
-        return self.one_hot_encoder_.fit_transform(self.apply(X))
+        return self.one_hot_encoder_.fit_transform(
+            self.apply(X, missing_mask=missing_mask))
 
-    def transform(self, X):
+    def transform(self, X, missing_mask=None):
         """Transform dataset.
 
         Parameters
@@ -1639,4 +1694,5 @@ class RandomTreesEmbedding(BaseForest):
         X_transformed : sparse matrix, shape=(n_samples, n_out)
             Transformed dataset.
         """
-        return self.one_hot_encoder_.transform(self.apply(X))
+        return self.one_hot_encoder_.transform(
+            self.apply(X, missing_mask=missing_mask))
