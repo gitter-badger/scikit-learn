@@ -48,6 +48,16 @@ cdef class Criterion:
     cdef double* sum_left           # Same as above, but for the left side of the split
     cdef double* sum_right          # same as above, but for the right side of the split
 
+    # To handle missing values
+    cdef double* sum_available             # The sum of weighted count of each label, but only for the values that are not missing
+    cdef double* sum_missing               # same as above, but only for the missing values
+    cdef SIZE_t n_missing                  # The number of samples with missing values
+                                           # (samples[end-n_missing-1:end]) correspond to the
+                                           # indices of samples with missing values
+    cdef SIZE_t missing_direction          # The partition to which the missing samples must be sent to
+    cdef double weighted_n_node_available  # Weighted number of available samples in the node
+    cdef double weighted_n_node_missing    # Weighted number of missing samples in the node
+
     # The criterion object is maintained such that left and right collected
     # statistics correspond to samples[start:pos] and samples[pos:end].
 
@@ -55,9 +65,13 @@ cdef class Criterion:
     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* sample_weight,
                    double weighted_n_samples, SIZE_t* samples, SIZE_t start,
                    SIZE_t end) nogil
+    cdef void init_missing(self, SIZE_t n_missing) nogil
     cdef void reset(self) nogil
+    cdef void reset_without_missing(self) nogil
     cdef void reverse_reset(self) nogil
+    cdef void reverse_reset_without_missing(self) nogil
     cdef void update(self, SIZE_t new_pos) nogil
+    cdef void update_missing_direction(self, SIZE_t new_dir) nogil
     cdef double node_impurity(self) nogil
     cdef void children_impurity(self, double* impurity_left,
                                 double* impurity_right) nogil
