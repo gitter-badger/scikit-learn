@@ -12,6 +12,7 @@
 #          Joel Nothman <joel.nothman@gmail.com>
 #          Fares Hedayati <fares.hedayati@gmail.com>
 #          Jacob Schreiber <jmschreiber91@gmail.com>
+#          Raghav R V <rvraghav93@gmail.com>
 #
 # Licence: BSD 3 clause
 
@@ -36,6 +37,8 @@ from ._utils cimport PriorityHeap
 from ._utils cimport PriorityHeapRecord
 from ._utils cimport safe_realloc
 from ._utils cimport sizet_ptr_to_ndarray
+from ._utils cimport rand_int
+from ._utils cimport RAND_R_MAX
 
 cdef extern from "numpy/arrayobject.h":
     object PyArray_NewFromDescr(object subtype, np.dtype descr,
@@ -65,12 +68,21 @@ cdef SIZE_t _TREE_UNDEFINED = TREE_UNDEFINED
 cdef SIZE_t INITIAL_STACK_SIZE = 10
 cdef DTYPE_t MIN_IMPURITY_SPLIT = 1e-7
 
+# Constants to decide the direction of missing values in a node
+MISSING_DIR_LEFT = 0
+MISSING_DIR_RIGHT = 1
+MISSING_DIR_UNDEF = 2
+cdef SIZE_t _MISSING_DIR_LEFT = MISSING_DIR_LEFT
+cdef SIZE_t _MISSING_DIR_RIGHT = MISSING_DIR_RIGHT
+cdef SIZE_t _MISSING_DIR_UNDEF = MISSING_DIR_UNDEF
+
 # Repeat struct definition for numpy
 NODE_DTYPE = np.dtype({
     'names': ['left_child', 'right_child', 'feature', 'threshold', 'impurity',
-              'n_node_samples', 'weighted_n_node_samples'],
+              'n_node_samples', 'weighted_n_node_samples',
+              'missing_direction'],
     'formats': [np.intp, np.intp, np.intp, np.float64, np.float64, np.intp,
-                np.float64],
+                np.float64, np.intp],
     'offsets': [
         <Py_ssize_t> &(<Node*> NULL).left_child,
         <Py_ssize_t> &(<Node*> NULL).right_child,
@@ -78,7 +90,8 @@ NODE_DTYPE = np.dtype({
         <Py_ssize_t> &(<Node*> NULL).threshold,
         <Py_ssize_t> &(<Node*> NULL).impurity,
         <Py_ssize_t> &(<Node*> NULL).n_node_samples,
-        <Py_ssize_t> &(<Node*> NULL).weighted_n_node_samples
+        <Py_ssize_t> &(<Node*> NULL).weighted_n_node_samples,
+        <Py_ssize_t> &(<Node*> NULL).missing_direction,
     ]
 })
 
@@ -91,7 +104,8 @@ cdef class TreeBuilder:
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=None,
-                np.ndarray X_idx_sorted=None):
+                np.ndarray X_idx_sorted=None,
+                np.ndarray missing_mask=None):
         """Build a decision tree from the training set (X, y)."""
         pass
 
@@ -131,16 +145,18 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
 
     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
-                  SIZE_t max_depth):
+                  SIZE_t max_depth, bint allow_missing):
         self.splitter = splitter
         self.min_samples_split = min_samples_split
         self.min_samples_leaf = min_samples_leaf
         self.min_weight_leaf = min_weight_leaf
         self.max_depth = max_depth
+        self.allow_missing = allow_missing
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=None,
-                np.ndarray X_idx_sorted=None):
+                np.ndarray X_idx_sorted=None,
+                np.ndarray missing_mask=None):
         """Build a decision tree from the training set (X, y)."""
 
         # check input
@@ -168,7 +184,7 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t min_samples_split = self.min_samples_split
 
         # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight_ptr, X_idx_sorted)
+        splitter.init(X, y, sample_weight_ptr, X_idx_sorted, missing_mask)
 
         cdef SIZE_t start
         cdef SIZE_t end
@@ -188,6 +204,9 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef bint first = 1
         cdef SIZE_t max_depth_seen = -1
         cdef int rc = 0
+
+        cdef SIZE_t allow_missing = self.allow_missing
+        cdef SIZE_t missing_direction = _MISSING_DIR_UNDEF
 
         cdef Stack stack = Stack(INITIAL_STACK_SIZE)
         cdef StackRecord stack_record
@@ -230,7 +249,8 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
 
                 node_id = tree._add_node(parent, is_left, is_leaf, split.feature,
                                          split.threshold, impurity, n_node_samples,
-                                         weighted_n_node_samples)
+                                         weighted_n_node_samples,
+                                         split.missing_direction)
 
                 if node_id == <SIZE_t>(-1):
                     rc = -1
@@ -298,7 +318,8 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=None,
-                np.ndarray X_idx_sorted=None):
+                np.ndarray X_idx_sorted=None,
+                np.ndarray missing_mask=None):
         """Build a decision tree from the training set (X, y)."""
 
         # check input
@@ -445,7 +466,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
                                  else _TREE_UNDEFINED,
                                  is_left, is_leaf,
                                  split.feature, split.threshold, impurity, n_node_samples,
-                                 weighted_n_node_samples)
+                                 weighted_n_node_samples, _MISSING_DIR_UNDEF)
         if node_id == <SIZE_t>(-1):
             return -1
 
@@ -572,17 +593,23 @@ cdef class Tree:
         def __get__(self):
             return self._get_node_ndarray()['weighted_n_node_samples'][:self.node_count]
 
+    property missing_direction:
+        def __get__(self):
+            return self._get_node_ndarray()['missing_direction'][:self.node_count]
+
     property value:
         def __get__(self):
             return self._get_value_ndarray()[:self.node_count]
 
     def __cinit__(self, int n_features, np.ndarray[SIZE_t, ndim=1] n_classes,
-                  int n_outputs):
+                  int n_outputs, bint allow_missing, object random_state):
         """Constructor."""
         # Input/Output layout
         self.n_features = n_features
         self.n_outputs = n_outputs
         self.n_classes = NULL
+        self.allow_missing = allow_missing
+        self.random_state = random_state
         safe_realloc(&self.n_classes, n_outputs)
 
         self.max_n_classes = np.max(n_classes)
@@ -697,7 +724,8 @@ cdef class Tree:
 
     cdef SIZE_t _add_node(self, SIZE_t parent, bint is_left, bint is_leaf,
                           SIZE_t feature, double threshold, double impurity,
-                          SIZE_t n_node_samples, double weighted_n_node_samples) nogil:
+                          SIZE_t n_node_samples, double weighted_n_node_samples,
+                          SIZE_t missing_direction) nogil:
         """Add a node to the tree.
 
         The new node registers itself as the child of its parent.
@@ -714,6 +742,7 @@ cdef class Tree:
         node.impurity = impurity
         node.n_node_samples = n_node_samples
         node.weighted_n_node_samples = weighted_n_node_samples
+        node.missing_direction = missing_direction
 
         if parent != _TREE_UNDEFINED:
             if is_left:
@@ -736,25 +765,28 @@ cdef class Tree:
 
         return node_id
 
-    cpdef np.ndarray predict(self, object X):
+    cpdef np.ndarray predict(self, object X, np.ndarray missing_mask):
         """Predict target for X."""
-        out = self._get_value_ndarray().take(self.apply(X), axis=0,
+        out = self._get_value_ndarray().take(self.apply(X, missing_mask), axis=0,
                                              mode='clip')
         if self.n_outputs == 1:
             out = out.reshape(X.shape[0], self.max_n_classes)
         return out
 
-    cpdef np.ndarray apply(self, object X):
+    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask):
         """Finds the terminal region (=leaf node) for each sample in X."""
+        self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):
-            return self._apply_sparse_csr(X)
+            return self._apply_sparse_csr(X, missing_mask)
         else:
-            return self._apply_dense(X)
+            return self._apply_dense(X, missing_mask)
 
-    cdef inline np.ndarray _apply_dense(self, object X):
+    cdef inline np.ndarray _apply_dense(self, object X,
+                                        np.ndarray missing_mask):
         """Finds the terminal region (=leaf node) for each sample in X."""
 
         # Check input
+        # SELFNOTE Why?? Don't we already check at tree.py
         if not isinstance(X, np.ndarray):
             raise ValueError("X should be in np.ndarray format, got %s"
                              % type(X))
@@ -777,23 +809,59 @@ cdef class Tree:
         cdef Node* node = NULL
         cdef SIZE_t i = 0
 
-        with nogil:
-            for i in range(n_samples):
-                node = self.nodes
-                # While node not a leaf
-                while node.left_child != _TREE_LEAF:
-                    # ... and node.right_child != _TREE_LEAF:
-                    if X_ptr[X_sample_stride * i +
-                             X_fx_stride * node.feature] <= node.threshold:
-                        node = &self.nodes[node.left_child]
-                    else:
-                        node = &self.nodes[node.right_child]
+        cdef BOOL_t* missing_mask_ptr
+        cdef SIZE_t missing_mask_fx_stride
+        cdef UINT32_t* random_state
+        cdef int temp
 
-                out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
+        if not self.allow_missing:
+            with nogil:
+                for i in range(n_samples):
+                    node = self.nodes
+                    # While node not a leaf
+                    while node.left_child != _TREE_LEAF:
+                        # ... and node.right_child != _TREE_LEAF:
+                        if X_ptr[X_sample_stride * i +
+                                 X_fx_stride * node.feature] <= node.threshold:
+                            node = &self.nodes[node.left_child]
+                        else:
+                            node = &self.nodes[node.right_child]
+
+                    out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
+        else:
+            # Extract the missing mask
+            missing_mask_ptr = <BOOL_t*> missing_mask.data
+            missing_mask_fx_stride = <SIZE_t> missing_mask.strides[1] / <SIZE_t> missing_mask.itemsize
+            random_state = &self.rand_r_state
+            with nogil:
+                for i in range(n_samples):
+                    node = self.nodes
+                    # While node not a leaf
+                    while node.left_child != _TREE_LEAF:
+                        # ... and node.right_child != _TREE_LEAF:
+                        if missing_mask_ptr[i + missing_mask_fx_stride * node.feature] == 1:
+                            if node.missing_direction == _MISSING_DIR_UNDEF:
+                                # Send to either right or left randomly
+                                temp = rand_int(0, 2, random_state)
+                                node = &self.nodes[node.left_child
+                                                   if temp
+                                                   else node.right_child]
+                            elif node.missing_direction == _MISSING_DIR_RIGHT:
+                                node = &self.nodes[node.right_child]
+                            else:
+                                node = &self.nodes[node.left_child]
+                        elif X_ptr[X_sample_stride * i +
+                                 X_fx_stride * node.feature] <= node.threshold:
+                            node = &self.nodes[node.left_child]
+                        else:
+                            node = &self.nodes[node.right_child]
+
+                    out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
 
         return out
 
-    cdef inline np.ndarray _apply_sparse_csr(self, object X):
+    cdef inline np.ndarray _apply_sparse_csr(self, object X,
+                                             np.ndarray missing_mask):
         """Finds the terminal region (=leaf node) for each sample in sparse X.
         """
         # Check input
@@ -870,6 +938,7 @@ cdef class Tree:
 
     cpdef object decision_path(self, object X):
         """Finds the decision path (=node) for each sample in X."""
+        self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):
             return self._decision_path_sparse_csr(X)
         else:
