@@ -677,13 +677,13 @@ cdef class BestSplitter(BaseDenseSplitter):
                 # Move missing to the start, if missing_direction is LEFT
                 elif best.missing_direction == MISSING_DIR_LEFT:
                     p = start
-                    partition_end = end - 1
-                    while partition_end > p:
-                        j = samples[partition_end]
+                    q = end - 1
+                    while q > p:
+                        j = samples[q]
                         if missing_mask[j + miss_mask_feat_offset] == 0:
-                            partition_end -= 1
+                            q -= 1
                         else:
-                            samples[partition_end] = samples[p]
+                            samples[q] = samples[p]
                             samples[p] = j
                             p += 1
 
