@@ -158,7 +158,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
         self.class_weight = class_weight
 
 
-    def apply(self, X, missing_mask=None):
+    def apply(self, X):
         """Apply trees in the forest to X, return leaf indices.
 
         Parameters
@@ -175,7 +175,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             return the index of the leaf x ends up in.
         """
         X = self._validate_X_predict(X)
-        missing_mask = self._validate_missing_mask(X, missing_mask)
+        missing_mask = self._validate_missing_mask(X)
         results = Parallel(n_jobs=self.n_jobs, verbose=self.verbose,
                            backend="threading")(
             delayed(parallel_helper)(tree, 'apply', X,
@@ -185,7 +185,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         return np.array(results).T
 
-    def decision_path(self, X, missing_mask=None):
+    def decision_path(self, X):
         """Return the decision path in the forest
 
         Parameters
@@ -206,7 +206,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             gives the indicator value for the i-th estimator.
         """
         X = self._validate_X_predict(X)
-        missing_mask = self._validate_missing_mask(X, missing_mask)
+        missing_mask = self._validate_missing_mask(X)
         indicators = Parallel(n_jobs=self.n_jobs, verbose=self.verbose,
                               backend="threading")(
             delayed(parallel_helper)(tree, 'decision_path', X,
@@ -220,7 +220,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
 
         return sparse_hstack(indicators).tocsr(), n_nodes_ptr
 
-    def fit(self, X, y, sample_weight=None, missing_mask=None):
+    def fit(self, X, y, sample_weight=None):
         """Build a forest of trees from the training set (X, y).
 
         Parameters
@@ -249,7 +249,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
         # Validate or convert input data
         X = check_array(X, accept_sparse="csc", dtype=DTYPE,
                         allow_nan = self._allow_nan)
-        missing_mask = self._validate_missing_mask(X, missing_mask)
+        missing_mask = self._validate_missing_mask(X)
         y = check_array(y, accept_sparse='csc', ensure_2d=False, dtype=None)
         if issparse(X):
             # Pre-sort indices to avoid that each individual tree of the
@@ -337,7 +337,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
             self.estimators_.extend(trees)
 
         if self.oob_score:
-            self._set_oob_score(X, y)
+            self._set_oob_score(X, y, missing_mask)
 
         # Decapsulate classes_ attributes
         if hasattr(self, "classes_") and self.n_outputs_ == 1:
@@ -347,7 +347,7 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
         return self
 
     @abstractmethod
-    def _set_oob_score(self, X, y):
+    def _set_oob_score(self, X, y, missing_mask=None):
         """Calculate out of bag predictions and score."""
 
     def _validate_y_class_weight(self, y):
@@ -433,6 +433,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
         """Compute out-of-bag score"""
         X = check_array(X, dtype=DTYPE, accept_sparse='csr',
                         allow_nan=self._allow_nan)
+        # XXX Do we need to validate here?
         missing_mask = self._validate_missing_mask(X, missing_mask)
 
         n_classes_ = self.n_classes_
@@ -535,7 +536,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
 
         return y, expanded_class_weight
 
-    def predict(self, X, missing_mask=None):
+    def predict(self, X):
         """Predict class for X.
 
         The predicted class of an input sample is a vote by the trees in
@@ -555,7 +556,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
         y : array of shape = [n_samples] or [n_samples, n_outputs]
             The predicted classes.
         """
-        proba = self.predict_proba(X, missing_mask)
+        proba = self.predict_proba(X)
 
         if self.n_outputs_ == 1:
             return self.classes_.take(np.argmax(proba, axis=1), axis=0)
@@ -571,7 +572,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
 
             return predictions
 
-    def predict_proba(self, X, missing_mask):
+    def predict_proba(self, X):
         """Predict class probabilities for X.
 
         The predicted class probabilities of an input sample is computed as
@@ -595,7 +596,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
         """
         # Check data
         X = self._validate_X_predict(X)
-        missing_mask = self._validate_missing_mask(X, missing_mask)
+        missing_mask = self._validate_missing_mask(X)
 
         # Assign chunk of trees to jobs
         n_jobs, _, _ = _partition_estimators(self.n_estimators, self.n_jobs)
@@ -729,7 +730,7 @@ class ForestRegressor(six.with_metaclass(ABCMeta, BaseForest, RegressorMixin)):
     def _set_oob_score(self, X, y):
         """Compute out-of-bag scores"""
         X = check_array(X, dtype=DTYPE, accept_sparse='csr',
-                        allow_nan = self._allow_nan)
+                        allow_nan=self._allow_nan)
 
         n_samples = y.shape[0]
 
@@ -1641,7 +1642,7 @@ class RandomTreesEmbedding(BaseForest):
         self.fit_transform(X, y, sample_weight=sample_weight)
         return self
 
-    def fit_transform(self, X, y=None, sample_weight=None, missing_mask=None):
+    def fit_transform(self, X, y=None, sample_weight=None):
         """Fit estimator and transform dataset.
 
         Parameters
@@ -1667,14 +1668,12 @@ class RandomTreesEmbedding(BaseForest):
         rnd = check_random_state(self.random_state)
         y = rnd.uniform(size=X.shape[0])
         super(RandomTreesEmbedding, self).fit(X, y,
-                                              sample_weight=sample_weight,
-                                              missing_mask=missing_mask)
+                                              sample_weight=sample_weight)
 
         self.one_hot_encoder_ = OneHotEncoder(sparse=self.sparse_output)
-        return self.one_hot_encoder_.fit_transform(
-            self.apply(X, missing_mask=missing_mask))
+        return self.one_hot_encoder_.fit_transform(self.apply(X))
 
-    def transform(self, X, missing_mask=None):
+    def transform(self, X):
         """Transform dataset.
 
         Parameters
@@ -1689,5 +1688,4 @@ class RandomTreesEmbedding(BaseForest):
         X_transformed : sparse matrix, shape=(n_samples, n_out)
             Transformed dataset.
         """
-        return self.one_hot_encoder_.transform(
-            self.apply(X, missing_mask=missing_mask))
+        return self.one_hot_encoder_.transform(self.apply(X))

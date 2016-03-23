@@ -304,13 +304,15 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
 
     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
                   SIZE_t min_samples_leaf,  min_weight_leaf,
-                  SIZE_t max_depth, SIZE_t max_leaf_nodes):
+                  SIZE_t max_depth, SIZE_t max_leaf_nodes,
+                  bint allow_missing):
         self.splitter = splitter
         self.min_samples_split = min_samples_split
         self.min_samples_leaf = min_samples_leaf
         self.min_weight_leaf = min_weight_leaf
         self.max_depth = max_depth
         self.max_leaf_nodes = max_leaf_nodes
+        self.allow_missing = allow_missing
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=None,
@@ -761,15 +763,15 @@ cdef class Tree:
 
         return node_id
 
-    cpdef np.ndarray predict(self, object X, np.ndarray missing_mask):
+    cpdef np.ndarray predict(self, object X, np.ndarray missing_mask=None):
         """Predict target for X."""
-        out = self._get_value_ndarray().take(self.apply(X, missing_mask), axis=0,
-                                             mode='clip')
+        out = self._get_value_ndarray().take(self.apply(X, missing_mask),
+                                             axis=0, mode='clip')
         if self.n_outputs == 1:
             out = out.reshape(X.shape[0], self.max_n_classes)
         return out
 
-    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask):
+    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask=None):
         """Finds the terminal region (=leaf node) for each sample in X."""
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):
@@ -812,6 +814,8 @@ cdef class Tree:
 
         cdef bint allow_missing = <bint>self.allow_missing
 
+        # If allow_missing is True, the missing_mask should be specified.
+        # Either at the higher level
         if allow_missing:
             # Extract the missing mask
             missing_mask_ptr = <BOOL_t*> missing_mask.data
@@ -944,7 +948,7 @@ cdef class Tree:
 
         return out
 
-    cpdef object decision_path(self, object X, np.ndarray missing_mask):
+    cpdef object decision_path(self, object X, np.ndarray missing_mask=None):
         """Finds the decision path (=node) for each sample in X."""
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):
@@ -953,7 +957,7 @@ cdef class Tree:
             return self._decision_path_dense(X, missing_mask)
 
     cdef inline object _decision_path_dense(self, object X,
-                                            np.ndarray missing_mask):
+                                            np.ndarray missing_mask=None):
         """Finds the decision path (=node) for each sample in X."""
 
         # Check input
@@ -1037,7 +1041,8 @@ cdef class Tree:
 
         return out
 
-    cdef inline object _decision_path_sparse_csr(self, object X):
+    cdef inline object _decision_path_sparse_csr(self, object X,
+                                                 np.ndarray missing_mask):
         """Finds the decision path (=node) for each sample in X."""
 
         # Check input
