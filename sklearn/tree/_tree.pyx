@@ -462,7 +462,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
                                  else _TREE_UNDEFINED,
                                  is_left, is_leaf,
                                  split.feature, split.threshold, impurity, n_node_samples,
-                                 weighted_n_node_samples, MISSING_DIR_UNDEF)
+                                 weighted_n_node_samples, split.missing_direction)
         if node_id == <SIZE_t>(-1):
             return -1
 
@@ -805,54 +805,42 @@ cdef class Tree:
         cdef Node* node = NULL
         cdef SIZE_t i = 0
 
-        cdef BOOL_t* missing_mask_ptr
-        cdef SIZE_t missing_mask_fx_stride
-        cdef UINT32_t* random_state
-        cdef int temp
+        # To handle missing values
+        cdef BOOL_t* missing_mask_ptr = NULL
+        cdef SIZE_t missing_mask_fx_stride = 0
+        cdef UINT32_t* random_state = 0
 
-        if not self.allow_missing:
-            with nogil:
-                for i in range(n_samples):
-                    node = self.nodes
-                    # While node not a leaf
-                    while node.left_child != _TREE_LEAF:
-                        # ... and node.right_child != _TREE_LEAF:
-                        if X_ptr[X_sample_stride * i +
-                                 X_fx_stride * node.feature] <= node.threshold:
-                            node = &self.nodes[node.left_child]
-                        else:
-                            node = &self.nodes[node.right_child]
+        cdef bint allow_missing = <bint>self.allow_missing
 
-                    out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
-        else:
+        if allow_missing:
             # Extract the missing mask
             missing_mask_ptr = <BOOL_t*> missing_mask.data
             missing_mask_fx_stride = <SIZE_t> missing_mask.strides[1] / <SIZE_t> missing_mask.itemsize
             random_state = &self.rand_r_state
-            with nogil:
-                for i in range(n_samples):
-                    node = self.nodes
-                    # While node not a leaf
-                    while node.left_child != _TREE_LEAF:
-                        # ... and node.right_child != _TREE_LEAF:
-                        if missing_mask_ptr[i + missing_mask_fx_stride * node.feature] == 1:
-                            if node.missing_direction == MISSING_DIR_UNDEF:
-                                # Send to either right or left randomly
-                                temp = rand_int(0, 2, random_state)
-                                node = &self.nodes[node.left_child
-                                                   if temp
-                                                   else node.right_child]
-                            elif node.missing_direction == MISSING_DIR_RIGHT:
-                                node = &self.nodes[node.right_child]
-                            else:
-                                node = &self.nodes[node.left_child]
-                        elif X_ptr[X_sample_stride * i +
-                                 X_fx_stride * node.feature] <= node.threshold:
-                            node = &self.nodes[node.left_child]
-                        else:
-                            node = &self.nodes[node.right_child]
 
-                    out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
+        with nogil:
+            for i in range(n_samples):
+                node = self.nodes
+                # While node not a leaf
+                while node.left_child != _TREE_LEAF:
+                    # ... and node.right_child != _TREE_LEAF:
+                    if allow_missing and missing_mask_ptr[i + missing_mask_fx_stride * node.feature] == 1:
+                        if node.missing_direction == MISSING_DIR_UNDEF:
+                            # Send to either right or left randomly
+                            node = &self.nodes[node.left_child
+                                               if rand_int(0, 2, random_state)
+                                               else node.right_child]
+                        elif node.missing_direction == MISSING_DIR_RIGHT:
+                            node = &self.nodes[node.right_child]
+                        else:
+                            node = &self.nodes[node.left_child]
+                    elif X_ptr[X_sample_stride * i +
+                             X_fx_stride * node.feature] <= node.threshold:
+                        node = &self.nodes[node.left_child]
+                    else:
+                        node = &self.nodes[node.right_child]
+
+                out_ptr[i] = <SIZE_t>(node - self.nodes)  # node offset
 
         return out
 
@@ -887,6 +875,7 @@ cdef class Tree:
 
         # Initialize auxiliary data-structure
         cdef DTYPE_t feature_value = 0.
+        cdef bint allow_missing = <bint>self.allow_missing
         cdef Node* node = NULL
         cdef DTYPE_t* X_sample = NULL
         cdef SIZE_t i = 0
@@ -899,6 +888,19 @@ cdef class Tree:
 
         safe_realloc(&X_sample, n_features * sizeof(DTYPE_t))
         safe_realloc(&feature_to_sample, n_features * sizeof(SIZE_t))
+
+        # To handle missing values
+        cdef BOOL_t* missing_mask_ptr = NULL
+        cdef SIZE_t missing_mask_fx_stride = 0
+        cdef UINT32_t* random_state = 0
+
+        cdef bint allow_missing = <bint>self.allow_missing
+
+        if allow_missing:
+            # Extract the missing mask
+            missing_mask_ptr = <BOOL_t*> missing_mask.data
+            missing_mask_fx_stride = <SIZE_t> missing_mask.strides[1] / <SIZE_t> missing_mask.itemsize
+            random_state = &self.rand_r_state
 
         with nogil:
             memset(feature_to_sample, -1, n_features * sizeof(SIZE_t))
@@ -915,11 +917,21 @@ cdef class Tree:
                     # ... and node.right_child != _TREE_LEAF:
                     if feature_to_sample[node.feature] == i:
                         feature_value = X_sample[node.feature]
-
                     else:
                         feature_value = 0.
 
-                    if feature_value <= node.threshold:
+                    if allow_missing and missing_mask_ptr[i + missing_mask_fx_stride * node.feature]:
+                        if node.missing_direction == MISSING_DIR_UNDEF:
+                            # Send to either right or left randomly
+                            node = &self.nodes[node.left_child
+                                               if rand_int(0, 2, random_state)
+                                               else node.right_child]
+                        elif node.missing_direction == MISSING_DIR_RIGHT:
+                            node = &self.nodes[node.right_child]
+                        else:
+                            node = &self.nodes[node.left_child]
+
+                    elif feature_value <= node.threshold:
                         node = &self.nodes[node.left_child]
                     else:
                         node = &self.nodes[node.right_child]
@@ -932,15 +944,16 @@ cdef class Tree:
 
         return out
 
-    cpdef object decision_path(self, object X):
+    cpdef object decision_path(self, object X, np.ndarray missing_mask):
         """Finds the decision path (=node) for each sample in X."""
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):
-            return self._decision_path_sparse_csr(X)
+            return self._decision_path_sparse_csr(X, missing_mask)
         else:
-            return self._decision_path_dense(X)
+            return self._decision_path_dense(X, missing_mask)
 
-    cdef inline object _decision_path_dense(self, object X):
+    cdef inline object _decision_path_dense(self, object X,
+                                            np.ndarray missing_mask):
         """Finds the decision path (=node) for each sample in X."""
 
         # Check input
@@ -971,6 +984,19 @@ cdef class Tree:
         cdef Node* node = NULL
         cdef SIZE_t i = 0
 
+        # To handle missing values
+        cdef BOOL_t* missing_mask_ptr = NULL
+        cdef SIZE_t missing_mask_fx_stride = 0
+        cdef UINT32_t* random_state = 0
+
+        cdef bint allow_missing = <bint>self.allow_missing
+
+        if allow_missing:
+            # Extract the missing mask
+            missing_mask_ptr = <BOOL_t*> missing_mask.data
+            missing_mask_fx_stride = <SIZE_t> missing_mask.strides[1] / <SIZE_t> missing_mask.itemsize
+            random_state = &self.rand_r_state
+
         with nogil:
             for i in range(n_samples):
                 node = self.nodes
@@ -982,7 +1008,18 @@ cdef class Tree:
                     indices_ptr[indptr_ptr[i + 1]] = <SIZE_t>(node - self.nodes)
                     indptr_ptr[i + 1] += 1
 
-                    if X_ptr[X_sample_stride * i +
+                    if allow_missing and missing_mask_ptr[i + missing_mask_fx_stride * node.feature]:
+                        if node.missing_direction == MISSING_DIR_UNDEF:
+                            # Send to either right or left randomly
+                            node = &self.nodes[node.left_child
+                                               if rand_int(0, 2, random_state)
+                                               else node.right_child]
+                        elif node.missing_direction == MISSING_DIR_RIGHT:
+                            node = &self.nodes[node.right_child]
+                        else:
+                            node = &self.nodes[node.left_child]
+
+                    elif X_ptr[X_sample_stride * i +
                              X_fx_stride * node.feature] <= node.threshold:
                         node = &self.nodes[node.left_child]
                     else:
@@ -1047,6 +1084,19 @@ cdef class Tree:
         safe_realloc(&X_sample, n_features * sizeof(DTYPE_t))
         safe_realloc(&feature_to_sample, n_features * sizeof(SIZE_t))
 
+        # To handle missing values
+        cdef BOOL_t* missing_mask_ptr = NULL
+        cdef SIZE_t missing_mask_fx_stride = 0
+        cdef UINT32_t* random_state = 0
+
+        cdef bint allow_missing = <bint>self.allow_missing
+
+        if allow_missing:
+            # Extract the missing mask
+            missing_mask_ptr = <BOOL_t*> missing_mask.data
+            missing_mask_fx_stride = <SIZE_t> missing_mask.strides[1] / <SIZE_t> missing_mask.itemsize
+            random_state = &self.rand_r_state
+
         with nogil:
             memset(feature_to_sample, -1, n_features * sizeof(SIZE_t))
 
@@ -1067,11 +1117,21 @@ cdef class Tree:
 
                     if feature_to_sample[node.feature] == i:
                         feature_value = X_sample[node.feature]
-
                     else:
                         feature_value = 0.
 
-                    if feature_value <= node.threshold:
+                    if allow_missing and missing_mask_ptr[i + missing_mask_fx_stride * node.feature]:
+                        if node.missing_direction == MISSING_DIR_UNDEF:
+                            # Send to either right or left randomly
+                            node = &self.nodes[node.left_child
+                                               if rand_int(0, 2, random_state)
+                                               else node.right_child]
+                        elif node.missing_direction == MISSING_DIR_RIGHT:
+                            node = &self.nodes[node.right_child]
+                        else:
+                            node = &self.nodes[node.left_child]
+
+                    elif feature_value <= node.threshold:
                         node = &self.nodes[node.left_child]
                     else:
                         node = &self.nodes[node.right_child]
