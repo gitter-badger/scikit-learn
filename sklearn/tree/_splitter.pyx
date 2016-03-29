@@ -1075,7 +1075,7 @@ cdef class BaseSparseSplitter(Splitter):
 
     def __cinit__(self, Criterion criterion, SIZE_t max_features,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
-                  object random_state, bint presort):
+                  object random_state, bint presort, bint allow_missing):
         # Parent __cinit__ is automatically called
 
         self.X_data = NULL

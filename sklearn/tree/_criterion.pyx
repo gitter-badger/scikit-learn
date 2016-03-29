@@ -927,7 +927,8 @@ cdef class RegressionCriterion(Criterion):
 
     cdef double sq_sum_total
 
-    def __cinit__(self, SIZE_t n_outputs):
+    def __cinit__(self, SIZE_t n_outputs,
+                  bint allow_missing=False):
         """Initialize parameters for this criterion.
 
         Parameters
