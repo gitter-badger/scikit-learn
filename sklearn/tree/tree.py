@@ -472,7 +472,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
 
         X = self._validate_X_predict(X, check_input)
         missing_mask = self._validate_missing_mask(X, missing_mask)
-        proba = self.tree_.predict(X, missing_mask)
+        proba = self.tree_.predict(X, missing_mask=missing_mask)
         n_samples = X.shape[0]
 
         # Classification
@@ -525,9 +525,9 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         """
         X = self._validate_X_predict(X, check_input)
         missing_mask = self._validate_missing_mask(X, missing_mask)
-        return self.tree_.apply(X, missing_mask)
+        return self.tree_.apply(X, missing_mask=missing_mask)
 
-    def decision_path(self, X, check_input=True, missing_mask=None):
+    def decision_path(self, X, missing_mask=None, check_input=True):
         """Return the decision path in the tree
 
         Parameters
@@ -550,7 +550,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         """
         X = self._validate_X_predict(X, check_input)
         missing_mask = self._validate_missing_mask(X, missing_mask)
-        return self.tree_.decision_path(X, missing_mask)
+        return self.tree_.decision_path(X, missing_mask=missing_mask)
 
     @property
     def feature_importances_(self):
@@ -760,7 +760,7 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
             presort=presort,
             missing_values=missing_values)
 
-    def predict_proba(self, X, check_input=True, missing_mask=None):
+    def predict_proba(self, X, missing_mask=None, check_input=True):
         """Predict class probabilities of the input samples X.
 
         The predicted class probability is the fraction of samples of the same
@@ -825,7 +825,7 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
             The class log-probabilities of the input samples. The order of the
             classes corresponds to that in the attribute `classes_`.
         """
-        proba = self.predict_proba(X, missing_mask)
+        proba = self.predict_proba(X, missing_mask=missing_mask)
 
         if self.n_outputs_ == 1:
             return np.log(proba)

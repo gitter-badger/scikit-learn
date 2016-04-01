@@ -633,9 +633,13 @@ cdef class Tree:
 
     def __reduce__(self):
         """Reduce re-implementation, for pickling."""
-        return (Tree, (self.n_features,
-                       sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
-                       self.n_outputs), self.__getstate__())
+        return (Tree,
+                (self.n_features,
+                 sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
+                 self.n_outputs,
+                 self.allow_missing,
+                 self.random_state),
+                self.__getstate__())
 
     def __getstate__(self):
         """Getstate re-implementation, for pickling."""
@@ -765,7 +769,8 @@ cdef class Tree:
 
     cpdef np.ndarray predict(self, object X, np.ndarray missing_mask):
         """Predict target for X."""
-        out = self._get_value_ndarray().take(self.apply(X, missing_mask),
+        out = self._get_value_ndarray().take(self.apply(
+                                                 X, missing_mask=missing_mask),
                                              axis=0, mode='clip')
         if self.n_outputs == 1:
             out = out.reshape(X.shape[0], self.max_n_classes)
@@ -775,9 +780,9 @@ cdef class Tree:
         """Finds the terminal region (=leaf node) for each sample in X."""
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):
-            return self._apply_sparse_csr(X, missing_mask)
+            return self._apply_sparse_csr(X, missing_mask=missing_mask)
         else:
-            return self._apply_dense(X, missing_mask)
+            return self._apply_dense(X, missing_mask=missing_mask)
 
     cdef inline np.ndarray _apply_dense(self, object X,
                                         np.ndarray missing_mask):

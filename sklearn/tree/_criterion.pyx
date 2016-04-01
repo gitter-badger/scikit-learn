@@ -347,7 +347,8 @@ cdef class ClassificationCriterion(Criterion):
     def __reduce__(self):
         return (ClassificationCriterion,
                 (self.n_outputs,
-                 sizet_ptr_to_ndarray(self.n_classes, self.n_outputs)),
+                 sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
+                 self.allow_missing),
                 self.__getstate__())
 
     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride,
@@ -972,7 +973,9 @@ cdef class RegressionCriterion(Criterion):
             raise MemoryError()
 
     def __reduce__(self):
-        return (RegressionCriterion, (self.n_outputs,), self.__getstate__())
+        return (RegressionCriterion,
+                (self.n_outputs, self.allow_missing),
+                self.__getstate__())
 
     cdef void init(self, DOUBLE_t* y, SIZE_t y_stride, DOUBLE_t* sample_weight,
                    double weighted_n_samples, SIZE_t* samples, SIZE_t start,

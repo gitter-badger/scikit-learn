@@ -313,7 +313,8 @@ cdef class BestSplitter(BaseDenseSplitter):
                                self.min_samples_leaf,
                                self.min_weight_leaf,
                                self.random_state,
-                               self.presort), self.__getstate__())
+                               self.presort,
+                               self.allow_missing), self.__getstate__())
 
     cdef void node_split(self, double impurity, SplitRecord* split,
                          SIZE_t* n_constant_features) nogil:
@@ -856,7 +857,8 @@ cdef class RandomSplitter(BaseDenseSplitter):
                                  self.min_samples_leaf,
                                  self.min_weight_leaf,
                                  self.random_state,
-                                 self.presort), self.__getstate__())
+                                 self.presort,
+                                 self.allow_missing), self.__getstate__())
 
     cdef void node_split(self, double impurity, SplitRecord* split,
                          SIZE_t* n_constant_features) nogil:
@@ -1392,7 +1394,8 @@ cdef class BestSparseSplitter(BaseSparseSplitter):
                                      self.min_samples_leaf,
                                      self.min_weight_leaf,
                                      self.random_state,
-                                     self.presort), self.__getstate__())
+                                     self.presort,
+                                     self.allow_missing), self.__getstate__())
 
     cdef void node_split(self, double impurity, SplitRecord* split,
                          SIZE_t* n_constant_features) nogil:
@@ -1619,7 +1622,8 @@ cdef class RandomSparseSplitter(BaseSparseSplitter):
                                        self.min_samples_leaf,
                                        self.min_weight_leaf,
                                        self.random_state,
-                                       self.presort), self.__getstate__())
+                                       self.presort,
+                                       self.allow_missing), self.__getstate__())
 
     cdef void node_split(self, double impurity, SplitRecord* split,
                          SIZE_t* n_constant_features) nogil:
