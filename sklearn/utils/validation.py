@@ -65,7 +65,7 @@ def _assert_all_finite(X, allow_nan):
                          "%r." % ("" if allow_nan else "NaN, ", X.dtype))
 
 
-def assert_all_finite(X, allow_nan):
+def assert_all_finite(X, allow_nan=False):
     """Throw a ValueError if X contains infinity or NaN (if allow_nan is False)
 
     Input MUST be an np.ndarray instance or a scipy.sparse matrix."""

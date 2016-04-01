@@ -156,6 +156,22 @@ class BaseForest(six.with_metaclass(ABCMeta, BaseEnsemble,
         self.verbose = verbose
         self.warm_start = warm_start
         self.class_weight = class_weight
+        self.allow_missing = missing_values is not None
+
+        # If missing values is int/None
+        self._allow_nan = False
+        self.missing_values = missing_values
+
+        if self.allow_missing:
+            if ((isinstance(missing_values, str) and
+                        missing_values.strip().lower() == "nan") or
+                    (isinstance(missing_values, np.float) and
+                        np.isnan(missing_values))):
+                self._allow_nan = True
+                self.missing_values = np.nan
+            elif not isinstance(missing_values, int):
+                raise ValueError("missing_values should be 'NaN' or int. "
+                                 "Got %s" % missing_values)
 
 
     def apply(self, X):
@@ -431,6 +447,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
 
     def _set_oob_score(self, X, y, missing_mask=None):
         """Compute out-of-bag score"""
+        # SELFNOTE why?
         X = check_array(X, dtype=DTYPE, accept_sparse='csr',
                         allow_nan=self._allow_nan)
         # XXX Do we need to validate here?
@@ -628,7 +645,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
 
         return proba
 
-    def predict_log_proba(self, X, missing_mask):
+    def predict_log_proba(self, X):
         """Predict class log-probabilities for X.
 
         The predicted class log-probabilities of an input sample is computed as
@@ -649,7 +666,7 @@ class ForestClassifier(six.with_metaclass(ABCMeta, BaseForest,
             The class probabilities of the input samples. The order of the
             classes corresponds to that in the attribute `classes_`.
         """
-        proba = self.predict_proba(X, missing_mask)
+        proba = self.predict_proba(X)
 
         if self.n_outputs_ == 1:
             return np.log(proba)
@@ -727,7 +744,7 @@ class ForestRegressor(six.with_metaclass(ABCMeta, BaseForest, RegressorMixin)):
 
         return y_hat
 
-    def _set_oob_score(self, X, y):
+    def _set_oob_score(self, X, y, missing_mask=None):
         """Compute out-of-bag scores"""
         X = check_array(X, dtype=DTYPE, accept_sparse='csr',
                         allow_nan=self._allow_nan)
@@ -741,7 +758,9 @@ class ForestRegressor(six.with_metaclass(ABCMeta, BaseForest, RegressorMixin)):
             unsampled_indices = _generate_unsampled_indices(
                 estimator.random_state, n_samples)
             p_estimator = estimator.predict(
-                X[unsampled_indices, :], check_input=False)
+                X[unsampled_indices, :],
+                missing_mask=None,
+                check_input=False)
 
             if self.n_outputs_ == 1:
                 p_estimator = p_estimator[:, np.newaxis]
@@ -965,22 +984,6 @@ class RandomForestClassifier(ForestClassifier):
         self.min_weight_fraction_leaf = min_weight_fraction_leaf
         self.max_features = max_features
         self.max_leaf_nodes = max_leaf_nodes
-        self.allow_missing = missing_values is not None
-
-        # If missing values is int/None
-        self._allow_nan = False
-        self.missing_values = missing_values
-
-        if self.allow_missing:
-            if ((isinstance(missing_values, str) and
-                        missing_values.strip().lower() == "nan") or
-                    (isinstance(missing_values, np.float) and
-                        np.isnan(missing_values))):
-                self._allow_nan = True
-                self.missing_values = np.nan
-            elif not isinstance(missing_values, int):
-                raise ValueError("missing_values should be 'NaN' or int. "
-                                 "Got %s" % missing_values)
 
 class RandomForestRegressor(ForestRegressor):
     """A random forest regressor.
