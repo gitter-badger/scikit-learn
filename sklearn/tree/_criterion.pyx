@@ -483,7 +483,7 @@ cdef class ClassificationCriterion(Criterion):
             offset = k * self.sum_stride
             for c in range(n_classes[k]):
                 i = c + offset
-                sum_available[c] = sum_total[c] - sum_missing[c]
+                sum_available[i] = sum_total[i] - sum_missing[i]
         self.weighted_n_node_available = self.weighted_n_node_samples - self.weighted_n_node_missing
 
     cdef void reset(self) nogil:
