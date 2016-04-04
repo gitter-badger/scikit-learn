@@ -767,7 +767,7 @@ cdef class Tree:
 
         return node_id
 
-    cpdef np.ndarray predict(self, object X, np.ndarray missing_mask):
+    cpdef np.ndarray predict(self, object X, np.ndarray missing_mask=None):
         """Predict target for X."""
         out = self._get_value_ndarray().take(self.apply(
                                                  X, missing_mask=missing_mask),
@@ -776,7 +776,7 @@ cdef class Tree:
             out = out.reshape(X.shape[0], self.max_n_classes)
         return out
 
-    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask):
+    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask=None):
         """Finds the terminal region (=leaf node) for each sample in X."""
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):
@@ -950,7 +950,7 @@ cdef class Tree:
 
         return out
 
-    cpdef object decision_path(self, object X, np.ndarray missing_mask):
+    cpdef object decision_path(self, object X, np.ndarray missing_mask=None):
         """Finds the decision path (=node) for each sample in X."""
         self.rand_r_state = self.random_state.randint(0, RAND_R_MAX)
         if issparse(X):

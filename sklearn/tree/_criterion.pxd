@@ -69,12 +69,10 @@ cdef class Criterion:
                    double weighted_n_samples, SIZE_t* samples, SIZE_t start,
                    SIZE_t end) nogil
     cdef void init_missing(self, SIZE_t n_missing) nogil
-    cdef void reset(self) nogil
-    cdef void reset_without_missing(self) nogil
-    cdef void reverse_reset(self) nogil
-    cdef void reverse_reset_without_missing(self) nogil
+    cdef void reset(self, bint include_missing=*) nogil
+    cdef void reverse_reset(self, bint include_missing=*) nogil
     cdef void update(self, SIZE_t new_pos) nogil
-    cdef void update_missing_direction(self, SIZE_t new_dir) nogil
+    cdef void move_missing_left(self) nogil
     cdef double node_impurity(self) nogil
     cdef void children_impurity(self, double* impurity_left,
                                 double* impurity_right) nogil

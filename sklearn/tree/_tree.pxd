@@ -73,11 +73,11 @@ cdef class Tree:
 
     cpdef np.ndarray predict(self, object X, np.ndarray missing_mask=*)
 
-    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask)
+    cpdef np.ndarray apply(self, object X, np.ndarray missing_mask=*)
     cdef np.ndarray _apply_dense(self, object X, np.ndarray missing_mask)
     cdef np.ndarray _apply_sparse_csr(self, object X, np.ndarray missing_mask)
 
-    cpdef object decision_path(self, object X, np.ndarray missing_mask)
+    cpdef object decision_path(self, object X, np.ndarray missing_mask=*)
     cdef object _decision_path_dense(self, object X, np.ndarray missing_mask)
     cdef object _decision_path_sparse_csr(self, object X, np.ndarray missing_mask)
 

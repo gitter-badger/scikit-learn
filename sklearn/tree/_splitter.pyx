@@ -588,7 +588,7 @@ cdef class BestSplitter(BaseDenseSplitter):
                             # (where all the available values remain at the left partition)
                             # (We need to reverse reset to get this partition
                             # as criterion does not update beyond the last sample)
-                            self.criterion.reverse_reset_without_missing()
+                            self.criterion.reverse_reset(include_missing=False)
                             current_proxy_improvement = self.criterion.proxy_impurity_improvement()
 
                             # Now check if it satisfies the stopping criterion
@@ -615,8 +615,8 @@ cdef class BestSplitter(BaseDenseSplitter):
                             # indices are stored at the end in the `samples`, irrespective of the
                             # missing_direction
                             pos_missing_offset = n_missing
-                            self.criterion.reset_without_missing()
-                            self.criterion.update_missing_direction(MISSING_DIR_LEFT)
+                            self.criterion.reset(include_missing=False)
+                            self.criterion.move_missing_left()
                             current.missing_direction = MISSING_DIR_LEFT
 
 

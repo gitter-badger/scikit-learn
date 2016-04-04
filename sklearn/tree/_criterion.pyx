@@ -96,31 +96,20 @@ cdef class Criterion:
 
         pass
 
-    cdef void reset(self) nogil:
+    cdef void reset(self, bint include_missing=True) nogil:
         """Reset the criterion at pos=start.
 
-        This method must be implemented by the subclass.
-        """
-
-        pass
-
-    cdef void reset_without_missing(self) nogil:
-        """Reset the criterion at pos=start. Leave the missing samples unaffected.
+        Move the missing values also to the right if include_missing is True.
 
         This method must be implemented by the subclass.
         """
 
         pass
 
-    cdef void reverse_reset(self) nogil:
+    cdef void reverse_reset(self, bint include_missing=True) nogil:
         """Reset the criterion at pos=end(-n_missing).
 
-        This method must be implemented by the subclass.
-        """
-        pass
-
-    cdef void reverse_reset_without_missing(self) nogil:
-        """Reset the criterion at pos=end. Leave the missing samples unaffected.
+        Move the missing values also to the left if include_missing is True.
 
         This method must be implemented by the subclass.
         """
@@ -143,21 +132,11 @@ cdef class Criterion:
 
         pass
 
-    cdef void update_missing_direction(self, SIZE_t new_dir) nogil:
-        """Updated statistics by changing the missing_direction as specified.
+    cdef void move_missing_left(self) nogil:
+        """Updated statistics by changing the missing_direction to the left.
 
         The missing values (samples[end-missing-1:n_missing]) are moved to
-        the direction as specified by new_dir. It must be implemented by
-        the subclass.
-
-        Parameters
-        ----------
-        new_dir: SIZE_t
-            The direction for sending the missing values.
-
-            0 (MISSING_DIR_LEFT) To send the misisng direction to the left partition
-            1 (MISSING_DIR_RIGHT) To send the misisng direction to the right partition
-            (2 (MISSING_DIR_UNDEF) To denote that missing values are not present)
+        left from right. It must be implemented by the subclass.
         """
 
         pass
@@ -487,114 +466,96 @@ cdef class ClassificationCriterion(Criterion):
                 sum_available[i] = sum_total[i] - sum_missing[i]
         self.weighted_n_node_available = self.weighted_n_node_samples - self.weighted_n_node_missing
 
-    cdef void reset(self) nogil:
-        """Reset the criterion at pos=start. Move the missing values also to the right"""
+    cdef void reset(self, bint include_missing=True) nogil:
+        """Reset the criterion at pos=start. 
 
-        self.pos = self.start
-
-        self.weighted_n_left = 0.0
-        self.weighted_n_right = self.weighted_n_node_samples
-
+        Move the missing values also to the right, if include_missing is True.
+        """
         cdef double* sum_total = self.sum_total
         cdef double* sum_left = self.sum_left
         cdef double* sum_right = self.sum_right
-
-        cdef SIZE_t* n_classes = self.n_classes
-        cdef SIZE_t k
-
-        for k in range(self.n_outputs):
-            memset(sum_left, 0, n_classes[k] * sizeof(double))
-            memcpy(sum_right, sum_total, n_classes[k] * sizeof(double))
-
-            sum_total += self.sum_stride
-            sum_left += self.sum_stride
-            sum_right += self.sum_stride
-
-    cdef void reset_without_missing(self) nogil:
-        """Reset the criterion at pos=start. Leave the missing unaffected."""
-
-        # When missing_direction is RIGHT or n_missing is 0, use reset instead
-        if self.missing_direction != MISSING_DIR_LEFT:
-            # SELFNOTE return self.reset()?
-            self.reset()
-            return
-
-        # If missing alone must be kept at the left
-        self.pos = self.start
-
-        self.weighted_n_left = self.weighted_n_node_missing
-        self.weighted_n_right = self.weighted_n_node_available
-
         cdef double* sum_missing = self.sum_missing
         cdef double* sum_available = self.sum_available
-        cdef double* sum_left = self.sum_left
-        cdef double* sum_right = self.sum_right
 
         cdef SIZE_t* n_classes = self.n_classes
         cdef SIZE_t k
 
-        for k in range(self.n_outputs):
-            memcpy(sum_left, sum_missing, n_classes[k] * sizeof(double))
-            memcpy(sum_right, sum_available, n_classes[k] * sizeof(double))
+        self.pos = self.start
 
-            sum_missing += self.sum_stride
-            sum_available += self.sum_stride
-            sum_left += self.sum_stride
-            sum_right += self.sum_stride
+        # If missing values are to be sent to right or already in the right
+        if include_missing or (self.missing_direction != MISSING_DIR_LEFT):
+            self.weighted_n_left = 0.0
+            self.weighted_n_right = self.weighted_n_node_samples
 
-    cdef void reverse_reset(self) nogil:
+            for k in range(self.n_outputs):
+                # Move everything from left to the right partition
+                memset(sum_left, 0, n_classes[k] * sizeof(double))
+                memcpy(sum_right, sum_total, n_classes[k] * sizeof(double))
+
+                sum_total += self.sum_stride
+                sum_left += self.sum_stride
+                sum_right += self.sum_stride
+
+        # If the missing values are not to be moved from left to right
+        else:
+            self.weighted_n_left = self.weighted_n_node_missing
+            self.weighted_n_right = self.weighted_n_node_available
+
+            for k in range(self.n_outputs):
+                # Retain missing at the left partition
+                memcpy(sum_left, sum_missing, n_classes[k] * sizeof(double))
+                # Move the rest to the right partition
+                memcpy(sum_right, sum_available, n_classes[k] * sizeof(double))
+
+                sum_missing += self.sum_stride
+                sum_available += self.sum_stride
+                sum_left += self.sum_stride
+                sum_right += self.sum_stride
+
+    cdef void reverse_reset(self, bint include_missing=True) nogil:
         """Reset the criterion at pos=end. Move the missing values also to the left"""
-        self.pos = self.end
-
-        self.weighted_n_left = self.weighted_n_node_samples
-        self.weighted_n_right = 0.0
 
         cdef double* sum_total = self.sum_total
         cdef double* sum_left = self.sum_left
         cdef double* sum_right = self.sum_right
-
-        cdef SIZE_t* n_classes = self.n_classes
-        cdef SIZE_t k
-
-        for k in range(self.n_outputs):
-            memset(sum_right, 0, n_classes[k] * sizeof(double))
-            memcpy(sum_left, sum_total, n_classes[k] * sizeof(double))
-
-            sum_total += self.sum_stride
-            sum_left += self.sum_stride
-            sum_right += self.sum_stride
-
-    cdef void reverse_reset_without_missing(self) nogil:
-        """Reset the criterion at pos=start. Leave the missing unaffected."""
-
-        # When missing_direction is LEFT or n_missing is 0, use reverse_reset
-        if self.missing_direction != MISSING_DIR_RIGHT:
-            # SELFNOTE return self.reverse_reset()?
-            self.reverse_reset()
-            return
-
-        # If missing alone must be kept at the right
-        self.pos = self.end
-
-        self.weighted_n_left = self.weighted_n_node_available
-        self.weighted_n_right = self.weighted_n_node_missing
-
         cdef double* sum_missing = self.sum_missing
         cdef double* sum_available = self.sum_available
-        cdef double* sum_left = self.sum_left
-        cdef double* sum_right = self.sum_right
 
         cdef SIZE_t* n_classes = self.n_classes
         cdef SIZE_t k
 
-        for k in range(self.n_outputs):
-            memcpy(sum_left, sum_available, n_classes[k] * sizeof(double))
-            memcpy(sum_right, sum_missing, n_classes[k] * sizeof(double))
+        # The missing values are stored at the end irrespective of the
+        # direction of criterion.
+        self.pos = self.end - self.n_missing
 
-            sum_missing += self.sum_stride
-            sum_available += self.sum_stride
-            sum_left += self.sum_stride
-            sum_right += self.sum_stride
+        # If missing values are to be sent to left or already in the left
+        if include_missing or (self.missing_direction != MISSING_DIR_RIGHT):
+            self.weighted_n_left = self.weighted_n_node_samples
+            self.weighted_n_right = 0.0
+
+            for k in range(self.n_outputs):
+                memset(sum_right, 0, n_classes[k] * sizeof(double))
+                memcpy(sum_left, sum_total, n_classes[k] * sizeof(double))
+
+                sum_total += self.sum_stride
+                sum_left += self.sum_stride
+                sum_right += self.sum_stride
+
+        # If the missing values are not to be moved from right to left
+        else:
+            self.weighted_n_left = self.weighted_n_node_available
+            self.weighted_n_right = self.weighted_n_node_missing
+
+            for k in range(self.n_outputs):
+                # Retain missing at the right partition
+                memcpy(sum_right, sum_missing, n_classes[k] * sizeof(double))
+                # Move the rest to the left partition
+                memcpy(sum_left, sum_available, n_classes[k] * sizeof(double))
+
+                sum_missing += self.sum_stride
+                sum_available += self.sum_stride
+                sum_left += self.sum_stride
+                sum_right += self.sum_stride
 
     cdef void update(self, SIZE_t new_pos) nogil:
         """Updated statistics by moving samples[pos:new_pos] to the left child.
@@ -649,7 +610,7 @@ cdef class ClassificationCriterion(Criterion):
                 self.weighted_n_left += w
 
         else:
-            self.reverse_reset_without_missing()
+            self.reverse_reset(include_missing=False)
 
             for p in range(end_available - 1, new_pos - 1, -1):
                 i = samples[p]
@@ -676,20 +637,13 @@ cdef class ClassificationCriterion(Criterion):
 
         self.pos = new_pos
 
-    cdef void update_missing_direction(self, SIZE_t new_dir) nogil:
-        """Update statistics by moving missing samples to the given direction.
-
-        Parameters
-        ----------
-        new_dir: SIZE_t
-             The new direction for the missing samples.
-             Note that irrespective of the direction, the missing samples
-             remain at the end.
-        """
+    cdef void move_missing_left(self) nogil:
+        """Update statistics by moving missing samples to the left partition"""
         cdef SIZE_t old_dir = self.missing_direction
-        self.missing_direction = new_dir
+        self.missing_direction = MISSING_DIR_LEFT
         # TODO prevent updating the missing_direction if n_missing <= 0 ?
-        if old_dir == new_dir or self.n_missing <= 0:
+        # Or if already at left
+        if (old_dir == MISSING_DIR_LEFT) or self.n_missing <= 0:
             return
 
         cdef double* sum_missing = self.sum_missing
@@ -700,18 +654,17 @@ cdef class ClassificationCriterion(Criterion):
         cdef SIZE_t k
         cdef SIZE_t c
 
-        if new_dir == MISSING_DIR_LEFT:
-            # If missing must be moved from right to left
-            self.weighted_n_left += self.weighted_n_node_missing
-            self.weighted_n_right -= self.weighted_n_node_missing
+        # If missing must be moved from right to left
+        self.weighted_n_left += self.weighted_n_node_missing
+        self.weighted_n_right -= self.weighted_n_node_missing
 
-            for k in range(self.n_outputs):
-                for c in range(n_classes[k]):
-                    sum_left[c] += sum_missing[c]
-                    sum_right[c] -= sum_missing[c]
-                sum_missing += self.sum_stride
-                sum_left += self.sum_stride
-                sum_right += self.sum_stride
+        for k in range(self.n_outputs):
+            for c in range(n_classes[k]):
+                sum_left[c] += sum_missing[c]
+                sum_right[c] -= sum_missing[c]
+            sum_missing += self.sum_stride
+            sum_left += self.sum_stride
+            sum_right += self.sum_stride
 
     cdef double node_impurity(self) nogil:
         pass
@@ -1020,7 +973,7 @@ cdef class RegressionCriterion(Criterion):
         # Reset to pos=start
         self.reset()
 
-    cdef void reset(self) nogil:
+    cdef void reset(self, bint include_missing=True) nogil:
         """Reset the criterion at pos=start."""
         cdef SIZE_t n_bytes = self.n_outputs * sizeof(double)
         memset(self.sum_left, 0, n_bytes)
@@ -1030,7 +983,7 @@ cdef class RegressionCriterion(Criterion):
         self.weighted_n_right = self.weighted_n_node_samples
         self.pos = self.start
 
-    cdef void reverse_reset(self) nogil:
+    cdef void reverse_reset(self, bint include_missing=True) nogil:
         """Reset the criterion at pos=end."""
         cdef SIZE_t n_bytes = self.n_outputs * sizeof(double)
         memset(self.sum_right, 0, n_bytes)
@@ -1080,7 +1033,7 @@ cdef class RegressionCriterion(Criterion):
 
                 self.weighted_n_left += w
         else:
-            self.reverse_reset()
+            self.reverse_reset(include_missing=False)
 
             for p in range(end - 1, new_pos - 1, -1):
                 i = samples[p]
