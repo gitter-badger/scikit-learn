@@ -111,6 +111,8 @@ cdef class Splitter:
         self.presort = presort
 
         self.allow_missing = allow_missing
+        self.missing_mask = NULL
+        self.missing_mask_stride = 0
         self.n_missing = 0
 
     def __dealloc__(self):
@@ -345,13 +347,7 @@ cdef class BestSplitter(BaseDenseSplitter):
         cdef double best_proxy_improvement = -INFINITY
 
         cdef SIZE_t f_i = n_features
-        cdef SIZE_t f_j
-        cdef SIZE_t tmp
-        cdef SIZE_t p
-        cdef SIZE_t feature_idx_offset
-        cdef SIZE_t feature_offset
-        cdef SIZE_t i
-        cdef SIZE_t j
+        cdef SIZE_t f_j, tmp, p, feature_idx_offset, feature_offset, i, j
 
         cdef SIZE_t n_visited_features = 0
         # Number of features discovered to be constant during the split search
@@ -365,13 +361,9 @@ cdef class BestSplitter(BaseDenseSplitter):
         cdef SIZE_t partition_end
 
         # To handle missing
-        cdef SIZE_t missing_direction
-        cdef SIZE_t end_available
-        cdef SIZE_t start_available
-        cdef SIZE_t q
+        cdef SIZE_t missing_direction, end_available = end, start_available
+        cdef SIZE_t q, miss_mask_feat_offset, directions_to_check
         cdef SIZE_t n_missing = 0
-        cdef SIZE_t miss_mask_feat_offset
-        cdef SIZE_t directions_to_check
         cdef BOOL_t* missing_mask = self.missing_mask
         cdef SIZE_t pos_missing_offset = 0  # missing offset based on missing direction to help compute the stopping criteria correctly
 
@@ -379,6 +371,8 @@ cdef class BestSplitter(BaseDenseSplitter):
 
         if self.presort == 1:
             for p in range(start, end):
+                # To denote which ones are the samples from the current split
+                # that must be extracted from the sorted_idx_mask
                 sample_mask[samples[p]] = 1
 
         # Sample up to max_features without replacement using a
@@ -432,83 +426,40 @@ cdef class BestSplitter(BaseDenseSplitter):
                 # presorting, or by copying the values into an array and
                 # sorting the array in a manner which utilizes the cache more
                 # effectively.
+                p = start
                 n_missing = 0
-                if self.allow_missing:
-                    miss_mask_feat_offset = self.missing_mask_stride * current.feature
-                    p = start
-                    end_available = end
+                end_available = end
+                miss_mask_feat_offset = self.missing_mask_stride * current.feature
 
-                    if self.presort == 1:
-                        # TODO SELFNOTE XXX IMP test presort
-                        feature_idx_offset = self.X_idx_sorted_stride * current.feature
+                if self.presort == 1:
+                    feature_idx_offset = self.X_idx_sorted_stride * current.feature
 
-                        for i in range(self.n_total_samples):
-                            if p >= end_available:
-                                break
-                            j = X_idx_sorted[i + feature_idx_offset]
-                            if sample_mask[j] == 1:
-                                if missing_mask[j + miss_mask_feat_offset] == 0:
-                                    samples[p] = j
-                                    Xf[p] = X[self.X_sample_stride * j + feature_offset]
-                                    p += 1
-                                else:
-                                    end_available -= 1
-                                    # If missing store from the end
-                                    samples[end_available] = j
-                                    # Don't store the "missing value"
-                    else:  # If not self.presort
-                        # SELFNOTE Remove before merge
-                        #
-                        #   1st swap   ----------
-                        #   2nd swap   |  ----  |
-                        #              V  V  V  V
-                        # m_mask  = 0  1  1  0  0
-                        # samples = 4  5  6  8  9  .
-                        #           ^              ^
-                        #           p           e_av/end
-                        #
-                        # m_mask  = 0  0  0  1  1
-                        # samples = 4  9  8  6  5  .
-                        #                    ^     ^
-                        #                 e_av/p  end
-                        #
-                        # n_missing = end - end_available
-                        #
-                        # SELFNOTE If we refactor into helper, we can't
-                        # move in-place the missing values
-                        # in one pass without disturbing the sort order
-                        while p < end_available:
-                            j = samples[p]
-                            if missing_mask[j + miss_mask_feat_offset] == 0:
-                                Xf[p] = X[self.X_sample_stride * j + feature_offset]
-                                p += 1
-                            else:
-                                end_available -= 1
-                                samples[p] = samples[end_available]
-                                samples[end_available] = j
+                    # Filter the samples based on the samples_mask and move the
+                    # missing, if any to the end
+                    for i in range(self.n_total_samples):
+                        j = X_idx_sorted[i + feature_idx_offset]
+                        if sample_mask[j] == 1:
+                            samples[p] = j
+                            Xf[p] = X[self.X_sample_stride * j + feature_offset]
+                            p += 1
 
-                        sort(Xf + start, samples + start, end_available - start)
-                        if (p != end_available):
-                            pass
-                    n_missing = end - end_available
+                    if self.allow_missing:
+                        end_available = move_missing_to_end(
+                            samples, missing_mask, start, end, miss_mask_feat_offset)
+                        n_missing = end - end_available
 
-                else:   # If not self.allow_missing
-                    if self.presort == 1:
-                        p = start
-                        feature_idx_offset = self.X_idx_sorted_stride * current.feature
+                else:
+                    # Move the missing to the end, extract available values
+                    # and sort them.
+                    if self.allow_missing:
+                        end_available = move_missing_to_end(
+                            samples, missing_mask, start, end, miss_mask_feat_offset)
+                        n_missing = end - end_available
 
-                        for i in range(self.n_total_samples):
-                            j = X_idx_sorted[i + feature_idx_offset]
-                            if sample_mask[j] == 1:
-                                samples[p] = j
-                                Xf[p] = X[self.X_sample_stride * j + feature_offset]
-                                p += 1
-                    else:
-                        for i in range(start, end):
-                            Xf[i] = X[self.X_sample_stride * samples[i] + feature_offset]
+                    for i in range(start, end_available):
+                        Xf[i] = X[self.X_sample_stride * samples[i] + feature_offset]
 
-                        sort(Xf + start, samples + start, end - start)
-                    end_available = end
+                    sort(Xf + start, samples + start, end_available - start)
 
                 # If there are no missing values and all the available values are constant,
                 # in the current feature
@@ -631,21 +582,12 @@ cdef class BestSplitter(BaseDenseSplitter):
 
         # If missing_direction is UNDEF (n_missing is 0)
         #   {Right partition available vals}  | {Left partition available vals}
-        #       samples[start:best.pos]       |      samples[best.pos:end]
-        #                                     |
-        #                                 best.thres
 
         # If missing_direction is LEFT
-        # samples[:n_missing] + samples[start+n_missing:best.pos] |      samples[best.pos:end]
         #   {Missing vals     +  left partition available vals}   | {Right partition available vals}
-        #                                                         |
-        #                                                     best.thres
 
         # If missing_direction is RIGHT
-        #     samples[start:best.pos]     | samples[best.pos:end-n_missing] + samples[end-n_missing:end]
         # {left partition available vals} | {Right partition available vals +     Missing vals}
-        #                                 |
-        #                             best.thres
 
         # If best pos is invalid (at the end) don't allow
         # except when the right split contains all the missing values
@@ -656,48 +598,19 @@ cdef class BestSplitter(BaseDenseSplitter):
             miss_mask_feat_offset = self.missing_mask_stride * best.feature
 
             if n_missing > 0:
-                # Move missing to the end, if missing_direction is RIGHT
-                # TODO refactor As a helper?
                 if best.missing_direction == MISSING_DIR_RIGHT:
-                    p = start
-                    q = end
-                    while p < q:
-                        j = samples[p]
-                        if missing_mask[j + miss_mask_feat_offset] == 0:
-                            p += 1
-                        else:
-                            q -= 1
-                            samples[p] = samples[q]
-                            samples[q] = j
+                    move_missing_to_end(samples, missing_mask, start, end,
+                                         miss_mask_feat_offset)
 
-                    # start_available = start
-                    # end_available = end_available
-                    # best.pos is at correct position, as missing is at right
-                    # of the split position, no need to adjust
-
-                # Move missing to the start, if missing_direction is LEFT
                 elif best.missing_direction == MISSING_DIR_LEFT:
-                    p = start
-                    q = end - 1
-                    while q > p:
-                        j = samples[q]
-                        if missing_mask[j + miss_mask_feat_offset] == 0:
-                            q -= 1
-                        else:
-                            samples[q] = samples[p]
-                            samples[p] = j
-                            p += 1
+                    move_missing_to_start(samples, missing_mask, start, end,
+                                          miss_mask_feat_offset)
 
                     # Adjust best.pos to include the missing values which
                     # has now been moved to the start
                     best.pos += n_missing
                     start_available += n_missing
                     end_available += n_missing
-
-            # If there are no missing values
-            # start_available = start_available
-            # end_available = end
-            # best.pos is at correct position
 
             p = start_available
             q = end_available
@@ -847,6 +760,56 @@ cdef void heapsort(DTYPE_t* Xf, SIZE_t* samples, SIZE_t n) nogil:
         swap(Xf, samples, 0, end)
         sift_down(Xf, samples, 0, end)
         end = end - 1
+
+
+cdef inline SIZE_t move_missing_to_end(SIZE_t* samples, BOOL_t* missing_mask,
+                                       SIZE_t start, SIZE_t end,
+                                       SIZE_t miss_mask_feat_offset) nogil:
+    """Move the indices with missing values to the end of the current split.
+
+    Returns
+    -------
+    end_available : SIZE_t
+        The position next to the last available value.
+   """
+    cdef SIZE_t p = start, q = end, j
+
+    while p < q:
+        j = samples[p]
+        if missing_mask[j + miss_mask_feat_offset] == 1:
+            q -= 1
+            samples[p] = samples[q]
+            samples[q] = j
+        else:
+            p += 1
+
+    # end_available is q (as q - 1 was the posn. of the last avail. sample.)
+    return q
+
+
+cdef inline SIZE_t move_missing_to_start(SIZE_t* samples, BOOL_t* missing_mask,
+                                         SIZE_t start, SIZE_t end,
+                                         SIZE_t miss_mask_feat_offset) nogil:
+    """Move the indices with missing values to the start of the current split.
+
+    Returns
+    -------
+    end_available : SIZE_t
+        The position next to the last available value.
+    """
+    cdef SIZE_t p = start, q = end - 1, j
+
+    while q > p:
+        j = samples[q]
+        if missing_mask[j + miss_mask_feat_offset] == 1:
+            samples[q] = samples[p]
+            samples[p] = j
+            p += 1
+        else:
+            q -= 1
+
+    # end_available is q + 1 (as q is the posn. of the last available sample)
+    return q + 1
 
 
 cdef class RandomSplitter(BaseDenseSplitter):
