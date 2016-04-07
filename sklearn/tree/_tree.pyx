@@ -744,7 +744,6 @@ cdef class Tree:
         node.impurity = impurity
         node.n_node_samples = n_node_samples
         node.weighted_n_node_samples = weighted_n_node_samples
-        node.missing_direction = missing_direction
 
         if parent != _TREE_UNDEFINED:
             if is_left:
@@ -757,11 +756,13 @@ cdef class Tree:
             node.right_child = _TREE_LEAF
             node.feature = _TREE_UNDEFINED
             node.threshold = _TREE_UNDEFINED
+            node.missing_direction = MISSING_DIR_UNDEF
 
         else:
             # left_child and right_child will be set later
             node.feature = feature
             node.threshold = threshold
+            node.missing_direction = missing_direction
 
         self.node_count += 1
 
