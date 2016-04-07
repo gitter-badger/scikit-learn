@@ -27,11 +27,13 @@ from sklearn.utils.testing import assert_greater_equal
 from sklearn.utils.testing import assert_less
 from sklearn.utils.testing import assert_less_equal
 from sklearn.utils.testing import assert_true
+from sklearn.utils.testing import assert_false
 from sklearn.utils.testing import assert_warns
 from sklearn.utils.testing import raises
 from sklearn.utils.testing import ignore_warnings
 
 from sklearn.utils.validation import check_random_state
+from sklearn.utils.validation import assert_all_finite
 
 from sklearn.exceptions import NotFittedError
 
@@ -46,6 +48,11 @@ from sklearn.tree._tree import TREE_LEAF
 from sklearn import datasets
 
 from sklearn.utils import compute_sample_weight
+
+
+MISSING_DIR_LEFT = 0
+MISSING_DIR_RIGHT = 1
+MISSING_DIR_UNDEF = 2
 
 CLF_CRITERIONS = ("gini", "entropy")
 REG_CRITERIONS = ("mse", )
@@ -1443,3 +1450,108 @@ def test_no_sparse_y_support():
     # Currently we don't support sparse y
     for name in ALL_TREES:
         yield (check_no_sparse_y_support, name)
+
+
+def test_tree_missing_value_handling_corner_cases():
+    # All the missing values should be sent to a separate child in one of the nodes
+
+    rng = np.random.RandomState(42)
+
+    X = np.array([[np.nan], [np.nan], [np.nan], [np.nan],
+                  [0], [1], [2], [3], [4], [5],
+                  [10], [11], [12], [13], [15]])
+    y = np.array([1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3])
+
+    dtc = DecisionTreeClassifier(missing_values="NaN",
+                                 random_state=42).fit(X, y)
+
+    # The 2nd partition of this tree splits the missing values to one side,
+    # for the given random_state
+    assert_equal(dtc.tree_.threshold[2], np.inf)
+    assert_equal(dtc.tree_.missing_direction[2],
+                 MISSING_DIR_RIGHT)
+    assert_equal(dtc.tree_.missing_direction[0],
+                 MISSING_DIR_RIGHT)
+    # The leaf should have missing direction undefined
+    assert_equal(dtc.tree_.missing_direction[1],
+                 MISSING_DIR_UNDEF)
+    # assert_all_finite cannot be used as one node will have a thresh of inf
+    assert_false(np.any(np.isnan(dtc.tree_.threshold)))
+    assert_array_equal(dtc.predict(X), y)
+
+    # The missing should be sent along with available to left child
+    X = np.array([[np.nan,], [np.nan,], [np.nan,], [np.nan,],
+                  [0], [1], [2], [3], [4], [5],])
+    y = np.array([1, 1, 1, 1, 1, 2, 2, 2, 2, 2])
+
+    dtc = DecisionTreeClassifier(missing_values="NaN",
+                                 random_state=42).fit(X, y)
+
+    assert_equal(dtc.tree_.threshold[0], 0.5)
+    # Send the missing along with the sample [0,] to the left
+    assert_equal(dtc.tree_.missing_direction[0],
+                 MISSING_DIR_LEFT)
+    # The leaf should have missing direction undefined
+    assert_equal(dtc.tree_.missing_direction[1],
+                 MISSING_DIR_UNDEF)
+    assert_equal(dtc.tree_.missing_direction[2],
+                 MISSING_DIR_UNDEF)
+    assert_all_finite(dtc.tree_.threshold)
+    assert_array_equal(dtc.predict(X), y)
+
+    # The missing should be sent along with available to right child
+    X = np.array([[np.nan,], [np.nan,], [np.nan,], [np.nan,],
+                  [0], [1], [2], [3], [4], [5],])
+    y = np.array([2, 2, 2, 2, 1, 1, 1, 1, 2, 2])
+
+    dtc = DecisionTreeClassifier(missing_values="NaN",
+                                 random_state=42).fit(X, y)
+
+    assert_equal(dtc.tree_.threshold[0], 3.5)
+    # Send the missing along with the samples [4,] and [5,] to the right
+    assert_equal(dtc.tree_.missing_direction[0],
+                 MISSING_DIR_RIGHT)
+    # The leaf should have missing direction undefined
+    assert_equal(dtc.tree_.missing_direction[1],
+                 MISSING_DIR_UNDEF)
+    assert_equal(dtc.tree_.missing_direction[2],
+                 MISSING_DIR_UNDEF)
+    assert_all_finite(dtc.tree_.threshold)
+    assert_array_equal(dtc.predict(X), y)
+
+    # When the missing values are equally from all the classes
+    # the tree building should split it into separate node
+    X = np.array([[110], [100], [1], [2], [0], [np.nan], [500],
+                  [600], [np.nan], [5]])
+    y = np.array([1, 1, 0, 0, 0, 0, 1, 1, 1, 0])
+
+    dtc = DecisionTreeClassifier(missing_values="NaN",
+                                 random_state=42).fit(X, y)
+
+    assert_equal(dtc.tree_.threshold[0], 52.5)
+    assert_equal(dtc.tree_.missing_direction[0],
+                 MISSING_DIR_RIGHT)
+    # The right child should partition the missing samples to the right
+    assert_equal(dtc.tree_.missing_direction[2],
+                 MISSING_DIR_RIGHT)
+    assert_equal(dtc.tree_.threshold[2], np.inf)
+    # All other nodes should have missing_direction undefined
+    assert_true(np.all(dtc.tree_.missing_direction[3:] == MISSING_DIR_UNDEF))
+    # No nan thresholds
+    assert_false(np.any(np.isnan(dtc.tree_.threshold)))
+    try:
+        # This should not pass as both the missing values are grouped to
+        # single class
+        assert_array_equal(dtc.predict(X), y)
+    except AssertionError:
+        pass
+
+    # When no missing exist, none of the thresholds should be NaN/Inf
+    # All the missing_direction should be MISSING_DIR_UNDEF
+    X = rng.random_sample((10, 2))
+    y = rng.randint(0, 10, (10,))
+
+    dtc = DecisionTreeClassifier(missing_values="NaN",
+                                 random_state=42).fit(X, y)
+    assert_true(np.all(dtc.tree_.missing_direction == MISSING_DIR_UNDEF))
+    assert_all_finite(dtc.tree_.threshold)
