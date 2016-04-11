@@ -356,10 +356,17 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
                                                    X_idx_sorted.shape))
 
         missing_mask = self._validate_missing_mask(X, missing_mask)
-        if self.allow_missing and missing_mask.shape != X.shape:
-            raise ValueError("The shape of X (X.shape = {}) doesn't match "
-                             "the shape of missing_mask (missing_mask"
-                             ".shape = {})".format(X.shape, missing_mask.shape))
+        if self.allow_missing:
+            if issparse(X) and missing_mask.shape != X.data.shape:
+                raise ValueError("The shape of X.data (X.data.shape = {}) "
+                                 "doesn't match the shape of missing_mask "
+                                 "(missing_mask.shape = {})"
+                                 .format(X.data.shape, missing_mask.shape))
+            elif not issparse(X) and missing_mask.shape != X.shape:
+                raise ValueError("The shape of X (X.shape = {}) "
+                                 "doesn't match the shape of missing_mask "
+                                 "(missing_mask.shape = {})"
+                                 .format(X.shape, missing_mask.shape))
 
         # Build tree
         criterion = self.criterion
@@ -383,8 +390,12 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
                                                 self.presort,
                                                 self.allow_missing)
 
-        self.tree_ = Tree(self.n_features_, self.n_classes_, self.n_outputs_,
-                          self.allow_missing, random_state)
+        self.tree_ = Tree(n_features=self.n_features_,
+                          n_classes=self.n_classes_,
+                          n_outputs=self.n_outputs_,
+                          allow_missing=self.allow_missing,
+                          missing_values=self.missing_values,
+                          random_state=random_state)
 
         # Use BestFirst if max_leaf_nodes given; use DepthFirst otherwise
         if max_leaf_nodes < 0:
@@ -436,12 +447,18 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         """Generate a new missing_mask or validate a given one"""
         if self.allow_missing and missing_mask is None:
             # Fortran ordered 8 bit boolean mask
+            if issparse(X):
+                to_mask = X.data
+            else:
+                to_mask = X
+
             if self._allow_nan:  # Missing value is a NaN
-                missing_mask = np.asfortranarray(np.isnan(X),
+                missing_mask = np.asfortranarray(np.isnan(to_mask),
                                                  dtype=np.bool8)
             else:
-                missing_mask = np.zeros(X.shape, dtype=np.bool8, order='F')
-                missing_mask[X == self.missing_values] = True
+                missing_mask = np.zeros(to_mask.shape,
+                                        dtype=np.bool8, order='F')
+                missing_mask[to_mask == self.missing_values] = True
         return missing_mask
 
     def predict(self, X, check_input=True, missing_mask=None):
@@ -525,7 +542,7 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
         missing_mask = self._validate_missing_mask(X, missing_mask)
         return self.tree_.apply(X, missing_mask=missing_mask)
 
-    def decision_path(self, X, missing_mask=None, check_input=True):
+    def decision_path(self, X, check_input=True, missing_mask=None):
         """Return the decision path in the tree
 
         Parameters
@@ -758,7 +775,7 @@ class DecisionTreeClassifier(BaseDecisionTree, ClassifierMixin):
             presort=presort,
             missing_values=missing_values)
 
-    def predict_proba(self, X, missing_mask=None, check_input=True):
+    def predict_proba(self, X, check_input=True, missing_mask=None):
         """Predict class probabilities of the input samples X.
 
         The predicted class probability is the fraction of samples of the same

@@ -49,6 +49,7 @@ cdef class Tree:
     cdef object random_state             # Random state
     cdef UINT32_t rand_r_state           # sklearn_rand_r random number state
     cdef bint allow_missing              # Whether to allow missing values or not
+    cdef object missing_values           # The missing value placeholder
 
     # Inner structures: values are stored separately from node structure,
     # since size is determined at runtime.

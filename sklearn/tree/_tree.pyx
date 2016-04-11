@@ -596,13 +596,15 @@ cdef class Tree:
             return self._get_value_ndarray()[:self.node_count]
 
     def __cinit__(self, int n_features, np.ndarray[SIZE_t, ndim=1] n_classes,
-                  int n_outputs, bint allow_missing, object random_state):
+                  int n_outputs, bint allow_missing, object missing_values,
+                  object random_state):
         """Constructor."""
         # Input/Output layout
         self.n_features = n_features
         self.n_outputs = n_outputs
         self.n_classes = NULL
         self.allow_missing = allow_missing
+        self.missing_values = missing_values
         self.random_state = random_state
         safe_realloc(&self.n_classes, n_outputs)
 
@@ -634,6 +636,7 @@ cdef class Tree:
                  sizet_ptr_to_ndarray(self.n_classes, self.n_outputs),
                  self.n_outputs,
                  self.allow_missing,
+                 self.missing_values,
                  self.random_state),
                 self.__getstate__())
 
@@ -898,12 +901,19 @@ cdef class Tree:
         cdef SIZE_t missing_mask_fx_stride
         cdef UINT32_t* random_state
         cdef bint allow_missing = <bint>self.allow_missing
+        cdef bint is_missing = False
+        cdef bint is_missing_value_zero = False
+
+        cdef BOOL_t* X_missing = NULL
+        safe_realloc(&X_missing, n_features * sizeof(BOOL_t))
+        for i in range(n_features):
+            X_missing[i] = False
 
         if allow_missing:
-            # Extract the missing mask
             missing_mask_ptr = <BOOL_t*> missing_mask.data
-            missing_mask_fx_stride = <SIZE_t> missing_mask.strides[1] / <SIZE_t> missing_mask.itemsize
             random_state = &self.rand_r_state
+            is_missing_value_zero = (isinstance(self.missing_values, int) and
+                                     (self.missing_values == 0))
 
         with nogil:
             memset(feature_to_sample, -1, n_features * sizeof(SIZE_t))
@@ -911,19 +921,32 @@ cdef class Tree:
             for i in range(n_samples):
                 node = self.nodes
 
-                for k in range(X_indptr[i], X_indptr[i + 1]):
-                    feature_to_sample[X_indices[k]] = i
-                    X_sample[X_indices[k]] = X_data[k]
+                # SELFNOTE? separate the missing logic with a if branch here?
+                # Against DRY? / Will it speed up for the allow_missing = False
+                # case?
+                if allow_missing and not is_missing_value_zero:
+                    for k in range(X_indptr[i], X_indptr[i + 1]):
+                        feature_to_sample[X_indices[k]] = i
+                        X_sample[X_indices[k]] = X_data[k]
+                        X_missing[X_indices[k]] = missing_mask_ptr[k]
+                else:
+                    for k in range(X_indptr[i], X_indptr[i + 1]):
+                        feature_to_sample[X_indices[k]] = i
+                        X_sample[X_indices[k]] = X_data[k]
 
                 # While node not a leaf
                 while node.left_child != _TREE_LEAF:
                     # ... and node.right_child != _TREE_LEAF:
                     if feature_to_sample[node.feature] == i:
                         feature_value = X_sample[node.feature]
+                        is_missing = X_missing[node.feature]
+                    elif is_missing_value_zero:
+                        is_missing = True
                     else:
                         feature_value = 0.
+                        is_missing = False
 
-                    if allow_missing and missing_mask_ptr[i + missing_mask_fx_stride * node.feature]:
+                    if is_missing:
                         if node.missing_direction == MISSING_DIR_UNDEF:
                             # Send to either right or left randomly
                             node = &self.nodes[node.left_child
@@ -943,6 +966,7 @@ cdef class Tree:
 
             # Free auxiliary arrays
             free(X_sample)
+            free(X_missing)
             free(feature_to_sample)
 
         return out
@@ -1092,13 +1116,22 @@ cdef class Tree:
         cdef BOOL_t* missing_mask_ptr = NULL
         cdef SIZE_t missing_mask_fx_stride
         cdef UINT32_t* random_state
-        cdef bint allow_missing = <bint>self.allow_missing
+        cdef bint allow_missing = self.allow_missing
+        cdef bint is_missing = False
+        cdef bint is_missing_value_zero = False
+
+        # Auxiliary data-structure to record if the X is missing or not
+        cdef BOOL_t* X_missing = NULL
+        safe_realloc(&X_missing, n_features * sizeof(BOOL_t))
+        for i in range(n_features):
+            X_missing[i] = False
 
         if allow_missing:
-            # Extract the missing mask
+            # NOTE the missing mask is only for the X.data not the whole X
             missing_mask_ptr = <BOOL_t*> missing_mask.data
-            missing_mask_fx_stride = <SIZE_t> missing_mask.strides[1] / <SIZE_t> missing_mask.itemsize
             random_state = &self.rand_r_state
+            is_missing_value_zero = (isinstance(self.missing_values, int) and
+                                     self.missing_values == 0)
 
         with nogil:
             memset(feature_to_sample, -1, n_features * sizeof(SIZE_t))
@@ -1107,9 +1140,15 @@ cdef class Tree:
                 node = self.nodes
                 indptr_ptr[i + 1] = indptr_ptr[i]
 
-                for k in range(X_indptr[i], X_indptr[i + 1]):
-                    feature_to_sample[X_indices[k]] = i
-                    X_sample[X_indices[k]] = X_data[k]
+                if allow_missing and not is_missing_value_zero:
+                    for k in range(X_indptr[i], X_indptr[i + 1]):
+                        feature_to_sample[X_indices[k]] = i
+                        X_sample[X_indices[k]] = X_data[k]
+                        X_missing[X_indices[k]] = missing_mask_ptr[k]
+                else:
+                    for k in range(X_indptr[i], X_indptr[i + 1]):
+                        feature_to_sample[X_indices[k]] = i
+                        X_sample[X_indices[k]] = X_data[k]
 
                 # While node not a leaf
                 while node.left_child != _TREE_LEAF:
@@ -1120,10 +1159,14 @@ cdef class Tree:
 
                     if feature_to_sample[node.feature] == i:
                         feature_value = X_sample[node.feature]
+                        is_missing = X_missing[node.feature]
+                    elif is_missing_value_zero:
+                        is_missing = True
                     else:
                         feature_value = 0.
+                        is_missing = False
 
-                    if allow_missing and missing_mask_ptr[i + missing_mask_fx_stride * node.feature]:
+                    if is_missing:
                         if node.missing_direction == MISSING_DIR_UNDEF:
                             # Send to either right or left randomly
                             node = &self.nodes[node.left_child
@@ -1145,6 +1188,7 @@ cdef class Tree:
 
             # Free auxiliary arrays
             free(X_sample)
+            free(X_missing)
             free(feature_to_sample)
 
         indices = indices[:indptr[n_samples]]
