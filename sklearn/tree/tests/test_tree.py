@@ -61,6 +61,11 @@ CLF_TREES = {
     "DecisionTreeClassifier": DecisionTreeClassifier,
     "Presort-DecisionTreeClassifier": partial(DecisionTreeClassifier,
                                               presort=True),
+    "MV-DecisionTreeClassifier": partial(DecisionTreeClassifier,
+                                         missing_values="NaN"),
+    "MV-Presort-DecisionTreeClassifier": partial(DecisionTreeClassifier,
+                                                 missing_values="NaN",
+                                                 presort=True),
     "ExtraTreeClassifier": ExtraTreeClassifier,
 }
 
@@ -618,8 +623,10 @@ def test_min_samples_leaf():
         est = TreeEstimator(min_samples_leaf=5,
                             max_leaf_nodes=max_leaf_nodes,
                             random_state=0)
+        # Get the missing mask
+        missing_mask = est._validate_missing_mask(X)
         est.fit(X, y)
-        out = est.tree_.apply(X)
+        out = est.tree_.apply(X, missing_mask=missing_mask)
         node_counts = np.bincount(out)
         # drop inner nodes
         leaf_count = node_counts[node_counts != 0]
@@ -631,7 +638,7 @@ def test_min_samples_leaf():
                             max_leaf_nodes=max_leaf_nodes,
                             random_state=0)
         est.fit(X, y)
-        out = est.tree_.apply(X)
+        out = est.tree_.apply(X, missing_mask=missing_mask)
         node_counts = np.bincount(out)
         # drop inner nodes
         leaf_count = node_counts[node_counts != 0]
@@ -662,10 +669,13 @@ def check_min_weight_fraction_leaf(name, datasets, sparse=False):
         est.fit(X, y, sample_weight=weights)
 
         if sparse:
-            out = est.tree_.apply(X.tocsr())
+            # Get the missing mask
+            missing_mask = est._validate_missing_mask(X.tocsr())
+            out = est.tree_.apply(X.tocsr(), missing_mask=missing_mask)
 
         else:
-            out = est.tree_.apply(X)
+            missing_mask = est._validate_missing_mask(X)
+            out = est.tree_.apply(X, missing_mask=missing_mask)
 
         node_weights = np.bincount(out, weights=weights)
         # drop inner nodes
@@ -1281,16 +1291,29 @@ def check_explicit_sparse_zeros(tree, max_depth=3,
 
     Xs = (X_test, X_sparse_test)
     for X1, X2 in product(Xs, Xs):
-        assert_array_almost_equal(s.tree_.apply(X1), d.tree_.apply(X2))
-        assert_array_almost_equal(s.apply(X1), d.apply(X2))
-        assert_array_almost_equal(s.apply(X1), s.tree_.apply(X1))
+        # Get the missing masks
+        missing_mask1 = s._validate_missing_mask(X1)
+        missing_mask2 = d._validate_missing_mask(X2)
+        assert_array_almost_equal(
+            s.tree_.apply(X1, missing_mask=missing_mask1),
+            d.tree_.apply(X2, missing_mask=missing_mask2))
 
-        assert_array_almost_equal(s.tree_.decision_path(X1).toarray(),
-                                  d.tree_.decision_path(X2).toarray())
+        assert_array_almost_equal(s.apply(X1), d.apply(X2))
+
+        assert_array_almost_equal(
+            s.apply(X1),
+            s.tree_.apply(X1, missing_mask=missing_mask1))
+
+        assert_array_almost_equal(
+            s.tree_.decision_path(X1, missing_mask=missing_mask1).toarray(),
+            d.tree_.decision_path(X2, missing_mask=missing_mask2).toarray())
+
         assert_array_almost_equal(s.decision_path(X1).toarray(),
                                   d.decision_path(X2).toarray())
-        assert_array_almost_equal(s.decision_path(X1).toarray(),
-                                  s.tree_.decision_path(X1).toarray())
+
+        assert_array_almost_equal(
+            s.decision_path(X1).toarray(),
+            s.tree_.decision_path(X1, missing_mask=missing_mask1).toarray())
 
         assert_array_almost_equal(s.predict(X1), d.predict(X2))
 
@@ -1358,18 +1381,24 @@ def check_public_apply(name):
     X_small32 = X_small.astype(tree._tree.DTYPE)
 
     est = ALL_TREES[name]()
+
+    # Get the missing mask
+    missing_mask = est._validate_missing_mask(X_small32)
     est.fit(X_small, y_small)
     assert_array_equal(est.apply(X_small),
-                       est.tree_.apply(X_small32))
+                       est.tree_.apply(X_small32, missing_mask=missing_mask))
 
 
 def check_public_apply_sparse(name):
     X_small32 = csr_matrix(X_small.astype(tree._tree.DTYPE))
 
     est = ALL_TREES[name]()
+
+    # Get the missing mask
+    missing_mask = est._validate_missing_mask(X_small32)
     est.fit(X_small, y_small)
     assert_array_equal(est.apply(X_small),
-                       est.tree_.apply(X_small32))
+                       est.tree_.apply(X_small32, missing_mask=missing_mask))
 
 
 def test_public_apply():
@@ -1480,8 +1509,8 @@ def test_tree_missing_value_handling_corner_cases():
     assert_array_equal(dtc.predict(X), y)
 
     # The missing should be sent along with available to left child
-    X = np.array([[np.nan,], [np.nan,], [np.nan,], [np.nan,],
-                  [0], [1], [2], [3], [4], [5],])
+    X = np.array([[np.nan], [np.nan], [np.nan], [np.nan],
+                  [0], [1], [2], [3], [4], [5]])
     y = np.array([1, 1, 1, 1, 1, 2, 2, 2, 2, 2])
 
     dtc = DecisionTreeClassifier(missing_values="NaN",
@@ -1500,8 +1529,6 @@ def test_tree_missing_value_handling_corner_cases():
     assert_array_equal(dtc.predict(X), y)
 
     # The missing should be sent along with available to right child
-    X = np.array([[np.nan,], [np.nan,], [np.nan,], [np.nan,],
-                  [0], [1], [2], [3], [4], [5],])
     y = np.array([2, 2, 2, 2, 1, 1, 1, 1, 2, 2])
 
     dtc = DecisionTreeClassifier(missing_values="NaN",
