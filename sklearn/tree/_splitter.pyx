@@ -1066,7 +1066,8 @@ cdef class BaseSparseSplitter(Splitter):
         """Initialize the splitter."""
 
         # Call parent init
-        Splitter.init(self, X, y, sample_weight)
+        Splitter.init(self, X=X, y=y, sample_weight=sample_weight,
+                      X_idx_sorted=None, missing_mask=missing_mask)
 
         if not isinstance(X, csc_matrix):
             raise ValueError("X should be in csc format")
