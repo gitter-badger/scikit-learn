@@ -391,15 +391,13 @@ class BaseDecisionTree(six.with_metaclass(ABCMeta, BaseEstimator,
             builder = DepthFirstTreeBuilder(splitter, min_samples_split,
                                             min_samples_leaf,
                                             min_weight_leaf,
-                                            max_depth,
-                                            self.allow_missing)
+                                            max_depth)
         else:
             builder = BestFirstTreeBuilder(splitter, min_samples_split,
                                            min_samples_leaf,
                                            min_weight_leaf,
                                            max_depth,
-                                           max_leaf_nodes,
-                                           self.allow_missing)
+                                           max_leaf_nodes)
 
         builder.build(self.tree_, X=X, y=y, sample_weight=sample_weight,
                       X_idx_sorted=X_idx_sorted, missing_mask=missing_mask)

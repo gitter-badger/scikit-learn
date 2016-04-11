@@ -142,13 +142,12 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
 
     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
                   SIZE_t min_samples_leaf, double min_weight_leaf,
-                  SIZE_t max_depth, bint allow_missing):
+                  SIZE_t max_depth):
         self.splitter = splitter
         self.min_samples_split = min_samples_split
         self.min_samples_leaf = min_samples_leaf
         self.min_weight_leaf = min_weight_leaf
         self.max_depth = max_depth
-        self.allow_missing = allow_missing
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=None,
@@ -201,8 +200,6 @@ cdef class DepthFirstTreeBuilder(TreeBuilder):
         cdef bint first = 1
         cdef SIZE_t max_depth_seen = -1
         cdef int rc = 0
-
-        cdef SIZE_t allow_missing = self.allow_missing
 
         cdef Stack stack = Stack(INITIAL_STACK_SIZE)
         cdef StackRecord stack_record
@@ -304,15 +301,13 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
 
     def __cinit__(self, Splitter splitter, SIZE_t min_samples_split,
                   SIZE_t min_samples_leaf,  min_weight_leaf,
-                  SIZE_t max_depth, SIZE_t max_leaf_nodes,
-                  bint allow_missing):
+                  SIZE_t max_depth, SIZE_t max_leaf_nodes):
         self.splitter = splitter
         self.min_samples_split = min_samples_split
         self.min_samples_leaf = min_samples_leaf
         self.min_weight_leaf = min_weight_leaf
         self.max_depth = max_depth
         self.max_leaf_nodes = max_leaf_nodes
-        self.allow_missing = allow_missing
 
     cpdef build(self, Tree tree, object X, np.ndarray y,
                 np.ndarray sample_weight=None,
@@ -335,7 +330,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
         cdef SIZE_t min_samples_split = self.min_samples_split
 
         # Recursive partition (without actual recursion)
-        splitter.init(X, y, sample_weight_ptr, X_idx_sorted)
+        splitter.init(X, y, sample_weight_ptr, X_idx_sorted, missing_mask)
 
         cdef PriorityHeap frontier = PriorityHeap(INITIAL_STACK_SIZE)
         cdef PriorityHeapRecord record
@@ -376,6 +371,7 @@ cdef class BestFirstTreeBuilder(TreeBuilder):
                     node.right_child = _TREE_LEAF
                     node.feature = _TREE_UNDEFINED
                     node.threshold = _TREE_UNDEFINED
+                    node.missing_direction = MISSING_DIR_UNDEF
 
                 else:
                     # Node is expandable
