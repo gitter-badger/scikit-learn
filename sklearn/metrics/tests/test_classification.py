@@ -130,7 +130,7 @@ def test_precision_recall_f1_score_binary():
 
     # individual scoring function that can be used for grid search: in the
     # binary class case the score is the value of the measure for the positive
-    # class (e.g. label == 1). This is deprecated for average != 'binary'.
+    # class (e.g. label == 1).
     for kwargs, my_assert in [({}, assert_no_warnings),
                               ({'average': 'binary'}, assert_no_warnings)]:
         ps = my_assert(precision_score, y_true, y_pred, **kwargs)

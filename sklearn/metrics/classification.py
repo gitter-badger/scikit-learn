@@ -988,7 +988,7 @@ def precision_recall_fscore_support(y_true, y_pred, beta=1.0, labels=None,
                              '`average`, one of %s. In cross validation use, '
                              'for instance, scoring="f1_weighted" instead of '
                              'scoring="f1".'
-                             % (y_type, str(average_options)))
+                             % (y_type, average_options))
 
         if pos_label is None:
             raise ValueError('The average is chosen as binary, but the '
