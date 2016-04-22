@@ -562,6 +562,7 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
 
         scores = list()
         grid_scores = list()
+
         for grid_start in range(0, n_fits, n_splits):
             n_test_samples = 0
             score = 0
@@ -722,15 +723,32 @@ class GridSearchCV(BaseSearchCV):
 
     Attributes
     ----------
-    grid_scores_ : list of named tuples
-        Contains scores for all parameter combinations in param_grid.
-        Each entry corresponds to one parameter setting.
-        Each named tuple has the attributes:
+    search_results_ : dict of numpy (masked) ndarrays
+        A dict with keys as column headers and values as columns, that can be
+        imported into a pandas DataFrame.
 
-            * ``parameters``, a dict of parameter settings
-            * ``mean_validation_score``, the mean score over the
-              cross-validation folds
-            * ``cv_validation_scores``, the list of scores for each fold
+        For instance for the below given table
+
+        kernel|gamma|degree|accuracy_score_fold_0...|accuracy_score_mean ...|
+        =====================================================================
+        'poly'|  -  |  2   |           0.8          |         0.81          |
+        'poly'|  -  |  3   |           0.7          |         0.60          |
+        'rbf' | 0.1 |  -   |           0.8          |         0.75          |
+        'rbf' | 0.2 |  -   |           0.9          |         0.82          |
+
+        The search_results_ dict will be :
+
+        {'kernel' : masked_array(data = ['poly', 'poly', 'rbf', 'rbf'],
+                                 mask = [False False False False]...)
+         'gamma' : masked_array(data = [-- -- 0.1 0.2],
+                                mask = [ True  True False False]...),
+         'degree' : masked_array(data = [2.0 3.0 -- --],
+                                 mask = [False False  True  True]...),
+         'accuracy_score_fold_0' : [0.8, 0.7, 0.8, 0.9],
+         'accuracy_score_fold_1' : [0.82, 0.5, 0.7, 0.78],
+         'accuracy_score_mean' : [0.81, 0.60, 0.75, 0.82],
+         'candidate_rank' : [2, 4, 3, 1],
+        }
 
     best_estimator_ : estimator
         Estimator that was chosen by the search, i.e. estimator
@@ -918,15 +936,52 @@ class RandomizedSearchCV(BaseSearchCV):
 
     Attributes
     ----------
-    grid_scores_ : list of named tuples
-        Contains scores for all parameter combinations in param_grid.
-        Each entry corresponds to one parameter setting.
-        Each named tuple has the attributes:
+    search_results_ : dict of numpy (masked) ndarrays
+        A dict with keys as column headers and values as columns, that can be
+        imported into a pandas DataFrame.
 
-            * ``parameters``, a dict of parameter settings
-            * ``mean_validation_score``, the mean score over the
-              cross-validation folds
-            * ``cv_validation_scores``, the list of scores for each fold
+        For instance for the below given table
+
+        kernel|gamma|degree|accuracy_score_fold_0...|accuracy_score_mean ...|
+        =====================================================================
+        'poly'|  -  |  2   |           0.8          |         0.81          |
+        'poly'|  -  |  3   |           0.7          |         0.60          |
+        'rbf' | 0.1 |  -   |           0.8          |         0.75          |
+        'rbf' | 0.2 |  -   |           0.9          |         0.82          |
+
+        The search_results_ dict will be :
+
+        {'kernel' : masked_array(data = ['poly', 'poly', 'rbf', 'rbf'],
+                                 mask = [False False False False]...)
+         'gamma' : masked_array(data = [-- -- 0.1 0.2],
+                                mask = [ True  True False False]...),
+         'degree' : masked_array(data = [2.0 3.0 -- --],
+                                 mask = [False False  True  True]...),
+         'accuracy_score_fold_0' : [0.8, 0.7, 0.8, 0.9],
+         'accuracy_score_fold_1' : [0.82, 0.5, 0.7, 0.78],
+         'accuracy_score_mean' : [0.81, 0.60, 0.75, 0.82],
+         'candidate_rank' : [2, 4, 3, 1],
+        }
+
+    search_parameters_ : list of string
+        Sorted list of all the paramter names. Equivalently the colum headers
+        for search_candidates_.
+
+    search_candidates_ : masked numpy array of obj dtype
+        2D numpy array with each row corresponding to one parameter setting
+        (search candidate)
+
+    search_scores_ : masked numpy array of float dtype
+        2D numpy array with each row corresponding to 
+    candidate_parameter_settings_ : dict of masked numpy ndarray of obj dtype
+        A dict with parameter names as the keys and all the searched values of
+        that parameter as a masked ndarray search space of that parameter as a
+        masked ndarray.
+
+
+        Each row corresponds to one setting and each column corresponds to
+
+    search_results_ : dict of numpy masked arrays
 
     best_estimator_ : estimator
         Estimator that was chosen by the search, i.e. estimator
