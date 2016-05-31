@@ -55,7 +55,11 @@ if __name__ == "__main__":
 
     # TASK: print the cross-validated scores for the each parameters set
     # explored by the grid search
-    print(grid_search.grid_scores_)
+    n_candidates = len(grid_search.candidate_params_)
+    test_split_keys = filter(lambda key: key.startswith('test_split_'),
+                             grid_search.results_.keys())
+    for i in range(n_candidates):
+        print(i, list(grid_search.results_[key][i] for key in test_split_keys))
 
     # TASK: Predict the outcome on the testing set and store it in a variable
     # named y_predicted

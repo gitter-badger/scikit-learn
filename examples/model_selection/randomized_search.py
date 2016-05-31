@@ -40,15 +40,16 @@ clf = RandomForestClassifier(n_estimators=20)
 
 
 # Utility function to report best scores
-def report(grid_scores, n_top=3):
-    top_scores = sorted(grid_scores, key=itemgetter(1), reverse=True)[:n_top]
-    for i, score in enumerate(top_scores):
-        print("Model with rank: {0}".format(i + 1))
-        print("Mean validation score: {0:.3f} (std: {1:.3f})".format(
-              score.mean_validation_score,
-              np.std(score.cv_validation_scores)))
-        print("Parameters: {0}".format(score.parameters))
-        print("")
+def report(results, candidate_params, n_top=3):
+    for i in range(1, n_top + 1):
+        candidates = np.flatnonzero(results['test_accuracy_rank'] == i)
+        for candidate in candidates:
+            print("Model with rank: {0}".format(i))
+            print("Mean validation score: {0:.3f} (std: {1:.3f})".format(
+                  results['test_accuracy_mean'][candidate],
+                  results['test_accuracy_std'][candidate]))
+            print("Parameters: {0}".format(candidate_params[candidate]))
+            print("")
 
 
 # specify parameters and distributions to sample from
@@ -68,7 +69,7 @@ start = time()
 random_search.fit(X, y)
 print("RandomizedSearchCV took %.2f seconds for %d candidates"
       " parameter settings." % ((time() - start), n_iter_search))
-report(random_search.grid_scores_)
+report(random_search.results_, random_search.candidate_params_)
 
 # use a full grid over all parameters
 param_grid = {"max_depth": [3, None],
@@ -84,5 +85,5 @@ start = time()
 grid_search.fit(X, y)
 
 print("GridSearchCV took %.2f seconds for %d candidate parameter settings."
-      % (time() - start, len(grid_search.grid_scores_)))
-report(grid_search.grid_scores_)
+      % (time() - start, len(grid_search.candidate_params_)))
+report(grid_search.results_, grid_search.candidate_params_)
