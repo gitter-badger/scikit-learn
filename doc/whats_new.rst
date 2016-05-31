@@ -144,6 +144,7 @@ Enhancements
    - The :func: `ignore_warnings` now accept a category argument to ignore only
      the warnings of a specified type. By `Thierry Guillemot`_.
 
+
 Bug fixes
 .........
 
@@ -227,6 +228,10 @@ API changes summary
      :class:`GaussianMixture`. The new class compute the Gaussian mixture
      faster than before and some of computationnal problems have been solved.
      By `Wei Xue`_ and `Thierry Guillemot`_.
+
+   - The ``grid_scores_`` attribute of :class:`model_selection.GridSearchCV` and
+     :class:`model_selection.RandomizedSearchCV` is deprecated in favor of the
+     attribute, ``results_``, which is a dict of 1D (numpy) (masked) arrays. The per-split score, mean, std and rank for each parameter setting (search candidate) are stored as separate numpy arrays under corresponding keys in the ``results_`` dict.  The parameter values for each parameter is stored separately as a numpy masked object array. The value, for that search candidate, is masked if the corresponding parameter is not applicable. Additionally a list of all the parameter dicts are stored at ``results_['parameters']``. This ``results_`` dict can be easily imported into pandas as a dataframe for exploring the search results. By `Raghav RV`_.
 
 
 
@@ -4088,7 +4093,7 @@ David Huard, Dave Morrill, Ed Schofield, Travis Oliphant, Pearu Peterson.
 
 .. _Matteo Visconti di Oleggio Castello: http://www.mvdoc.me
 
-.. _Raghav R V: https://github.com/rvraghav93
+.. _Raghav R V: https://github.com/raghavrv
 
 .. _Trevor Stephens: http://trevorstephens.com/
 
