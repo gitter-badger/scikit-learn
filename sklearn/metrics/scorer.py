@@ -30,12 +30,25 @@ from .cluster import adjusted_rand_score
 from ..utils.multiclass import type_of_target
 from ..externals import six
 from ..base import is_regressor
+from ..base import ClassifierMixin
+from ..base import RegressorMixin
+
+
+def _get_scorer_name(scorer):
+    """Get a name for the predefined/custom scorer."""
+    if isinstance(scorer, (_BaseScorer, _PassthroughScorer)):
+        return scorer._name
+    elif scorer is None:
+        raise ValueError("Scorer is None. Can not fetch name.")
+    else:
+        return "custom"
 
 
 class _BaseScorer(six.with_metaclass(ABCMeta, object)):
-    def __init__(self, score_func, sign, kwargs):
+    def __init__(self, score_func, sign, name, kwargs):
         self._kwargs = kwargs
         self._score_func = score_func
+        self._name = name
         self._sign = sign
 
     @abstractmethod
@@ -46,7 +59,7 @@ class _BaseScorer(six.with_metaclass(ABCMeta, object)):
         kwargs_string = "".join([", %s=%s" % (str(k), str(v))
                                  for k, v in self._kwargs.items()])
         return ("make_scorer(%s%s%s%s)"
-                % (self._score_func.__name__,
+                % (self._name,
                    "" if self._sign > 0 else ", greater_is_better=False",
                    self._factory_args(), kwargs_string))
 
@@ -199,9 +212,21 @@ def get_scorer(scoring):
     return scorer
 
 
-def _passthrough_scorer(estimator, *args, **kwargs):
-    """Function that wraps estimator.score"""
-    return estimator.score(*args, **kwargs)
+class _PassthroughScorer:
+    """class to wrap estimator.score and it's name."""
+    def __init__(self, estimator):
+        estimator_score_fn = getattr(getattr(estimator, '__class__', None),
+                                     'score', None)
+
+        if estimator_score_fn == ClassifierMixin.score:
+            self._name = "accuracy"
+        elif estimator_score_fn == RegressorMixin.score:
+            self._name = "r2"
+        else:
+            self._name = "score"
+
+    def __call__(self, estimator, *args, **kwargs):
+        return estimator.score(*args, **kwargs)
 
 
 def check_scoring(estimator, scoring=None, allow_none=False):
@@ -236,7 +261,7 @@ def check_scoring(estimator, scoring=None, allow_none=False):
     elif has_scoring:
         return get_scorer(scoring)
     elif hasattr(estimator, 'score'):
-        return _passthrough_scorer
+        return _PassthroughScorer(estimator)
     elif allow_none:
         return None
     else:
@@ -246,7 +271,7 @@ def check_scoring(estimator, scoring=None, allow_none=False):
 
 
 def make_scorer(score_func, greater_is_better=True, needs_proba=False,
-                needs_threshold=False, **kwargs):
+                needs_threshold=False, name='custom', **kwargs):
     """Make a scorer from a performance metric or loss function.
 
     This factory function wraps scoring functions for use in GridSearchCV
@@ -279,6 +304,9 @@ def make_scorer(score_func, greater_is_better=True, needs_proba=False,
         For example ``average_precision`` or the area under the roc curve
         can not be computed using discrete predictions alone.
 
+    name : str, default='custom'
+        The name for the scorer.
+
     **kwargs : additional arguments
         Additional parameters to be passed to score_func.
 
@@ -290,9 +318,9 @@ def make_scorer(score_func, greater_is_better=True, needs_proba=False,
     Examples
     --------
     >>> from sklearn.metrics import fbeta_score, make_scorer
-    >>> ftwo_scorer = make_scorer(fbeta_score, beta=2)
+    >>> ftwo_scorer = make_scorer(fbeta_score, name='fbeta', beta=2)
     >>> ftwo_scorer
-    make_scorer(fbeta_score, beta=2)
+    make_scorer(fbeta, beta=2)
     >>> from sklearn.model_selection import GridSearchCV
     >>> from sklearn.svm import LinearSVC
     >>> grid = GridSearchCV(LinearSVC(), param_grid={'C': [1, 10]},
@@ -308,36 +336,41 @@ def make_scorer(score_func, greater_is_better=True, needs_proba=False,
         cls = _ThresholdScorer
     else:
         cls = _PredictScorer
-    return cls(score_func, sign, kwargs)
+    return cls(score_func=score_func, sign=sign, name=name, kwargs=kwargs)
 
 
 # Standard regression scores
-r2_scorer = make_scorer(r2_score)
+r2_scorer = make_scorer(r2_score, name='r2')
 mean_squared_error_scorer = make_scorer(mean_squared_error,
-                                        greater_is_better=False)
+                                        greater_is_better=False,
+                                        name='neg_mean_squared_error')
 mean_absolute_error_scorer = make_scorer(mean_absolute_error,
-                                         greater_is_better=False)
+                                         greater_is_better=False,
+                                         name='neg_mean_absolute_error')
 median_absolute_error_scorer = make_scorer(median_absolute_error,
-                                           greater_is_better=False)
+                                           greater_is_better=False,
+                                           name='neg_median_absolute_error')
 
 # Standard Classification Scores
-accuracy_scorer = make_scorer(accuracy_score)
-f1_scorer = make_scorer(f1_score)
+accuracy_scorer = make_scorer(accuracy_score, name='accuracy')
+f1_scorer = make_scorer(f1_score, name='f1')
 
 # Score functions that need decision values
-roc_auc_scorer = make_scorer(roc_auc_score, greater_is_better=True,
-                             needs_threshold=True)
+roc_auc_scorer = make_scorer(roc_auc_score, needs_threshold=True,
+                             name='roc_auc')
 average_precision_scorer = make_scorer(average_precision_score,
-                                       needs_threshold=True)
-precision_scorer = make_scorer(precision_score)
-recall_scorer = make_scorer(recall_score)
+                                       needs_threshold=True,
+                                       name='average_precision')
+precision_scorer = make_scorer(precision_score, name='precision')
+recall_scorer = make_scorer(recall_score, name='recall')
 
 # Score function for probabilistic classification
 log_loss_scorer = make_scorer(log_loss, greater_is_better=False,
-                              needs_proba=True)
+                              needs_proba=True, name='neg_log_loss')
 
 # Clustering scores
-adjusted_rand_scorer = make_scorer(adjusted_rand_score)
+adjusted_rand_scorer = make_scorer(adjusted_rand_score,
+                                   name='adjusted_rand_score')
 
 SCORERS = dict(r2=r2_scorer,
                median_absolute_error=median_absolute_error_scorer,
@@ -350,8 +383,9 @@ SCORERS = dict(r2=r2_scorer,
 
 for name, metric in [('precision', precision_score),
                      ('recall', recall_score), ('f1', f1_score)]:
-    SCORERS[name] = make_scorer(metric)
+    SCORERS[name] = make_scorer(metric, name=name)
     for average in ['macro', 'micro', 'samples', 'weighted']:
         qualified_name = '{0}_{1}'.format(name, average)
         SCORERS[qualified_name] = make_scorer(metric, pos_label=None,
-                                              average=average)
+                                              average=average,
+                                              name=qualified_name)

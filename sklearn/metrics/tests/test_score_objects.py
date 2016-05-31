@@ -8,6 +8,7 @@ import numpy as np
 
 from sklearn.utils.testing import assert_almost_equal
 from sklearn.utils.testing import assert_array_equal
+from sklearn.utils.testing import assert_equal
 from sklearn.utils.testing import assert_raises
 from sklearn.utils.testing import assert_raises_regexp
 from sklearn.utils.testing import assert_true
@@ -18,12 +19,15 @@ from sklearn.base import BaseEstimator
 from sklearn.metrics import (f1_score, r2_score, roc_auc_score, fbeta_score,
                              log_loss, precision_score, recall_score)
 from sklearn.metrics.cluster import adjusted_rand_score
-from sklearn.metrics.scorer import (check_scoring, _PredictScorer,
-                                    _passthrough_scorer)
+from sklearn.metrics.scorer import check_scoring
+from sklearn.metrics.scorer import _PredictScorer
+from sklearn.metrics.scorer import _PassthroughScorer
+from sklearn.metrics.scorer import _get_scorer_name
 from sklearn.metrics import make_scorer, get_scorer, SCORERS
 from sklearn.svm import LinearSVC
 from sklearn.pipeline import make_pipeline
 from sklearn.cluster import KMeans
+from sklearn.dummy import DummyClassifier
 from sklearn.dummy import DummyRegressor
 from sklearn.linear_model import Ridge, LogisticRegression
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
@@ -37,18 +41,20 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.externals import joblib
 
 
-REGRESSION_SCORERS = ['r2', 'mean_absolute_error', 'mean_squared_error',
-                      'median_absolute_error']
+REGRESSION_SCORERS = ('r2', 'mean_absolute_error', 'mean_squared_error',
+                      'median_absolute_error')
 
-CLF_SCORERS = ['accuracy', 'f1', 'f1_weighted', 'f1_macro', 'f1_micro',
+CLF_SCORERS = ('accuracy', 'f1', 'f1_weighted', 'f1_macro', 'f1_micro',
                'roc_auc', 'average_precision', 'precision',
                'precision_weighted', 'precision_macro', 'precision_micro',
                'recall', 'recall_weighted', 'recall_macro', 'recall_micro',
                'log_loss',
                'adjusted_rand_score'  # not really, but works
-               ]
+               )
 
-MULTILABEL_ONLY_SCORERS = ['precision_samples', 'recall_samples', 'f1_samples']
+MULTILABEL_ONLY_SCORERS = ('precision_samples', 'recall_samples', 'f1_samples')
+
+ALL_SCORERS = REGRESSION_SCORERS + CLF_SCORERS + MULTILABEL_ONLY_SCORERS
 
 
 def _make_estimators(X_train, y_train, y_ml_train):
@@ -143,15 +149,31 @@ def test_check_scoring():
     estimator = EstimatorWithFitAndScore()
     estimator.fit([[1]], [1])
     scorer = check_scoring(estimator)
-    assert_true(scorer is _passthrough_scorer)
+    assert_true(isinstance(scorer, _PassthroughScorer))
+    assert_true(scorer._name, 'score')
     assert_almost_equal(scorer(estimator, [[1]], [1]), 1.0)
 
-    estimator = EstimatorWithFitAndPredict()
+    estimator = DummyClassifier(strategy='constant', constant=1.0)
     estimator.fit([[1]], [1])
+    scorer = check_scoring(estimator)
+    assert_true(isinstance(scorer, _PassthroughScorer))
+    assert_true(scorer._name, 'accuracy')
+    assert_almost_equal(scorer(estimator, [[1]], [1]), 1.0)
+
+    estimator = DummyRegressor(strategy='constant', constant=1.0)
+    estimator.fit([[1]], [1])
+    scorer = check_scoring(estimator)
+    assert_true(isinstance(scorer, _PassthroughScorer))
+    assert_true(scorer._name, 'r2')
+    assert_almost_equal(scorer(estimator, [[1]], [1]), 1.0)
+
+    estimator = EstimatorWithFit()
     pattern = (r"If no scoring is specified, the estimator passed should have"
                r" a 'score' method\. The estimator .* does not\.")
     assert_raises_regexp(TypeError, pattern, check_scoring, estimator)
 
+    estimator = EstimatorWithFitAndPredict()
+    estimator.fit([[1]], [1])
     scorer = check_scoring(estimator, "accuracy")
     assert_almost_equal(scorer(estimator, [[1]], [1]), 1.0)
 
@@ -413,3 +435,35 @@ def test_scorer_memmap_input():
     # float values.
     for name in SCORERS.keys():
         yield check_scorer_memmap, name
+
+
+def test_scorer_names():
+    # Check if the _name attribute is set properly/_get_scorer_name returns
+    # the expected consistent value.
+    for scorer in ALL_SCORERS:
+        if scorer.endswith('loss') or scorer.endswith('error'):
+            scorer_name = 'neg_' + scorer
+        else:
+            scorer_name = scorer
+        assert_equal(_get_scorer_name(get_scorer(scorer)), scorer_name)
+
+    # Classifier inheriting from ClassifierMixin and having an accuracy score
+    assert_equal(_get_scorer_name(check_scoring(DummyClassifier())),
+                 'accuracy')
+    # Regressor inheriting from RegressorMixin and having r2 score
+    assert_equal(_get_scorer_name(check_scoring(DummyRegressor())),
+                 'r2')
+    # Doesn't inherit from Regressor/Classifier Mixin
+    assert_equal(_get_scorer_name(check_scoring(EstimatorWithFitAndScore())),
+                 'score')
+
+    assert_equal(_get_scorer_name(check_scoring(EstimatorWithFitAndScore(),
+                                                'accuracy')),
+                 'accuracy')
+
+    assert_equal(_get_scorer_name(check_scoring(EstimatorWithFitAndScore(),
+                                                DummyScorer())),
+                 'custom')
+
+    assert_raises_regexp(ValueError, 'Scorer is None', _get_scorer_name,
+                         check_scoring(EstimatorWithFit(), allow_none=True))
