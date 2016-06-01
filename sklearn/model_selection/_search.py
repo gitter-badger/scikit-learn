@@ -630,7 +630,8 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
     @property
     def best_score_(self):
         check_is_fitted(self, 'results_')
-        return self._get_candidate_scores(self.best_index_)[1]
+        return self.results_["test_%s_mean"
+                             % self.scorer_name_][self.best_index_]
 
     @property
     def grid_scores_(self):
