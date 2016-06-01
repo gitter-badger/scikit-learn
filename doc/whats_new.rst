@@ -12,6 +12,51 @@ Version 0.18
 Changelog
 ---------
 
+.. _model_selection_changes:
+
+Model Selection Enhancements and API Changes
+--------------------------------------------
+
+  - **The ``model_selection`` module**
+
+    The classes and functions from the formerly :mod:`sklearn.cross_validation`,
+    :mod:`sklearn.grid_search` and :mod:`sklearn.learning_curve` are
+    grouped together into a single module available at
+    :mod:`sklearn.model_selection`. There are some major changes to these
+    newly moved classes and functions. Refer below to know about the
+    changes.
+
+  - **Data-independent CV splitters enabling nested cross-validation**
+
+    The new cross-validation splitters, defined in the
+    :mod:`sklearn.model_selection`, are not initialized with any
+    data-dependent parameters. Instead they expose a :func:`split` method
+    that takes in the data and yields a generator for the different splits.
+
+    This change makes it possible to do nested cross-validation with ease,
+    facilitated by :class:`model_selection.GridSearchCV` and similar
+    utilities.
+
+  - **The enhanced `results_` attribute**
+
+    The new ``results_`` attribute (of :class:`model_selection.GridSearchCV`
+    and similar utilities) introduced in lieu of the ``grid_scores_``
+    attribute is a dict of 1D (numpy) (masked) arrays.
+
+    The per-split score, mean, std and rank for each parameter setting
+    (search candidate) are stored as separate numpy arrays under corresponding
+    keys in the ``results_`` dict.
+
+    The parameter values for each parameter is stored separately as numpy
+    masked object arrays. The value, for that search candidate, is masked if
+    the corresponding parameter is not applicable. Additionally a list of all
+    the parameter dicts are stored at ``results_['parameters']``.
+
+    This ``results_`` dict can be easily imported into pandas as a dataframe
+    for exploring the search results.
+
+
+
 New features
 ............
 
@@ -143,6 +188,12 @@ Enhancements
    - The :func: `ignore_warnings` now accept a category argument to ignore only
      the warnings of a specified type. By `Thierry Guillemot`_.
 
+   - The new ``results_`` attribute of :class:`model_selection.GridSearchCV`
+     (and similar utilities) can be easily imported into pandas as a
+     ``DataFrame``. Ref :ref:`model_selection_changes` for more information.
+     (`#6697 <https://github.com/scikit-learn/scikit-learn/pull/6697>`_) by
+     `Raghav R V`_.
+
 
 Bug fixes
 .........
@@ -234,47 +285,8 @@ API changes summary
      and :class:`model_selection.RandomizedSearchCV` is deprecated in favor of
      the attribute, ``results_``.
      Ref :ref:`model_selection_changes` for more information.
-     (`#6697 <https://github.com/scikit-learn/scikit-learn/pull/4294>`_) by
+     (`#6697 <https://github.com/scikit-learn/scikit-learn/pull/6697>`_) by
      `Raghav R V`_.
-
-
-.. _model_selection_changes:
-
-Model Selection Enhancements and API Changes
---------------------------------------------
-
-  - **Data Independent CV splitters enabling nested cross-validation**
-
-    The new cross-validation splitters, defined in the
-    :mod:`sklearn.model_selection`, are not initialized with any
-    data-dependent parameters. Instead they expose a :func:`split` method
-    that takes in the data and yields a generator for the different splits.
-
-    This change makes it possible to do nested cross-validation with ease,
-    facilitated by :class:`model_selection.GridSearchCV` and similar
-    utilities.
-
-    Refer `#4294 <https://github.com/scikit-learn/scikit-learn/pull/4294>`_
-
-  - **The enhanced `results_` attribute**
-
-    The new ``results_`` attribute (of :class:`model_selection.GridSearchCV`
-    and similar utilities) introduced in lieu of the ``grid_scores_``
-    attribute is a dict of 1D (numpy) (masked) arrays.
-
-    The per-split score, mean, std and rank for each parameter setting
-    (search candidate) are stored as separate numpy arrays under corresponding
-    keys in the ``results_`` dict.
-
-    The parameter values for each parameter is stored separately as numpy
-    masked object arrays. The value, for that search candidate, is masked if
-    the corresponding parameter is not applicable. Additionally a list of all
-    the parameter dicts are stored at ``results_['parameters']``.
-
-    This ``results_`` dict can be easily imported into pandas as a dataframe
-    for exploring the search results.
-
-    Refer `#6697 <https://github.com/scikit-learn/scikit-learn/pull/6697>`_
 
 
 .. currentmodule:: sklearn

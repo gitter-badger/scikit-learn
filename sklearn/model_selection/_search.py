@@ -591,8 +591,10 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
                 except KeyError:
                     pass
 
+        # Store a list of param dicts at the key 'parameters'
+        results['parameters'] = candidate_params
+
         self.results_ = results
-        self.candidate_params_ = candidate_params
         self.best_index_ = best_index
         self.n_splits_ = n_splits
         self.scorer_name_ = scorer_name
@@ -765,9 +767,9 @@ class GridSearchCV(BaseSearchCV):
            scoring=..., verbose=...)
     >>> sorted(clf.results_.keys())
     ...                             # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
-    ['param_C', 'param_kernel', 'test_accuracy_mean', 'test_accuracy_rank',...
-     'test_accuracy_std', 'test_split_0_accuracy', 'test_split_1_accuracy',...
-     'test_split_2_accuracy'...]
+    ['param_C', 'param_kernel', 'parameters', test_accuracy_mean',...
+     'test_accuracy_rank', 'test_accuracy_std', 'test_split_0_accuracy',...
+     'test_split_1_accuracy', 'test_split_2_accuracy'...]
 
     Attributes
     ----------
@@ -797,6 +799,7 @@ class GridSearchCV(BaseSearchCV):
          'test_accuracy_mean'    : [0.81, 0.60, 0.75, 0.82],
          'test_accuracy_std'     : [0.02, 0.01, 0.03, 0.03],
          'test_accuracy_rank'    : [2, 4, 3, 1],
+         'parameters'    : [{'kernel': 'poly', 'degree': 2}, ...],
         }
 
     best_estimator_ : estimator
@@ -813,6 +816,30 @@ class GridSearchCV(BaseSearchCV):
     scorer_ : function
         Scorer function used on the held out data to choose the best
         parameters for the model.
+
+    best_index_ : int
+        The index (of the ``results_`` arrays) which corresponds to the best
+        candidate parameter setting.
+
+        The dict at ``search.results_['parameters'][search.best_index_]`` gives
+        the parameter setting for the best model, that gives the highest
+        mean score (``search.best_score_``).
+
+    n_splits_ : int
+        The number of cross-validation splits (folds/iterations).
+
+    scorer_name_ : str
+        The name of the scorer used to compute the scores for each split. This
+        could simply be ``'score'``, if an estimator with a custom ``score``
+        function is used, or ``'accuracy'``/``'r2'`` if the default score
+        function of the ``sklearn.ClassifierMixin``/``sklearn.RegressorMixin``
+        is used.
+
+        NOTE ``scorer_name_`` is used in the keys of the ``results_`` dict.
+        For instance the key ``'test_%s_mean' % search.scorer_name_`` is used
+        to store the numpy array for mean scores of all the candidate parameter
+        settings.
+
 
     Notes
     ------
