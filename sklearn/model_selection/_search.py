@@ -558,7 +558,7 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         results = dict()
 
         for split_i in range(n_splits):
-            results["test_split_%d_%s" % (split_i, scorer_name)] = (
+            results["test_split%d_%s" % (split_i, scorer_name)] = (
                 test_scores[:, split_i])
 
         # Computed the (weighted) mean and std for all the candidates
@@ -615,7 +615,7 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         n_splits = self.n_splits_
         scores = np.empty((n_splits,), dtype=np.float64)
         for split_i in range(n_splits):
-            scores[split_i] = self.results_["test_split_%s_%s"
+            scores[split_i] = self.results_["test_split%d_%s"
                                             % (split_i,
                                                self.scorer_name_)][index]
 
@@ -768,8 +768,8 @@ class GridSearchCV(BaseSearchCV):
     >>> sorted(clf.results_.keys())
     ...                             # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     ['param_C', 'param_kernel', 'parameters', test_accuracy_mean',...
-     'test_accuracy_rank', 'test_accuracy_std', 'test_split_0_accuracy',...
-     'test_split_1_accuracy', 'test_split_2_accuracy'...]
+     'test_accuracy_rank', 'test_accuracy_std', 'test_split0_accuracy',...
+     'test_split1_accuracy', 'test_split2_accuracy'...]
 
     Attributes
     ----------
@@ -779,7 +779,7 @@ class GridSearchCV(BaseSearchCV):
 
         For instance the below given table
 
-        param_kernel|param_gamma|param_degree|test_split_0_accuracy|...|..rank|
+        param_kernel|param_gamma|param_degree|test_split0_accuracy|...|..rank|
         ======================================================================
         'poly'      |      -    |      2     |        0.8         |...|   2  |
         'poly'      |      -    |      3     |        0.7         |...|   4  |
@@ -794,11 +794,11 @@ class GridSearchCV(BaseSearchCV):
                                        mask = [ True  True False False]...),
          'param_degree' : masked_array(data = [2.0 3.0 -- --],
                                        mask = [False False  True  True]...),
-         'test_split_0_accuracy' : [0.8, 0.7, 0.8, 0.9],
-         'test_split_1_accuracy' : [0.82, 0.5, 0.7, 0.78],
-         'test_accuracy_mean'    : [0.81, 0.60, 0.75, 0.82],
-         'test_accuracy_std'     : [0.02, 0.01, 0.03, 0.03],
-         'test_accuracy_rank'    : [2, 4, 3, 1],
+         'test_split0_accuracy' : [0.8, 0.7, 0.8, 0.9],
+         'test_split1_accuracy' : [0.82, 0.5, 0.7, 0.78],
+         'test_accuracy_mean'   : [0.81, 0.60, 0.75, 0.82],
+         'test_accuracy_std'    : [0.02, 0.01, 0.03, 0.03],
+         'test_accuracy_rank'   : [2, 4, 3, 1],
          'parameters'    : [{'kernel': 'poly', 'degree': 2}, ...],
         }
 
@@ -1017,7 +1017,7 @@ class RandomizedSearchCV(BaseSearchCV):
 
         For instance the below given table
 
-        param_kernel|param_gamma|param_degree|test_split_0_accuracy|...|..rank|
+        param_kernel|param_gamma|param_degree|test_split0_accuracy|...|..rank|
         ======================================================================
         'poly'      |      -    |      2     |        0.8         |...|   2  |
         'poly'      |      -    |      3     |        0.7         |...|   4  |
@@ -1032,11 +1032,12 @@ class RandomizedSearchCV(BaseSearchCV):
                                        mask = [ True  True False False]...),
          'param_degree' : masked_array(data = [2.0 3.0 -- --],
                                        mask = [False False  True  True]...),
-         'test_split_0_accuracy' : [0.8, 0.7, 0.8, 0.9],
+         'test_split0_accuracy' : [0.8, 0.7, 0.8, 0.9],
 
          'test_accuracy_mean'    : [0.81, 0.60, 0.75, 0.82],
          'test_accuracy_std'     : [0.02, 0.01, 0.03, 0.03],
          'test_accuracy_rank'    : [2, 4, 3, 1],
+         'parameters' : [{'kernel' : 'poly', 'degree' : 2}, ...],
         }
 
     best_estimator_ : estimator

@@ -581,7 +581,7 @@ def check_search_statistics(search, cv_iter, n_folds):
     test_sample_counts = ([len(test) for (_, test) in cv_iter]
                           if iid else None)
 
-    res_scores = np.vstack([results["test_split_%d_accuracy" % i]
+    res_scores = np.vstack([results["test_split%d_accuracy" % i]
                             for i in range(n_folds)]).T
     res_means = results["test_accuracy_mean"]
     res_stds = results["test_accuracy_std"]
@@ -643,8 +643,8 @@ def test_grid_search_results():
 
     param_keys = ('param_C', 'param_degree', 'param_gamma', 'param_kernel')
     score_keys = ('test_accuracy_mean', 'test_accuracy_rank',
-                  'test_split_0_accuracy', 'test_split_1_accuracy',
-                  'test_split_2_accuracy', 'test_accuracy_std')
+                  'test_split0_accuracy', 'test_split1_accuracy',
+                  'test_split2_accuracy', 'test_accuracy_std')
     n_cand = n_grid_points
 
     for search, iid in zip((grid_search, grid_search_iid), (False, True)):
@@ -692,8 +692,8 @@ def test_random_search_results():
 
     param_keys = ('param_C', 'param_gamma')
     score_keys = ('test_accuracy_mean', 'test_accuracy_rank',
-                  'test_split_0_accuracy', 'test_split_1_accuracy',
-                  'test_split_2_accuracy', 'test_accuracy_std')
+                  'test_split0_accuracy', 'test_split1_accuracy',
+                  'test_split2_accuracy', 'test_accuracy_std')
     n_cand = n_search_iter
 
     # Common tests
@@ -741,7 +741,7 @@ def test_grid_search_correct_score_results():
         # Test scorer names
         result_keys = list(results.keys())
         expected_keys = (("test_%s_mean" % score, "test_%s_rank" % score) +
-                         tuple("test_split_%d_%s" % (cv_i, score)
+                         tuple("test_split%d_%s" % (cv_i, score)
                                for cv_i in range(n_folds)))
         assert_true(all(in1d(expected_keys, result_keys)))
 
@@ -791,7 +791,7 @@ def test_grid_search_with_multioutput_data():
         for cand_i in range(len(grid_search.candidate_params_)):
             est.set_params(**grid_search.candidate_params_[cand_i])
 
-            key = 'test_split_%%d_%s' % score_prefix
+            key = 'test_split%%d_%s' % score_prefix
             for i, (train, test) in enumerate(cv.split(X, y)):
                 est.fit(X[train], y[train])
                 correct_score = est.score(X[test], y[test])
@@ -807,7 +807,7 @@ def test_grid_search_with_multioutput_data():
         for cand_i in range(len(random_search.candidate_params_)):
             est.set_params(**random_search.candidate_params_[cand_i])
 
-            key = 'test_split_%%d_%s' % score_prefix
+            key = 'test_split%%d_%s' % score_prefix
             for i, (train, test) in enumerate(cv.split(X, y)):
                 est.fit(X[train], y[train])
                 correct_score = est.score(X[test], y[test])
