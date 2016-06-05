@@ -33,7 +33,6 @@ from ..utils.random import sample_without_replacement
 from ..utils.validation import indexable, check_is_fitted
 from ..utils.metaestimators import if_delegate_has_method
 from ..metrics.scorer import check_scoring
-from ..metrics.scorer import _get_scorer_name
 
 
 __all__ = ['GridSearchCV', 'ParameterGrid', 'fit_grid_point',
@@ -554,28 +553,23 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         test_sample_counts = np.array(test_sample_counts[:n_splits],
                                       dtype=np.int)
 
-        scorer_name = _get_scorer_name(self.scorer_)
-        results = dict()
-
-        for split_i in range(n_splits):
-            results["test_split%d_%s" % (split_i, scorer_name)] = (
-                test_scores[:, split_i])
-
         # Computed the (weighted) mean and std for all the candidates
         weights = test_sample_counts if self.iid else None
         means = np.average(test_scores, axis=1, weights=weights)
-
         stds = np.sqrt(np.average((test_scores - means[:, np.newaxis]) ** 2,
                                   axis=1, weights=weights))
 
-        results["test_%s_mean" % scorer_name] = means
-        results["test_%s_std" % scorer_name] = stds
+        results = dict()
+        for split_i in range(n_splits):
+            results["test_split%d_score" % split_i] = test_scores[:, split_i]
+        results["test_mean_score"] = means
+        results["test_std_score"] = stds
 
         ranks = rankdata(-means, method='min')
 
         best_index = np.flatnonzero(ranks == 1)[0]
         best_parameters = candidate_params[best_index]
-        results["test_%s_rank" % scorer_name] = ranks
+        results["test_rank_score"] = ranks
 
         for param in parameter_names:
             # One np.MaskedArray of dtype object per parameter, mask all the
@@ -597,7 +591,6 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         self.results_ = results
         self.best_index_ = best_index
         self.n_splits_ = n_splits
-        self.scorer_name_ = scorer_name
 
         if self.refit:
             # fit the best estimator using the entire dataset
@@ -615,25 +608,23 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         n_splits = self.n_splits_
         scores = np.empty((n_splits,), dtype=np.float64)
         for split_i in range(n_splits):
-            scores[split_i] = self.results_["test_split%d_%s"
-                                            % (split_i,
-                                               self.scorer_name_)][index]
+            scores[split_i] = self.results_["test_split%d_score"
+                                            % split_i][index]
 
-        mean = self.results_["test_%s_mean" % self.scorer_name_][index]
-        std = self.results_["test_%s_std" % self.scorer_name_][index]
+        mean = self.results_["test_mean_score"][index]
+        std = self.results_["test_std_score"][index]
 
         return scores, mean, std
 
     @property
     def best_params_(self):
         check_is_fitted(self, 'results_')
-        return self.candidate_params_[self.best_index_]
+        return self.results_['parameters'][self.best_index_]
 
     @property
     def best_score_(self):
         check_is_fitted(self, 'results_')
-        return self.results_["test_%s_mean"
-                             % self.scorer_name_][self.best_index_]
+        return self.results_['test_mean_score'][self.best_index_]
 
     @property
     def grid_scores_(self):
@@ -646,7 +637,7 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         check_is_fitted(self, 'results_')
         grid_scores = list()
 
-        for index, parameters in enumerate(self.candidate_params_):
+        for index, parameters in enumerate(self.results_['parameters']):
             scores, mean, _ = self._get_candidate_scores(index)
             grid_scores.append(_CVScoreTuple(parameters, mean, scores))
 
@@ -767,9 +758,9 @@ class GridSearchCV(BaseSearchCV):
            scoring=..., verbose=...)
     >>> sorted(clf.results_.keys())
     ...                             # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
-    ['param_C', 'param_kernel', 'parameters', test_accuracy_mean',...
-     'test_accuracy_rank', 'test_accuracy_std', 'test_split0_accuracy',...
-     'test_split1_accuracy', 'test_split2_accuracy'...]
+    ['param_C', 'param_kernel', 'parameters', test_mean_score',...
+     'test_rank_score', 'test_std_score', 'test_split0_score',...
+     'test_split1_score', 'test_split2_score'...]
 
     Attributes
     ----------
@@ -779,12 +770,12 @@ class GridSearchCV(BaseSearchCV):
 
         For instance the below given table
 
-        param_kernel|param_gamma|param_degree|test_split0_accuracy|...|..rank|
-        ======================================================================
-        'poly'      |      -    |      2     |        0.8         |...|   2  |
-        'poly'      |      -    |      3     |        0.7         |...|   4  |
-        'rbf'       |     0.1   |      -     |        0.8         |...|   3  |
-        'rbf'       |     0.2   |      -     |        0.9         |...|   1  |
+        param_kernel|param_gamma|param_degree|test_split0_score|...|...rank...|
+        =======================================================================
+        'poly'      |      -    |      2     |        0.8      |...|    2     |
+        'poly'      |      -    |      3     |        0.7      |...|    4     |
+        'rbf'       |     0.1   |      -     |        0.8      |...|    3     |
+        'rbf'       |     0.2   |      -     |        0.9      |...|    1     |
 
         will be represented by a results_ dict of :
 
@@ -794,13 +785,16 @@ class GridSearchCV(BaseSearchCV):
                                        mask = [ True  True False False]...),
          'param_degree' : masked_array(data = [2.0 3.0 -- --],
                                        mask = [False False  True  True]...),
-         'test_split0_accuracy' : [0.8, 0.7, 0.8, 0.9],
-         'test_split1_accuracy' : [0.82, 0.5, 0.7, 0.78],
-         'test_accuracy_mean'   : [0.81, 0.60, 0.75, 0.82],
-         'test_accuracy_std'    : [0.02, 0.01, 0.03, 0.03],
-         'test_accuracy_rank'   : [2, 4, 3, 1],
+         'test_split0_score' : [0.8, 0.7, 0.8, 0.9],
+         'test_split1_score' : [0.82, 0.5, 0.7, 0.78],
+         'test_mean_score'   : [0.81, 0.60, 0.75, 0.82],
+         'test_std_score'    : [0.02, 0.01, 0.03, 0.03],
+         'test_rank_score'   : [2, 4, 3, 1],
          'parameters'    : [{'kernel': 'poly', 'degree': 2}, ...],
         }
+
+        NOTE that the key 'parameters' is used to store a list of parameter
+        settings dict for all the parameter candidates.
 
     best_estimator_ : estimator
         Estimator that was chosen by the search, i.e. estimator
@@ -827,19 +821,6 @@ class GridSearchCV(BaseSearchCV):
 
     n_splits_ : int
         The number of cross-validation splits (folds/iterations).
-
-    scorer_name_ : str
-        The name of the scorer used to compute the scores for each split. This
-        could simply be ``'score'``, if an estimator with a custom ``score``
-        function is used, or ``'accuracy'``/``'r2'`` if the default score
-        function of the ``sklearn.ClassifierMixin``/``sklearn.RegressorMixin``
-        is used.
-
-        NOTE ``scorer_name_`` is used in the keys of the ``results_`` dict.
-        For instance the key ``'test_%s_mean' % search.scorer_name_`` is used
-        to store the numpy array for mean scores of all the candidate parameter
-        settings.
-
 
     Notes
     ------
@@ -1017,28 +998,27 @@ class RandomizedSearchCV(BaseSearchCV):
 
         For instance the below given table
 
-        param_kernel|param_gamma|param_degree|test_split0_accuracy|...|..rank|
-        ======================================================================
-        'poly'      |      -    |      2     |        0.8         |...|   2  |
-        'poly'      |      -    |      3     |        0.7         |...|   4  |
-        'rbf'       |     0.1   |      -     |        0.8         |...|   3  |
-        'rbf'       |     0.2   |      -     |        0.9         |...|   1  |
+        param_kernel|param_gamma|test_split0_accuracy|...|test_rank_score|
+        =======================================================================
+        'rbf'       |     0.1   |        0.8         |...|       2      |
+        'rbf'       |     0.2   |        0.9         |...|       1      |
+        'rbf'       |     0.3   |        0.7         |...|       1      |
 
         will be represented by a results_ dict of :
 
-        {'param_kernel' : masked_array(data = ['poly', 'poly', 'rbf', 'rbf'],
-                                       mask = [False False False False]...)
-         'param_gamma'  : masked_array(data = [-- -- 0.1 0.2],
-                                       mask = [ True  True False False]...),
-         'param_degree' : masked_array(data = [2.0 3.0 -- --],
-                                       mask = [False False  True  True]...),
-         'test_split0_accuracy' : [0.8, 0.7, 0.8, 0.9],
-
-         'test_accuracy_mean'    : [0.81, 0.60, 0.75, 0.82],
-         'test_accuracy_std'     : [0.02, 0.01, 0.03, 0.03],
-         'test_accuracy_rank'    : [2, 4, 3, 1],
-         'parameters' : [{'kernel' : 'poly', 'degree' : 2}, ...],
+        {'param_kernel' : masked_array(data = ['rbf', rbf', 'rbf'],
+                                       mask = False),
+         'param_gamma'  : masked_array(data = [0.1 0.2 0.3], mask = False),
+         'test_split0_score' : [0.8, 0.9, 0.7],
+         'test_split1_score' : [0.82, 0.5, 0.7],
+         'test_mean_score'   : [0.81, 0.7, 0.7],
+         'test_std_score'    : [0.02, 0.2, 0.],
+         'test_rank_score'   : [3, 1, 1],
+         'parameters' : [{'kernel' : 'rbf', 'gamma' : 0.1}, ...],
         }
+
+        NOTE that the key 'parameters' is used to store a list of parameter
+        settings dict for all the parameter candidates.
 
     best_estimator_ : estimator
         Estimator that was chosen by the search, i.e. estimator
@@ -1050,6 +1030,21 @@ class RandomizedSearchCV(BaseSearchCV):
 
     best_params_ : dict
         Parameter setting that gave the best results on the hold out data.
+
+    scorer_ : function
+        Scorer function used on the held out data to choose the best
+        parameters for the model.
+
+    best_index_ : int
+        The index (of the ``results_`` arrays) which corresponds to the best
+        candidate parameter setting.
+
+        The dict at ``search.results_['parameters'][search.best_index_]`` gives
+        the parameter setting for the best model, that gives the highest
+        mean score (``search.best_score_``).
+
+    n_splits_ : int
+        The number of cross-validation splits (folds/iterations).
 
     Notes
     -----

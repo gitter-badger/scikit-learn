@@ -523,6 +523,7 @@ def test_gridsearch_no_predict():
                           param_grid=dict(bandwidth=[.01, .1, 1]),
                           scoring=custom_scoring)
     search.fit(X)
+    print(search.best_score_)
     assert_equal(search.best_params_['bandwidth'], .1)
     assert_equal(search.best_score_, 42)
 
@@ -561,15 +562,14 @@ def check_results_array_types(results, param_keys, score_keys):
     assert_false(any(isinstance(results[key], np.ma.MaskedArray)
                      for key in score_keys))
     assert_true(all(results[key].dtype is np.dtype('float64')
-                    for key in score_keys if not key.endswith('rank')))
-    assert_true(all(results[key].dtype is np.dtype('int')
-                    for key in score_keys if key.endswith('rank')))
+                    for key in score_keys if key != 'test_rank_score'))
+    assert_true(results['test_rank_score'].dtype is np.dtype('int'))
 
 
 def check_results_keys(results, param_keys, score_keys, n_cand):
     # Test the search.results_ contains all the required results
     assert_array_equal(sorted(results.keys()),
-                       sorted(param_keys + score_keys))
+                       sorted(param_keys + score_keys + ('parameters',)))
     assert_true(all(results[key].shape == (n_cand,)
                     for key in param_keys + score_keys))
 
@@ -581,11 +581,12 @@ def check_search_statistics(search, cv_iter, n_folds):
     test_sample_counts = ([len(test) for (_, test) in cv_iter]
                           if iid else None)
 
-    res_scores = np.vstack([results["test_split%d_accuracy" % i]
+    res_scores = np.vstack([results["test_split%d_score" % i]
                             for i in range(n_folds)]).T
-    res_means = results["test_accuracy_mean"]
-    res_stds = results["test_accuracy_std"]
-    res_ranks = results["test_accuracy_rank"]
+    res_means = results["test_mean_score"]
+    res_stds = results["test_std_score"]
+    res_ranks = results["test_rank_score"]
+    res_params = results["parameters"]
     assert_equal(iid, (test_sample_counts is not None))
     means = np.average(res_scores, axis=1, weights=test_sample_counts)
     stds = np.sqrt(np.average((res_scores - means[:, np.newaxis]) ** 2,
@@ -602,23 +603,23 @@ def check_search_statistics(search, cv_iter, n_folds):
     assert_array_equal(res_ranks, ranks)
     assert_equal(search.best_index_, best_index)
     assert_equal(search.best_score_, best_score)
-    assert_equal(search.best_params_, search.candidate_params_[best_index])
+    assert_equal(search.best_params_, res_params[best_index])
 
     # TODO Remove in 0.20
-    check_results_grid_scores_param_consistency(search, res_scores,
-                                                res_means)
+    check_results_grid_scores_param_consistency(search, res_scores, res_means)
 
 
 def check_results_grid_scores_param_consistency(search, res_scores, res_means):
     # TODO Remove in 0.20
-    n_cand = len(search.candidate_params_)
+    res_params = search.results_['parameters']
+    n_cand = len(res_params)
     grid_scores = assert_warns(DeprecationWarning, getattr,
                                search, 'grid_scores_')
     assert_equal(len(grid_scores), n_cand)
     # Check consistency of the structure of grid_scores
     # (This will also test _get_candidate_scores)
     for i in range(n_cand):
-        assert_equal(grid_scores[i].parameters, search.candidate_params_[i])
+        assert_equal(grid_scores[i].parameters, res_params[i])
         assert_array_equal(grid_scores[i].cv_validation_scores,
                            res_scores[i, :])
         assert_array_equal(grid_scores[i].mean_validation_score, res_means[i])
@@ -642,10 +643,10 @@ def test_grid_search_results():
     grid_search_iid.fit(X, y)
 
     param_keys = ('param_C', 'param_degree', 'param_gamma', 'param_kernel')
-    score_keys = ('test_accuracy_mean', 'test_accuracy_rank',
-                  'test_split0_accuracy', 'test_split1_accuracy',
-                  'test_split2_accuracy', 'test_accuracy_std')
-    n_cand = n_grid_points
+    score_keys = ('test_mean_score', 'test_rank_score',
+                  'test_split0_score', 'test_split1_score',
+                  'test_split2_score', 'test_std_score')
+    n_candidates = n_grid_points
 
     for search, iid in zip((grid_search, grid_search_iid), (False, True)):
         assert_equal(iid, search.iid)
@@ -654,19 +655,20 @@ def test_grid_search_results():
         cv_iter = StratifiedKFold(n_folds).split(X, y)
 
         check_results_array_types(results, param_keys, score_keys)
-        check_results_keys(results, param_keys, score_keys, n_cand)
+        check_results_keys(results, param_keys, score_keys, n_candidates)
         check_search_statistics(search, cv_iter, n_folds)
 
-    results, n_cand = grid_search.results_, len(grid_search.candidate_params_)
+    results = grid_search.results_
+    n_candidates = len(grid_search.results_['parameters'])
     assert_true(all((results['param_C'].mask[i] and
                      results['param_gamma'].mask[i] and
                      not results['param_degree'].mask[i])
-                    for i in range(n_cand)
+                    for i in range(n_candidates)
                     if results['param_kernel'][i] == 'linear'))
     assert_true(all((not results['param_C'].mask[i] and
                      not results['param_gamma'].mask[i] and
                      results['param_degree'].mask[i])
-                    for i in range(n_cand)
+                    for i in range(n_candidates)
                     if results['param_kernel'][i] == 'rbf'))
 
 
@@ -691,9 +693,9 @@ def test_random_search_results():
     random_search_iid.fit(X, y)
 
     param_keys = ('param_C', 'param_gamma')
-    score_keys = ('test_accuracy_mean', 'test_accuracy_rank',
-                  'test_split0_accuracy', 'test_split1_accuracy',
-                  'test_split2_accuracy', 'test_accuracy_std')
+    score_keys = ('test_mean_score', 'test_rank_score',
+                  'test_split0_score', 'test_split1_score',
+                  'test_split2_score', 'test_std_score')
     n_cand = n_search_iter
 
     # Common tests
@@ -716,14 +718,14 @@ def test_random_search_results():
 def test_search_results_none_param():
     X, y = [[1], [2], [3], [4], [5]], [0, 0, 0, 0, 1]
     estimators = (DecisionTreeRegressor(), DecisionTreeClassifier())
-    estimator_score_names = ('r2', 'accuracy')
     est_parameters = {"random_state": [0, None]}
     cv = KFold(random_state=0)
 
-    for est, score_prefix in zip(estimators, estimator_score_names):
+    for est in estimators:
         grid_search = GridSearchCV(est, est_parameters, cv=cv).fit(X, y)
-        for cand_i in range(len(grid_search.candidate_params_)):
-            est.set_params(**grid_search.candidate_params_[cand_i])
+        res_params = grid_search.results_['parameters']
+        for cand_i in range(len(res_params)):
+            est.set_params(**res_params[cand_i])
             assert_equal(est.random_state,
                          grid_search.results_['param_random_state'][cand_i])
 
@@ -740,8 +742,8 @@ def test_grid_search_correct_score_results():
 
         # Test scorer names
         result_keys = list(results.keys())
-        expected_keys = (("test_%s_mean" % score, "test_%s_rank" % score) +
-                         tuple("test_split%d_%s" % (cv_i, score)
+        expected_keys = (("test_mean_score", "test_rank_score") +
+                         tuple("test_split%d_score" % cv_i
                                for cv_i in range(n_folds)))
         assert_true(all(in1d(expected_keys, result_keys)))
 
@@ -785,35 +787,35 @@ def test_grid_search_with_multioutput_data():
                   DecisionTreeClassifier(random_state=0)]
 
     # Test with grid search cv
-    for est, score_prefix in zip(estimators, ('r2', 'accuracy')):
+    for est in estimators:
         grid_search = GridSearchCV(est, est_parameters, cv=cv)
         grid_search.fit(X, y)
-        for cand_i in range(len(grid_search.candidate_params_)):
-            est.set_params(**grid_search.candidate_params_[cand_i])
+        res_params = grid_search.results_['parameters']
+        for cand_i in range(len(res_params)):
+            est.set_params(**res_params[cand_i])
 
-            key = 'test_split%%d_%s' % score_prefix
             for i, (train, test) in enumerate(cv.split(X, y)):
                 est.fit(X[train], y[train])
                 correct_score = est.score(X[test], y[test])
                 assert_almost_equal(
                     correct_score,
-                    grid_search.results_[key % i][cand_i])
+                    grid_search.results_['test_split%d_score' % i][cand_i])
 
     # Test with a randomized search
-    for est, score_prefix in zip(estimators, ('r2', 'accuracy')):
+    for est in estimators:
         random_search = RandomizedSearchCV(est, est_parameters,
                                            cv=cv, n_iter=3)
         random_search.fit(X, y)
-        for cand_i in range(len(random_search.candidate_params_)):
-            est.set_params(**random_search.candidate_params_[cand_i])
+        res_params = random_search.results_['parameters']
+        for cand_i in range(len(res_params)):
+            est.set_params(**res_params[cand_i])
 
-            key = 'test_split%%d_%s' % score_prefix
             for i, (train, test) in enumerate(cv.split(X, y)):
                 est.fit(X[train], y[train])
                 correct_score = est.score(X[test], y[test])
                 assert_almost_equal(
                     correct_score,
-                    random_search.results_[key % i][cand_i])
+                    random_search.results_['test_split%d_score' % i][cand_i])
 
 
 def test_predict_proba_disabled():
@@ -869,18 +871,20 @@ def test_grid_search_failing_classifier():
     gs = GridSearchCV(clf, [{'parameter': [0, 1, 2]}], scoring='accuracy',
                       refit=False, error_score=0.0)
     assert_warns(FitFailedWarning, gs.fit, X, y)
+    n_candidates = len(gs.results_['parameters'])
     # Ensure that grid scores were set to zero as required for those fits
     # that are expected to fail.
     assert all(np.all(gs._get_candidate_scores(candidate_id)[0] == 0.0)
-               for candidate_id in range(len(gs.candidate_params_))
+               for candidate_id in range(n_candidates)
                if gs.results_['param_parameter'][candidate_id] ==
                FailingClassifier.FAILING_PARAMETER)
 
     gs = GridSearchCV(clf, [{'parameter': [0, 1, 2]}], scoring='accuracy',
                       refit=False, error_score=float('nan'))
     assert_warns(FitFailedWarning, gs.fit, X, y)
+    n_candidates = len(gs.results_['parameters'])
     assert all(np.all(np.isnan(gs._get_candidate_scores(candidate_id)[0]))
-               for candidate_id in range(len(gs.candidate_params_))
+               for candidate_id in range(n_candidates)
                if gs.results_['param_parameter'][candidate_id] ==
                FailingClassifier.FAILING_PARAMETER)
 
