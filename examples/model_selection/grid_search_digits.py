@@ -60,11 +60,11 @@ for score in scores:
     print()
     print("Grid scores on development set:")
     print()
-    means = clf.results_['test_%s_weighted_mean' % score]
-    stds = clf.results_['test_%s_weighted_std' % score]
-    for i in range(len(clf.candidate_params_)):
+    means = clf.results_['test_mean_score']
+    stds = clf.results_['test_std_score']
+    for i in range(len(clf.results_['parameters'])):
         print("%0.3f (+/-%0.03f) for %r"
-              % (means[i], stds[i] * 2, clf.candidate_params_[i]))
+              % (means[i], stds[i] * 2, clf.results_['parameters'][i]))
     print()
 
     print("Detailed classification report:")
