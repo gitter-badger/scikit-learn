@@ -152,8 +152,7 @@ def test_grid_search():
     sys.stdout = old_stdout
     assert_equal(grid_search.best_estimator_.foo_param, 2)
 
-    assert_almost_equal(grid_search.results_["param_foo_param"].data,
-                        [1, 2, 3])
+    assert_array_equal(grid_search.results_["param_foo_param"].data, [1, 2, 3])
 
     # Smoke test the score etc:
     grid_search.score(X, y)
