@@ -858,7 +858,7 @@ class GridSearchCV(BaseSearchCV):
             n_jobs=n_jobs, iid=iid, refit=refit, cv=cv, verbose=verbose,
             pre_dispatch=pre_dispatch, error_score=error_score)
         self.param_grid = param_grid
-        _check_param_grid(self.param_grid)
+        _check_param_grid(param_grid)
 
     def fit(self, X, y=None, labels=None):
         """Run fit with all sets of parameters.
