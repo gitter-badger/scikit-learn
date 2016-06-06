@@ -556,13 +556,12 @@ def check_results_array_types(results, param_keys, score_keys):
     # Check if the search results' array are of correct types
     assert_true(all(isinstance(results[param], np.ma.MaskedArray)
                     for param in param_keys))
-    assert_true(all(results[key].dtype is np.dtype('O')
-                    for key in param_keys))
+    assert_true(all(results[key].dtype == object for key in param_keys))
     assert_false(any(isinstance(results[key], np.ma.MaskedArray)
                      for key in score_keys))
-    assert_true(all(results[key].dtype is np.dtype('float64')
+    assert_true(all(results[key].dtype == np.float64
                     for key in score_keys if key != 'test_rank_score'))
-    assert_true(results['test_rank_score'].dtype is np.dtype('int'))
+    assert_true(results['test_rank_score'].dtype == np.int32)
 
 
 def check_results_keys(results, param_keys, score_keys, n_cand):

@@ -565,7 +565,7 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         results["test_mean_score"] = means
         results["test_std_score"] = stds
 
-        ranks = rankdata(-means, method='min')
+        ranks = np.asarray(rankdata(-means, method='min'), dtype=np.int32)
 
         best_index = np.flatnonzero(ranks == 1)[0]
         best_parameters = candidate_params[best_index]
