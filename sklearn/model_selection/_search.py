@@ -796,6 +796,12 @@ class GridSearchCV(BaseSearchCV):
         NOTE that the key 'parameters' is used to store a list of parameter
         settings dict for all the parameter candidates.
 
+        NOTE that the standard deviation presented here might differ from
+        the one presented at ``grid_scores_`` when ``iid`` is ``True`` as
+        ``grid_scores_`` presents the std without weighing them for both the
+        cases of ``iid=True`` and ``iid=False`` wheareas here the
+        std is weighted by the test sample counts when ``iid`` is ``True``.
+
     best_estimator_ : estimator
         Estimator that was chosen by the search, i.e. estimator
         which gave highest score (or smallest loss if specified)
@@ -1019,6 +1025,12 @@ class RandomizedSearchCV(BaseSearchCV):
 
         NOTE that the key 'parameters' is used to store a list of parameter
         settings dict for all the parameter candidates.
+
+        NOTE that the standard deviation presented here might differ from
+        the one presented at ``grid_scores_`` when ``iid`` is ``True`` as
+        ``grid_scores_`` presents the std without weighing them for both the
+        cases of ``iid=True`` and ``iid=False`` wheareas here the
+        std is weighted by the test sample counts when ``iid`` is ``True``.
 
     best_estimator_ : estimator
         Estimator that was chosen by the search, i.e. estimator
