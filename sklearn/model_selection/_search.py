@@ -998,11 +998,11 @@ class RandomizedSearchCV(BaseSearchCV):
 
         For instance the below given table
 
-        param_kernel|param_gamma|test_split0_accuracy|...|test_rank_score|
-        =======================================================================
-        'rbf'       |     0.1   |        0.8         |...|       2      |
-        'rbf'       |     0.2   |        0.9         |...|       1      |
-        'rbf'       |     0.3   |        0.7         |...|       1      |
+        param_kernel|param_gamma|test_split0_score|...|test_rank_score|
+        ===============================================================
+        'rbf'       |     0.1   |        0.8      |...|       2       |
+        'rbf'       |     0.2   |        0.9      |...|       1       |
+        'rbf'       |     0.3   |        0.7      |...|       1       |
 
         will be represented by a results_ dict of :
 
