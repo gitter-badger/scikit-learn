@@ -263,7 +263,7 @@ def test_no_refit():
     clf = MockClassifier()
     grid_search = GridSearchCV(clf, {'foo_param': [1, 2, 3]}, refit=False)
     grid_search.fit(X, y)
-    assert_true((hasattr(grid_search, "best_estimator_") and
+    assert_true((not hasattr(grid_search, "best_estimator_") and
                  hasattr(grid_search, "best_index_")))
 
 
