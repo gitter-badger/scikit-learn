@@ -40,20 +40,25 @@ Model Selection Enhancements and API Changes
   - **The enhanced `results_` attribute**
 
     The new ``results_`` attribute (of :class:`model_selection.GridSearchCV`
-    and similar utilities) introduced in lieu of the ``grid_scores_``
-    attribute is a dict of 1D (numpy) (masked) arrays.
+    and :class:`model_selection.RandomizedSearchCV`) introduced in lieu of the
+    ``grid_scores_`` attribute is a dict of 1D (numpy) (masked) arrays with
+    elements in each array corresponding to the parameter settings
+    (i.e. search candidates).
 
-    The per-split score, mean, std and rank for each parameter setting
-    (search candidate) are stored as separate numpy arrays under corresponding
-    keys in the ``results_`` dict.
+    These ``results_`` arrays include scores for each cross-validation split
+    (with keys such as ``test_split0_score``), as well as their mean
+    (``test_mean_score``) and standard deviation (``test_std_score``).
+
+    The ranks for the search candidates (based on their mean
+    cross-validation score) is available at ``results_['test_rank_score']``.
 
     The parameter values for each parameter is stored separately as numpy
     masked object arrays. The value, for that search candidate, is masked if
     the corresponding parameter is not applicable. Additionally a list of all
     the parameter dicts are stored at ``results_['parameters']``.
 
-    This ``results_`` dict can be easily imported into pandas as a dataframe
-    for exploring the search results.
+    This ``results_`` dict can be easily imported into ``pandas`` as a
+    ``DataFrame`` for exploring the search results.
 
 
 
@@ -189,8 +194,9 @@ Enhancements
      the warnings of a specified type. By `Thierry Guillemot`_.
 
    - The new ``results_`` attribute of :class:`model_selection.GridSearchCV`
-     (and similar utilities) can be easily imported into pandas as a
-     ``DataFrame``. Ref :ref:`model_selection_changes` for more information.
+     (and :class:`model_selection.RandomizedSearchCV`) can be easily imported
+     into pandas as a ``DataFrame``. Ref :ref:`model_selection_changes` for
+     more information.
      (`#6697 <https://github.com/scikit-learn/scikit-learn/pull/6697>`_) by
      `Raghav R V`_.
 
