@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
     # TASK: print the mean and std for each candidate along with the parameter
     # settings for all the candidates explored by grid search.
-    n_candidates = len(grid_search.candidate_params_)
+    n_candidates = len(grid_search.results_['parameters'])
     for i in range(n_candidates):
         print(i, 'parameters - %s; mean - %0.2f; std - %0.2f'
                  % (grid_search.results_['parameters'][i],
