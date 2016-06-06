@@ -171,8 +171,8 @@ for (k, (C, gamma, clf)) in enumerate(classifiers):
     plt.yticks(())
     plt.axis('tight')
 
-scores = grid.results_['test_accuracy_mean'].reshape(len(C_range),
-                                                     len(gamma_range))
+scores = grid.results_['test_mean_score'].reshape(len(C_range),
+                                                  len(gamma_range))
 
 # Draw heatmap of the validation accuracy as a function of gamma and C
 #
