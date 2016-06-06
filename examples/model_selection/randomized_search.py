@@ -48,7 +48,7 @@ def report(results, n_top=3):
             print("Mean validation score: {0:.3f} (std: {1:.3f})".format(
                   results['test_mean_score'][candidate],
                   results['test_std_score'][candidate]))
-            print("Parameters: {0}".format(results['parameters'][candidate]))
+            print("Parameters: {0}".format(results['params'][candidate]))
             print("")
 
 
@@ -85,5 +85,5 @@ start = time()
 grid_search.fit(X, y)
 
 print("GridSearchCV took %.2f seconds for %d candidate parameter settings."
-      % (time() - start, len(grid_search.results_['parameters'])))
+      % (time() - start, len(grid_search.results_['params'])))
 report(grid_search.results_)

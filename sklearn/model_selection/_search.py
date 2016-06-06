@@ -585,8 +585,8 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
                 except KeyError:
                     pass
 
-        # Store a list of param dicts at the key 'parameters'
-        results['parameters'] = candidate_params
+        # Store a list of param dicts at the key 'params'
+        results['params'] = candidate_params
 
         self.results_ = results
         self.best_index_ = best_index
@@ -619,7 +619,7 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
     @property
     def best_params_(self):
         check_is_fitted(self, 'results_')
-        return self.results_['parameters'][self.best_index_]
+        return self.results_['params'][self.best_index_]
 
     @property
     def best_score_(self):
@@ -637,9 +637,9 @@ class BaseSearchCV(six.with_metaclass(ABCMeta, BaseEstimator,
         check_is_fitted(self, 'results_')
         grid_scores = list()
 
-        for index, parameters in enumerate(self.results_['parameters']):
+        for index, params in enumerate(self.results_['params']):
             scores, mean, _ = self._get_candidate_scores(index)
-            grid_scores.append(_CVScoreTuple(parameters, mean, scores))
+            grid_scores.append(_CVScoreTuple(params, mean, scores))
 
         return grid_scores
 
@@ -758,7 +758,7 @@ class GridSearchCV(BaseSearchCV):
            scoring=..., verbose=...)
     >>> sorted(clf.results_.keys())
     ...                             # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
-    ['param_C', 'param_kernel', 'parameters', 'test_mean_score',...
+    ['param_C', 'param_kernel', 'params', 'test_mean_score',...
      'test_rank_score', 'test_split0_score', 'test_split1_score',...
      'test_split2_score', 'test_std_score']
 
@@ -790,10 +790,10 @@ class GridSearchCV(BaseSearchCV):
          'test_mean_score'   : [0.81, 0.60, 0.75, 0.82],
          'test_std_score'    : [0.02, 0.01, 0.03, 0.03],
          'test_rank_score'   : [2, 4, 3, 1],
-         'parameters'    : [{'kernel': 'poly', 'degree': 2}, ...],
+         'params'    : [{'kernel': 'poly', 'degree': 2}, ...],
         }
 
-        NOTE that the key 'parameters' is used to store a list of parameter
+        NOTE that the key 'params' is used to store a list of parameter
         settings dict for all the parameter candidates.
 
         NOTE that the standard deviation presented here might differ from
@@ -817,7 +817,7 @@ class GridSearchCV(BaseSearchCV):
         The index (of the ``results_`` arrays) which corresponds to the best
         candidate parameter setting.
 
-        The dict at ``search.results_['parameters'][search.best_index_]`` gives
+        The dict at ``search.results_['params'][search.best_index_]`` gives
         the parameter setting for the best model, that gives the highest
         mean score (``search.best_score_``).
 
@@ -1020,10 +1020,10 @@ class RandomizedSearchCV(BaseSearchCV):
          'test_mean_score'   : [0.81, 0.7, 0.7],
          'test_std_score'    : [0.02, 0.2, 0.],
          'test_rank_score'   : [3, 1, 1],
-         'parameters' : [{'kernel' : 'rbf', 'gamma' : 0.1}, ...],
+         'params' : [{'kernel' : 'rbf', 'gamma' : 0.1}, ...],
         }
 
-        NOTE that the key 'parameters' is used to store a list of parameter
+        NOTE that the key 'params' is used to store a list of parameter
         settings dict for all the parameter candidates.
 
         NOTE that the standard deviation presented here might differ from
@@ -1051,7 +1051,7 @@ class RandomizedSearchCV(BaseSearchCV):
         The index (of the ``results_`` arrays) which corresponds to the best
         candidate parameter setting.
 
-        The dict at ``search.results_['parameters'][search.best_index_]`` gives
+        The dict at ``search.results_['params'][search.best_index_]`` gives
         the parameter setting for the best model, that gives the highest
         mean score (``search.best_score_``).
 

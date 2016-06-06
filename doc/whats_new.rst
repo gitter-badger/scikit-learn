@@ -60,7 +60,7 @@ Model Selection Enhancements and API Changes
     The parameter values for each parameter is stored separately as numpy
     masked object arrays. The value, for that search candidate, is masked if
     the corresponding parameter is not applicable. Additionally a list of all
-    the parameter dicts are stored at ``results_['parameters']``.
+    the parameter dicts are stored at ``results_['params']``.
 
 
 New features

@@ -568,7 +568,7 @@ def check_results_array_types(results, param_keys, score_keys):
 def check_results_keys(results, param_keys, score_keys, n_cand):
     # Test the search.results_ contains all the required results
     assert_array_equal(sorted(results.keys()),
-                       sorted(param_keys + score_keys + ('parameters',)))
+                       sorted(param_keys + score_keys + ('params',)))
     assert_true(all(results[key].shape == (n_cand,)
                     for key in param_keys + score_keys))
 
@@ -585,7 +585,7 @@ def check_search_statistics(search, cv_iter, n_folds):
     res_means = results["test_mean_score"]
     res_stds = results["test_std_score"]
     res_ranks = results["test_rank_score"]
-    res_params = results["parameters"]
+    res_params = results["params"]
     assert_equal(iid, (test_sample_counts is not None))
     means = np.average(res_scores, axis=1, weights=test_sample_counts)
     stds = np.sqrt(np.average((res_scores - means[:, np.newaxis]) ** 2,
@@ -610,7 +610,7 @@ def check_search_statistics(search, cv_iter, n_folds):
 
 def check_results_grid_scores_param_consistency(search, res_scores, res_means):
     # TODO Remove in 0.20
-    res_params = search.results_['parameters']
+    res_params = search.results_['params']
     n_cand = len(res_params)
     grid_scores = assert_warns(DeprecationWarning, getattr,
                                search, 'grid_scores_')
@@ -658,7 +658,7 @@ def test_grid_search_results():
         check_search_statistics(search, cv_iter, n_folds)
 
     results = grid_search.results_
-    n_candidates = len(grid_search.results_['parameters'])
+    n_candidates = len(grid_search.results_['params'])
     assert_true(all((results['param_C'].mask[i] and
                      results['param_gamma'].mask[i] and
                      not results['param_degree'].mask[i])
@@ -722,7 +722,7 @@ def test_search_results_none_param():
 
     for est in estimators:
         grid_search = GridSearchCV(est, est_parameters, cv=cv).fit(X, y)
-        res_params = grid_search.results_['parameters']
+        res_params = grid_search.results_['params']
         for cand_i in range(len(res_params)):
             est.set_params(**res_params[cand_i])
             assert_equal(est.random_state,
@@ -789,7 +789,7 @@ def test_grid_search_with_multioutput_data():
     for est in estimators:
         grid_search = GridSearchCV(est, est_parameters, cv=cv)
         grid_search.fit(X, y)
-        res_params = grid_search.results_['parameters']
+        res_params = grid_search.results_['params']
         for cand_i in range(len(res_params)):
             est.set_params(**res_params[cand_i])
 
@@ -805,7 +805,7 @@ def test_grid_search_with_multioutput_data():
         random_search = RandomizedSearchCV(est, est_parameters,
                                            cv=cv, n_iter=3)
         random_search.fit(X, y)
-        res_params = random_search.results_['parameters']
+        res_params = random_search.results_['params']
         for cand_i in range(len(res_params)):
             est.set_params(**res_params[cand_i])
 
@@ -870,7 +870,7 @@ def test_grid_search_failing_classifier():
     gs = GridSearchCV(clf, [{'parameter': [0, 1, 2]}], scoring='accuracy',
                       refit=False, error_score=0.0)
     assert_warns(FitFailedWarning, gs.fit, X, y)
-    n_candidates = len(gs.results_['parameters'])
+    n_candidates = len(gs.results_['params'])
     # Ensure that grid scores were set to zero as required for those fits
     # that are expected to fail.
     assert all(np.all(gs._get_candidate_scores(candidate_id)[0] == 0.0)
@@ -881,7 +881,7 @@ def test_grid_search_failing_classifier():
     gs = GridSearchCV(clf, [{'parameter': [0, 1, 2]}], scoring='accuracy',
                       refit=False, error_score=float('nan'))
     assert_warns(FitFailedWarning, gs.fit, X, y)
-    n_candidates = len(gs.results_['parameters'])
+    n_candidates = len(gs.results_['params'])
     assert all(np.all(np.isnan(gs._get_candidate_scores(candidate_id)[0]))
                for candidate_id in range(n_candidates)
                if gs.results_['param_parameter'][candidate_id] ==

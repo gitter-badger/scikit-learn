@@ -62,9 +62,9 @@ for score in scores:
     print()
     means = clf.results_['test_mean_score']
     stds = clf.results_['test_std_score']
-    for i in range(len(clf.results_['parameters'])):
+    for i in range(len(clf.results_['params'])):
         print("%0.3f (+/-%0.03f) for %r"
-              % (means[i], stds[i] * 2, clf.results_['parameters'][i]))
+              % (means[i], stds[i] * 2, clf.results_['params'][i]))
     print()
 
     print("Detailed classification report:")
