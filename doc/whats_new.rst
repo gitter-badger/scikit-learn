@@ -19,33 +19,38 @@ Model Selection Enhancements and API Changes
 
   - **The ``model_selection`` module**
 
-    The classes and functions from the formerly :mod:`sklearn.cross_validation`,
-    :mod:`sklearn.grid_search` and :mod:`sklearn.learning_curve` are
-    grouped together into a single module available at
-    :mod:`sklearn.model_selection`. There are some major changes to these
-    newly moved classes and functions. Refer below to know about the
-    changes.
+    The new module :mod:`sklearn.model_selection`, which groups together the
+    functionalities of formerly :mod:`cross_validation`, :mod:`grid_search` and
+    :mod:`learning_curve`, introduces new possibilities such as nested
+    cross-validation and better manipulation of parameter searches with Pandas.
+
+    Many things will stay the same but there are some key differences. Read
+    below to know more about the changes.
 
   - **Data-independent CV splitters enabling nested cross-validation**
 
     The new cross-validation splitters, defined in the
-    :mod:`sklearn.model_selection`, are not initialized with any
-    data-dependent parameters. Instead they expose a :func:`split` method
-    that takes in the data and yields a generator for the different splits.
+    :mod:`sklearn.model_selection`, are no longer initialized with any
+    data-dependent parameters such as ``y``. Instead they expose a
+    :func:`split` method that takes in the data and yields a generator for the
+    different splits.
 
-    This change makes it possible to do nested cross-validation with ease,
-    facilitated by :class:`model_selection.GridSearchCV` and similar
-    utilities.
+    This change makes it possible to use the cross-validation splitters to
+    perform nested cross-validation, facilitated by
+    :class:`model_selection.GridSearchCV` and
+    :class:`model_selection.RandomizedSearchCV` utilities.
 
   - **The enhanced `results_` attribute**
 
     The new ``results_`` attribute (of :class:`model_selection.GridSearchCV`
     and :class:`model_selection.RandomizedSearchCV`) introduced in lieu of the
-    ``grid_scores_`` attribute is a dict of 1D (numpy) (masked) arrays with
-    elements in each array corresponding to the parameter settings
-    (i.e. search candidates).
+    ``grid_scores_`` attribute is a dict of 1D arrays with elements in each
+    array corresponding to the parameter settings (i.e. search candidates).
 
-    These ``results_`` arrays include scores for each cross-validation split
+    The ``results_`` dict can be easily imported into ``pandas`` as a
+    ``DataFrame`` for exploring the search results.
+
+    The ``results_`` arrays include scores for each cross-validation split
     (with keys such as ``test_split0_score``), as well as their mean
     (``test_mean_score``) and standard deviation (``test_std_score``).
 
@@ -56,10 +61,6 @@ Model Selection Enhancements and API Changes
     masked object arrays. The value, for that search candidate, is masked if
     the corresponding parameter is not applicable. Additionally a list of all
     the parameter dicts are stored at ``results_['parameters']``.
-
-    This ``results_`` dict can be easily imported into ``pandas`` as a
-    ``DataFrame`` for exploring the search results.
-
 
 
 New features
@@ -289,7 +290,7 @@ API changes summary
 
    - The ``grid_scores_`` attribute of :class:`model_selection.GridSearchCV`
      and :class:`model_selection.RandomizedSearchCV` is deprecated in favor of
-     the attribute, ``results_``.
+     the attribute ``results_``.
      Ref :ref:`model_selection_changes` for more information.
      (`#6697 <https://github.com/scikit-learn/scikit-learn/pull/6697>`_) by
      `Raghav R V`_.
