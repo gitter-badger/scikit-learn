@@ -807,10 +807,6 @@ class GridSearchCV(BaseSearchCV):
     best_params_ : dict
         Parameter setting that gave the best results on the hold out data.
 
-    scorer_ : function
-        Scorer function used on the held out data to choose the best
-        parameters for the model.
-
     best_index_ : int
         The index (of the ``results_`` arrays) which corresponds to the best
         candidate parameter setting.
@@ -818,6 +814,10 @@ class GridSearchCV(BaseSearchCV):
         The dict at ``search.results_['parameters'][search.best_index_]`` gives
         the parameter setting for the best model, that gives the highest
         mean score (``search.best_score_``).
+
+    scorer_ : function
+        Scorer function used on the held out data to choose the best
+        parameters for the model.
 
     n_splits_ : int
         The number of cross-validation splits (folds/iterations).
