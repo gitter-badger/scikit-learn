@@ -53,13 +53,14 @@ if __name__ == "__main__":
     grid_search = GridSearchCV(pipeline, parameters, n_jobs=-1)
     grid_search.fit(docs_train, y_train)
 
-    # TASK: print the cross-validated scores for the each parameters set
-    # explored by the grid search
+    # TASK: print the mean and std for each candidate along with the parameter
+    # settings for all the candidates explored by grid search.
     n_candidates = len(grid_search.candidate_params_)
-    test_split_keys = filter(lambda key: key.startswith('test_split_'),
-                             grid_search.results_.keys())
     for i in range(n_candidates):
-        print(i, list(grid_search.results_[key][i] for key in test_split_keys))
+        print(i, 'parameters - %s; mean - %0.2f; std - %0.2f'
+                 % (grid_search.results_['parameters'][i],
+                    grid_search.results_['test_mean_score'][i],
+                    grid_search.results_['test_std_score'][i]))
 
     # TASK: Predict the outcome on the testing set and store it in a variable
     # named y_predicted
